@@ -1,0 +1,202 @@
+{
+	"globals": {
+			"gpt" : {
+				"lba_start_offset": 40
+			}
+
+	},
+
+	"partitions":
+		{
+			"reserved": {
+				"id": 1,
+				"label": null,
+				"lba_start": null,
+				"size": 130,
+				"type": "data",
+				"fs_type": "hidden",
+				"uuid": "FFFFFFFFFFF0",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"ESP": {
+				"id": 2,
+				"label": null,
+				"lba_start": null,
+				"size": 33,
+				"type": "efi",
+				"fs_type": "vfat",
+				"uuid": "C12A7328-F81F-11D2-BA4B-00A0C93EC93B",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": "wait"
+			},
+
+			"boot": {
+				"id": 3,
+				"label": null,
+				"lba_start": null,
+				"size": 16,
+				"type": "data",
+				"fs_type": "hidden",
+				"uuid": "000000000100",
+				"priority": 15,
+				"try": 3,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"recovery": {
+				"id": 4,
+				"label": null,
+				"lba_start": null,
+				"size": 16,
+				"type": "data",
+				"fs_type": "hidden",
+				"uuid": "000000000101",
+				"priority": 14,
+				"try": 3,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"fastboot": {
+				"id": 5,
+				"label": null,
+				"lba_start": null,
+				"size": 16,
+				"type": "data",
+				"fs_type": "hidden",
+				"uuid": "000000000102",
+				"priority": 13,
+				"try": 3,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"reserved_1": {
+				"id": 6,
+				"label": null,
+				"lba_start": 458792,
+				"size": 32,
+				"type": "data",
+				"fs_type": "hidden",
+				"uuid": "0000000000FF",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"panic":
+			{
+				"id": 7
+			},
+
+			"factory":
+			{
+				"id": 8
+			},
+
+			"misc":
+			{
+				"id": 9
+			},
+
+			"config":
+			{
+				"id": 10
+			},
+
+			"cache":
+			{
+				"id": 11
+			},
+
+			"logs":
+			{
+				"id": 12
+			},
+
+			"system":
+			{
+				"id": 13
+			},
+
+			"data":
+			{
+				"id": 14
+			}
+		},
+
+	"oses": {
+
+		"mos": {
+			"fstab_file": "root/fstab.$model",
+			"recovery_fstab_dest_file": null,
+			"mount": [
+				"factory",
+				"system",
+				"cache",
+				"config",
+				"data",
+				"logs"
+				]
+		},
+
+		"cos": {
+			"fstab_file": "root/fstab.charger.$model",
+			"recovery_fstab_dest_file": null,
+			"mount": [
+				"system",
+				"logs"
+				]
+		},
+
+		"ros": {
+			"fstab_file": "recovery/root/fstab.$model",
+			"recovery_fstab_dest_file": "recovery/root/etc/recovery.fstab",
+			"mount": [
+				"config",
+				"logs",
+				"ESP"
+				]
+		},
+
+		"pos": {
+			"fstab_file": "droidboot/root/fstab.$model",
+			"recovery_fstab_dest_file": "droidboot/root/system/etc/recovery.fstab",
+			"mount": [
+				"config",
+				"factory",
+				"logs",
+				"ESP"
+				]
+		},
+
+		"tos": {
+			"fstab_file": "testos/root/fstab.$model",
+			"recovery_fstab_dest_file": "testos/root/system/etc/recovery.fstab",
+			"mount": [
+				"factory",
+				"config"
+				]
+		}
+	}
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Arkham Error Messages -->
+    <add-resource type="string" name="container_err_unknown" />
+    <string name="container_err_unknown">Could not access container. An unknown error occurred!</string>
+
+    <add-resource type="string" name="container_err_no_service" />
+    <string name="container_err_no_service">Could not access container. Connection to service failed!</string>
+
+    <add-resource type="string" name="container_err_permission_denied" />
+    <string name="container_err_permission_denied">Could not access container. Permission denied!</string>
+
+    <add-resource type="string" name="container_err_disabled" />
+    <string name="container_err_disabled">Could not access container. Container disabled!</string>
+
+    <add-resource type="string" name="container_err_mount" />
+    <string name="container_err_mount">Could not access container. Mount error!</string>
+
+    <!-- ARKHAM-341 Container wipe notification. Receives container name as param -->
+    <add-resource type="string" name="container_wiped" />
+    <string name="container_wiped">Container <xliff:g id="name">%s</xliff:g> wiped!</string>
+    <!-- ARKHAM-271 Change password failed notification -->
+    <add-resource type="string" name="change_password_failed" />
+    <string name="change_password_failed">Change password failed</string>
+    <!-- ARKHAM-620 Used to notify user after a phone reboot to unlock containers in order to see container contacts -->
+    <add-resource type="string" name="unlock_container_notification" />
+    <string name="unlock_container_notification">Container %s is locked. Please unlock it in order to be able to read its contacts.</string>
+
+    <!-- Title of an application permission which allows the holder to access container
+         manager service. -->
+    <add-resource type="string" name="permlab_accessContainerService" />
+    <string name="permlab_accessContainerService">access container manager service</string>
+    <!-- Description of an application permission which allows the holder to access container
+         manager service. -->
+    <add-resource type="string" name="permdesc_accessContainerService" />
+    <string name="permdesc_accessContainerService">Allows the holder to access Container Manager Service.
+    Should never be needed for normal apps.</string>
+
+    <!-- ARKHAM-676 -->
+    <add-resource type="string" name="container_unlock_message" />
+    <string name="container_unlock_message">Unlock %1$s container</string>
+
+    <!-- ARKHAM-545 Container keyguard dialog messages -->
+    <add-resource type="string" name="kg_failed_attempts_almost_at_wipe_container" />
+    <string name="kg_failed_attempts_almost_at_wipe_container">
+       You have incorrectly attempted to unlock the container <xliff:g id="number">%d</xliff:g> times.
+       After <xliff:g id="number">%d</xliff:g> more unsuccessful attempts,
+       the container will be <xliff:g id="name">%s</xliff:g>.
+    </string>
+
+    <add-resource type="string" name="kg_failed_attempts_now_wiping_container" />
+    <string name="kg_failed_attempts_now_wiping_container">
+       You have incorrectly attempted to unlock the container <xliff:g id="number">%d</xliff:g> times.
+       The container will now be <xliff:g id="name">%s</xliff:g>.
+    </string>
+</resources>

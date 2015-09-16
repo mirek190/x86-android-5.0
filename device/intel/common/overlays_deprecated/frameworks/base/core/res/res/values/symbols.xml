@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* Copyright 2012, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources>
+
+  <!-- We don't want to publish private symbols in android.R as part of the
+       SDK.  Instead, put them here. -->
+  <private-symbols package="com.android.internal" />
+
+  <java-symbol type="bool" name="config_cat_support"/>
+  <java-symbol type="bool" name="config_usage_oem_hooks_supported"/>
+  <java-symbol type="bool" name="gsm_call_status_polling_enable" />
+  <java-symbol type="bool" name="config_track_get_operator_polling" />
+  <java-symbol type="bool" name="config_signalStrengthExt" />
+  <java-symbol type="bool" name="config_set_preferred_rat_allowed" />
+  <java-symbol type="bool" name="config_customize_operator_name_display" />
+  <java-symbol type="string" name="hotspot_active" />
+  <java-symbol type="string" name="hotspot_no_connections" />
+  <java-symbol type="string" name="hotspot_multiple_devices_connected" />
+  <java-symbol type="string" name="hotspot_device_connected" />
+  <java-symbol type="string" name="hotspot_device_disconnected" />
+  <java-symbol type="bool" name="config_wifi_scanalways_support" />
+  <java-symbol type="bool" name="config_wifi_multirole_multichannel_support" />
+
+  <java-symbol type="xml" name="thermal_sensor_config" />
+  <java-symbol type="xml" name="thermal_throttle_config" />
+  <java-symbol type="bool" name="config_nonPollingWindowOrientation" />
+  <java-symbol type="bool" name="config_TerminalDetectWindowOrientation" />
+  <java-symbol type="string" name="lockscreen_not_charging"/>
+  <java-symbol type="string" name="lockscreen_network_puk_locked_message" />
+  <java-symbol type="string" name="lockscreen_network_puk_locked_instructions" />
+  <java-symbol type="string" name="oemhook_datastate_property"/>
+  <java-symbol type="string" name="oemhook_concurrentdata_property"/>
+  <java-symbol type="bool" name="config_button_automatic_brightness_available" />
+  <java-symbol type="bool" name="config_button_led_brightness_available" />
+  <java-symbol type="bool" name="config_proximityScreenOffAvailable" />
+  <java-symbol type="string" name="usb_warn_device_not_support" />
+  <java-symbol type="string" name="usb_warn_device_not_responding" />
+  <java-symbol type="string" name="usb_warn_device_vbus_invalid_title" />
+  <java-symbol type="string" name="usb_warn_device_vbus_invalid_message" />
+  <java-symbol type="string" name="usb_warn_hub_max_tier" />
+  <java-symbol type="string" name="usb_warn_insufficient_power_title" />
+  <java-symbol type="string" name="usb_warn_insufficient_power_message" />
+  <java-symbol type="string" name="usb_warn_host_onemore_ums_device_title" />
+  <java-symbol type="string" name="usb_warn_host_onemore_ums_device_message" />
+  <java-symbol type="string" name="usb_warn_usb_not_work_title" />
+  <java-symbol type="string" name="usb_warn_usb_not_work_message" />
+  <java-symbol type="string" name="usb_warn_usb_vbus_warn_title" />
+  <java-symbol type="string" name="usb_warn_usb_vbus_warn_message" />
+
+  <java-symbol type="string" name="container_err_unknown"/>
+  <java-symbol type="string" name="container_err_no_service"/>
+  <java-symbol type="string" name="container_err_permission_denied"/>
+  <java-symbol type="string" name="container_err_disabled"/>
+  <java-symbol type="string" name="container_err_mount"/>
+  <java-symbol type="string" name="container_wiped"/>
+  <java-symbol type="string" name="change_password_failed"/>
+  <java-symbol type="drawable" name="stat_notify_large_wipe_container"/>
+  <java-symbol type="drawable" name="stat_notify_small_wipe_container"/>
+  <!-- ARKHAM-180 Add XML file that describe container manager
+       properties set at build time. For now this contains the system
+       whitelist. -->
+  <java-symbol type="xml" name="container_manager" />
+
+  <!-- ARKHAM-676 -->
+  <java-symbol type="string" name="container_unlock_message" />
+  <!-- ARKHAM-620 -->
+  <java-symbol type="string" name="unlock_container_notification"/>
+  <java-symbol type="string" name="forbid_shutdown_when_encrypt"/>
+  <!-- ARKHAM-545 -->
+  <java-symbol type="string" name="kg_failed_attempts_almost_at_wipe_container" />
+  <java-symbol type="string" name="kg_failed_attempts_now_wiping_container" />
+  <java-symbol type="string" name="reboot_device_confirmation" />
+
+  <java-symbol type="string" name="volte_creator_jar_file_property" />
+  <java-symbol type="string" name="volte_creator_class_property" />
+  <!---Ciphering icon -->
+  <java-symbol type="drawable" name="stat_sys_ciphering_disable" />
+
+  <java-symbol type="array" name="config_operatorConsideredRoaming" />
+</resources>

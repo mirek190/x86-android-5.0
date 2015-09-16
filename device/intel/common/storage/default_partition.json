@@ -1,0 +1,209 @@
+{
+	"globals": {
+		"partition_format" : "%sp%d",
+		"format_table" : "gpt",
+			"gpt" : {
+				"base_name_name": "/dev/block/by-name/",
+				"uuid_prefix": "80868086-8086-8086-8086-",
+				"lba_start_offset": 40,
+				"lba_end_offset": 40
+			},
+
+			"mbr" : {
+				"lba_start_offset": 1
+			},
+
+			"sdcard": {
+				"used": 1,
+				"fstab_entry" : [ "*/block/mmcblk1*",
+				"\t",
+				"auto",
+				"\t",
+				"vfat",
+				"\t",
+				"None\twait,voldmanaged=sdcard1:auto",
+				"\n" ],
+				"recovery_entry": [ "#size_hint=-1",
+				"\n",
+				"/dev/block/mmcblk1p1",
+				"\t",
+				"/mnt/sdcard1",
+				"\t",
+				"vfat",
+				"\t",
+				"defaults",
+				"\t",
+				"length=0",
+				"\n" ]
+			},
+
+			"usbcard": {
+				"used": 1,
+				"fstab_entry" : [ "*/block/sd*",
+				"\t",
+				"auto",
+				"\t",
+				"vfat",
+				"\t",
+				"None\twait,voldmanaged=usbcard1:auto",
+				"\n" ],
+				"recovery_entry": [ "*/block/sd",
+				"\t",
+				"/storage/usbcard1",
+				"\t",
+				"vfat",
+				"\t",
+				"None\twait,voldmanaged=usbcard1:auto",
+				"\n" ]
+			}
+	},
+
+		"storage": {
+			"type": "eMMC",
+			"sector_size": 512,
+			"vendor": "eMMC_vendor",
+			"base_name": "/dev/block/mmcblk0",
+			"firmware_version": 0.01,
+			"size": "16G",
+			"revision": 0.01
+		},
+
+		"partitions":
+		{
+			"panic":
+			{
+				"id": 1,
+				"label": null,
+				"lba_start": null,
+				"size": 32,
+				"type": "data",
+				"fs_type": "raw",
+				"uuid": "000000000001",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"factory":
+			{
+				"id": 2,
+				"label": null,
+				"lba_start": null,
+				"size": 128,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000002",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": "nosuid,nodev,noatime,barrier=1,data=ordered",
+				"fs_mgr": "wait"
+			},
+
+			"misc":
+			{
+				"id": 3,
+				"label": null,
+				"lba_start": null,
+				"size": 128,
+				"type": "data",
+				"fs_type": "emmc",
+				"uuid": "000000000003",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": null,
+				"fs_mgr": null
+			},
+
+			"config":
+			{
+				"id": 4,
+				"label": null,
+				"lba_start": null,
+				"size": 128,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000004",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": "nosuid,nodev,noatime,barrier=1,data=ordered",
+				"fs_mgr": "wait"
+			},
+
+			"cache":
+			{
+				"id": 5,
+				"label": null,
+				"lba_start": null,
+				"size": 1536,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000005",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": "nosuid,nodev,noatime,barrier=1,data=ordered",
+				"fs_mgr": "wait,check"
+			},
+
+			"logs":
+			{
+				"id": 6,
+				"label": null,
+				"lba_start": null,
+				"size": 1024,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000006",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": "nosuid,nodev,barrier=1,data=ordered",
+				"fs_mgr": "wait,check"
+			},
+
+			"system":
+			{
+				"id": 7,
+				"label": null,
+				"lba_start": null,
+				"size": 2048,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000007",
+				"priority": 0,
+				"try": 0,
+				"length": 0,
+				"mount_point": null,
+				"mount_options": "ro,noatime",
+				"fs_mgr": "wait"
+			},
+
+			"data":
+			{
+				"id": 8,
+				"label": null,
+				"lba_start": null,
+				"size": 0,
+				"type": "data",
+				"fs_type": "ext4",
+				"uuid": "000000000008",
+				"priority": 0,
+				"try": 0,
+				"length": -33,
+				"mount_point": null,
+				"mount_options": "nosuid,nodev,noatime,discard,barrier=1,data=ordered,noauto_da_alloc",
+				"fs_mgr": "wait,check,forceencrypt=/factory/userdata_footer"
+			}
+		}
+}

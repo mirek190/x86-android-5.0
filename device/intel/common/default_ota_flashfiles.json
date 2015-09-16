@@ -1,0 +1,11 @@
+{"config":
+  [{"filename":"flash.xml", "name":"default", "flashtype":"ota"}
+  ],
+"commands":
+  [{"type":"prop", "target":"INSTALLED_BUILD_PROP_TARGET"},
+   {"type":"adb", "arg":"root", "desc":"As root user"},
+   {"type":"adb", "arg":"shell rm /cache/recovery/update/*", "desc":"Clean cache"},
+   {"type":"adb", "arg":"shell rm /cache/ota.zip", "desc":"Clean ota.zip"},
+   {"type":"apush", "target":"INTERNAL_OTA_PACKAGE_TARGET", "dest":"/cache/ota.zip", "desc":"Pushing update", "timeout":300000},
+   {"type":"adb", "arg":"shell am startservice -a com.intel.ota.OtaUpdate -e LOCATION /cache/ota.zip", "desc":"Trigger OS update"}
+  ]}

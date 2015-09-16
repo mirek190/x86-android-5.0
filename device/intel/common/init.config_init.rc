@@ -1,0 +1,12 @@
+on fs
+    start config_init
+    wait /config_init.done
+    start config_props
+
+service config_init /system/bin/sh /system/etc/catalog/config_init.sh
+    disabled
+    oneshot
+
+service config_props /system/bin/sh /system/etc/catalog/config_props.sh
+    disabled
+    oneshot

@@ -1,0 +1,2 @@
+# Additional system_app rules
+allow system_app securitymanager_service:service_manager add;

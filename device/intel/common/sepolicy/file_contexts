@@ -1,0 +1,3 @@
+# Additional file_contexts
+# ASF securityfile service
+/system/bin/securityfileservice u:object_r:asf_exec:s0

@@ -1,0 +1,4 @@
+# Additional servicemanager rules
+allow servicemanager { gpsd init init_shell coreu mmgr crashlogd }:dir search;
+allow servicemanager { gpsd init init_shell coreu mmgr crashlogd }:file { read open };
+allow servicemanager { gpsd init init_shell coreu mmgr crashlogd }:process getattr;

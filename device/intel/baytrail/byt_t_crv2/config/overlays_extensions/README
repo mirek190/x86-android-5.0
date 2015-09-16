@@ -1,0 +1,4 @@
+Keep Intel defined resources customization here.
+
+Overlays for resources that have been added to android code base by Intel
+must be isolated.

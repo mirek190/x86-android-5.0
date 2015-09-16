@@ -1,0 +1,19 @@
+# Rules for system/bin/sensorhubd
+type sensorhubd, domain;
+type sensorhubd_exec, exec_type, file_type;
+init_daemon_domain(sensorhubd);
+
+allow sensorhubd { domain sysfs_thermal_management -isolated_app -untrusted_app }:dir search;
+allow sensorhubd { domain sysfs_thermal_management -isolated_app -untrusted_app }:file { read open };
+allow sensorhubd { domain sysfs_thermal_management -isolated_app -untrusted_app }:lnk_file read;
+allow sensorhubd shell_exec:file { read execute open execute_no_trans };
+allow sensorhubd system_data_file:file { write open append };
+allow sensorhubd system_file:file execute_no_trans;
+allow sensorhubd sysfs_hwmon_control:file { open write };
+
+allow sensorhubd i2c_device:chr_file { read write ioctl open };
+allow sensorhubd system_data_file:dir rw_dir_perms;
+allow sensorhubd system_data_file:file create_file_perms;
+allow sensorhubd sysfs_gpio_value:file write;
+# sysfs file should be specified
+allow sensorhubd sysfs:file write;

@@ -1,0 +1,13 @@
+########################################################
+#  BLUETOOTH CONFIGURATION - MARVELL SPECIFIC
+########################################################
+
+on boot
+insmod /lib/modules/mbt8xxx.ko init_cfg=mrvl/bt_init_cfg.conf
+        chmod 0660 /dev/mbtchar0
+        chown bluetooth net_bt_stack /dev/mbtchar0
+
+service rfkill_bt /system/bin/sh /rfkill_bt.sh
+    class core
+    user root
+    oneshot

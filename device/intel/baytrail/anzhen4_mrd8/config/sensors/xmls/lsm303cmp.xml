@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x1e</addr>
+      </i2c_addrs>
+      <id_reg_addr></id_reg_addr>
+      <ids>
+      </ids>
+      <device_name>lsm303cmp</device_name>
+      <input_name>comp</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval>18</min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+    </odr_tables>
+    <range_tables>
+    </range_tables>
+    <sys_entries>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        writereg_0x0_0_1 = 0x18;
+        writereg_0x1_0_1 = 0x60;
+        writereg_0x2_0_1 = 2;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        writereg_0x2_0_1 = 0;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        writereg_0x2_0_1 = 2;
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x3_0x80_6;
+        return be16_to_cpu(regbuf_0x3_2);
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return be16_to_cpu(regbuf_0x7_2);
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return be16_to_cpu(regbuf_0x5_2);
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>compass</type>
+    <platform_config>
+      <calibration_file>/data/compass.conf</calibration_file>
+      <calibration_function>CompassGenericCalibration</calibration_function>
+      <fliter_length>50</fliter_length>
+    </platform_config>
+    <device>
+      <name>MODEL_LSM303DLHC 3-axis Magnetic field sensor</name>
+      <vendor>STMicroelectronics</vendor>
+      <version>1</version>
+      <maxRange>250.0</maxRange>
+      <resolution>0.15</resolution>
+      <power>0.1</power>
+      <minDelay>20000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="Y" axis_y="X" axis_z="Z"></mapper>
+      <scale axis_x="0.149253731343283" axis_y="0.149253731343283" axis_z="-0.166666666666667"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

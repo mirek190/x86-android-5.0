@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd"
+    Name="DSP" Type="DSP" Endianness="Little">
+    <ComponentLibrary>
+        <ComponentType Name="SSP_TYPE" Mapping="ModuleID:0xFFFF">
+            <ParameterBlock Name="SLOT_MAPPING" Mapping="ParameterBlockID:130,Header:130;18;Location">
+                <ParameterBlock Name="RX_SLOT" ArrayLength="8">
+                    <EnumParameter Name="INDEX" Size="8">
+                        <ValuePair Literal="NONE" Numerical="0x00"/>
+                        <ValuePair Literal="IN0_L" Numerical="0x01"/>
+                        <ValuePair Literal="IN0_R" Numerical="0x02"/>
+                        <ValuePair Literal="IN0" Numerical="0x03"/>
+                        <ValuePair Literal="IN1_L" Numerical="0x04"/>
+                        <ValuePair Literal="IN1_R" Numerical="0x08"/>
+                        <ValuePair Literal="IN1" Numerical="0x0C"/>
+                        <ValuePair Literal="IN2_L" Numerical="0x10"/>
+                        <ValuePair Literal="IN2_R" Numerical="0x20"/>
+                        <ValuePair Literal="IN2" Numerical="0x30"/>
+                        <ValuePair Literal="IN3_L" Numerical="0x40"/>
+                        <ValuePair Literal="IN3_R" Numerical="0x80"/>
+                        <ValuePair Literal="IN3" Numerical="0xC0"/>
+                    </EnumParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="TX_SLOT" ArrayLength="8">
+                    <EnumParameter Name="INDEX" Size="8">
+                        <ValuePair Literal="NONE" Numerical="0x00"/>
+                        <ValuePair Literal="OUT0_L" Numerical="0x01"/>
+                        <ValuePair Literal="OUT0_R" Numerical="0x02"/>
+                        <ValuePair Literal="OUT0" Numerical="0x03"/>
+                        <ValuePair Literal="OUT1_L" Numerical="0x04"/>
+                        <ValuePair Literal="OUT1_R" Numerical="0x08"/>
+                        <ValuePair Literal="OUT1" Numerical="0x0C"/>
+                        <ValuePair Literal="OUT2_L" Numerical="0x10"/>
+                        <ValuePair Literal="OUT2_R" Numerical="0x20"/>
+                        <ValuePair Literal="OUT2" Numerical="0x30"/>
+                        <ValuePair Literal="OUT3_L" Numerical="0x40"/>
+                        <ValuePair Literal="OUT3_R" Numerical="0x80"/>
+                        <ValuePair Literal="OUT3" Numerical="0xC0"/>
+                    </EnumParameter>
+                </ParameterBlock>
+            </ParameterBlock>
+        </ComponentType>
+        <ComponentType Name="SSP" Mapping="PipeID:0xFF,InstanceID:0xFF">
+            <Component Name="MODEM" Type="SSP_TYPE" Mapping="Location:0"/>
+            <Component Name="BT" Type="SSP_TYPE" Mapping="Location:1"/>
+            <Component Name="FM" Type="SSP_TYPE" Mapping="Location:2"/>
+            <Component Name="CODEC" Type="SSP_TYPE" Mapping="Location:3"/>
+        </ComponentType>
+        <ComponentType Name="SBA_TYPE" Mapping="TaskID:1">
+            <Component Name="SSP" Type="SSP"/>
+        </ComponentType>
+        <ComponentType Name="FBA_UL_TYPE" Mapping="TaskID:2">
+            <IntegerParameter Name="DUMMY" Size="8"/>
+        </ComponentType>
+        <ComponentType Name="FBA_DL_TYPE" Mapping="TaskID:5">
+            <IntegerParameter Name="DUMMY" Size="8"/>
+        </ComponentType>
+        <ComponentType Name="MMX_TYPE" Mapping="TaskID:3">
+            <IntegerParameter Name="DUMMY" Size="8"/>
+        </ComponentType>
+        <ComponentType Name="AWARE_TYPE" Mapping="TaskID:4">
+            <IntegerParameter Name="DUMMY" Size="8"/>
+        </ComponentType>
+    </ComponentLibrary>
+    <InstanceDefinition>
+        <Component Name="SBA" Type="SBA_TYPE"/>
+        <Component Name="FBA_UL" Type="FBA_UL_TYPE"/>
+        <Component Name="FBA_DL" Type="FBA_DL_TYPE"/>
+        <Component Name="MMX" Type="MMX_TYPE"/>
+        <Component Name="AWARE" Type="AWARE_TYPE"/>
+    </InstanceDefinition>
+</Subsystem>

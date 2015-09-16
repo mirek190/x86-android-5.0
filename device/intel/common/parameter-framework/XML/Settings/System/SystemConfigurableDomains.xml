@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/ConfigurableDomains.xsd" SystemClassName="System">
+	<ConfigurableDomain Name="AudioComms.Configuration">
+		<Configurations>
+			<Configuration Name="Default">
+				<CompoundRule Type="All"/>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/DEFAULT_SAMPLE_SPEC"/>
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Default">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/DEFAULT_SAMPLE_SPEC">
+					<Component Name="DEFAULT_SAMPLE_SPEC">
+						<Component Name="INPUT">
+							<IntegerParameter Name="SAMPLE_RATE">8000</IntegerParameter>
+						</Component>
+						<Component Name="OUTPUT">
+							<IntegerParameter Name="SAMPLE_RATE">48000</IntegerParameter>
+						</Component>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+	<ConfigurableDomain Name="AudioComms.EarpiecePresence">
+		<Configurations>
+			<Configuration Name="Phone">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Platform_Type_ID" MatchesWhen="Is" Value="Phone"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Tablet">
+				<CompoundRule Type="All"/>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/EARPIECE/IS_PRESENT"/>
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Phone">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/EARPIECE/IS_PRESENT">
+					<BooleanParameter Name="IS_PRESENT">1</BooleanParameter>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="Tablet">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/EARPIECE/IS_PRESENT">
+					<BooleanParameter Name="IS_PRESENT">0</BooleanParameter>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+	<ConfigurableDomain Name="AudioComms.Audience">
+		<Configurations>
+			<Configuration Name="Medfield">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Platform_Family_ID" MatchesWhen="Is" Value="Medfield"/>
+					<SelectionCriterionRule SelectionCriterion="Product_Line_ID" MatchesWhen="IsNot" Value="Intel:Medfield:Phone:Lexington"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="Clovertrail">
+				<CompoundRule Type="All">
+					<SelectionCriterionRule SelectionCriterion="Platform_Family_ID" MatchesWhen="Is" Value="CloverTrail"/>
+				</CompoundRule>
+			</Configuration>
+			<Configuration Name="WithoutAudience">
+				<CompoundRule Type="All"/>
+			</Configuration>
+		</Configurations>
+		<ConfigurableElements>
+			<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/AUDIENCE"/>
+		</ConfigurableElements>
+		<Settings>
+			<Configuration Name="Medfield">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/AUDIENCE">
+					<Component Name="AUDIENCE">
+						<StringParameter Name="FIRMWARE_PATH">/etc/firmware/mfld_audience.bin</StringParameter>
+						<BooleanParameter Name="IS_PRESENT">1</BooleanParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="Clovertrail">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/AUDIENCE">
+					<Component Name="AUDIENCE">
+						<StringParameter Name="FIRMWARE_PATH">/etc/firmware/clvt_audience.bin</StringParameter>
+						<BooleanParameter Name="IS_PRESENT">1</BooleanParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+			<Configuration Name="WithoutAudience">
+				<ConfigurableElement Path="/System/PROPERTIES/AUDIO_COMMS/HARDWARE/AUDIENCE">
+					<Component Name="AUDIENCE">
+						<StringParameter Name="FIRMWARE_PATH">none</StringParameter>
+						<BooleanParameter Name="IS_PRESENT">0</BooleanParameter>
+					</Component>
+				</ConfigurableElement>
+			</Configuration>
+		</Settings>
+	</ConfigurableDomain>
+</ConfigurableDomains>

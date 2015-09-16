@@ -1,0 +1,42 @@
+on post-fs
+
+service wdump /system/xbin/tcpdump -w /logs/stats/cws.wifi.dump_data
+    class core
+    user root
+    disabled
+
+on property:dev.log.cws.wifi.dump=ON
+    start wdump
+
+on property:dev.log.cws.wifi.dump=OFF
+    stop wdump
+    write /logs/stats/cws.wifi.dump_trigger ""
+
+on property:dev.log.cws.bt.dump=ON
+    write /logs/stats/cws.bt.dump_data ""
+    chown bluetooth:net_bt_stack /logs/stats/cws.bt.dump_data
+    chmod 660 /logs/stats/cws.bt.dump_data
+    setprop BtSnoopFileName /logs/stats/cws.bt.dump_data
+    setprop BtSnoopLogOutput true
+
+on property:dev.log.cws.bt.dump=OFF
+    setprop BtSnoopLogOutput false
+    write /logs/stats/cws.bt.dump_trigger ""
+
+service bootcharton /system/xbin/bootchart.sh on
+    class core
+    user root
+    oneshot
+    disabled
+
+service bootchartoff /system/xbin/bootchart.sh off
+    class core
+    user root
+    oneshot
+    disabled
+
+on property:dev.log.bootchart=ON
+    start bootcharton
+
+on property:dev.log.bootchart=OFF
+    start bootchartoff

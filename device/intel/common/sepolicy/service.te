@@ -1,0 +1,2 @@
+type securityfile_service,     service_manager_type;
+type securitymanager_service,  service_manager_type;

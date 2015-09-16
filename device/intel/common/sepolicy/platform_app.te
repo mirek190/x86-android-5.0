@@ -1,0 +1,2 @@
+# Additional platform_app rules
+allow platform_app surfaceflinger_tmpfs:file { read write };

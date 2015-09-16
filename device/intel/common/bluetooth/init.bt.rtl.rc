@@ -1,0 +1,34 @@
+########################################################
+#  BLUETOOTH CONFIGURATION - REALTEK SPECIFIC
+########################################################
+
+on init
+    insmod /lib/modules/bcm_bt_lpm.ko
+
+on post-fs
+    mkdir /config/bt
+    chown system bluetooth /config/bt
+    chmod 0770 /config/bt
+    setprop ro.bt.bdaddr_path "/config/bt/bd_addr.conf"
+    start bd_prov
+
+on early-boot
+    chmod 0644 /config/bt/bd_addr.conf
+
+service rfkill_bt /system/bin/sh /rfkill_bt.sh
+    class core
+    user root
+    oneshot
+
+on boot
+
+# bluetooth
+    # change back to bluetooth from system
+    chown bluetooth net_bt_stack /data/misc/Bluetooth
+    mkdir /data/misc/bluedroid 0770 bluetooth net_bt_stack
+
+# bluetooth MAC address programming
+    chown bluetooth net_bt_stack ro.bt.bdaddr_path
+    chown bluetooth net_bt_stack /system/etc/bluetooth
+    chown bluetooth net_bt_stack /data/misc/bluetooth
+    setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bdaddr"

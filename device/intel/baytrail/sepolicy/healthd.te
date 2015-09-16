@@ -1,0 +1,9 @@
+# Additional healthd rules
+allow healthd rootfs:file entrypoint;
+allow healthd shell_exec:file rx_file_perms;
+allow healthd system_file:file execute_no_trans;
+allow healthd self:capability dac_override;
+allow healthd config_file:file create_file_perms;
+allow healthd config_file:dir { search write add_name };
+allow healthd fuse:file write;
+allow healthd fg_conf_exec:file { open read getattr execute execute_no_trans };

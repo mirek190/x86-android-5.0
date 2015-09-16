@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2012  -->
+<thermalconfig>
+  <!-- Config xml file version should be in sync with iTUX version number-->
+  <ConfigFileVersion>3.0</ConfigFileVersion>
+<!--Platform Parameters-->
+  <PlatformInfo>
+      <!--PlatformName reference. In future, will be compared against ro.board.platform-->
+      <PlatformName>byt_ffrd8</PlatformName>
+      <!--namely NORMAL, WARNING, ALERT, and CRITICAL.-->
+      <!--in the increasing order of thermal severity-->
+      <!--standard sensor devices register as /sys/class/thermal/thermal_zoneX. Herein
+      referred as 'Path Enumerated at Runtime by Framework in Kernel Thermal' or PERFKT-->
+  </PlatformInfo>
+
+  <!-- sensor information -->
+  <Sensor>
+      <!-- name matching 'type' file in below sensor path -->
+      <SensorName>Core 0</SensorName>
+      <!--sysfs path for InputTemp & other files. "auto" implies look in PERFKT path-->
+      <SensorPath>/sys/devices/platform/coretemp.0/</SensorPath>
+      <!--InputTemp: sysfs Interface names to read Temperature in milli degree celsius
+      for PERFKT sensors this file is called 'temp'-->
+      <InputTemp>temp2_input</InputTemp>
+      <!--temp2_threshold2: sysfs Interface names to set lower threshold Temperature in
+      milli degree celsius for PERFKT sensors this file is called 'trip_point_1_temp'.
+      for PERFKT sensors set "auto"-->
+      <HighTemp>temp2_threshold2</HighTemp>
+      <!--temp2_threshold1: sysfs Interface names to set lower threshold Temperature in
+      milli degree celsius for PERFKT sensors this file is called 'trip_point_0_temp'.
+      for PERFKT sensors set "auto"-->
+      <LowTemp>temp2_threshold1</LowTemp>
+      <!--UEventDevPath for event observer to listen. "auto" for PERFKT sensors-->
+      <UEventDevPath>DEVPATH=/devices/platform/coretemp.0</UEventDevPath>
+  </Sensor>
+
+  <Sensor>
+      <SensorName>SYSTHERM0</SensorName>
+<!--
+      <SensorPath>auto</SensorPath>
+      <InputTemp>auto</InputTemp>
+      <LowTemp>auto</LowTemp>
+      <HighTemp>auto</HighTemp>
+      <UEventDevPath>auto</UEventDevPath>
+      <ErrorCorrection>1000</ErrorCorrection>
+-->
+  </Sensor>
+
+  <Sensor>
+      <SensorName>SYSTHERM2</SensorName>
+<!--
+      <SensorPath>/sys/class/thermal/thermal_zoneX/</SensorPath>
+      <InputTemp>temp</InputTemp>
+      <LowTemp>trip_point_0_temp</LowTemp>
+      <HighTemp>trip_point_1_temp</HighTemp>
+      <UEventDevPath>DEVPATH=/devices/virtual/thermal/thermal_zone</UEventDevPath>
+      <ErrorCorrection>1000</ErrorCorrection>
+      or specify as below
+      <SensorPath>auto</SensorPath>
+      <InputTemp>auto</InputTemp>
+      <LowTemp>auto</LowTemp>
+      <HighTemp>auto</HighTemp>
+      <UEventDevPath>auto</UEventDevPath>
+      <ErrorCorrection>1000</ErrorCorrection>
+-->
+  </Sensor>
+
+  <Sensor>
+      <SensorName>byt_battery</SensorName>
+<!--
+      <SensorPath>auto</SensorPath>
+      <InputTemp>temp</InputTemp>
+      <LowTemp>auto</LowTemp>
+      <HighTemp>auto</HighTemp>
+-->
+  </Sensor>
+
+  <Sensor>
+      <SensorName>SoC_DTS0</SensorName>
+<!--
+      <SensorPath>auto</SensorPath>
+      <InputTemp>temp</InputTemp>
+      <LowTemp>auto</LowTemp>
+      <HighTemp>auto</HighTemp>
+-->
+  </Sensor>
+
+  <Sensor>
+      <!--Modem Sensor IDs are enumerated from OemtelephonyConstants class
+      during runtime-->
+      <SensorName>Modem_BB</SensorName>
+      <SensorPath>none</SensorPath>
+      <InputTemp>invalid</InputTemp>
+
+      <HighTemp>invalid</HighTemp>
+      <LowTemp>invalid</LowTemp>
+  </Sensor>
+
+  <Sensor>
+      <SensorName>Modem_RF</SensorName>
+      <SensorPath>none</SensorPath>
+      <InputTemp>invalid</InputTemp>
+  </Sensor>
+
+  <Sensor>
+      <SensorName>Modem_PMU</SensorName>
+      <SensorPath>none</SensorPath>
+      <InputTemp>invalid</InputTemp>
+  </Sensor>
+
+  <Sensor>
+      <SensorName>Modem_PA</SensorName>
+      <SensorPath>none</SensorPath>
+      <InputTemp>invalid</InputTemp>
+  </Sensor>
+<Profile>
+<Name>Default</Name>
+<!--Thermal Zones-->
+  <Zone>
+        <ZoneID>0</ZoneID>
+        <ZoneName>CPU</ZoneName>
+        <!--ZoneLogic: [ Raw | VirtualSkin | VirtualAmbient | Modem ]
+        mandatory tag to be followed after ZoneID and ZoneName -->
+        <ZoneLogic>Raw</ZoneLogic>
+        <!--SupportsUEvent: [0|1], 0 implies polled zone, 1 implies interrupt/UEvent
+        tag is ignored for Modem zone -->
+        <SupportsUEvent>1</SupportsUEvent>
+        <!--DebounceInterval: [N] millidegree Celsius as hysteresis only for Polled zone-->
+        <DebounceInterval>2000</DebounceInterval>
+        <!-- polling loop delay in milli seconds for different thermal bands-->
+        <PollDelay>
+            <DelayNormal>30000</DelayNormal>
+            <DelayWarning>30000</DelayWarning>
+            <DelayAlert>30000</DelayAlert>
+        </PollDelay>
+        <!--Temperature thresholds for various states in milli degree celsius-->
+        <ZoneThreshold>
+            <ZoneThresholdNormal>85000</ZoneThresholdNormal>
+            <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+            <ZoneThresholdAlert>105000</ZoneThresholdAlert>
+        </ZoneThreshold>
+        <!--Raw zone uses MAX of constituent sensor's raw values-->
+        <SensorAttrib>
+            <SensorName>Core 0</SensorName>
+        </SensorAttrib>
+  </Zone>
+
+  <Zone>
+        <ZoneID>1</ZoneID>
+        <ZoneName>BackSkin</ZoneName>
+        <ZoneLogic>VirtualSkin</ZoneLogic>
+        <SupportsUEvent>1</SupportsUEvent>
+        <PollDelay>
+               <DelayNormal>30000</DelayNormal>
+               <DelayWarning>30000</DelayWarning>
+               <DelayAlert>30000</DelayAlert>
+        </PollDelay>
+        <ZoneThreshold>
+                <ZoneThresholdNormal>44000</ZoneThresholdNormal>
+                <ZoneThresholdWarning>55000</ZoneThresholdWarning>
+                <ZoneThresholdAlert>70000</ZoneThresholdAlert>
+        </ZoneThreshold>
+        <SensorAttrib>
+            <SensorName>SYSTHERM0</SensorName>
+            <Weight>873</Weight>
+        </SensorAttrib>
+        <Offset>-4139</Offset>
+  </Zone>
+
+  <Zone>
+       <ZoneID>2</ZoneID>
+       <ZoneName>FrontSkin</ZoneName>
+       <ZoneLogic>VirtualSkin</ZoneLogic>
+       <SupportsUEvent>1</SupportsUEvent>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>38000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>45000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>55000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <SensorAttrib>
+           <SensorName>SYSTHERM2</SensorName>
+           <Weight>553</Weight>
+       </SensorAttrib>
+       <Offset>11848</Offset>
+  </Zone>
+
+  <Zone>
+       <ZoneID>3</ZoneID>
+       <ZoneName>Battery</ZoneName>
+       <ZoneLogic>Raw</ZoneLogic>
+       <SupportsUEvent>0</SupportsUEvent>
+       <DebounceInterval>2000</DebounceInterval>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>48000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>54000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>60000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <!--Specify MovingAverageWindow in msec. Zone has to be in
+       polling mode for MovingAverage to work. MovingAverage not
+       supported in interrupt mode. For state Normal:
+       NumberOfInstances = WindowNormal/DelayNormal, are considered
+       for predicting zone temperature.-->
+<!--
+       <MovingAverageWindow>
+              <WindowNormal>120000</WindowNormal>
+              <WindowWarning>120000</WindowWarning>
+              <WindowAlert>120000</WindowAlert>
+       </MovingAverageWindow>
+-->
+       <SensorAttrib>
+           <SensorName>byt_battery</SensorName>
+       </SensorAttrib>
+  </Zone>
+
+  <Zone>
+       <ZoneID>4</ZoneID>
+       <ZoneName>SoC</ZoneName>
+       <ZoneLogic>Raw</ZoneLogic>
+       <SupportsUEvent>0</SupportsUEvent>
+       <DebounceInterval>2000</DebounceInterval>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>85000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>120000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <SensorAttrib>
+           <SensorName>SoC_DTS0</SensorName>
+       </SensorAttrib>
+  </Zone>
+
+  <Zone>
+    <ZoneID>5</ZoneID>
+    <ZoneName>Modem</ZoneName>
+    <ZoneLogic>Modem</ZoneLogic>
+    <SupportsUEvent>0</SupportsUEvent>
+    <DebounceInterval>2000</DebounceInterval>
+    <PollDelay>
+      <DelayNormal>30000</DelayNormal>
+      <DelayWarning>30000</DelayWarning>
+      <DelayAlert>30000</DelayAlert>
+    </PollDelay>
+    <ZoneThreshold>
+      <ZoneThresholdNormal>80000</ZoneThresholdNormal>
+      <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+      <ZoneThresholdAlert>100000</ZoneThresholdAlert>
+    </ZoneThreshold>
+    <SensorAttrib>
+        <SensorName>Modem_BB</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_RF</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_PMU</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_PA</SensorName>
+    </SensorAttrib>
+  </Zone>
+</Profile>
+<Profile>
+<Name>BatterySaver</Name>
+<!--Thermal Zones-->
+  <Zone>
+        <ZoneID>0</ZoneID>
+        <ZoneName>CPU</ZoneName>
+        <!--ZoneLogic: [ Raw | VirtualSkin | VirtualAmbient | Modem ]
+        mandatory tag to be followed after ZoneID and ZoneName -->
+        <ZoneLogic>Raw</ZoneLogic>
+        <!--SupportsUEvent: [0|1], 0 implies polled zone, 1 implies interrupt/UEvent
+        tag is ignored for Modem zone -->
+        <SupportsUEvent>1</SupportsUEvent>
+        <!--DebounceInterval: [N] millidegree Celsius as hysteresis only for Polled zone-->
+        <DebounceInterval>2000</DebounceInterval>
+        <!-- polling loop delay in milli seconds for different thermal bands-->
+        <PollDelay>
+            <DelayNormal>30000</DelayNormal>
+            <DelayWarning>30000</DelayWarning>
+            <DelayAlert>30000</DelayAlert>
+        </PollDelay>
+        <!--Temperature thresholds for various states in milli degree celsius-->
+        <ZoneThreshold>
+            <ZoneThresholdNormal>85000</ZoneThresholdNormal>
+            <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+            <ZoneThresholdAlert>105000</ZoneThresholdAlert>
+        </ZoneThreshold>
+        <!--Raw zone uses MAX of constituent sensor's raw values-->
+        <SensorAttrib>
+            <SensorName>Core 0</SensorName>
+        </SensorAttrib>
+  </Zone>
+
+  <Zone>
+        <ZoneID>1</ZoneID>
+        <ZoneName>BackSkin</ZoneName>
+        <ZoneLogic>VirtualSkin</ZoneLogic>
+        <SupportsUEvent>1</SupportsUEvent>
+        <PollDelay>
+               <DelayNormal>30000</DelayNormal>
+               <DelayWarning>30000</DelayWarning>
+               <DelayAlert>30000</DelayAlert>
+        </PollDelay>
+        <ZoneThreshold>
+                <ZoneThresholdNormal>44000</ZoneThresholdNormal>
+                <ZoneThresholdWarning>55000</ZoneThresholdWarning>
+                <ZoneThresholdAlert>70000</ZoneThresholdAlert>
+        </ZoneThreshold>
+        <SensorAttrib>
+            <SensorName>SYSTHERM0</SensorName>
+            <Weight>873</Weight>
+        </SensorAttrib>
+        <Offset>-4139</Offset>
+  </Zone>
+
+  <Zone>
+       <ZoneID>2</ZoneID>
+       <ZoneName>FrontSkin</ZoneName>
+       <ZoneLogic>VirtualSkin</ZoneLogic>
+       <SupportsUEvent>1</SupportsUEvent>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>38000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>45000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>55000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <SensorAttrib>
+           <SensorName>SYSTHERM2</SensorName>
+           <Weight>553</Weight>
+       </SensorAttrib>
+       <Offset>11848</Offset>
+  </Zone>
+
+  <Zone>
+       <ZoneID>3</ZoneID>
+       <ZoneName>Battery</ZoneName>
+       <ZoneLogic>Raw</ZoneLogic>
+       <SupportsUEvent>0</SupportsUEvent>
+       <DebounceInterval>2000</DebounceInterval>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>48000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>54000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>60000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <!--Specify MovingAverageWindow in msec. Zone has to be in
+       polling mode for MovingAverage to work. MovingAverage not
+       supported in interrupt mode. For state Normal:
+       NumberOfInstances = WindowNormal/DelayNormal, are considered
+       for predicting zone temperature.-->
+<!--
+       <MovingAverageWindow>
+              <WindowNormal>120000</WindowNormal>
+              <WindowWarning>120000</WindowWarning>
+              <WindowAlert>120000</WindowAlert>
+       </MovingAverageWindow>
+-->
+       <SensorAttrib>
+           <SensorName>byt_battery</SensorName>
+       </SensorAttrib>
+  </Zone>
+
+  <Zone>
+       <ZoneID>4</ZoneID>
+       <ZoneName>SoC</ZoneName>
+       <ZoneLogic>Raw</ZoneLogic>
+       <SupportsUEvent>0</SupportsUEvent>
+       <DebounceInterval>2000</DebounceInterval>
+       <PollDelay>
+              <DelayNormal>30000</DelayNormal>
+              <DelayWarning>30000</DelayWarning>
+              <DelayAlert>30000</DelayAlert>
+       </PollDelay>
+       <ZoneThreshold>
+              <ZoneThresholdNormal>85000</ZoneThresholdNormal>
+              <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+              <ZoneThresholdAlert>120000</ZoneThresholdAlert>
+       </ZoneThreshold>
+       <SensorAttrib>
+           <SensorName>SoC_DTS0</SensorName>
+       </SensorAttrib>
+  </Zone>
+
+  <Zone>
+    <ZoneID>5</ZoneID>
+    <ZoneName>Modem</ZoneName>
+    <ZoneLogic>Modem</ZoneLogic>
+    <SupportsUEvent>0</SupportsUEvent>
+    <DebounceInterval>2000</DebounceInterval>
+    <PollDelay>
+      <DelayNormal>30000</DelayNormal>
+      <DelayWarning>30000</DelayWarning>
+      <DelayAlert>30000</DelayAlert>
+    </PollDelay>
+    <ZoneThreshold>
+      <ZoneThresholdNormal>80000</ZoneThresholdNormal>
+      <ZoneThresholdWarning>90000</ZoneThresholdWarning>
+      <ZoneThresholdAlert>100000</ZoneThresholdAlert>
+    </ZoneThreshold>
+    <SensorAttrib>
+        <SensorName>Modem_BB</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_RF</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_PMU</SensorName>
+    </SensorAttrib>
+    <SensorAttrib>
+        <SensorName>Modem_PA</SensorName>
+    </SensorAttrib>
+  </Zone>
+</Profile>
+</thermalconfig>

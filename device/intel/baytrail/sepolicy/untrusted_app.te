@@ -1,0 +1,7 @@
+# Additional untrusted_app rules
+allow untrusted_app property_socket:file write;
+allow untrusted_app proc_sysrq:file getattr;
+allow untrusted_app log_file:filesystem getattr;
+allow untrusted_app graphics_device:dir search;
+allow untrusted_app surfaceflinger_tmpfs:file {read write};
+allow untrusted_app logcat_exec:file rx_file_perms;

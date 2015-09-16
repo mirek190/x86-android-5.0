@@ -1,0 +1,3 @@
+# Additional ueventd rules
+allow ueventd sysfs_drm_resource:file { open write };
+allow ueventd sysfs_thermal_management:file { write open };

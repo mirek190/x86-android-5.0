@@ -1,0 +1,404 @@
+supDomain: Calibration
+
+	domain: HwPlatform
+		conf: Default
+			component: /Route/route_mgr/routes/media/stream_duplex
+				component: playback/config
+					require_preenable = 0
+					require_postdisable = 0
+					silence_prolog_ms = 0
+					channels = 2
+					channels_policy = copy,copy
+					rate = 48000
+					format = Pcm16Bit
+					period_size = 1152
+					period_count = 4
+					start_threshold = 4607
+					stop_threshold = 4608
+					silence_threshold = 0
+					avail_min = 1152
+					component: attributes/output_flags
+						direct = 0
+						primary = 1
+						fast = 0
+						deep_buffer = 0
+						compress_offload = 0
+						non_blocking = 0
+						hw_av_sync = 0
+					effects_supported = ""
+
+				component: capture/config
+					require_preenable = 1
+					require_postdisable = 1
+					silence_prolog_ms = 0
+					channels = 2
+					channels_policy = copy,copy
+					rate = 48000
+					format = Pcm16Bit
+					period_size = 960
+					period_count = 4
+					start_threshold = 1
+					stop_threshold = 3840
+					silence_threshold = 0
+					avail_min = 960
+					component: attributes/input_sources
+						default = 1
+						mic = 1
+						voice_uplink = 0
+						voice_downlink = 0
+						voice_call = 0
+						camcorder = 1
+						voice_recognition = 1
+						voice_communication = 1
+						remote_submix = 0
+						hotword = 0
+					effects_supported = ""
+
+			component: /Route/route_mgr/routes/deep_media
+				component: stream_playback/config
+					require_preenable = 0
+					require_postdisable = 0
+					silence_prolog_ms = 0
+					channels = 2
+					channels_policy = copy,copy
+					rate = 48000
+					format = Pcm16Bit
+					period_size = 4608
+					period_count = 2
+					start_threshold = 9215
+					stop_threshold = 9216
+					silence_threshold = 0
+					avail_min = 4608
+					component: attributes/output_flags
+						direct = 0
+						primary = 0
+						fast = 0
+						deep_buffer = 1
+						compress_offload = 0
+						non_blocking = 0
+						hw_av_sync = 0
+					effects_supported = ""
+
+			component: /Route/route_mgr/routes/bt_comm/stream_duplex
+				component: playback/config
+					require_preenable = 0
+					require_postdisable = 0
+					silence_prolog_ms = 0
+					channels = 1
+					channels_policy = copy
+					rate = 8000
+					format = Pcm16Bit
+					period_size = 160
+					period_count = 4
+					start_threshold = 159
+					stop_threshold = 640
+					silence_threshold = 0
+					avail_min = 160
+					component: attributes/output_flags
+						direct = 0
+						primary = 1
+						fast = 0
+						deep_buffer = 0
+						compress_offload = 0
+						non_blocking = 0
+						hw_av_sync = 0
+					effects_supported = ""
+
+				component: capture/config
+					require_preenable = 0
+					require_postdisable = 0
+					silence_prolog_ms = 0
+					channels = 1
+					channels_policy = copy
+					rate = 8000
+					format = Pcm16Bit
+					period_size = 160
+					period_count = 4
+					start_threshold = 1
+					stop_threshold = 640
+					silence_threshold = 0
+					avail_min = 160
+					component: attributes/input_sources
+						default = 1
+						mic = 1
+						voice_uplink = 0
+						voice_downlink = 0
+						voice_call = 0
+						camcorder = 0
+						voice_recognition = 1
+						voice_communication = 1
+						remote_submix = 0
+						hotword = 0
+					effects_supported = ""
+
+			component: /Route/route_mgr/routes/
+				compressed_media/route_playback/status/need_reconfigure = 0
+				hwcodec_media/route_duplex/playback/status/need_reconfigure = 0
+				hwcodec_media/route_duplex/capture/status/need_reconfigure = 0
+
+supDomain: StreamRoute
+
+	supDomain: Media
+
+		confGroup: Applicable
+			ANY
+				AndroidMode Is Normal
+				AndroidMode Is RingTone
+				AndroidMode Is InVoipCall
+
+		domain: Playback
+
+			conf: Applicable
+				ANY
+					OutputDevices Includes Earpiece
+					OutputDevices Includes Ihf
+					OutputDevices Includes Headset
+					OutputDevices Includes Headphones
+				OutputFlags Includes Primary
+
+				/Route/route_mgr/routes/media/stream_duplex/playback/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/media/stream_duplex/playback/status/applicable = 0
+
+
+		domain: Capture
+
+			conf: Applicable
+				ANY
+					InputDevices Includes Main
+					InputDevices Includes Headset
+					InputDevices Includes Back
+
+				/Route/route_mgr/routes/media/stream_duplex/capture/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/media/stream_duplex/capture/status/applicable = 0
+
+	supDomain: DeepBuffer
+
+		domain: Playback
+
+			conf: Applicable
+				ANY
+					OutputDevices Includes Earpiece
+					OutputDevices Includes Ihf
+					OutputDevices Includes Headset
+					OutputDevices Includes Headphones
+				ANY
+					AndroidMode Is Normal
+					AndroidMode Is RingTone
+					AndroidMode Is InVoipCall
+				OutputFlags Includes Deep
+
+				/Route/route_mgr/routes/deep_media/stream_playback/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/deep_media/stream_playback/status/applicable = 0
+
+
+	supDomain: NeedReconfigure
+
+		domain: Playback
+
+			conf: Yes
+				StatesChanged Includes OutputDevices
+
+				component: /Route/route_mgr/routes/
+					media/stream_duplex/playback/status/need_reconfigure = 1
+					deep_media/stream_playback/status/need_reconfigure = 1
+
+			conf: No
+				component: /Route/route_mgr/routes/
+					media/stream_duplex/playback/status/need_reconfigure = 0
+					deep_media/stream_playback/status/need_reconfigure = 0
+
+		domain: Capture
+
+			conf: Yes
+				StatesChanged Includes InputDevices
+
+				component: /Route/route_mgr/routes/
+					media/stream_duplex/capture/status/need_reconfigure = 1
+
+			conf: No
+				component: /Route/route_mgr/routes/
+					media/stream_duplex/capture/status/need_reconfigure = 0
+
+supDomain: Route
+
+	supDomain: CompressedMedia
+
+		domain: Playback
+
+			conf: Applicable
+				DirectStream Is True
+				ANY
+					OutputDevices Includes Earpiece
+					OutputDevices Includes Ihf
+					OutputDevices Includes Headset
+					OutputDevices Includes Headphones
+				ANY
+					AndroidMode Is Normal
+					AndroidMode Is RingTone
+
+				/Route/route_mgr/routes/compressed_media/route_playback/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/compressed_media/route_playback/status/applicable = 0
+
+	supDomain: HwCodecMedia
+
+		domain: Playback
+
+			conf: Applicable
+				ANY
+					AndroidMode Is Normal
+					AndroidMode Is RingTone
+					AndroidMode Is InVoipCall
+				ANY
+					OutputDevices Includes Earpiece
+					OutputDevices Includes Ihf
+					OutputDevices Includes Headset
+					OutputDevices Includes Headphones
+				ANY
+					ALL
+						DirectStream Is True
+						AndroidMode IsNot InVoipCall
+					OutputFlags Includes Primary
+					OutputFlags Includes Deep
+
+				/Route/route_mgr/routes/hwcodec_media/route_duplex/playback/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/hwcodec_media/route_duplex/playback/status/applicable = 0
+
+
+		domain: Capture
+
+			conf: Applicable
+				ANY
+					# ContextAwareness Is True
+					ALL
+						ANY
+							InputDevices Includes Back
+							InputDevices Includes Main
+						ANY
+							InputSources Includes Mic
+							InputSources Includes Camcorder
+							InputSources Includes VoiceRecognition
+							InputSources Includes VoiceCommunication
+					ALL
+						InputDevices Includes Headset
+						ANY
+							InputSources Includes Mic
+							InputSources Includes Camcorder
+							InputSources Includes VoiceRecognition
+							InputSources Includes VoiceCommunication
+
+				/Route/route_mgr/routes/hwcodec_media/route_duplex/capture/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/hwcodec_media/route_duplex/capture/status/applicable = 0
+
+	supDomain: BtComm
+
+		confGroup: Applicable
+			ANY
+				AndroidMode Is InVoipCall
+				AndroidMode Is Normal
+
+		domain: Playback
+
+			conf: Applicable
+				ANY
+					OutputDevices Is Sco
+					OutputDevices Is ScoHeadset
+					OutputDevices Is ScoCarkit
+				OutputFlags Includes Primary
+
+				/Route/route_mgr/routes/bt_comm/stream_duplex/playback/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/bt_comm/stream_duplex/playback/status/applicable = 0
+
+		domain: Capture
+
+			conf: Applicable
+				InputDevices Is ScoHeadset
+				ANY
+					InputSources Includes Default
+					InputSources Includes Mic
+					InputSources Includes VoiceCommunication
+					InputSources Includes VoiceRecognition
+
+				/Route/route_mgr/routes/bt_comm/stream_duplex/capture/status/applicable = 1
+
+			conf: NotApplicable
+				/Route/route_mgr/routes/bt_comm/stream_duplex/capture/status/applicable = 0
+
+
+	supDomain: NeedReconfigure
+
+		domain: Playback
+
+			conf: Yes
+				ANY
+					StatesChanged Includes BtHeadsetNrEc
+					StatesChanged Includes OutputDevices
+
+				component: /Route/route_mgr/routes/bt_comm/stream_duplex/
+					playback/status/need_reconfigure = 1
+
+			conf: No
+				component: /Route/route_mgr/routes/bt_comm/stream_duplex/
+					playback/status/need_reconfigure = 0
+
+		domain: Capture
+
+			conf: Yes
+				ANY
+					StatesChanged Includes BtHeadsetNrEc
+					StatesChanged Includes InputDevices
+
+				component: /Route/route_mgr/routes/bt_comm/stream_duplex/
+					capture/status/need_reconfigure = 1
+
+			conf: No
+				component: /Route/route_mgr/routes/bt_comm/stream_duplex/
+					capture/status/need_reconfigure = 0
+
+	supDomain: HWCodec
+
+		supDomain: NeedReconfigure
+
+			domain: Playback
+
+				conf: Yes
+					ANY
+						StatesChanged Includes OutputDevices
+						StatesChanged Includes AndroidMode
+						StatesChanged Includes BypassNonLinearPp
+						StatesChanged Includes BypassLinearPp
+
+					component: /Route/route_mgr/routes/
+						hwcodec_media/route_duplex/playback/status/need_reconfigure = 1
+
+				conf: No
+					component: /Route/route_mgr/routes/
+						hwcodec_media/route_duplex/playback/status/need_reconfigure = 0
+
+			domain: Capture
+
+				conf: Yes
+					ANY
+						StatesChanged Includes InputDevices
+						StatesChanged Includes AndroidMode
+						StatesChanged Includes InputSources
+
+					component: /Route/route_mgr/routes/
+						hwcodec_media/route_duplex/capture/status/need_reconfigure = 1
+
+				conf: No
+					component: /Route/route_mgr/routes/
+						hwcodec_media/route_duplex/capture/status/need_reconfigure = 0

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ARKHAM-180 Add XML file that describe container manager
+     properties set at build time. For now this contains the system
+     whitelist. -->
+<system-whitelist type="array">
+  <package>com.google.android.inputmethod.latin</package>
+  <package>com.android.inputmethod.latin</package>
+  <package>com.google.android.inputmethod.latin.dictionarypack</package>
+  <package>com.google.android.gms</package>
+  <package>com.android.providers.applications</package>
+  <package>com.android.providers.calendar</package>
+  <package>com.android.providers.contacts</package>
+  <package>com.android.providers.downloads</package>
+  <package>com.android.providers.downloads.documents</package>
+  <package>com.android.providers.downloads.ui</package>
+  <package>com.android.providers.drm</package>
+  <package>com.android.providers.media</package>
+  <package>com.android.providers.settings</package>
+  <package>com.android.providers.telephony</package>
+  <package>com.android.providers.userdictionary</package>
+  <package>com.android.documentsui</package>
+  <package>com.android.settings</package>
+  <package>com.android.keychain</package>
+  <package>com.android.certinstaller</package>
+  <package>android</package>
+  <package>com.intel.arkham.containermdm</package>
+  <package>com.android.packageinstaller</package>
+</system-whitelist>

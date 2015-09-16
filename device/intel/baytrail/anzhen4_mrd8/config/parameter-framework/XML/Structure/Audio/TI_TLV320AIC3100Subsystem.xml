@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="TI" Type="ALSA" Endianness="Little">
+    <ComponentLibrary>
+
+        <ComponentType Name="MIC_GAIN_TYPE">
+            <IntegerParameter Name="PGA_GAIN" Size="8" Min="0" Max="119" Mapping="Control:'Mic PGA Gain'"/>
+            <IntegerParameter Name="FINE_GAIN" Size="8" Min="0" Max="4" Mapping="Control:'ADC FINE GAIN'"/>
+            <IntegerParameter Name="CAPTURE_GAIN" Size="8" Min="0" Max="64" Mapping="Control:'ADC Capture Volume'"/>
+        </ComponentType>
+
+        <ComponentType Name="SWITCH_TYPE">
+            <BooleanParameter Name="ENABLED"  Mapping="Control:'%1 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="UNMUTE_TYPE">
+            <BooleanParameter Name="ENABLED"  Mapping="Control:'%1 mute'"/>
+        </ComponentType>
+
+        <ComponentType Name="UNMUTE_DOUBLE_TYPE">
+            <BooleanParameter Name="ENABLED" ArrayLength="2" Mapping="Control:'%1 mute'"/>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 Output Mixer From %2'"/>
+        </ComponentType>
+
+        <ComponentType Name="DAC_LEFT_TYPE">
+            <Component Name="DAC_L" Type="MIXER_SWITCH_TYPE" Mapping="Amend1:Left,Amend2:DAC_L"/>
+            <Component Name="MIC1LP" Type="MIXER_SWITCH_TYPE" Mapping="Amend1:Left,Amend2:MIC1LP"/>
+            <Component Name="MIC1RP" Type="MIXER_SWITCH_TYPE" Mapping="Amend1:Left,Amend2:MIC1RP"/>
+        </ComponentType>
+
+        <ComponentType Name="DAC_RIGHT_TYPE">
+            <Component Name="DAC_R" Type="MIXER_SWITCH_TYPE" Mapping="Amend1:Right,Amend2:DAC_R"/>
+            <Component Name="MIC1RP" Type="MIXER_SWITCH_TYPE" Mapping="Amend1:Right,Amend2:MIC1RP"/>
+        </ComponentType>
+
+        <ComponentType Name="DAC_SWITCH_TYPE">
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="175" ArrayLength="2"  Mapping="Control:'DAC Playback Volume'"/>
+            <Component Name="LEFT" Type="DAC_LEFT_TYPE"/>
+            <Component Name="RIGHT" Type="DAC_RIGHT_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="ADC_SWITCH_TYPE">
+            <Component Name="MUTE" Type="UNMUTE_TYPE" Mapping="Amend1:ADC"/>
+        </ComponentType>
+
+        <ComponentType Name="INPUT_SWITCH_TYPE">
+            <IntegerParameter Name="SWITCH" Size="8" Min="0" Max="3" Mapping="Control:'%1 %2'"/>
+        </ComponentType>
+
+        <ComponentType Name="MIC_TYPE_M">
+            <Component Name="CM" Type="INPUT_SWITCH_TYPE" Mapping="Amend2:CM_IMP_CNTL"/>
+            <Component Name="MIC1LM" Type="INPUT_SWITCH_TYPE" Mapping="Amend2:MIC1LM_IMP_CNTL"/>
+        </ComponentType>
+
+        <ComponentType Name="MIC_TYPE_P">
+            <Component Name="MIC1LM" Type="INPUT_SWITCH_TYPE" Mapping="Amend2:MIC1LM_IMP_CNTL"/>
+            <Component Name="MIC1LP" Type="INPUT_SWITCH_TYPE" Mapping="Amend2:MIC1LP_IMP_CNTL"/>
+            <Component Name="MIC1RP" Type="INPUT_SWITCH_TYPE" Mapping="Amend2:MIC1RP_IMP_CNTL"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_VOLUME_TYPE">
+            <ParameterBlock Name="VOLUME" Mapping="Volume:'Left Analog Channel Gain'">
+                <BooleanParameter Name="MUTED"/>
+                <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="127" Unit="0.5dB" Description="127 is 0dB"/>
+            </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_TYPE">
+            <BooleanParameter Name="ENABLED"  Mapping="Control:'Ext Spk Switch'"/>
+            <IntegerParameter Name="DRIVER_GAIN" Size="8" Min="0" Max="3" Mapping="Control:'SP Driver Gain'"/>
+            <Component Name="ANALOG" Type="SPEAKER_VOLUME_TYPE"/>
+            <BooleanParameter Name="ANALOG_ON" Mapping="Control:'Speaker Analog Volume Switch'"/>
+            <Component Name="UNMUTE" Type="UNMUTE_TYPE" Mapping="Amend1:SP driver"/>
+        </ComponentType>
+
+        <ComponentType Name="HEADPHONE_VOLUME_TYPE">
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:'HP Analog Gain'">
+                <BooleanParameter Name="MUTED"/>
+                <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="127" Unit="0.5dB" Description="127 is 0dB"/>
+            </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="HEADPHONE_TYPE">
+            <BooleanParameter Name="ENABLED"  Mapping="Control:'Headphone Switch'"/>
+            <IntegerParameter Name="DRIVER_GAIN" Size="8" Min="0" Max="9" ArrayLength="2"  Mapping="Control:'HP Driver Gain'"/>
+            <Component Name="ANALOG" Type="HEADPHONE_VOLUME_TYPE"/>
+            <BooleanParameter Name="L_SWITCH" Mapping="Control:'HP Left Analog Volume Switch'"/>
+            <BooleanParameter Name="R_SWITCH" Mapping="Control:'HP Right Analog Volume Switch'"/>
+            <Component Name="UNMUTE" Type="UNMUTE_DOUBLE_TYPE" Mapping="Amend1:HP driver"/>
+        </ComponentType>
+
+        <ComponentType Name="INPUT_TYPE">
+            <Component Name="HEADSET_MIC" Type="SWITCH_TYPE" Mapping="Amend1:Headset Mic"/>
+            <Component Name="BUILTIN_MIC" Type="SWITCH_TYPE" Mapping="Amend1:Internal Mic"/>
+            <Component Name="MIC_GAIN" Type="MIC_GAIN_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_TYPE">
+            <Component Name="SPEAKER" Type="SPEAKER_TYPE"/>
+            <Component Name="HEADPHONE" Type="HEADPHONE_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_TYPE">
+            <Component Name="DAC" Type="DAC_SWITCH_TYPE"/>
+            <Component Name="ADC" Type="ADC_SWITCH_TYPE"/>
+            <Component Name="M_INPUT" Type="MIC_TYPE_M" Mapping="Amend1:M_Input_Mixer"/>
+            <Component Name="P_INPUT" Type="MIC_TYPE_P" Mapping="Amend1:P_Input_Mixer"/>
+        </ComponentType>
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="INPUT" Type="INPUT_TYPE" Mapping="Card:baytrailaudio"/>
+        <Component Name="OUTPUT" Type="OUTPUT_TYPE" Mapping="Card:baytrailaudio"/>
+        <Component Name="MIXER" Type="MIXER_TYPE" Mapping="Card:baytrailaudio"/>
+    </InstanceDefinition>
+</Subsystem>

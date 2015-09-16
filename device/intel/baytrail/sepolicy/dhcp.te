@@ -1,0 +1,2 @@
+# Additional dhcp rules
+allow dhcp devpts:chr_file { read write ioctl };

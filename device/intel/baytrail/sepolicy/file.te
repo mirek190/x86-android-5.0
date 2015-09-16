@@ -1,0 +1,42 @@
+# Additional file rules
+type ecryptfs, fs_type;
+
+# mmgr files
+type mmgr_socket, file_type;
+type sysfs_hsic_enable, fs_type, sysfs_type;
+
+# hdcpd files
+type hdcpd_data_file, file_type, data_file_type;
+
+# sensorhubd files
+type sysfs_hwmon_control, fs_type, sysfs_type;
+type sensorhubd_socket, file_type;
+type sysfs_gpio_value, fs_type, sysfs_type;
+
+# ueventd
+type sysfs_autosuspend_enable, fs_type, sysfs_type;
+
+# wv drm sysfs file
+type sysfs_drm_resource, fs_type, sysfs_type;
+
+# thermal
+type sysfs_thermal_management, fs_type, sysfs_type;
+type thermal_socket, file_type;
+type thermal_data_file, file_type, data_file_type;
+
+# nvm
+type nvm_ctl_socket, file_type;
+
+# logcat for all the scripts
+type logcat_exec, exec_type, file_type;
+
+#rootfs missing labels
+type factory_file, file_type;
+type config_file, file_type;
+type log_file, file_type;
+
+#rfkill
+type sysfs_rfkill, fs_type, sysfs_type;
+
+# intel_fg_iface
+type sysfs_intel_fg_iface, fs_type, sysfs_type;

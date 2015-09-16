@@ -1,0 +1,4 @@
+# Additional rules for wpa
+allow wpa config_file:dir search;
+allow wpa config_file:file { read open };
+

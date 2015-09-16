@@ -1,0 +1,30 @@
+domainGroup: Routing.Sst
+
+	#########################################
+	################ Enable #################
+	#########################################
+
+	# Lock Fba Ul/Dl at Disable stage
+	# Unlock Fba Ul/Dl at Enable stage
+	# No SST overload while Speech is Off
+
+	domainGroup: Enable
+		RoutageState Includes Path
+
+		domainGroup: VoiceProcessingLock
+			domain: Uplink
+				conf: Locked
+					RoutageState Is Path
+					/Audio/sst/pipe/tx_speech_loop/lock/locked = 1
+
+				conf: UnLocked
+					/Audio/sst/pipe/tx_speech_loop/lock/locked = 0
+
+			domain: Downlink
+				conf: Locked
+					RoutageState Is Path
+					/Audio/sst/pipe/rx_speech_loop/lock/locked = 1
+
+				conf: UnLocked
+					/Audio/sst/pipe/rx_speech_loop/lock/locked = 0
+

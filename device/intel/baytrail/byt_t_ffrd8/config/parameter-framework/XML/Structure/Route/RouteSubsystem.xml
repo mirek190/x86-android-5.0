@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    Name="route_mgr" Type="ROUTEMGR" Endianness="Little"
+    Mapping="Card:baytrailaudio">
+    <ComponentLibrary>
+
+        <!-- Common Criteria defintion -->
+        <xi:include href="RouteSubsystem-CommonCriteria.xml"/>
+
+        <!-- Common Route Types defintion -->
+        <xi:include href="RouteSubsystem-RoutesTypes.xml"/>
+
+        <ComponentType Name="PlatformRoutes">
+            <Component Name="media" Type="StreamRouteFullDuplex" Mapping="Amend1:Media,Device:0,Ports:"/>
+            <Component Name="compressed_media" Type="RoutePlayback" Mapping="Amend1:CompressedMedia,Ports:"/>
+            <Component Name="deep_media" Type="StreamRoutePlayback" Mapping="Amend1:DeepMedia,Device:0,Ports:"/>
+            <Component Name="modem_mix" Type="StreamRouteFullDuplex" Mapping="Amend1:ModemMix,Device:4,Ports:"/>
+            <Component Name="bt_comm" Type="StreamRouteFullDuplex" Mapping="Amend1:BtComm,Device:3,Ports:Bt_Port"/>
+            <Component Name="hwcodec_media" Type="RouteFullDuplex" Mapping="Amend1:HwCodecMedia,Ports:"/>
+            <Component Name="hwcodec_csv" Type="RouteFullDuplex" Mapping="Amend1:HwCodecCSV,Ports:"/>
+            <Component Name="bt_csv" Type="RouteFullDuplex" Mapping="Amend1:BtCSV,Ports:"/>
+        </ComponentType>
+
+        <ComponentType Name="PlatformPorts">
+            <Component Name="BT" Type="Port" Mapping="Amend1:Bt,Groups:Group0"/>
+        </ComponentType>
+
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="ports" Type="PlatformPorts"/>
+        <Component Name="routes" Type="PlatformRoutes"/>
+        <Component Name="criteria" Type="PlatformCriteria"/>
+    </InstanceDefinition>
+</Subsystem>

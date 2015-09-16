@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="AUDIOFS" Type="FS" Endianness="Little">
+    <ComponentLibrary>
+        <ComponentType Name="THRESHOLD_FILES">
+            <IntegerParameter Name="DEEP_BUFFER_THRESHOLD" Size="16" Unit="msec" Min="0" Max="192" Mapping="File:deep_buffer_threshold" Description="WARNING: Must be aligned with Route Manager Configuration"/>
+        </ComponentType>
+    </ComponentLibrary>
+    <InstanceDefinition>
+        <Component Name="SST_SETTINGS" Type="THRESHOLD_FILES" Mapping="Directory:/sys/devices/platform/sst-platform/"/>
+    </InstanceDefinition>
+</Subsystem>

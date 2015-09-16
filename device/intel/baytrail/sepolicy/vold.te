@@ -1,0 +1,10 @@
+# Additional vold rules
+allow vold self:key { write search };
+allow vold self:key setattr;
+allow vold kernel:system module_request;
+allow vold system_data_file:dir setattr;
+allow vold ecryptfs:filesystem mount;
+allow vold ecryptfs:filesystem unmount;
+allow vold factory_file:file create_file_perms;
+allow vold factory_file:dir rw_dir_perms;
+allow vold mei_device:chr_file { read write ioctl open };

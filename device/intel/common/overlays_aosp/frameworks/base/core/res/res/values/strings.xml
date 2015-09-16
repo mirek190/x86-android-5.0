@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- External media notification strings -->
+    <!-- Shown when external media is being checked [CHAR LIMIT=30] -->
+    <string name="ext_media_checking_notification_title">Preparing removable storage</string>
+    <string name="ext_media_checking_notification_message">Checking for errors.</string>
+
+    <!-- Shown when external media is blank (or unsupported filesystem) [CHAR LIMIT=30] -->
+    <string name="ext_media_nofs_notification_title">Blank removable storage</string>
+    <!-- Shown when removable storage cannot be read.  [CHAR LIMIT=NONE] -->
+    <string name="ext_media_nofs_notification_message">Removable storage is blank or has unsupported filesystem.</string>
+
+    <!-- Shown when external media is unmountable (corrupt)) [CHAR LIMIT=30] -->
+    <string name="ext_media_unmountable_notification_title">Damaged removable storage</string>
+    <!-- Shown when removable storage cannot be read.  [CHAR LIMIT=NONE] -->
+    <string name="ext_media_unmountable_notification_message">Removable storage is damaged. Try reformatting it.</string>
+
+    <!-- Shown when external media is unsafely removed [CHAR LIMIT=30] -->
+    <string name="ext_media_badremoval_notification_title">Removable storage unexpectedly removed</string>
+    <!-- Shown when external media is unsafely removed.  [CHAR LIMIT=NONE] -->
+    <string name="ext_media_badremoval_notification_message">Unmount removable storage before removing to avoid data loss.</string>
+
+    <!-- Shown when external media has been safely removed [CHAR LIMIT=30] -->
+    <string name="ext_media_safe_unmount_notification_title">Removable storage safe to remove</string>
+    <!-- Shown when external media has been safely removed.  [CHAR LIMIT=NONE] -->
+    <string name="ext_media_safe_unmount_notification_message">You can safely remove removable storage.</string>
+
+    <!-- Shown when external media is missing [CHAR LIMIT=30] -->
+    <string name="ext_media_nomedia_notification_title">Removed removable storage</string>
+    <!-- Shown when external media is missing.  [CHAR LIMIT=NONE] -->
+    <string name="ext_media_nomedia_notification_message">Removable storage removed.</string>
+
+    <!-- External media format dialog strings -->
+    <!-- This is the label for the activity, and should never be visible to the user. -->
+    <!-- See EXTMEDIA_FORMAT.  EXTMEDIA_FORMAT_DIALOG:  After the user selects the notification, a dialog is shown asking if he wants to format the SD card.  This is the title. [CHAR LIMIT=20] -->
+    <string name="extmedia_format_title">Format removable storage?</string>
+    <!-- See EXTMEDIA_FORMAT.   This is the message. [CHAR LIMIT=NONE] -->
+    <string name="extmedia_format_message">All data on your removable storage be lost.</string>
+    <!-- See EXTMEDIA_FORMAT.    This is the button text to format the sd card. -->
+    <string name="extmedia_format_button_format">Format</string>
+
+    <!-- Strings for ExternalStorageFormatter service. -->
+    <!-- Text for progress dialog while unmounting removable storage volume [CHAR LIMIT=NONE] -->
+    <string name="progress_unmounting">Unmounting removable storage\u2026</string>
+    <!-- Text for progress dialog while erasing removable storage volume [CHAR LIMIT=NONE] -->
+    <string name="progress_erasing">Erasing removable storage\u2026</string>
+    <!-- Text for message to user that an error happened when formatting removable storage [CHAR LIMIT=NONE] -->
+    <string name="format_error">Couldn\'t erase removable storage.</string>
+    <!-- Text for message to user that removable storage has been removed while in use [CHAR LIMIT=NONE] -->
+    <string name="media_bad_removal">Removable storage was removed before being unmounted.</string>
+    <!-- Text for message to user removable storage is currently being checked [CHAR LIMIT=NONE] -->
+    <string name="media_checking">Removable storage is currently being checked.</string>
+    <!-- Text for message to user removable storage has been removed [CHAR LIMIT=NONE] -->
+    <string name="media_removed">Removable storage has been removed.</string>
+    <!-- Text for message to user removable storage is currently mounted on a computer [CHAR LIMIT=NONE] -->
+    <string name="media_shared">Removable storage is currently in use by a computer.</string>
+    <!-- Text for message for an unknown external media state [CHAR LIMIT=NONE] -->
+    <string name="media_unknown_state">External media in unknown state.</string>
+
+    <string name="tethered_notification_title">Tethering active</string>
+</resources>

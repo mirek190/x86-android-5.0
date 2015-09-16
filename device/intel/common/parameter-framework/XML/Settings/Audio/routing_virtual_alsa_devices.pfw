@@ -1,0 +1,42 @@
+domainGroup: Routing.Configure
+	RoutageState Includes Configure
+
+	domain: Calibration.Virtuals
+
+		conf: Default
+			component: /Audio/virtual_devices/context_awareness/config/
+				format = S16LE
+				channel_number = 1
+				sample_rate = 8000
+
+			component: /Audio/virtual_devices/always_listening/config/
+				format = S16LE
+				channel_number = 1
+				sample_rate = 16000
+
+domainGroup: Routing.Enable
+	RoutageState Includes Path
+
+	domainGroup: ContextAwareness
+
+		domain: Capture
+
+			conf: Enable
+				OpenedCaptureRoutes Includes ContextAwareness
+				/Audio/virtual_devices/context_awareness/config/capture_enabled = 1
+
+			conf: Disable
+				/Audio/virtual_devices/context_awareness/config/capture_enabled = 0
+
+	domainGroup: AlwaysListening
+
+		domain: Capture
+
+			conf: Enable
+				OpenedCaptureRoutes Includes AlwaysListening
+				/Audio/virtual_devices/always_listening/config/capture_enabled = 1
+
+			conf: Disable
+				/Audio/virtual_devices/always_listening/config/capture_enabled = 0
+
+

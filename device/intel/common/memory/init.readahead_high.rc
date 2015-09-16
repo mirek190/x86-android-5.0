@@ -1,0 +1,8 @@
+
+on boot
+    #Change mmc read ahead size from 128 to 512 to reduce USB MTP read latencies
+    write /sys/block/mmcblk0/queue/read_ahead_kb 512
+
+on post-fs-data6
+    #Change mmc encryption read ahead size from 128 to 512 	7
+    write /sys/block/dm-0/queue/read_ahead_kb 512

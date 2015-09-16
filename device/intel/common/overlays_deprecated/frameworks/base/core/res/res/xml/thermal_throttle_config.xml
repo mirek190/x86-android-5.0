@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2012  -->
+<thermalthrottleconfig>
+  <!-- Config xml file version should be in sync with iTUX version number-->
+  <ConfigFileVersion>2.5</ConfigFileVersion>
+
+  <!--Platform Parameters-->
+  <PlatformInfo>
+      <!--PlatformName reference. In future will be compared against ro.board.platform-->
+      <PlatformName>common</PlatformName>
+      <!--standard cooling devices register in /sys/class/thermal/cooling_deviceX/ Herein
+      referred as 'Path Enumerated at Runtime by Framework in Kernel Thermal' or PERFKT-->
+  </PlatformInfo>
+
+  <!--Cooling Devices-->
+  <ContributingDeviceInfo>
+    <CDeviceName>CPU</CDeviceName>
+    <CDeviceID>1</CDeviceID>
+    <!--CDeviceClassPath: pluggable custom class path name or "auto" meaning no separate plugin required-->
+    <CDeviceClassPath>com.android.server.thermal.CPUMaxFreqControl</CDeviceClassPath>
+    <!--CDevicethrottlePath: "auto" means lookin PERFTK path. "none" means implemented inside plugin -->
+    <CDeviceThrottlePath>none</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+
+  <!--Map the cooling devices with specfic zones for throttling-->
+  <ZoneThrottleInfo>
+    <ZoneID>0</ZoneID>
+    <CriticalShutDown>0</CriticalShutDown>
+    <!--set CriticalShutDown to 1, if platform needs to shutdown
+        if this zone reaches critical thermal state to avoid any user impact-->
+    <!--list of cooling device IDs registered for the zone-->
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+      <ThrottleDeviceMask>
+          <Normal>0</Normal>
+          <Warning>0</Warning>
+          <Alert>0</Alert>
+          <Critical>1</Critical>
+      </ThrottleDeviceMask>
+      <!--four states: Normal,Warning,Alert,Critical. 0 - disable throttling,1 - enable throttling, -1 - dont care-->
+      <DethrottleDeviceMask>
+          <Normal>1</Normal>
+          <Warning>0</Warning>
+          <Alert>0</Alert>
+          <Critical>0</Critical>
+      </DethrottleDeviceMask>
+      <!--four states: Normal,Warning,Alert,Critical. 0 - disable de-throttling,1 - enable de-throttling, -1 - dont care-->
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+</thermalthrottleconfig>

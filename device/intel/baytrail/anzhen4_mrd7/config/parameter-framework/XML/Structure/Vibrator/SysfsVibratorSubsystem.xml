@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="Vibrator" Type="FS" Endianness="Little">
+    <ComponentLibrary>
+        <ComponentType Name="SysFsDir">
+            <BooleanParameter Name="enabled" Mapping="File:vibrator"/>
+            <EnumParameter Name="mode" Size="8" Mapping="File:duty">
+                <ValuePair Literal="Hi-z" Numerical="0"/>
+                <ValuePair Literal="25% 0.5Hz" Numerical="1"/>
+                <ValuePair Literal="25% 2HZ" Numerical="2"/>
+                <ValuePair Literal="continuous" Numerical="3"/>
+            </EnumParameter>
+        </ComponentType>
+    </ComponentLibrary>
+    <InstanceDefinition>
+        <Component Name="state" Type="SysFsDir" Mapping="Directory:/sys/devices/platform/xpwr_vib.0/"/>
+    </InstanceDefinition>
+</Subsystem>

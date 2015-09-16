@@ -1,0 +1,4 @@
+# Additional platform_app rules
+allow platform_app unlabeled:dir { read getattr open setattr };
+allow platform_app unlabeled:file { read write getattr open };
+allow platform_app graphics_device:dir search;

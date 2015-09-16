@@ -1,0 +1,496 @@
+
+supDomain: Parameter
+
+	supDomain: OutputDevice
+
+		domain: IHF
+			conf: Selected
+				OutputDevices Includes Ihf
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					IHF = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					IHF = 0
+
+		domain: Earpiece
+			conf: Selected
+				OutputDevices Includes Earpiece
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Earpiece = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Earpiece = 0
+
+		domain: Headset
+			conf: Selected
+				OutputDevices Includes Headset
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Headset = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Headset = 0
+
+		domain: Headphones
+			conf: Selected
+				OutputDevices Includes Headphones
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Headphones = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					Headphones = 0
+
+		domain: SCO
+			conf: Selected
+				OutputDevices Includes Sco
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO = 0
+
+		domain: SCO_Headset
+			conf: Selected
+				OutputDevices Includes ScoHeadset
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO_Headset = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO_Headset = 0
+
+		domain: SCO_CarKit
+			conf: Selected
+				OutputDevices Includes ScoCarkit
+
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO_CarKit = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_devices_criterion/output_devices
+					SCO_CarKit = 0
+
+
+	supDomain: InputDevice
+
+		domain: Main
+			conf: Selected
+				ANY
+					ALL
+						OutputDevices Includes Earpiece
+						ANY
+							AndroidMode Is InVoipCall
+							ALL
+								AndroidMode Is InCsvCall
+								ModemAudioAvailable Is True
+					ALL
+						AndroidMode Is Normal
+						InputDevices Includes Main
+
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Main = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Main = 0
+
+
+		domain: SCO_Headset
+			conf: Selected
+				ANY
+					ALL
+						AndroidMode Is InCsvCall
+						ModemAudioAvailable Is True
+						ANY
+							OutputDevices Includes Sco
+							OutputDevices Includes ScoHeadset
+							OutputDevices Includes ScoCarkit
+					InputDevices Includes ScoHeadset
+
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					SCO_Headset = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					SCO_Headset = 0
+
+		domain: Headset
+			conf: Selected
+				ANY
+					ALL
+						AndroidMode Is InCsvCall
+						ModemAudioAvailable Is True
+						OutputDevices Includes Headset
+					InputDevices Includes Headset
+
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Headset = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Headset = 0
+
+		domain: VoiceCall
+			conf: Selected
+				InputDevices Includes VoiceCall
+
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					VoiceCall = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					VoiceCall = 0
+
+		domain: Back
+			conf: Selected
+				ANY
+					ALL
+						AndroidMode Is InVoipCall
+						ANY
+							OutputDevices Includes Headphones
+							OutputDevices Includes Ihf
+					InputDevices Includes Back
+
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Back = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_devices_criterion/input_devices
+					Back = 0
+
+
+	supDomain: InputSources
+
+		domain: Mic
+			conf: Selected
+				InputSources Includes Mic
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					Mic = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					Mic = 0
+
+		domain: Camcorder
+			conf: Selected
+				InputSources Includes Camcorder
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					Camcorder = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					Camcorder = 0
+
+		domain: VoiceRecognition
+			conf: Selected
+				InputSources Includes VoiceRecognition
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceRecognition = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceRecognition = 0
+
+		domain: VoiceCommunication
+			conf: Selected
+				InputSources Includes VoiceCommunication
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceCommunication = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceCommunication = 0
+
+		domain: VoiceDownlink
+			conf: Selected
+				InputSources Includes VoiceDownlink
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceDownlink = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceDownlink = 0
+
+		domain: VoiceUplink
+			conf: Selected
+				InputSources Includes VoiceUplink
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceUplink = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceUplink = 0
+
+		domain: VoiceCall
+			conf: Selected
+				InputSources Includes VoiceCall
+
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceCall = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/input_sources_criterion/input_sources
+					VoiceCall = 0
+
+
+	supDomain: Outputflags
+
+		domain: Primary
+			conf: Selected
+				OutputFlags Includes Primary
+
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					primary = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					primary = 0
+
+		domain: Deep
+			conf: Selected
+				OutputFlags Includes Deep
+
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					deep_buffer = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					deep_buffer = 0
+
+		domain: Fast
+			conf: Selected
+				OutputFlags Includes Fast
+
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					fast = 1
+
+			conf: NotSelected
+				component: /Route/route_mgr/criteria/output_flags_criterion/output_flags
+					fast = 0
+
+
+	domain: Mode
+
+		conf: RingTone
+			AndroidMode Is RingTone
+
+			component: /Route/route_mgr/criteria/mode_criterion
+				mode = RingTone
+
+		conf: InCall
+			ALL
+				AndroidMode Is InCsvCall
+				ModemState Is True
+				ModemAudioAvailable Is True
+				ANY
+					OutputDevices Is Ihf
+					OutputDevices Is Headset
+					OutputDevices Is Headphones
+					OutputDevices Is Earpiece
+					OutputDevices Is Sco
+					OutputDevices Is ScoHeadset
+					OutputDevices Is ScoCarkit
+
+			component: /Route/route_mgr/criteria/mode_criterion
+				mode = InCsvCall
+
+		conf: InCommunication
+			ALL
+				AndroidMode Is InVoipCall
+				ANY
+					OutputDevices Is Ihf
+					OutputDevices Is Headset
+					OutputDevices Is Headphones
+					OutputDevices Is Earpiece
+					OutputDevices Is Sco
+					OutputDevices Is ScoHeadset
+					OutputDevices Is ScoCarkit
+
+			component: /Route/route_mgr/criteria/mode_criterion
+				mode = InVoipCall
+
+		conf: Normal
+
+			component: /Route/route_mgr/criteria/mode_criterion
+				mode = Normal
+
+
+	domain: Band
+		conf: NB
+			ANY
+				ALL
+					AndroidMode Is InCsvCall
+					ModemAudioAvailable Is True
+					CsvBandType Is NB
+				ALL
+					AndroidMode Is InVoipCall
+					VoIPBandType Is NB
+
+			component: /Route/route_mgr/criteria/band_type_criterion
+				band = NB
+
+		conf: WB
+			ANY
+				ALL
+					AndroidMode Is InCsvCall
+					ModemAudioAvailable Is True
+					CsvBandType Is WB
+				ALL
+					AndroidMode Is InVoipCall
+					VoIPBandType Is WB
+
+			component: /Route/route_mgr/criteria/band_type_criterion
+				band = WB
+
+		conf: SuperWB
+			ANY
+				ALL
+					AndroidMode Is InCsvCall
+					ModemAudioAvailable Is True
+					CsvBandType Is SuperWB
+				ALL
+					AndroidMode Is InVoipCall
+					VoIPBandType Is SuperWB
+
+			component: /Route/route_mgr/criteria/band_type_criterion
+				band = SuperWB
+
+		conf: Unknown
+			component: /Route/route_mgr/criteria/band_type_criterion
+				band = Unknown
+
+
+	domain: ScreenState
+		conf: On
+			ScreenOn Is True
+
+			component: /Route/route_mgr/criteria/screen_state_criterion
+				state = On
+
+		conf: Off
+			component: /Route/route_mgr/criteria/screen_state_criterion
+				state = Off
+
+
+	domain: TtyDirection
+		conf: Downlink
+			TtyDirection Is Downlink
+
+			component: /Route/route_mgr/criteria/tty_direction_criterion/tty_direction
+				Downlink = 1
+				Uplink = 0
+
+		conf: Uplink
+			TtyDirection Is Uplink
+
+			component: /Route/route_mgr/criteria/tty_direction_criterion/tty_direction
+				Downlink = 0
+				Uplink = 1
+
+		conf: FullDuplex
+			ALL
+				TtyDirection Includes Downlink
+				TtyDirection Includes Uplink
+
+			component: /Route/route_mgr/criteria/tty_direction_criterion/tty_direction
+				Downlink = 1
+				Uplink = 1
+
+		conf: Default
+			component: /Route/route_mgr/criteria/tty_direction_criterion/tty_direction
+				Downlink = 0
+				Uplink = 0
+
+	domain: MicMute
+		conf: Muted
+			MicMute Is True
+
+			component: /Route/route_mgr/criteria/mic_mute_criterion
+				state = On
+
+		conf: Unmuted
+			component: /Route/route_mgr/criteria/mic_mute_criterion
+				state = Off
+
+	domain: BtHeadsetNrEc
+		conf: Available
+			BtHeadsetNrEc Is True
+
+			component: /Route/route_mgr/criteria/bt_headset_nrec_criterion
+				boolean = True
+
+		conf: NotAvailable
+			component: /Route/route_mgr/criteria/bt_headset_nrec_criterion
+				boolean = False
+
+	domain: BtHeadsetBandType
+		conf: WB
+			BtHeadsetBandType Is WB
+			component: /Route/route_mgr/criteria/bt_headset_band_criterion
+				band = WB
+
+		conf: NB
+			component: /Route/route_mgr/criteria/bt_headset_band_criterion
+				band = NB
+
+	supDomain: PreProcessor
+
+		domain: Aec
+			conf: Enabled
+				MicMute Is True
+
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Aec = 1
+
+			conf: Disabled
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Aec = 0
+
+		domain: Agc
+			conf: Enabled
+				MicMute Is True
+
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Agc = 1
+
+			conf: Disabled
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Agc = 0
+
+		domain: Ns
+			conf: Enabled
+				MicMute Is True
+
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Ns = 1
+
+			conf: Disabled
+				component: /Route/route_mgr/criteria/preproc_enabled_criterion/preprocessing_enabled
+					Ns = 0
+
+	domain: Hac
+		conf: Enabled
+			HacSelected Is True
+
+			component: /Route/route_mgr/criteria/hac_mode_criterion
+				state = On
+
+		conf: Disabled
+			component: /Route/route_mgr/criteria/hac_mode_criterion
+				state = Off

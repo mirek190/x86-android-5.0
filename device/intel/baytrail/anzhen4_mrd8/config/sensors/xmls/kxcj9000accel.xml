@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+    <driver_config>
+      <basic_info>
+        <i2c_bus_num>3</i2c_bus_num>
+        <i2c_addrs>
+          <addr>0xf</addr>
+        </i2c_addrs>
+        <id_reg_addr>0xf</id_reg_addr>
+        <ids>
+          <id>0x11</id>
+        </ids>
+        <device_name>KXCJ9000:00</device_name>
+        <input_name>accel</input_name>
+        <event_type>EV_REL</event_type>
+        <method>mix</method>
+        <default_poll_interval>200</default_poll_interval>
+        <min_poll_interval/>
+        <max_poll_interval/>
+        <gpio_num>153</gpio_num>
+        <irq_flag>0x2001</irq_flag>
+        <irq_serialize/>
+        <report_cnt>120</report_cnt>
+        <report_interval>67</report_interval>
+      </basic_info>
+      <odr_tables>
+        <odr_table>
+          <hz>6</hz>
+          <action><![CDATA[
+          local_1 = regbuf_0x1b_1 & 0x80;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 & 0x7f;
+          endif
+          writereg_0x21_0_1 = (regbuf_0x21_1 & 0xf0) | 0xb;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 | 0x80;
+          endif
+          ]]></action>
+        </odr_table>
+        <odr_table>
+          <hz>100</hz>
+          <action><![CDATA[
+          local_1 = regbuf_0x1b_1 & 0x80;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 & 0x7f;
+          endif
+          writereg_0x21_0_1 = (regbuf_0x21_1 & 0xf0) | 0x3;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 | 0x80;
+          endif
+          ]]></action>
+        </odr_table>
+        <odr_table>
+          <hz>200</hz>
+          <action><![CDATA[
+          local_1 = regbuf_0x1b_1 & 0x80;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 & 0x7f;
+          endif
+          writereg_0x21_0_1 = (regbuf_0x21_1 & 0xf0) | 0x4;
+          if (local_1 == 1)
+             writereg_0x1b_0_1 = regbuf_0x1b_1 | 0x80;
+          endif
+          ]]></action>
+        </odr_table>
+      </odr_tables>
+      <range_tables>
+    </range_tables>
+      <sys_entries>
+    </sys_entries>
+      <sensor_actions>
+        <init><![CDATA[
+        /*need to disable before change data and int reg*/
+        writereg_0x1b_0_1 = 0;
+        /*disable mode, 12bit, 4g, motion detect*/
+        writereg_0x1b_0_1 = 0x4a;
+        global_1 = 1;/*range factor*/
+        /*int trigger setting: IEN=1,IEA=1*/
+        writereg_0x1e_0_1 = 0x30;
+        /*change motion detect threshold to 1/16g*/
+        writereg_0x6a_0_1 = 0x1;
+        /*enalbe motion detect int*/
+        writereg_0x1f_0_1 = 0x3f;
+        /*set ODR as 100Hz, make sure in disable mode*/
+        readreg_0x21_0_1;
+        writereg_0x21_0_1 = (regbuf_0x21_1 & 0xf0) | 0x3;
+        ]]></init>
+        <deinit>
+      </deinit>
+        <enable><![CDATA[
+        /*set operating mode*/
+        readreg_0x1b_0_1;
+        writereg_0x1b_0_1 = regbuf_0x1b_1 | 0x80;
+        ]]></enable>
+        <disable><![CDATA[
+        /*set disabled mode*/
+        readreg_0x1b_0_1;
+        writereg_0x1b_0_1 = regbuf_0x1b_1 & 0x7f;
+        ]]></disable>
+        <int_ack><![CDATA[
+        /*check if motion detect interrupt*/
+        readreg_0x17_0_1;
+        /*clear int*/
+        readreg_0x1a_0_1;
+        return regbuf_0x17_1 & 0x3f;
+        ]]></int_ack>
+        <get_data_x><![CDATA[
+        readreg_0x6_0x0_6;
+        return (le16_to_cpu(regbuf_0x6_2) >> 4) * global_1;
+        ]]></get_data_x>
+        <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0x8_2) >> 4) * global_1;
+        ]]></get_data_y>
+        <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0xa_2) >> 4) * global_1;
+        ]]></get_data_z>
+      </sensor_actions>
+    </driver_config>
+    <hal_config>
+      <type>accelerometer</type>
+      <platform_config>
+        <name>accel</name>
+        <activate_node>/sys/bus/i2c/devices/3-000f/enable</activate_node>
+        <poll_node>/sys/bus/i2c/devices/3-000f/poll</poll_node>
+        <data_node/>
+        <calibration_function>AccelCalibration</calibration_function>
+      </platform_config>
+      <device>
+        <name>KXCJ Accelerometer</name>
+        <vendor>KIONIX</vendor>
+        <version>1</version>
+        <maxRange unit="GRAVITY_EARTH">4</maxRange>
+        <resolution unit="GRAVITY_EARTH">0.001953125</resolution>
+        <power>0.11</power>
+        <minDelay>10000</minDelay>
+        <mapper axis_x="Y" axis_y="X" axis_z="Z"/>
+        <scale axis_x="-0.001953125" axis_y="-0.001953125" axis_z="-0.001953125" unit="GRAVITY_EARTH"/>
+      </device>
+    </hal_config>
+  </sensor>
+</sensors>

@@ -1,0 +1,8 @@
+# software config - informative only
+ro.swconf.info=V1_7260_ATT
+
+ro.sf.lcd_density=480
+panel.physicalWidthmm=58
+panel.physicalHeightmm=103
+
+ro.config.specific=att

@@ -1,0 +1,152 @@
+#!/system/xbin/ash
+
+################################################################################
+# Configuration available
+#
+# activate_trace_modem
+#			-on -e1 -o : write on emmc (100MB) oneshot
+#			-on -e1 -p : write on emmc (100MB) persistent
+#			-on -e2 -o : write on emmc extented (600MB) oneshot
+#			-on -e2 -p : write on emmc extented (600MB) persistent
+#			-off : stop mts
+#			-on -mux : active mux traces channels 0 to 17
+#			-off -mux : disable mux traces
+################################################################################
+
+
+mtsp_persist_status=$(getprop persist.service.mtsp.enable)
+mtso_persist_status=$(getprop persist.service.mtso.enable)
+
+mtsp_status=$(getprop init.svc.mtsp)
+mtso_status=$(getprop init.svc.mtso)
+
+mts_name=$(getprop persist.service.mts.name)
+
+if [ "$1" = "-off" ] && ( [ -z "$2" ] || [ "$2" = "-mux" ] )
+then
+	setprop persist.service.mts.input ""
+	setprop persist.service.mts.output ""
+	setprop persist.service.mts.output_type ""
+	setprop persist.service.mts.rotate_num ""
+	setprop persist.service.mts.rotate_size ""
+	setprop persist.service.mts.name "disable"
+	if [ "$2" = "-mux" ] && [ -z "$3" ]
+	then
+		echo -e -r "at+xmux=1,0\r\n" > /dev/gsmtty19 &
+		sleep 1;
+		echo "mux traces disabled"
+		exit 0
+	elif [ -n "$mtsp_persist_status" ] && [ $mtsp_persist_status != "0" ]
+	then
+		if [ -n "$mts_name" ] && [ $mts_name = "mtsfs" ]
+		then
+			echo "activate_trace_modem" $1 ": emmc (100MB) persistent disabled"
+			setprop persist.service.mtsp.enable 0
+			exit 0
+		fi
+		if [ -n "$mts_name" ] && [ $mts_name = "mtsextfs" ]
+		then
+			echo "activate_trace_modem" $1 ": emmc extended (600MB) persistent disabled"
+			setprop persist.service.mtsp.enable 0
+			exit 0
+		fi
+	elif [ -n "$mtsp_status" ] && [ $mtsp_status != "stopped" ]
+	then
+		if [ -n "$mts_name" ] && [ $mts_name = "mtsfs" ]
+		then
+			echo "activate_trace_modem" $1 ": emmc extended (100MB) disabled"
+			stop mtsp
+			exit 0
+		fi
+		if [ -n "$mts_name" ] && [ $mts_name = "mtsextfs" ]
+		then
+			echo "activate_trace_modem" $1 ": emmc extended (600MB) disabled"
+			stop mtsp
+			exit 0
+		fi
+	else
+		echo "ERROR : mts is not activated!"
+		exit 0
+	fi
+fi
+
+
+if [ "$1" = "-on" ] && ( [ "$2" = "-e1" ] || [ "$2" = "-e2" ] || [ "$2" = "-mux" ] )
+then
+	if [ "$2" = "-mux" ] && [ -z "$3" ]
+	then
+		echo -e -r "at+xmux=1,3,262143\r\n" > /dev/gsmtty19 &
+		sleep 1;
+		echo "mux traces activated"
+		exit 0
+	elif (([ -n "$mtsp_status" ] && [ $mtsp_status != "stopped" ]) ||
+		([ -n "$mtso_status" ] && [ $mtso_status != "stopped" ]))
+	then
+		echo "mts is already running, please stop the service with the option -off"
+		exit 0
+	elif [ "$3" = "-o" ]
+	then
+		if [ "$2" = "-e1" ]
+		then
+			setprop persist.service.mts.input "/dev/ttyACM1"
+			setprop persist.service.mts.output "/logs/bplog"
+			setprop persist.service.mts.output_type "f"
+			setprop persist.service.mts.rotate_num "5"
+			setprop persist.service.mts.rotate_size "20000"
+			setprop persist.service.mts.name "mtsfs"
+			echo "activate_trace_modem" $1 ": emmc (100MB) enabled"
+			start mtsp
+			exit 0
+		elif [ "$2" = "-e2" ]
+		then
+			setprop persist.service.mts.input "/dev/ttyACM1"
+			setprop persist.service.mts.output "/logs/bplog"
+			setprop persist.service.mts.output_type "f"
+			setprop persist.service.mts.rotate_num "3"
+			setprop persist.service.mts.rotate_size "200000"
+			setprop persist.service.mts.name "mtsextfs"
+			echo "activate_trace_modem" $1 ": emmc (600MB) enabled"
+			start mtsp
+			exit 0
+		fi
+	elif [ "$3" = "-p" ]
+	then
+		if [ "$2" = "-e1" ]
+		then
+			setprop persist.service.mts.input "/dev/ttyACM1"
+			setprop persist.service.mts.output "/logs/bplog"
+			setprop persist.service.mts.output_type "f"
+			setprop persist.service.mts.rotate_num "5"
+			setprop persist.service.mts.rotate_size "20000"
+			setprop persist.service.mts.name "mtsfs"
+			setprop persist.service.mtsp.enable 1
+			echo "activate_trace_modem" $1 ": emmc (100MB) persistent enabled"
+			exit 0
+		elif [ "$2" = "-e2" ]
+		then
+			setprop persist.service.mts.input "/dev/ttyACM1"
+			setprop persist.service.mts.output "/logs/bplog"
+			setprop persist.service.mts.output_type "f"
+			setprop persist.service.mts.rotate_num "3"
+			setprop persist.service.mts.rotate_size "200000"
+			setprop persist.service.mts.name "mtsextfs"
+			setprop persist.service.mtsp.enable 1
+			echo "activate_trace_modem" $1 ": emmc extended (600MB) persistent enabled"
+			exit 0
+		fi
+	else
+		echo "Please add the argument -o OR -p !"
+	fi
+else
+	echo "USAGE: activate_trace_modem [-on -e1|-e2 -o|-p]"
+	echo "USAGE: activate_trace_modem [-off]"
+	echo "USAGE: activate_trace_modem [-on|-off -mux]"
+	echo "       -on: enable"
+	echo "       -off: disable"
+	echo "       -e1: write on emmc (100Mb)"
+	echo "       -e2: write on emmc (600Mb)"
+	echo "       -mux : mux traces channels 0 to 17"
+	echo "       -o: oneshot"
+	echo "       -p: persistent"
+	exit 0
+fi

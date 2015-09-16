@@ -1,0 +1,29 @@
+{"config":
+  [{"filename":"flash.xml", "name":"default", "flashtype":"fastboot_dnx"},
+   {"filename":"flash-buildbot.xml", "name":"default", "flashtype":"fastboot_dnx"},
+   {"filename":"installer.cmd", "name":"erase_factory"},
+   {"filename":"flash-EraseFactory.xml", "name":"erase_factory", "flashtype":"fastboot_dnx"}
+  ],
+"commands":
+  [{"type":"prop", "target":"INSTALLED_BUILD_PROP_TARGET"},
+   {"type":"file", "target":"INSTALLED_DEDIPROG_TARGET"},
+   {"type":"fflash", "partition":"fw_stage2", "target":"INSTALLED_STAGE2_TARGET", "mandatory":false},
+   {"type":"sleep", "timeout":5000},
+   {"type":"fflash", "partition":"osloader", "target":"INSTALLED_EFILINUX_MODULE"},
+   {"type":"fboot", "target":"INSTALLED_DROIDBOOTIMAGE_TARGET"},
+   {"type":"sleep", "timeout":25000},
+   {"type":"foem", "arg":"wipe ESP", "desc":"Wiping ESP partition", "mandatory":false},
+   {"type":"foem", "arg":"wipe reserved", "desc":"Wiping reserved partition", "mandatory":false},
+   {"type":"foem", "arg":"start_partitioning", "desc":"Start partitioning."},
+   {"type":"fflash", "partition":"/tmp/partition.tbl", "target":"TARGET_PARTITION_TABLE", "desc":"Push the new partition table to the device."},
+   {"type":"foem", "arg":"partition /tmp/partition.tbl", "desc":"Apply the new partition scheme."},
+   {"type":"fformat", "partition":"factory", "restrict":["erase_factory"]},
+   {"type":"ferase", "partition":"system"},
+   {"type":"fformat", "partition":"cache"},
+   {"type":"fformat", "partition":"config"},
+   {"type":"fformat", "partition":"logs"},
+   {"type":"fformat", "partition":"data"},
+   {"type":"foem", "arg":"stop_partitioning", "desc":"Stop partitioning."},
+   {"type":"fflash", "partition":"ESP", "target":"INSTALLED_ESPIMAGE_TARGET"},
+   {"type":"fflash", "partition":"fastboot", "target":"INSTALLED_DROIDBOOTIMAGE_TARGET"}
+  ]}

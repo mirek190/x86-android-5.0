@@ -1,0 +1,208 @@
+on init
+    mkdir /logs
+    # Export gcov variables to enable code coverage on mobile
+    export GCOV_PREFIX /data
+    export GCOV_PREFIX_STRIP 1
+    write /proc/sys/kernel/kptr_restrict 0
+    insmod /lib/modules/lm_dump.ko
+
+on early-boot
+    chown system log /logs
+    chmod 0770 /logs
+# enable core dump function when application crash
+    setrlimit 4 -1 -1
+    mkdir /logs/core
+    chown root log /logs/core
+    chmod 0750 /logs/core
+    write /proc/sys/kernel/core_pattern /logs/core/%t_%e_%p.core
+
+    # Enable Renderscript Vectorizer
+    setprop debug.rs.x86vectorizer 1
+
+on boot
+    mount pstore none /sys/fs/pstore
+    mount efivarfs none /sys/firmware/efi/efivars
+
+on post-fs-data
+    mkdir /data/tombstones 0755 system system
+    mkdir /data/system/    0755 system system
+    mkdir /data/system/dropbox 0700 system system
+    mkdir /logs/modemcrash 0775 system system
+    mkdir /logs/stats 0775 system system
+    mkdir /logs/aplogs 0775 system log
+
+    # Enable by default android java wakelock logging
+    setprop wakelock.trace 1
+
+on ramconsole
+    setprop ro.debuggable 1
+    mount_all /fstab.ramconsole.${ro.hardware}
+    mount pstore none /sys/fs/pstore
+
+    start watchdogd
+    insmod /lib/modules/rmi4.ko boot_mode=1
+
+    # Invoke fuel gauging helper binary to restore config data
+    symlink /dev/max170xx /dev/fg
+    chmod 0775 /dev/fg
+    wait /system/bin/fg_conf
+    start fg_conf
+
+    # install fw dump module
+    insmod /lib/modules/lm_dump.ko
+    start crashdump
+
+on charger
+    # basic networking for "adb root"
+    ifup lo
+    hostname localhost
+    domainname localdomain
+    mkdir /logs/modemcrash 0775 system system
+    mkdir /logs/stats 0775 system system
+    mkdir /logs/aplogs 0775 system log
+    setprop persist.service.apklogfs.enable 1
+    setprop sys.usb.config iadb
+    setprop ro.debuggable 1
+
+on property:persist.core.enabled=0
+    setrlimit 4 0 0
+
+on property:persist.service.aplogfs.enable=1
+    restart ap_logfs
+
+on property:persist.service.aplogfs.enable=0
+    stop ap_logfs
+
+on property:persist.service.apklogfs.enable=1
+    restart apk_logfs
+
+on property:persist.service.apklogfs.enable=0
+    stop apk_logfs
+
+on property:persist.service.apklogsd.enable=1
+    restart apk_logsd
+
+on property:persist.service.apklogsd.enable=0
+    stop apk_logsd
+
+on property:persist.service.aplogsd.enable=1
+    restart ap_logsd
+
+on property:persist.service.aplogsd.enable=0
+    stop ap_logsd
+
+on property:persist.service.profile.enable=0
+    start profile_stop
+
+on property:persist.service.profile.enable=1
+    start profile1_init
+
+on property:persist.service.profile.enable=2
+    start profile2_init
+
+on property:persist.service.power.enable=1
+    start profile_power
+
+on property:persist.service.power.enable=0
+    stop profile_power
+
+on property:persist.service.memmonitor.on=1
+    start memmonitor
+
+on property:persist.service.memmonitor.on=0
+    stop memmonitor
+
+on property:ro.debuggable=1
+    start powerlogsdump
+
+# crash and log services
+service crashlogd /system/bin/crashlogd
+    class late_start
+    seclabel u:r:crashlogd:s0
+
+service crashdump /system/bin/crashlogd -ramdump
+    disabled
+    oneshot
+    seclabel u:r:crashlogd:s0
+
+service ap_logfs /system/bin/logcat -b system -b events -b main -b radio -n 20 -r5000 -v threadtime -f /logs/aplog KERNEL:S
+    class core
+    disabled
+
+service apk_logfs /system/bin/logcat -b system -b events -b main -b radio -n 20 -r5000 -v threadtime -f /logs/aplog
+    class core
+    disabled
+    seclabel u:r:apk_logfs:s0
+
+service apk_logsd /system/bin/logcat -b system -b events -b main -b radio -n 20 -r5000 -v threadtime -f /sdcard/aplog
+    disabled
+
+service ap_logsd /system/bin/logcat -b system -b events -b main -b radio -n 20 -r5000 -v threadtime -f /sdcard/aplog KERNEL:S
+    disabled
+
+service profile_stop /system/bin/pytimechart-record stop
+    disabled
+    oneshot
+
+service profile1_init /system/bin/pytimechart-record start_profile1
+    disabled
+    oneshot
+
+service profile1_rest /system/bin/pytimechart-record restart_profile1
+    disabled
+    oneshot
+
+service profile2_init /system/bin/pytimechart-record start_profile2
+    disabled
+    oneshot
+
+service profile2_rest /system/bin/pytimechart-record restart_profile2
+    disabled
+    oneshot
+
+service profile_power /system/bin/power-record
+    disabled
+    oneshot
+
+service memmonitor /system/bin/memmonitor.sh
+    disabled
+    oneshot
+
+# LogConfig service
+service logconfig /system/bin/logconfig
+    class main
+    socket logconfig stream 0660 root system
+    disabled
+    oneshot
+
+# started by vendor/intel/log_capture/crashlog
+service logsystemstate /system/bin/dumpstate_dropbox.sh -v
+    class main
+    disabled
+    oneshot
+
+service gpu_daemon /system/bin/gpu_daemon
+    class main
+    user root
+    group graphics
+    oneshot
+
+# start Berta agent only on property
+service berta /system/berta/run-berta.sh
+    class main
+    # default disabled
+    disabled
+    group root system net_admin log
+
+on property:persist.berta.enabled=0
+    stop berta
+
+on property:persist.berta.enabled=1
+    start berta
+
+# Power debug logs
+service powerlogsdump /system/bin/logwrapper /system/bin/power_logs_dump.sh
+    disabled
+    oneshot
+
+import init.dump.rc

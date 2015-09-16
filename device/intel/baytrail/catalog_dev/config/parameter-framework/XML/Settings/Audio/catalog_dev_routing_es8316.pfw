@@ -1,0 +1,130 @@
+##############################
+#	 Mute & Unmute Steps
+##############################
+
+supDomain: Routing.Mute
+	# Definition of Mute and Unmute for futur use in this supDomain
+	RoutageState Includes Flow
+
+	supDomain: HWCodec.Playback
+		domain: IHF
+			conf: Unmute
+				ALL
+					SelectedOutputDevice Includes IHF
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: Multimedia.IHF
+			conf: Unmute
+				ALL
+					SelectedOutputDevice Includes IHF
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: Headset
+			conf: Unmute
+				ALL
+					ANY
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: Multimedia.Headset
+			conf: Unmute
+				ALL
+					ANY
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+##############################
+#	 Enable & Disable Steps
+##############################
+supDomain: Routing.Enable
+	# Definition of Enable and Disable for future use in this supDomain
+	RoutageState Includes Path
+
+	supDomain: HWCodec.Capture
+
+		domain: MainMic
+			conf: Enable
+				ALL
+					SelectedInputDevice Includes Main
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+				/Audio/EVEREST/SOUND_CARD/INPUT/MIC/INT/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVEREST/SOUND_CARD/INPUT/MIC/INT/SWITCH = 0
+
+
+		domain: HeadsetMic
+			conf: Enable
+				ALL
+					SelectedInputDevice Includes Headset
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+				/Audio/EVEREST/SOUND_CARD/INPUT/HEADSET/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVEREST/SOUND_CARD/INPUT/HEADSET/SWITCH = 0
+
+	supDomain: HWCodec.Playback
+		domain: Headset
+			conf: Enable
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+
+				/Audio/EVEREST/SOUND_CARD/OUTPUT/SPEAKER/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVEREST/SOUND_CARD/OUTPUT/SPEAKER/SWITCH = 0
+
+		domain: IHF
+			conf: Enable
+				SelectedOutputDevice Includes IHF
+
+				/Audio/EVEREST/SOUND_CARD/OUTPUT/SPEAKER/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVEREST/SOUND_CARD/OUTPUT/SPEAKER/SWITCH = 0
+
+##############################
+#	 Configure Step
+##############################
+
+supDomain: Routing.Configure
+	RoutageState Includes Configure
+
+	supDomain: LPE_Mixer
+		domain: IHF
+			conf: Activated
+				ALL
+					SelectedOutputDevice Includes IHF
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = NONE
+
+		domain: HS
+			conf: Activated
+				ALL
+					OpenedPlaybackRoutes Includes HwCodecMedia
+					SelectedOutputDevice Excludes IHF
+					ANY
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = NONE

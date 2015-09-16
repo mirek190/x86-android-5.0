@@ -1,0 +1,162 @@
+import /droidboot.init.${ro.hardware}.rc
+import /init.droidboot.debug.rc
+import /init.watchdog.rc
+import /init.firmware.rc
+
+on early-init
+    setcon u:r:init:s0
+    start ueventd
+
+on init
+    export PATH /sbin:/system/sbin:/system/bin:/system/xbin
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+
+    symlink /system/etc /etc
+
+    mount /tmp /tmp tmpfs
+    mount /data /data tmpfs
+
+    write /proc/sys/kernel/panic_on_oops 1
+
+    # set usb serial number
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+
+# Indicate to fw loaders that the relevant mounts are up.
+on firmware_mounts_complete
+    rm /dev/.booting
+
+# Trigger remaining init steps:
+on late-init
+    trigger fs
+
+    # Remove a file to wake up anything waiting for firmware.
+    trigger firmware_mounts_complete
+
+    trigger boot
+
+on fs
+     mkdir /dev/usb-ffs 0770 shell shell
+     mkdir /dev/usb-ffs/adb 0770 shell shell
+     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+     write /sys/class/android_usb/android0/f_ffs/aliases adb
+
+on boot
+    ifup lo
+    hostname localhost
+    domainname localdomain
+    # USB settings to allow charging, but not to be declare as Fastboot Device
+    setprop sys.usb.config charging
+    class_start default
+    class_start core
+
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 8087
+    write /sys/class/android_usb/android0/idProduct 0fff
+    write /sys/class/android_usb/android0/iProduct "Android-Phone"
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.usb.config=mass_storage
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 8087
+    write /sys/class/android_usb/android0/idProduct 09f1
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+# USB ACM configuration, with rndis and adb
+on property:sys.usb.config=rndis,acm,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 8087
+    write /sys/class/android_usb/android0/idProduct 09f8
+    write /sys/class/android_usb/android0/iProduct "Android-Phone"
+    write /sys/class/android_usb/android0/f_acm/instances 1
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.usb.config=mass_storage,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 8087
+    write /sys/class/android_usb/android0/idProduct 09f2
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.usb.config=mtp,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct Fec0
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.usb.config=ptp,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 18d1
+    write /sys/class/android_usb/android0/idProduct Fec0
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+service ueventd /sbin/ueventd
+    critical
+    seclabel u:r:ueventd:s0
+
+service droidboot /system/bin/droidboot
+    critical
+
+service console /system/bin/sh
+    console
+
+service apk_logfs /system/bin/logcat -b system -b main -b radio -n 20 -r5000 -v threadtime -f /logs/aplog
+    disabled
+
+on property:persist.service.apklogfs.enable=1
+    start apk_logfs
+
+on property:persist.service.apklogfs.enable=0
+    stop apk_logfs
+
+on property:sys.partitioning=1
+    stop apk_logfs
+
+on property:sys.powerctl=*
+    powerctl ${sys.powerctl}
+
+on property:sys.partitioning=0
+    mkdir /logs
+    mkdir /factory 0775 system system
+    mkdir /config 0775 system system
+    chown system system /logs
+    chmod 777 /logs
+    mount_all /fstab.${ro.hardware}
+    mkdir /factory/telephony 0770 system radio
+    mkdir /config/telephony 0770 system radio
+    mkdir /logs/flashing
+    write /logs/flashing/blankphone_file ""
+    start apk_logfs
+
+service factory2tmp /system/bin/cp -a /factory /tmp
+    oneshot
+    disabled
+
+on property:init.svc.factory2tmp=stopped
+    setprop sys.backup_factory done
+
+service tmp2factory /system/bin/cp -a /tmp/factory /
+    oneshot
+    disabled
+
+service thermald /sbin/thermald POS
+    user root
+
+on property:init.svc.tmp2factory=stopped
+    setprop sys.backup_factory done
+
+on property:sys.backup_factory=backup
+    mkdir /tmp/factory
+    start factory2tmp
+
+on property:sys.backup_factory=restore
+    start tmp2factory
+
+on property:sys.forcecoldboot=yes
+    write /sys/module/intel_mid/parameters/force_cold_boot 1

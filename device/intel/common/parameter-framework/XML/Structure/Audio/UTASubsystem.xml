@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="UTA" Type="UTA" Endianness="Little">
+    <ComponentLibrary>
+        <!-- GENERAL -->
+        <ComponentType Name="DESTINATION_TYPE">
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="100" Description="Step size: 0,5dB ; 0 is mute, 100 is +6dB" Mapping="Volume"/>
+            <BooleanParameter Name="MUTED" Size="8" Mapping="Mute"/>
+        </ComponentType>
+        <ComponentType Name="DESTINATION_TYPE_ADAPTED">
+            <IntegerParameter Name="VOICE_VOLUME" Size="8" Min="0" Max="100" Description="Step size: 0,5dB ; 0 is mute, 100 is +6dB" Mapping="Volume">
+                <LinearAdaptation SlopeNumerator="48" SlopeDenominator="1" Offset="40"/>
+            </IntegerParameter>
+            <BooleanParameter Name="MUTED" Size="8" Mapping="Mute"/>
+        </ComponentType>
+        <ComponentType Name="SOURCE_TYPE" Extends="DESTINATION_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="EnableSource"/>
+        </ComponentType>
+        <!-- SIMPLE TONES COMPONENT LIBRARY -->
+        <ComponentType Name="SIMPLE_TONES_TYPE" Extends="SOURCE_TYPE">
+            <EnumParameter Name="SIMPLE_TONE" Mapping="SimpleTonesConfig" Size="8">
+                <ValuePair Literal="CALL_RECORDING_NOTIFICATION" Numerical="0"/>
+            </EnumParameter>
+        </ComponentType>
+        <!-- SPEECH COMPONENT LIBRARY -->
+        <ComponentType Name="SPEECH_PORT">
+            <Component Name="RX" Type="DESTINATION_TYPE_ADAPTED" Mapping="Direction:src"/>
+            <Component Name="TX" Type="DESTINATION_TYPE_ADAPTED" Mapping="Direction:dst"/>
+        </ComponentType>
+        <!-- SSP COMPONENT LIBRARY -->
+        <ComponentType Name="SSP_DESTINATION" Extends="DESTINATION_TYPE">
+            <ParameterBlock Name="CONFIG" Mapping="SSPPortConfig">
+                <IntegerParameter Name="SETTINGS" Size="8" />
+                <EnumParameter Name="MODE" Size="8">
+                    <ValuePair Literal="Default" Numerical="0"/>
+                    <ValuePair Literal="Handset" Numerical="1"/>
+                    <ValuePair Literal="Headset" Numerical="2"/>
+                    <ValuePair Literal="Handsfree" Numerical="3"/>
+                    <ValuePair Literal="Aux" Numerical="4"/>
+                    <ValuePair Literal="HeadsetHandsfree-DestOnly" Numerical="5"/>
+                    <ValuePair Literal="HeadsetHandset-DestOnly" Numerical="6"/>
+                    <ValuePair Literal="TTY" Numerical="7"/>
+                    <ValuePair Literal="Bluetooth" Numerical="8"/>
+                    <ValuePair Literal="Headphone" Numerical="9"/>
+                    <ValuePair Literal="BtWithoutNREC" Numerical="10"/>
+                    <ValuePair Literal="HAC" Numerical="11"/>
+                    <ValuePair Literal="SingleDMicHandset" Numerical="12"/>
+                    <ValuePair Literal="DualDMicHandsfree" Numerical="13"/>
+                    <ValuePair Literal="CSVRecord" Numerical="14"/>
+                    <ValuePair Literal="UserDefined7" Numerical="15"/>
+                    <ValuePair Literal="AlwaysListeningAndMedia" Numerical="16"/>
+                    <ValuePair Literal="UserDefined9" Numerical="17"/>
+                    <ValuePair Literal="UserDefined10" Numerical="18"/>
+                    <ValuePair Literal="UserDefined11" Numerical="19"/>
+                    <ValuePair Literal="UserDefined12" Numerical="20"/>
+                    <ValuePair Literal="UserDefined13" Numerical="21"/>
+                    <ValuePair Literal="UserDefined14" Numerical="22"/>
+                    <ValuePair Literal="UserDefined15" Numerical="23"/>
+                    <ValuePair Literal="UserDefined16" Numerical="24"/>
+                    <ValuePair Literal="UserDefined17" Numerical="25"/>
+                    <ValuePair Literal="UserDefined18" Numerical="26"/>
+                    <ValuePair Literal="UserDefined19" Numerical="27"/>
+                    <ValuePair Literal="UserDefined20" Numerical="28"/>
+                    <ValuePair Literal="UserDefined21" Numerical="29"/>
+                    <ValuePair Literal="UserDefined22" Numerical="30"/>
+                    <ValuePair Literal="UserDefined23" Numerical="31"/>
+                    <ValuePair Literal="UserDefined24" Numerical="32"/>
+                    <ValuePair Literal="UserDefined25" Numerical="33"/>
+                    <ValuePair Literal="UserDefined26" Numerical="34"/>
+                    <ValuePair Literal="UserDefined27" Numerical="35"/>
+                    <ValuePair Literal="UserDefined28" Numerical="36"/>
+                    <ValuePair Literal="UserDefined29" Numerical="37"/>
+                    <ValuePair Literal="UserDefined30" Numerical="38"/>
+                    <ValuePair Literal="UserDefined31" Numerical="39"/>
+                    <ValuePair Literal="UserDefined32" Numerical="40"/>
+                    <ValuePair Literal="UserDefined33" Numerical="41"/>
+                    <ValuePair Literal="UserDefined34" Numerical="42"/>
+                    <ValuePair Literal="UserDefined35" Numerical="43"/>
+                    <ValuePair Literal="UserDefined36" Numerical="44"/>
+                    <ValuePair Literal="UserDefined37" Numerical="45"/>
+                    <ValuePair Literal="UserDefined38" Numerical="46"/>
+                    <ValuePair Literal="UserDefined39" Numerical="47"/>
+                    <ValuePair Literal="UserDefined40" Numerical="48"/>
+                    <ValuePair Literal="UserDefined41" Numerical="49"/>
+                    <ValuePair Literal="UserDefined42" Numerical="50"/>
+                    <ValuePair Literal="UserDefined43" Numerical="51"/>
+                    <ValuePair Literal="UserDefined44" Numerical="52"/>
+                    <ValuePair Literal="UserDefined45" Numerical="53"/>
+                    <ValuePair Literal="UserDefined46" Numerical="54"/>
+                    <ValuePair Literal="UserDefined47" Numerical="55"/>
+                    <ValuePair Literal="UserDefined48" Numerical="56"/>
+                    <ValuePair Literal="UserDefined49" Numerical="57"/>
+                    <ValuePair Literal="UserDefined50" Numerical="58"/>
+                </EnumParameter>
+            </ParameterBlock>
+        </ComponentType>
+        <ComponentType Name="SSP_SOURCE" Extends="SSP_DESTINATION">
+            <BooleanParameter Name="ENABLED" Mapping="EnableSource"/>
+        </ComponentType>
+        <ComponentType Name="SSP_PORT">
+            <Component Name="RX" Type="SSP_SOURCE" Mapping="Direction:src"/>
+            <Component Name="TX" Type="SSP_DESTINATION" Mapping="Direction:dst"/>
+        </ComponentType>
+        <ComponentType Name="SSP_PORTS">
+            <Component Name="A" Type="SSP_PORT" Mapping="SrcPort:28,DstPort:24"/>
+            <Component Name="B" Type="SSP_PORT" Mapping="SrcPort:29,DstPort:25"/>
+            <Component Name="C" Type="SSP_PORT" Mapping="SrcPort:30,DstPort:26"/>
+            <Component Name="D" Type="SSP_PORT" Mapping="SrcPort:31,DstPort:27"/>
+            <Component Name="E" Type="SSP_PORT" Mapping="SrcPort:32,DstPort:28"/>
+        </ComponentType>
+        <!-- PCMLITE COMPONENT LIBRARY -->
+        <ComponentType Name="PCML_DESTINATION" Extends="DESTINATION_TYPE">
+            <ParameterBlock Name="CONFIG" Mapping="PCMLiteConfig">
+                <EnumParameter Name="MODE" Size="8">
+                    <ValuePair Literal="Default" Numerical="0"/>
+                    <ValuePair Literal="Handset" Numerical="1"/>
+                    <ValuePair Literal="Headset" Numerical="2"/>
+                    <ValuePair Literal="Handsfree" Numerical="3"/>
+                    <ValuePair Literal="Aux" Numerical="4"/>
+                    <ValuePair Literal="HeadsetHandsfree-DestOnly" Numerical="5"/>
+                    <ValuePair Literal="HeadsetHandset-DestOnly" Numerical="6"/>
+                    <ValuePair Literal="TTY" Numerical="7"/>
+                    <ValuePair Literal="Bluetooth" Numerical="8"/>
+                    <ValuePair Literal="Headphone" Numerical="9"/>
+                    <ValuePair Literal="BtWithoutNREC" Numerical="10"/>
+                    <ValuePair Literal="HAC" Numerical="11"/>
+                    <ValuePair Literal="SingleDMicHandset" Numerical="12"/>
+                    <ValuePair Literal="DualDMicHandsfree" Numerical="13"/>
+                    <ValuePair Literal="CSVRecord" Numerical="14"/>
+                    <ValuePair Literal="BypassNonLinearPostProcessing" Numerical="15"/>
+                    <ValuePair Literal="BypassLinearPostProcessing" Numerical="16"/>
+                    <ValuePair Literal="UserDefined9" Numerical="17"/>
+                    <ValuePair Literal="UserDefined10" Numerical="18"/>
+                    <ValuePair Literal="UserDefined11" Numerical="19"/>
+                    <ValuePair Literal="UserDefined12" Numerical="20"/>
+                    <ValuePair Literal="UserDefined13" Numerical="21"/>
+                    <ValuePair Literal="UserDefined14" Numerical="22"/>
+                    <ValuePair Literal="UserDefined15" Numerical="23"/>
+                    <ValuePair Literal="UserDefined16" Numerical="24"/>
+                    <ValuePair Literal="UserDefined17" Numerical="25"/>
+                    <ValuePair Literal="UserDefined18" Numerical="26"/>
+                    <ValuePair Literal="UserDefined19" Numerical="27"/>
+                    <ValuePair Literal="UserDefined20" Numerical="28"/>
+                    <ValuePair Literal="UserDefined21" Numerical="29"/>
+                    <ValuePair Literal="UserDefined22" Numerical="30"/>
+                    <ValuePair Literal="UserDefined23" Numerical="31"/>
+                    <ValuePair Literal="UserDefined24" Numerical="32"/>
+                    <ValuePair Literal="UserDefined25" Numerical="33"/>
+                    <ValuePair Literal="UserDefined26" Numerical="34"/>
+                    <ValuePair Literal="UserDefined27" Numerical="35"/>
+                    <ValuePair Literal="UserDefined28" Numerical="36"/>
+                    <ValuePair Literal="UserDefined29" Numerical="37"/>
+                    <ValuePair Literal="UserDefined30" Numerical="38"/>
+                    <ValuePair Literal="UserDefined31" Numerical="39"/>
+                    <ValuePair Literal="UserDefined32" Numerical="40"/>
+                    <ValuePair Literal="UserDefined33" Numerical="41"/>
+                    <ValuePair Literal="UserDefined34" Numerical="42"/>
+                    <ValuePair Literal="UserDefined35" Numerical="43"/>
+                    <ValuePair Literal="UserDefined36" Numerical="44"/>
+                    <ValuePair Literal="UserDefined37" Numerical="45"/>
+                    <ValuePair Literal="UserDefined38" Numerical="46"/>
+                    <ValuePair Literal="UserDefined39" Numerical="47"/>
+                    <ValuePair Literal="UserDefined40" Numerical="48"/>
+                    <ValuePair Literal="UserDefined41" Numerical="49"/>
+                    <ValuePair Literal="UserDefined42" Numerical="50"/>
+                    <ValuePair Literal="UserDefined43" Numerical="51"/>
+                    <ValuePair Literal="UserDefined44" Numerical="52"/>
+                    <ValuePair Literal="UserDefined45" Numerical="53"/>
+                    <ValuePair Literal="UserDefined46" Numerical="54"/>
+                    <ValuePair Literal="UserDefined47" Numerical="55"/>
+                    <ValuePair Literal="UserDefined48" Numerical="56"/>
+                    <ValuePair Literal="UserDefined49" Numerical="57"/>
+                    <ValuePair Literal="UserDefined50" Numerical="58"/>
+                </EnumParameter>
+            </ParameterBlock>
+        </ComponentType>
+        <ComponentType Name="PCML_SOURCE" Extends="PCML_DESTINATION">
+            <BooleanParameter Name="ENABLED" Mapping="EnableSource"/>
+        </ComponentType>
+        <ComponentType Name="PCML_PORT">
+            <Component Name="IN" Type="PCML_SOURCE" Mapping="Direction:src"/>
+            <Component Name="OUT" Type="PCML_DESTINATION" Mapping="Direction:dst"/>
+        </ComponentType>
+        <ComponentType Name="PCML_PORTS">
+            <Component Name="GENERAL" Type="PCML_PORT" Mapping="SrcPort:6,DstPort:4"/>
+            <Component Name="GENERAL_A" Type="PCML_PORT" Mapping="SrcPort:23,DstPort:29"/>
+            <Component Name="GENERAL_B" Type="PCML_PORT" Mapping="SrcPort:33,DstPort:30"/>
+            <Component Name="GENERAL_C" Type="PCML_PORT" Mapping="SrcPort:34,DstPort:31"/>
+            <Component Name="GENERAL_D" Type="PCML_DESTINATION" Mapping="Direction:dst,DstPort:32"/>
+        </ComponentType>
+        <ComponentType Name="PORTS_CONFIG">
+            <Component Name="SPEECH" Type="SPEECH_PORT" Mapping="SrcPort:0,DstPort:0"/>
+            <Component Name="SIMPLE_TONES" Type="SIMPLE_TONES_TYPE" Mapping="SrcPort:5,Direction:src"/>
+            <Component Name="SSP" Type="SSP_PORTS"/>
+            <Component Name="PCM" Type="PCML_PORTS"/>
+        </ComponentType>
+        <!-- SWITCH MATRIX COMPONENT LIBRARY -->
+        <ComponentType Name="DESTINATION_SET">
+            <BitParameterBlock Name="DESTINATIONS" Size="64" Mapping="Route">
+                <BitParameter Name="PCM_GENERAL_DESTINATION" Size="1" Pos="4"/>
+                <BitParameter Name="SSP_A" Size="1" Pos="24"/>
+                <BitParameter Name="SSP_B" Size="1" Pos="25"/>
+                <BitParameter Name="SSP_C" Size="1" Pos="26"/>
+                <BitParameter Name="SSP_D" Size="1" Pos="27"/>
+                <BitParameter Name="SSP_E" Size="1" Pos="28"/>
+                <BitParameter Name="PCM_GENERAL_A" Size="1" Pos="29"/>
+                <BitParameter Name="PCM_GENERAL_B" Size="1" Pos="30"/>
+                <BitParameter Name="PCM_GENERAL_C" Size="1" Pos="31"/>
+                <BitParameter Name="PCM_GENERAL_D" Size="1" Pos="32"/>
+            </BitParameterBlock>
+        </ComponentType>
+        <ComponentType Name="SWITCH_MATRIX_TYPE" Mapping="Direction:src">
+            <Component Name="SIMPLE_TONES" Type="DESTINATION_SET" Mapping="SrcPort:5"/>
+            <Component Name="PCM_GENERAL_SOURCE" Type="DESTINATION_SET" Mapping="SrcPort:6"/>
+            <Component Name="PCM_GENERAL_A" Type="DESTINATION_SET" Mapping="SrcPort:23"/>
+            <Component Name="SSP_A" Type="DESTINATION_SET" Mapping="SrcPort:28"/>
+            <Component Name="SSP_B" Type="DESTINATION_SET" Mapping="SrcPort:29"/>
+            <Component Name="SSP_C" Type="DESTINATION_SET" Mapping="SrcPort:30"/>
+            <Component Name="SSP_D" Type="DESTINATION_SET" Mapping="SrcPort:31"/>
+            <Component Name="SSP_E" Type="DESTINATION_SET" Mapping="SrcPort:32"/>
+            <Component Name="PCM_GENERAL_B" Type="DESTINATION_SET" Mapping="SrcPort:33"/>
+            <Component Name="PCM_GENERAL_C" Type="DESTINATION_SET" Mapping="SrcPort:34"/>
+        </ComponentType>
+
+        <!-- Voice processing configuration -->
+        <ComponentType Name="VOICE_PROCESSING_TYPE">
+            <EnumParameter Name="SAMPLE_RATE" Size="8" Mapping="SpeechSampleRate" Description="Sampling rate frequency (f) in kHz">
+                <ValuePair Literal="f8" Numerical="0"/>
+                <ValuePair Literal="f16" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+
+    </ComponentLibrary>
+    <InstanceDefinition>
+        <Component Name="PORTS" Type="PORTS_CONFIG"/>
+        <Component Name="SWITCH_MATRIX" Type="SWITCH_MATRIX_TYPE"/>
+        <Component Name="VOICE_PROCESSING" Type="VOICE_PROCESSING_TYPE"/>
+    </InstanceDefinition>
+</Subsystem>

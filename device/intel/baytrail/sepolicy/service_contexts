@@ -1,0 +1,8 @@
+# Additional service_contexts rules
+oemtelephony                              u:object_r:radio_service:s0
+android.hardware.intel.coreu              u:object_r:coreu_service:s0
+display.intel.mds                         u:object_r:display_service:s0
+cws_service_manager                       u:object_r:cws_service:s0
+hwc                                       u:object_r:hwc_service:s0
+com.intel.security.service.ISEPService    u:object_r:ISEP_service:s0
+media.widi.uibc                           u:object_r:mediaserver_service:s0

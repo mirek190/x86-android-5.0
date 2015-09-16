@@ -1,0 +1,3 @@
+# Additional genfs_contexts rules
+genfscon ecryptfs / u:object_r:ecryptfs:s0
+genfscon proc /sys/fs/binfmt_misc u:object_r:proc:s0

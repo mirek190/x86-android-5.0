@@ -1,0 +1,200 @@
+#!/system/xbin/ash
+
+###################################################################
+# configure trace level for mts
+#
+# configure_trace_modem -d -t1 : HSIC, first level trace
+# configure_trace_modem -d -t2 : HSIC, second level trace
+# configure_trace_modem -d -t3 : HSIC, third level trace
+# configure_trace_modem -d -t4 : HSIC, fourth level trace
+# configure_trace_modem -d -t5 : HSIC, fifth level trace
+# configure_trace_modem -h -t1 : USB modem, first level trace
+# configure_trace_modem -h -t2 : USB modem, second level trace
+# configure_trace_modem -h -t3 : USB modem, third level trace
+# configure_trace_modem -h -t4 : USB modem, fourth level trace
+# configure_trace_modem -h -t5 : USB modem, fifth level trace
+# configure_trace_modem -u -t0 : trace disabled
+#
+##################################################################
+
+#############################
+# Check numbers of arguments
+#############################
+if [ $# != 2 ]
+then
+	echo "USAGE: configure_trace_modem [-d|-h -t1|-t2|-t3|-t4|-t5]"
+	echo "USAGE: configure_trace_modem [-u -t0]"
+	echo "       -u: disable trace"
+	echo "       -d: default HSIC"
+	echo "       -h: USB modem"
+	echo "       -t0: disable trace"
+	echo "       -t1: first level trace (bb_sw)"
+	echo "       -t2: second level trace (bb_sw & 3g_sw)"
+	echo "       -t3: third level trace (bb_sw & 3g_sw & digrfx)"
+	echo "       -t4: fourth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw)"
+	echo "       -t5: fifth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw & 3g_dsp)"
+	exit 0
+else
+	setprop persist.service.mts.input ""
+	setprop persist.service.mts.output ""
+	setprop persist.service.mts.output_type ""
+	setprop persist.service.mts.rotate_num ""
+	setprop persist.service.mts.rotate_size ""
+	setprop persist.service.mts.name ""
+	setprop persist.service.mtsp.enable 0
+	stop mtso
+fi
+
+##############
+# Check speed
+##############
+if [ "$1" = "-d" ] && ( [ "$2" = "-t1" ] || [ "$2" = "-t2" ] || [ "$2" = "-t3" ] || [ "$2" = "-t4" ] || [ "$2" = "-t5" ])
+then
+	echo "Default HSIC"
+	echo -e -r "at+xsio=0\r\n" > /dev/gsmtty19
+	sleep 1;
+elif [ "$1" = "-h" ] && ( [ "$2" = "-t1" ] || [ "$2" = "-t2" ] || [ "$2" = "-t3" ] || [ "$2" = "-t4" ] || [ "$2" = "-t5" ])
+then
+	echo "USB modem, no need to use activate_trace_modem after reboot"
+	echo -e -r "at+xsio=2\r\n" > /dev/gsmtty19
+	sleep 1;
+elif [ "$1" = "-u" ] && [ "$2" = "-t0" ]
+then
+	echo "Disable trace"
+else
+	echo "USAGE: configure_trace_modem [-d|-h -t1|-t2|-t3|-t4|-t5]"
+	echo "USAGE: configure_trace_modem [-u -t0]"
+	echo "       -u: disable trace"
+	echo "       -d: default HSIC"
+	echo "       -h: USB modem"
+	echo "       -t0: disable trace"
+	echo "       -t1: first level trace (bb_sw)"
+	echo "       -t2: second level trace (bb_sw & 3g_sw)"
+	echo "       -t3: third level trace (bb_sw & 3g_sw & digrfx)"
+	echo "       -t4: fourth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw)"
+	echo "       -t5: fifth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw & 3g_dsp)"
+	exit 0
+fi
+
+####################
+# Check level trace
+####################
+if [ "$1" = "-d" ] && [ "$2" = "-t1" ]
+then
+	echo "Enable first level trace (bb_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=0;digrfx=0;lte_l1_sw=0;3g_dsp=0\",,\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-d" ] && [ "$2" = "-t2" ]
+then
+	echo "Enable second level trace (bb_sw & 3g_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=0;lte_l1_sw=0;3g_dsp=0\",,\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-d" ] && [ "$2" = "-t3" ]
+then
+	echo "Enable third level trace (bb_sw & 3g_sw & digrfx)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=0;3g_dsp=0\",\"digrfx=0x0003\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-d" ] && [ "$2" = "-t4" ]
+then
+	echo "Enable fourth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=1;3g_dsp=0\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:xllt(gprs,umts)sdl(gprs,umts)|egdci:0x00000001|lte_stk:0x02,0x801FFFFF;digrfx=0x0003;lte_l1_sw=(ALL,NORMAL,ALL,ALL)\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-d" ] && [ "$2" = "-t5" ]
+then
+	echo "Enable fifth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw & 3g_dsp)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=1;3g_dsp=1\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:xllt(gprs,umts)sdl(gprs,umts)|egdci:0x00000001|lte_stk:0x02,0x801FFFFF;digrfx=0x0003;lte_l1_sw=(ALL,NORMAL,ALL,ALL)\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-h" ] && [ "$2" = "-t1" ]
+then
+	echo "Enable first level trace (bb_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=0;digrfx=0;lte_l1_sw=0;3g_dsp=0\",,\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-h" ] && [ "$2" = "-t2" ]
+then
+	echo "Enable second level trace (bb_sw & 3g_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=0;lte_l1_sw=0;3g_dsp=0\",,\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-h" ] && [ "$2" = "-t3" ]
+then
+	echo "Enable third level trace (bb_sw & 3g_sw & digrfx)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=0;3g_dsp=0\",\"digrfx=0x0003\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-h" ] && [ "$2" = "-t4" ]
+then
+	echo "Enable fourth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=1;3g_dsp=0\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:xllt(gprs,umts)sdl(gprs,umts)|egdci:0x00000001|lte_stk:0x02,0x801FFFFF;digrfx=0x0003;lte_l1_sw=(ALL,NORMAL,ALL,ALL)\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-h" ] && [ "$2" = "-t5" ]
+then
+	echo "Enable fifth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw & 3g_dsp)"
+	echo -e -r "at+trace=1\r\n" > /dev/gsmtty19 &
+	sleep 1;
+	echo -e -r "at+xsystrace=0,\"bb_sw=1;3g_sw=1;digrfx=1;lte_l1_sw=1;3g_dsp=1\",\"bb_sw=sdl:th,tr,st,pr,mo,lt,db,li,gt,ae|fts:xllt(gprs,umts)sdl(gprs,umts)|egdci:0x00000001|lte_stk:0x02,0x801FFFFF;digrfx=0x0003;lte_l1_sw=(ALL,NORMAL,ALL,ALL)\",\"oct=4\"\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+elif [ "$1" = "-u" ] && [ "$2" = "-t0" ]
+then
+	echo "Disable trace"
+	setprop persist.service.mts.input ""
+	setprop persist.service.mts.output ""
+	setprop persist.service.mts.output_type ""
+	setprop persist.service.mts.rotate_num ""
+	setprop persist.service.mts.rotate_size ""
+	setprop persist.service.mts.name "disable"
+	echo -e -r "at+trace=0\r\n" > /dev/gsmtty19
+	sleep 1;
+	echo -e -r "at+xsystrace=0\r\n" > /dev/gsmtty19 &
+	sleep 2;
+	echo "configure_trace_modem" $1 $2 "SUCCESS. Your board needs a HARDWARE reboot"
+	exit 0
+else
+	echo "USAGE: configure_trace_modem [-d|-h -t1|-t2|-t3|-t4|-t5]"
+	echo "USAGE: configure_trace_modem [-u -t0]"
+	echo "       -u: disable trace"
+	echo "       -d: default HSIC"
+	echo "       -h: USB modem"
+	echo "       -t0: disable trace"
+	echo "       -t1: first level trace (bb_sw)"
+	echo "       -t2: second level trace (bb_sw & 3g_sw)"
+	echo "       -t3: third level trace (bb_sw & 3g_sw & digrfx)"
+	echo "       -t4: fourth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw)"
+	echo "       -t5: fifth level trace (bb_sw & 3g_sw & digrfx & lte_l1_sw & 3g_dsp)"
+	exit 0
+fi

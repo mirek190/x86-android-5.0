@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="ext_media_checking_notification_title" msgid="5457603418970994050">"正在准备移动存储设备"</string>
+    <string name="ext_media_checking_notification_message" msgid="8287319882926737053">"正在检查是否有错误。"</string>
+    <string name="ext_media_nofs_notification_title" msgid="780477838241212997">"空的移动存储设备"</string>
+    <string name="ext_media_nofs_notification_message" msgid="8641065641786923604">"移动存储设备中没有任何文件或使用了不支持的文件系统。"</string>
+    <string name="ext_media_unmountable_notification_title" msgid="6410723906019100189">"移动存储设备受损"</string>
+    <string name="ext_media_unmountable_notification_message" msgid="1753898567525568253">"移动存储设备已损坏，请尝试重新格式化。"</string>
+    <string name="ext_media_badremoval_notification_title" msgid="6872152882604407837">"移动存储设备未正常移除"</string>
+    <string name="ext_media_badremoval_notification_message" msgid="7260183293747448241">"请先卸载移动存储设备，再将其移除，以防数据丢失。"</string>
+    <string name="ext_media_safe_unmount_notification_title" msgid="6729801130790616200">"移动存储设备已安全移除"</string>
+    <string name="ext_media_safe_unmount_notification_message" msgid="568841278138377604">"您现在可以安全移除移动存储设备。"</string>
+    <string name="ext_media_nomedia_notification_title" msgid="8902518030404381318">"已移除移动存储设备"</string>
+    <string name="ext_media_nomedia_notification_message" msgid="3870120652983659641">"移动存储设备已移除。"</string>
+    <string name="extmedia_format_title" msgid="3648415921526526069">"要格式化移动存储设备吗？"</string>
+    <string name="extmedia_format_message" msgid="14131895027543830">"您移动存储设备上的所有数据都会丢失。"</string>
+    <string name="extmedia_format_button_format" msgid="4131064560127478695">"格式化"</string>
+    <string name="progress_unmounting" msgid="1327894998409537190">"正在卸载移动存储设备..."</string>
+    <string name="progress_erasing" msgid="6596988875507043042">"正在清除移动存储设备的数据..."</string>
+    <string name="format_error" msgid="7315248696644510935">"无法清除移动存储设备。"</string>
+    <string name="media_bad_removal" msgid="7960864061016603281">"移动存储设备尚未卸载就被移除。"</string>
+    <string name="media_checking" msgid="7334762503904827481">"目前正在检查移动存储设备。"</string>
+    <string name="media_removed" msgid="7001526905057952097">"移动存储设备已移除。"</string>
+    <string name="media_shared" msgid="5706130568133540435">"目前有计算机正在使用移动存储设备。"</string>
+    <string name="media_unknown_state" msgid="729192782197290385">"外部媒体处于未知状态。"</string>
+
+    <string name="usb_warn_device_not_support">警告: 不支持该USB 设备</string>
+    <string name="usb_warn_device_not_responding">警告: USB 设备没有响应</string>
+    <string name="usb_warn_device_vbus_invalid_title">警告: USB 供电不足 </string>
+    <string name="usb_warn_device_vbus_invalid_message">警告:  请确保电池电量并尝试重插USB 线</string>
+    <string name="usb_warn_hub_max_tier">警告: USB 集线器层数过多 </string>
+    <string name="usb_warn_insufficient_power_title">警告: USB 供电能力不足</string>
+    <string name="usb_warn_insufficient_power_message">警告: 请使用USB 自供电集线器供电 </string>
+    <string name="usb_warn_host_onemore_ums_device_title">警告: 连接了多个USB大容量存储设备</string>
+    <string name="usb_warn_host_onemore_ums_device_message">警告: 请仅连接一个USB大容量存储设备</string>
+    <string name="usb_warn_usb_not_work_title">警告: 电量不足，插入的USB设备不能工作</string>
+    <string name="usb_warn_usb_not_work_message">请给电池充电后再试一次</string>
+    <string name="usb_warn_usb_vbus_warn_title">警告: 电池使用时间会缩短</string>
+    <string name="usb_warn_usb_vbus_warn_message">插入的USB设备会消耗电力，缩短电池的使用时间</string>
+    <string name="hotspot_active">"热点已启用"</string>
+    <string name="hotspot_no_connections">"没有链接的设备"</string>
+    <string name="hotspot_multiple_devices_connected">"%d 已链接到热点"</string>
+    <string name="hotspot_device_connected">"设备已链接到热点"</string>
+    <string name="hotspot_device_disconnected">"设备已断开链接"</string>
+    <string name="forbid_shutdown_when_encrypt">加密过程中禁止关机</string>
+</resources>

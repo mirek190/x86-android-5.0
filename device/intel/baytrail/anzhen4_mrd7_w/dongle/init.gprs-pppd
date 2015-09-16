@@ -1,0 +1,42 @@
+#!/system/bin/sh
+# An unforunate wrapper script 
+# so that the exit code of pppd may be retrieved
+
+#DIALER_SCRIPT="/etc/ppp/zte_ppp_dialer"
+
+#DIALER_SCRIPT="/etc/ppp/connect-chat"
+DIALER_SCRIPT=`/system/bin/getprop "ril.dialer"`
+# this is a workaround for issue #651747
+#trap "/system/bin/sleep 1;exit 0" TERM
+
+
+PPPD_PID=
+
+/system/bin/setprop "net.ppp0.ppp-exit" ""
+/system/bin/log -t pppd "starting pppd"
+/system/bin/setprop "net.ppp0.local-ip" ""
+
+U=`/system/bin/getprop "net.ppp0.user"`
+P=`/system/bin/getprop "net.ppp0.password"`
+
+#get modem interface
+
+PPPD_PORT=`/system/bin/getprop "ril.datachannel"`
+
+/system/bin/log -t pppd "$PPPD_PORT"
+
+/system/bin/logwrapper /system/bin/pppd -detach $PPPD_PORT 115200  mtu 1440 defaultroute usepeerdns user "$U" password "$P" novj novjccomp noipdefault noaccomp ipcp-accept-local ipcp-accept-remote connect-delay 5000 ipcp-max-failure 60 ipcp-max-configure 60 connect  "/system/xbin/chat -E -s -v -f ${DIALER_SCRIPT}" debug
+                        
+
+#/system/bin/logwrapper /system/bin/pppd $PPPD_PORT 115200 linkname ppp0 nodetach noauth noipdefault defaultroute usepeerdns user "$U" password "$P" connect  "/system/xbin/chat -E -s -v -f ${DIALER_SCRIPT}" debug
+
+#/system/bin/pppd $PPPD_PORT 115200  mtu 1440 nodetach debug dump defaultroute usepeerdns novj novjccomp noipdefault ipcp-accept-local ipcp-accept-remote ipcp-max-configure 30 ipcp-max-failure 30 connect-delay 5000 lcp-restart 1 lcp-max-terminate 1 linkname ppp0 connect "/system/xbin/chat -E -s -v -f ${DIALER_SCRIPT}"
+
+#below is config for ZTE VOUSB modem
+#/system/bin/pppd  /dev/ttyUSB3 115200 mru 1280 mtu 1280 nodetach debug dump defaultroute usepeerdns novj novjccomp noipdefault ipcp-accept-local ipcp-accept-remote connect-delay 5000 linkname ppp0
+PPPD_EXIT=$?
+PPPD_PID=$!
+
+/system/bin/log -t pppd "pppd exited with $PPPD_EXIT"
+
+/system/bin/setprop "net.ppp0.ppp-exit" "$PPPD_EXIT"

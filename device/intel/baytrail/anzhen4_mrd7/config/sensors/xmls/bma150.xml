@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x11</addr>
+      </i2c_addrs>
+      <id_reg_addr>0</id_reg_addr>
+      <ids>
+        <id>0xf8</id>
+        <id>0xf9</id>
+        <id>0xfa</id>
+        <id>0xfb</id>
+      </ids>
+      <device_name>BSBA0150:00</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>67</report_interval>
+    </basic_info>
+    <odr_tables>
+      <odr_table>
+        <hz>8</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0x8;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>16</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0x9;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>31</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0xa;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>62</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0xb;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>125</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0xc;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>250</hz>
+        <action><![CDATA[
+	  writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xe0) | 0xd;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+          writereg_0xf_0_1 = (regbuf_0xf_1 & 0xf0) | 0x3;
+          global_1 = 1;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+          writereg_0xf_0_1 = (regbuf_0xf_1 & 0xf0) | 0x5;
+          global_1 = 2;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          writereg_0xf_0_1 = (regbuf_0xf_1 & 0xf0) | 0x8;
+          global_1 = 4;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>16</range>
+        <action>
+          <![CDATA[
+          writereg_0xf_0_1 = (regbuf_0xf_1 & 0xf0) | 0xd;
+          global_1 = 12;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        /*set BW as 125Hz*/
+        readreg_0x10_0_1;
+        writereg_0x10_0_1 = (regbuf_0x10_1 & 0xe0) | 0xc;
+        /*set range as 2g*/
+        readreg_0xf_0_1;
+        writereg_0xf_0_1 = (regbuf_0xf_1 & 0xf0) | 0x3;
+        global_1 = 1;
+
+	/*set int1, push-pull and high trigger*/
+        /*readreg_0x20_0_1;
+        writereg_0x20_0_1 = (regbuf_0x20_1 & 0xfc) | 0x1;*/
+        /*set int mode as temporary 250*/
+        readreg_0x21_0_1;
+        writereg_0x21_0_1 = (regbuf_0x21_1 & 0xf0) | 0x1;
+        /*map orient int to INT1, 0x1b for INT2*/
+        readreg_0x19_0_1;
+        writereg_0x19_0_1 = regbuf_0x19_1 | 0x40;
+        /*enable orient int*/
+        readreg_0x16_0_1;
+        writereg_0x16_0_1 = regbuf_0x16_1 | 0x40;
+
+        /*set lowpower mode in LPM1*/
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0xbf;
+        sleep_1;
+        /*set suspend mode*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = (regbuf_0x11_1 & 0x1f) | 0x80;
+	]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        /*set normal mode*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = regbuf_0x11_1 & 0x1f;
+        sleep_1;
+        /*set lowpower mode as LPM1*/
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0xbf;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        /*set lowpower mode in LPM1*/
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0xbf;
+        sleep_1;
+        /*set suspend mode*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = (regbuf_0x11_1 & 0x1f) | 0x80;
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+        /*check if orient interrupt, need to clear if set as latch mode*/
+        readreg_0x9_0_1;
+        return regbuf_0x9_1 & 0x40;
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x2_0x0_6;
+        return (le16_to_cpu(regbuf_0x2_2) >> 4) * global_1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0x4_2) >> 4) * global_1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0x6_2) >> 4) * global_1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+      <data_node></data_node>
+    </platform_config>
+    <device>
+      <name>BMC150 Accelerometer</name>
+      <vendor>BOSCH</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.0009765625</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.0009765625" axis_y="0.0009765625" axis_z="0.0009765625" unit="GRAVITY_EARTH"></scale>
+    </device>
+  </hal_config>
+ </sensor>
+</sensors>
+

@@ -1,0 +1,25 @@
+service usb3gmonitor /system/bin/usb3gmonitor
+    class main
+    user root
+    group root
+
+service ril-daemon /system/bin/rild 
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw
+    oneshot
+    disabled
+    
+on property:rild.start=start
+    start ril-daemon   
+    
+on property:rild.stop=stop
+    stop ril-daemon  
+     
+service pppd_gprs /system/bin/sh /system/etc/init.gprs-pppd
+    user root  
+    group radio cache inet misc system
+    disabled  
+    oneshot  

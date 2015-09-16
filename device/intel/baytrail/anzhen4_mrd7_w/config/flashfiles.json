@@ -1,0 +1,11 @@
+{"config":
+  [{"filename":"flash.xml", "name":"full", "flashtype":"fastboot"},
+   {"filename":"installer.cmd", "name":"full"}],
+"commands":
+  [{"type":"prop", "target":"INSTALLED_BUILD_PROP_TARGET"},
+   {"type":"fformat", "partition":"cache"},
+   {"type":"ferase", "partition":"system"},
+   {"type":"fflash", "partition":"esp_update", "target":"ESPUPDATE_ZIP_TARGET"},
+   {"type":"fflash", "partition":"fastboot", "target":"INSTALLED_DROIDBOOTIMAGE_TARGET"},
+   {"type":"fflash", "partition":"capsule", "target":"INSTALLED_CAPSULE_TARGET"},
+   {"type":"fupdate", "target":"INTERNAL_UPDATE_PACKAGE_TARGET", "timeout":600000}]}

@@ -1,0 +1,31 @@
+InclusiveCriterion OutputDevices            :    Earpiece         Ihf           Headset       Headphones    Sco        ScoHeadset   ScoCarkit        A2dp               A2dpHeadphones    A2dpSpeaker     AuxDigital      AnlgDockHeadset DgtlDockHeadset UsbAccessory  UsbDevice    RemoteSubmix TelephonyTx  Line          HdmiArc          Spdif     Fm              AuxLine           SpeakerSafe
+InclusiveCriterion InputDevices             :    Communication    Ambient       Main          ScoHeadset    Headset    AuxDigital   VoiceCall        Back               RemoteSubmix      AnlgDockHeadset DgtlDockHeadset UsbAccessory    UsbDevice       FmTuner       TvTuner      Line         Spdif        BluetoothA2dp Loopback
+InclusiveCriterion OutputFlags              :    Direct           Primary       Fast          Deep          Offload    NonBlocking  HwAvSync
+InclusiveCriterion InputSources             :    Default          Mic           VoiceUplink   VoiceDownlink VoiceCall  Camcorder    VoiceRecognition VoiceCommunication RemoteSubmix      Hotword
+InclusiveCriterion TtyDirection             :    Downlink         Uplink
+InclusiveCriterion PreProcessorRequestedByActiveInput  : Aec      Agc           Ns            Bmf            Wnr
+InclusiveCriterion StatesChanged            :    AndroidMode      HasModem      ModemState    ModemAudioAvailable    HacSelected    TtyDirection     BtHeadsetNrEc      BtHeadsetBandType CsvBandType     VoIPBandType    ImsBandType     InputDevices    OutputDevices InputSources OutputFlags  DirectStream ScreenOn      ContextAwareness FmEnabled AlwaysListening BypassNonLinearPp BypassLinearPp MicMute PreProcessorRequestedByActiveInput LpalDevice BwxActivated
+ExclusiveCriterion LpalDevice               :    None             Communication Ambient       Main        ScoHeadset     Headset    AuxDigital       VoiceCall          Back              RemoteSubmix    AnlgDockHeadset DgtlDockHeadset UsbAccessory    UsbDevice     FmTuner      TvTuner      Line         Spdif         BluetoothA2dp    Loopback
+ExclusiveCriterion AndroidMode              :    Normal           RingTone      InCsvCall     InVoipCall
+ExclusiveCriterion DirectStream             :    False            True
+ExclusiveCriterion ModemAudioAvailable      :    False            True
+ExclusiveCriterion FmEnabled                :    False            True
+ExclusiveCriterion HacSelected              :    False            True
+ExclusiveCriterion BtHeadsetNrEc            :    False            True
+ExclusiveCriterion BtHeadsetBandType        :    Unknown          NB            WB            SuperWB
+ExclusiveCriterion CsvBandType              :    Unknown          NB            WB            SuperWB
+ExclusiveCriterion VoIPBandType             :    Unknown          NB            WB            SuperWB
+ExclusiveCriterion ImsBandType              :    Unknown          NB            WB            SuperWB
+ExclusiveCriterion ContextAwareness         :    False            True
+ExclusiveCriterion AlwaysListening          :    False            True
+ExclusiveCriterion HasModem                 :    False            True
+ExclusiveCriterion ModemState               :    False            True
+ExclusiveCriterion ScreenOn                 :    False            True
+ExclusiveCriterion BypassNonLinearPp        :    False            True
+ExclusiveCriterion BypassLinearPp           :    False            True
+ExclusiveCriterion MicMute                  :    False            True
+ExclusiveCriterion CmeDirectStreamCapture   :    False            True
+ExclusiveCriterion CmeDirectStreamPlayback  :    False            True
+ExclusiveCriterion CmeModemStreamCapture    :    False            True
+ExclusiveCriterion CmeModemStreamPlayback   :    False            True
+ExclusiveCriterion BwxActivated             :    False            True

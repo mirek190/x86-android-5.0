@@ -1,0 +1,46 @@
+# Rules for droidboot
+type droidboot, domain;
+
+domain_trans(init, rootfs, droidboot)
+
+allow droidboot init:tcp_socket {create bind listen};
+allow droidboot self:tcp_socket {create bind listen};
+allow droidboot init:unix_stream_socket connectto;
+allow droidboot port_type:tcp_socket name_bind;
+allow droidboot node_type:tcp_socket node_bind;
+
+allow droidboot rootfs:file {create open read write execute};
+allow droidboot rootfs:dir {create open read write add_name mounton};
+allow droidboot unlabeled:dir {create open read write add_name search};
+allow droidboot unlabeled:file {create open read write getattr};
+allow droidboot functionfs:dir {create open read write search};
+allow droidboot functionfs:file {create open read write};
+allow droidboot labeledfs:filesystem {unmount mount};
+allow droidboot sysfs:file {open read write};
+allow droidboot proc_sysrq:file {open read write};
+allow droidboot sysfs_wake_lock:file {open read write};
+allow droidboot sysfs_thermal_management:dir {open read write search};
+allow droidboot sysfs_thermal_management:file {open read write getattr};
+allow droidboot property_socket:sock_file {open read write};
+
+allow droidboot console_device:chr_file {open append};
+allow droidboot tty_device:chr_file {open read write ioctl};
+allow droidboot block_device:dir {open read write search};
+allow droidboot block_device:blk_file {open read write ioctl getattr};
+allow droidboot device:dir {open read write add_name remove_name};
+allow droidboot input_device:dir {open read write ioctl search};
+allow droidboot input_device:chr_file {open read write ioctl};
+allow droidboot graphics_device:dir {open read write search};
+allow droidboot graphics_device:chr_file {open read write ioctl};
+allow droidboot device:chr_file {create open read write ioctl unlink};
+
+allow droidboot system_radio_prop:property_service set;
+allow droidboot system_prop:property_service set;
+
+allow droidboot self:capability {sys_tty_config mknod net_admin sys_rawio dac_override net_raw sys_admin sys_boot};
+allow droidboot self:capability2 {block_suspend};
+
+allow droidboot self:netlink_kobject_uevent_socket {create setopt bind read};
+
+
+

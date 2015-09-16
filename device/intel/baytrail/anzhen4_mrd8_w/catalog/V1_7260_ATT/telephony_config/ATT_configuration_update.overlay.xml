@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<telephony_config>
+	<modems_info>
+		<modem_info>
+			<tlvs_info>
+				<tlv_info
+					filename="2048_ATT_Configure_MM_CS_ATTACH_IND.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_Configure_RAT_switch_reject_cause_15.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_CSG_auto_search.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_diversity_configuration.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_PS_HO_LTE_to_3G_disabled.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_update_location_status.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_fast_detach_enable.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_enable_ENS.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_DAM_activation.tlv"
+				/>
+				<tlv_info
+					filename="2048_ATT_FGI_Rel10.tlv"
+				/>
+			</tlvs_info>
+		</modem_info>
+	</modems_info>
+</telephony_config>

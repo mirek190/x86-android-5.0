@@ -1,0 +1,42 @@
+<!--?xml version="1.0" encoding="UTF-8" ?-->
+<!--   Fuel gauging Configuration File -->
+<!--   Intel Corporation 2013-2014  -->
+<!-- FG config for XPower PMIC -->
+<xpwr_config>
+<cap1>0x8C</cap1>
+<cap0>0x05</cap0>
+<rdc1>0x80</rdc1>
+<rdc0>0x72</rdc0>
+<curve0>0x0</curve0>
+<curve1>0x0</curve1>
+<curve2>0x0</curve2>
+<curve3>0x0</curve3>
+<curve4>0x0</curve4>
+<curve5>0x0</curve5>
+<curve6>0x1</curve6>
+<curve7>0x2</curve7>
+<curve8>0x3</curve8>
+<curve9>0x4</curve9>
+<curve10>0x3</curve10>
+<curve11>0xC</curve11>
+<curve12>0x13</curve12>
+<curve13>0x20</curve13>
+<curve14>0x28</curve14>
+<curve15>0x2C</curve15>
+<curve16>0x30</curve16>
+<curve17>0x34</curve17>
+<curve18>0x36</curve18>
+<curve19>0x3C</curve19>
+<curve20>0x40</curve20>
+<curve21>0x44</curve21>
+<curve22>0x48</curve22>
+<curve23>0x4C</curve23>
+<curve24>0x4F</curve24>
+<curve25>0x52</curve25>
+<curve26>0x54</curve26>
+<curve27>0x55</curve27>
+<curve28>0x5A</curve28>
+<curve29>0x5E</curve29>
+<curve30>0x61</curve30>
+<curve31>0x64</curve31>
+</xpwr_config>

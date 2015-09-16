@@ -1,0 +1,18 @@
+# Rules for system/bin/dhcpd
+type hdcpd, domain;
+type hdcpd_exec, exec_type, file_type;
+init_daemon_domain(hdcpd);
+
+allow hdcpd hdcpd_data_file:dir rw_dir_perms;
+allow hdcpd hdcpd_data_file:sock_file { create unlink };
+allow hdcpd hdcpd_tmpfs:file { lock create open };
+allow hdcpd rootfs:dir mounton;
+allow hdcpd self:capability { setuid ipc_lock sys_admin dac_override chown };
+allow hdcpd self:netlink_kobject_uevent_socket { read bind create setopt };
+allow hdcpd sysfs_drm_resource:file { read write open };
+allow hdcpd tmpfs:dir { write add_name };
+# below line breaks neverallow in domain.te on line 263
+allow hdcpd tmpfs:filesystem mount;
+allow hdcpd coreu_tmpfs:file { read write open lock };
+allow hdcpd system_data_file:dir create_dir_perms;
+allow hdcpd system_data_file:sock_file { create unlink };

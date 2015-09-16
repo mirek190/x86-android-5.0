@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConfigurableDomains xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/etc/parameter-framework/Schemas/ConfigurableDomains.xsd" SystemClassName="Audio">
+  <ConfigurableDomain Name="OutputDevice.Private.Selected" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="WiredSpeakers">
+        <CompoundRule Type="All">
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headphones"/>
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headset"/>
+          </CompoundRule>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Voip.WiredSpeakers">
+        <CompoundRule Type="All">
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headphones"/>
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headset"/>
+          </CompoundRule>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+        </CompoundRule>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/ENABLE"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="WiredSpeakers">
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Voip.WiredSpeakers">
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="IHF.SDRC" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Enabled">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="IHF"/>
+          <SelectionCriterionRule SelectionCriterion="BypassNonLinearPp" MatchesWhen="Is" Value="Off"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Disabled">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/ENABLE"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Enabled">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Disabled">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="IHF.StereoEq" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Enabled">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="IHF"/>
+          <SelectionCriterionRule SelectionCriterion="BypassLinearPp" MatchesWhen="Is" Value="Off"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Disabled">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/ENABLE"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Enabled">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Disabled">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="Headset.Selected" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Analog">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Includes" Value="Headset"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Digital">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Excludes" Value="Headset"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/GAIN"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/GAIN"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Analog">
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/GAIN">
+          <IntegerParameter Name="GAIN">0</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">0</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/GAIN">
+          <IntegerParameter Name="GAIN">0</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Digital">
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/GAIN">
+          <IntegerParameter Name="GAIN">0</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/GAIN">
+          <IntegerParameter Name="GAIN">0</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="Multimedia.InputDevice.Selected" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="VoiceRecgnition.FrontMic">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Is" Value="Main"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="AudioSource" MatchesWhen="Is" Value="VoiceRecognition"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Multimedia.FrontMic">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Is" Value="Main"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Multimedia.HeadsetMic">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Is" Value="Headset"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="Normal"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="RingTone"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="InCall.FrontMic">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Is" Value="Main"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InCsvCall"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="InCall.HeadsetMic">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedInputDevice" MatchesWhen="Is" Value="Headset"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+            <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InCsvCall"/>
+          </CompoundRule>
+        </CompoundRule>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL"/>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="VoiceRecgnition.FrontMic">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">112</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">112</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Multimedia.FrontMic">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">90</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">90</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Multimedia.HeadsetMic">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">111</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">111</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="InCall.FrontMic">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">80</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">80</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="InCall.HeadsetMic">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">90</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">90</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="OutputDevice.Selected" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Multimedia.IHF">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Is" Value="IHF"/>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="IsNot" Value="InCsvCall"/>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Multimedia.Headset">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Excludes" Value="IHF"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headset"/>
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headphones"/>
+          </CompoundRule>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="IsNot" Value="InCsvCall"/>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Multimedia.IHF.Headset">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="IHF"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headset"/>
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headphones"/>
+          </CompoundRule>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="IsNot" Value="InCsvCall"/>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="InCallCsv.IHF">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Is" Value="IHF"/>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InCsvCall"/>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="InCallCsv.Headset">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Excludes" Value="IHF"/>
+          <CompoundRule Type="Any">
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headset"/>
+            <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="Headphones"/>
+          </CompoundRule>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InCsvCall"/>
+        </CompoundRule>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL"/>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL"/>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1"/>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL"/>
+      <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Multimedia.IHF">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1">
+          <IntegerParameter Name="DAC1">175 175</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Multimedia.Headset">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1">
+          <IntegerParameter Name="DAC1">130 130</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Multimedia.IHF.Headset">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1">
+          <IntegerParameter Name="DAC1">132 132</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="InCallCsv.IHF">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1">
+          <IntegerParameter Name="DAC1">170 170</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="InCallCsv.Headset">
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/DIGITAL/VOLUME/DAC1">
+          <IntegerParameter Name="DAC1">120 120</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/0/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME/1/LEVEL">
+          <IntegerParameter Name="LEVEL">31</IntegerParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="Voip.Tuning">
+    <Configurations>
+      <Configuration Name="Voip.IHF">
+        <CompoundRule Type="All">
+          <SelectionCriterionRule SelectionCriterion="SelectedOutputDevice" MatchesWhen="Includes" Value="IHF"/>
+          <SelectionCriterionRule SelectionCriterion="Mode" MatchesWhen="Is" Value="InVoipCall"/>
+        </CompoundRule>
+      </Configuration>
+      <Configuration Name="Default">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/GAIN_CTRL"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/DIFF_2_CHAN"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/LEFT_EQ"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/RIGHT_EQ"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/VERTICES"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Voip.IHF">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/GAIN_CTRL">
+          <Component Name="GAIN_CTRL">
+            <BooleanParameter Name="ENABLE">1</BooleanParameter>
+            <IntegerParameter Name="CHANNELS">2</IntegerParameter>
+            <IntegerParameter Name="GAIN">5</IntegerParameter>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/DIFF_2_CHAN">
+          <BooleanParameter Name="DIFF_2_CHAN">0</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/LEFT_EQ">
+          <Component Name="LEFT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">2</BitParameter>
+              <BitParameter Name="FIR_FIRST">0</BitParameter>
+              <BitParameter Name="FIR_ENABLE">0</BitParameter>
+              <BitParameter Name="IIR_ENABLE">1</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN" ValueSpace="Raw">4096</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN" ValueSpace="Raw">5734</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS" ValueSpace="Raw">9 -4 -19 -48 -56 -59 -23 21 92 138 199 229 259 228 201 95 -5 -124 -138 -186 -185 -254 -257 -869 -1220 -1126 -2509 -2565 3415 -798 831 20454 831 -798 3415 -2565 -2509 -1126 -1220 -869 -257 -254 -185 -186 -138 -124 -5 95 201 228 259 229 199 138 92 21 -23 -59 -56 -48 -19 -4 9 0</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-1</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-14517</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">30833</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">16383</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-32768</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">16383</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">1</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-15584</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">31898</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">15041</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-30082</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">15041</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6523</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">18173</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">10269</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-20539</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">10269</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">0</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/RIGHT_EQ">
+          <Component Name="RIGHT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+              <BitParameter Name="FIR_FIRST">1</BitParameter>
+              <BitParameter Name="FIR_ENABLE">1</BitParameter>
+              <BitParameter Name="IIR_ENABLE">0</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN" ValueSpace="Raw">4096</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN" ValueSpace="Raw">8350</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS" ValueSpace="Raw">12 -9 -15 -29 -23 -28 -32 -71 -95 -126 -138 -207 -252 -283 -218 -88 135 204 214 238 325 96 79 307 353 -541 -990 266 3013 -3260 -568 19778 -568 -3260 3013 266 -990 -541 353 307 79 96 325 238 214 204 135 -88 -218 -283 -252 -207 -138 -126 -95 -71 -32 -28 -23 -29 -15 -9 12 0</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-8</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-13945</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">30131</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">16383</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-32767</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">16383</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6523</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">18173</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">10269</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-20539</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">10269</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6523</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">18173</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">10269</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">-20539</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">10269</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2" ValueSpace="Raw">-6171</FixedPointParameter>
+                  <FixedPointParameter Name="A1" ValueSpace="Raw">10078</FixedPointParameter>
+                  <FixedPointParameter Name="B2" ValueSpace="Raw">7215</FixedPointParameter>
+                  <FixedPointParameter Name="B1" ValueSpace="Raw">14430</FixedPointParameter>
+                  <FixedPointParameter Name="B0" ValueSpace="Raw">7215</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">4</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/VERTICES">
+          <Component Name="VERTICES">
+            <Component Name="LOWER_MOST">
+              <IntegerParameter Name="THRESHOLD">17408</IntegerParameter>
+              <IntegerParameter Name="SLOPE">333</IntegerParameter>
+            </Component>
+            <Component Name="INTERMEDIATE">
+              <IntegerParameter Name="GAIN_AT_THRESHOLD">3072</IntegerParameter>
+              <IntegerParameter Name="THRESHOLD">6656</IntegerParameter>
+              <IntegerParameter Name="SLOPE">256</IntegerParameter>
+            </Component>
+            <Component Name="UPPER_MOST">
+              <IntegerParameter Name="THRESHOLD">2571</IntegerParameter>
+              <IntegerParameter Name="SLOPE">11</IntegerParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+      </Configuration>
+      <Configuration Name="Default">
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/GAIN_CTRL">
+          <Component Name="GAIN_CTRL">
+            <BooleanParameter Name="ENABLE">0</BooleanParameter>
+            <IntegerParameter Name="CHANNELS">2</IntegerParameter>
+            <IntegerParameter Name="GAIN">0</IntegerParameter>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/DIFF_2_CHAN">
+          <BooleanParameter Name="DIFF_2_CHAN">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/LEFT_EQ">
+          <Component Name="LEFT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+              <BitParameter Name="FIR_FIRST">1</BitParameter>
+              <BitParameter Name="FIR_ENABLE">1</BitParameter>
+              <BitParameter Name="IIR_ENABLE">0</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN">1.40000</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS">0.000275 -0.000122 -0.000580 -0.001465 -0.001709 -0.001801 -0.000702 0.000641 0.002808 0.004211 0.006073 0.006989 0.007904 0.006958 0.006134 0.002899 -0.000153 -0.003784 -0.004211 -0.005676 -0.005646 -0.007751 -0.007843 -0.026520 -0.037231 -0.034363 -0.076569 -0.078278 0.104218 -0.024353 0.025360 0.624207 0.025360 -0.024353 0.104218 -0.078278 -0.076569 -0.034363 -0.037231 -0.026520 -0.007843 -0.007751 -0.005646 -0.005676 -0.004211 -0.003784 -0.000153 0.002899 0.006134 0.006958 0.007904 0.006989 0.006073 0.004211 0.002808 0.000641 -0.000702 -0.001801 -0.001709 -0.001465 -0.000580 -0.000122 0.000275 0.000000</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-8</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.425560</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.919520</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.499960</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.999960</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.499960</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">4</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/STEREO_EQ/RIGHT_EQ">
+          <Component Name="RIGHT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+              <BitParameter Name="FIR_FIRST">1</BitParameter>
+              <BitParameter Name="FIR_ENABLE">1</BitParameter>
+              <BitParameter Name="IIR_ENABLE">0</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN">2.03857</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS">0.000366 -0.000275 -0.000458 -0.000885 -0.000702 -0.000854 -0.000977 -0.002167 -0.002899 -0.003845 -0.004211 -0.006317 -0.007690 -0.008636 -0.006653 -0.002686 0.004120 0.006226 0.006531 0.007263 0.009918 0.002930 0.002411 0.009369 0.010773 -0.016510 -0.030212 0.008118 0.091949 -0.099487 -0.017334 0.603577 -0.017334 -0.099487 0.091949 0.008118 -0.030212 -0.016510 0.010773 0.009369 0.002411 0.002930 0.009918 0.007263 0.006531 0.006226 0.004120 -0.002686 -0.006653 -0.008636 -0.007690 -0.006317 -0.004211 -0.003845 -0.002899 -0.002167 -0.000977 -0.000854 -0.000702 -0.000885 -0.000458 -0.000275 0.000366 0.000000</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-8</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.425560</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.919520</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.499960</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.999960</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.499960</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">4</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/VERTICES">
+          <Component Name="VERTICES">
+            <Component Name="LOWER_MOST">
+              <IntegerParameter Name="THRESHOLD">15360</IntegerParameter>
+              <IntegerParameter Name="SLOPE">384</IntegerParameter>
+            </Component>
+            <Component Name="INTERMEDIATE">
+              <IntegerParameter Name="GAIN_AT_THRESHOLD">3840</IntegerParameter>
+              <IntegerParameter Name="THRESHOLD">10240</IntegerParameter>
+              <IntegerParameter Name="SLOPE">448</IntegerParameter>
+            </Component>
+            <Component Name="UPPER_MOST">
+              <IntegerParameter Name="THRESHOLD">2304</IntegerParameter>
+              <IntegerParameter Name="SLOPE">256</IntegerParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="Calibration" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Default">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/CODECFS/AUDIO_PMDOWN/TIME"/>
+      <ConfigurableElement Path="/Audio/CODECFS/VOICE_PMDOWN/TIME"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/CHANNELS"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/CHANNELS"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/DC_REMOVAL/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/DC_REMOVAL/ENABLE"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/FILTER_CONFIG"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/FIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/IIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/FILTER_CONFIG"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/FIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/IIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/FILTER_CONFIG"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/FIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/IIR_COEFFS"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/DIFF_2_CHAN"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/LEFT_EQ"/>
+      <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/RIGHT_EQ"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SPEECH/RX/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SIMPLE_TONES/VOLUME/LEVEL"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/NB_BANDS"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/ATTACK"/>
+      <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/RELEASE"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Default">
+        <ConfigurableElement Path="/Audio/CODECFS/AUDIO_PMDOWN/TIME">
+          <IntegerParameter Name="TIME">0</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/CODECFS/VOICE_PMDOWN/TIME">
+          <IntegerParameter Name="TIME">0</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/GAIN_CTRL/CHANNELS">
+          <IntegerParameter Name="CHANNELS">1</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/GAIN_CTRL/CHANNELS">
+          <IntegerParameter Name="CHANNELS">1</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/DC_REMOVAL/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/DC_REMOVAL/ENABLE">
+          <BooleanParameter Name="ENABLE">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/FILTER_CONFIG">
+          <BitParameterBlock Name="FILTER_CONFIG">
+            <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+            <BitParameter Name="FIR_FIRST">1</BitParameter>
+            <BitParameter Name="FIR_ENABLE">1</BitParameter>
+            <BitParameter Name="IIR_ENABLE">0</BitParameter>
+          </BitParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/FIR_COEFFS">
+          <ParameterBlock Name="FIR_COEFFS">
+            <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+            <FixedPointParameter Name="OUTPUT_GAIN">2.8840332</FixedPointParameter>
+            <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+            <FixedPointParameter Name="TAPS">0.000000 0.000671 0.001465 0.001984 0.002533 0.002747 0.003235 0.003876 0.005188 0.006470 0.007538 0.007019 0.005280 0.001953 -0.001465 -0.005310 -0.008789 -0.012909 -0.015533 -0.016449 -0.014099 -0.011871 -0.008057 -0.009064 -0.005188 0.010345 0.015625 0.018585 0.086090 0.055145 0.085266 0.323975 0.085266 0.055145 0.086090 0.018585 0.015625 0.010345 -0.005188 -0.009064 -0.008057 -0.011871 -0.014099 -0.016449 -0.015533 -0.012909 -0.008789 -0.005310 -0.001465 0.001953 0.005280 0.007019 0.007538 0.006470 0.005188 0.003876 0.003235 0.002747 0.002533 0.001984 0.001465 0.000671 0.000000 0.000000</FixedPointParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC1_PATH/MONO_EQ/IIR_COEFFS">
+          <ParameterBlock Name="IIR_COEFFS">
+            <ParameterBlock Name="SECTIONS">
+              <ParameterBlock Name="0">
+                <IntegerParameter Name="SN_SHIFT1">-3</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                <FixedPointParameter Name="A2">-0.199090</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.036100</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.072200</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.036100</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="1">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="2">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="3">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="4">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="5">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+            </ParameterBlock>
+            <IntegerParameter Name="SN_SHIFT3">3</IntegerParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/FILTER_CONFIG">
+          <BitParameterBlock Name="FILTER_CONFIG">
+            <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+            <BitParameter Name="FIR_FIRST">1</BitParameter>
+            <BitParameter Name="FIR_ENABLE">1</BitParameter>
+            <BitParameter Name="IIR_ENABLE">0</BitParameter>
+          </BitParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/FIR_COEFFS">
+          <ParameterBlock Name="FIR_COEFFS">
+            <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+            <FixedPointParameter Name="OUTPUT_GAIN">2.66381</FixedPointParameter>
+            <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+            <FixedPointParameter Name="TAPS">-0.000214 0.000519 0.001678 0.003052 0.004669 0.006012 0.006805 0.006561 0.005371 0.003571 0.002075 0.001068 0.001068 0.001129 0.000427 -0.002930 -0.008636 -0.015472 -0.019836 -0.019104 -0.011292 -0.001038 0.007935 0.006897 -0.003052 -0.010712 -0.014404 -0.011200 0.050293 0.091156 0.140533 0.273773 0.140533 0.091156 0.050293 -0.011200 -0.014404 -0.010712 -0.003052 0.006897 0.007935 -0.001038 -0.011292 -0.019104 -0.019836 -0.015472 -0.008636 -0.002930 0.000427 0.001129 0.001068 0.001068 0.002075 0.003571 0.005371 0.006561 0.006805 0.006012 0.004669 0.003052 0.001678 0.000519 -0.000214 0.000000</FixedPointParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/MIC2_PATH/MONO_EQ/IIR_COEFFS">
+          <ParameterBlock Name="IIR_COEFFS">
+            <ParameterBlock Name="SECTIONS">
+              <ParameterBlock Name="0">
+                <IntegerParameter Name="SN_SHIFT1">-3</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                <FixedPointParameter Name="A2">-0.199090</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.036100</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.072200</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.036100</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="1">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="2">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="3">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="4">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="5">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+            </ParameterBlock>
+            <IntegerParameter Name="SN_SHIFT3">3</IntegerParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/FILTER_CONFIG">
+          <BitParameterBlock Name="FILTER_CONFIG">
+            <BitParameter Name="IIR_SECTION_COUNT">1</BitParameter>
+            <BitParameter Name="FIR_FIRST">0</BitParameter>
+            <BitParameter Name="FIR_ENABLE">0</BitParameter>
+            <BitParameter Name="IIR_ENABLE">0</BitParameter>
+          </BitParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/FIR_COEFFS">
+          <ParameterBlock Name="FIR_COEFFS">
+            <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+            <FixedPointParameter Name="OUTPUT_GAIN">1.000000</FixedPointParameter>
+            <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+            <FixedPointParameter Name="TAPS">-0.000730 -0.000820 -0.000940 -0.001000 -0.001030 -0.000970 -0.000760 -0.000300 0.000360 0.001340 0.002590 0.004050 0.005580 0.007080 0.008270 0.009000 0.008970 0.007960 0.005760 0.002250 -0.002620 -0.008910 -0.016470 -0.025050 -0.034390 -0.044000 -0.053490 -0.062340 -0.070120 -0.076380 -0.080780 0.916350 -0.083030 -0.080780 -0.076380 -0.070120 -0.062340 -0.053490 -0.044000 -0.034390 -0.025050 -0.016470 -0.008910 -0.002620 0.002250 0.005760 0.007960 0.008970 0.009000 0.008270 0.007080 0.005580 0.004050 0.002590 0.001340 0.000360 -0.000300 -0.000760 -0.000970 -0.001030 -0.001000 -0.000940 -0.000820 -0.000730</FixedPointParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/MONO_EQ/IIR_COEFFS">
+          <ParameterBlock Name="IIR_COEFFS">
+            <ParameterBlock Name="SECTIONS">
+              <ParameterBlock Name="0">
+                <IntegerParameter Name="SN_SHIFT1">-3</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.036100</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.072200</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.036100</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="1">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="2">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="3">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="4">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+              <ParameterBlock Name="5">
+                <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                <FixedPointParameter Name="A2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="A1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B2">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B1">0.000000</FixedPointParameter>
+                <FixedPointParameter Name="B0">0.000000</FixedPointParameter>
+              </ParameterBlock>
+            </ParameterBlock>
+            <IntegerParameter Name="SN_SHIFT3">3</IntegerParameter>
+          </ParameterBlock>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/DIFF_2_CHAN">
+          <BooleanParameter Name="DIFF_2_CHAN">1</BooleanParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/LEFT_EQ">
+          <Component Name="LEFT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">6</BitParameter>
+              <BitParameter Name="FIR_FIRST">0</BitParameter>
+              <BitParameter Name="FIR_ENABLE">0</BitParameter>
+              <BitParameter Name="IIR_ENABLE">0</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN">1.000000</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS">-0.000730 -0.000820 -0.000940 -0.001000 -0.001030 -0.000970 -0.000760 -0.000300 0.000360 0.001340 0.002590 0.004050 0.005580 0.007080 0.008270 0.009000 0.008970 0.007960 0.005760 0.002250 -0.002620 -0.008910 -0.016470 -0.025050 -0.034390 -0.044000 -0.053490 -0.062340 -0.070120 -0.076380 -0.080780 0.916350 -0.083030 -0.080780 -0.076380 -0.070120 -0.062340 -0.053490 -0.044000 -0.034390 -0.025050 -0.016470 -0.008910 -0.002620 0.002250 0.005760 0.007960 0.008970 0.009000 0.008270 0.007080 0.005580 0.004050 0.002590 0.001340 0.000360 -0.000300 -0.000760 -0.000970 -0.001030 -0.001000 -0.000940 -0.000820 -0.000730</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-3</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">3</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/HSEP_PATH/STEREO_EQ/RIGHT_EQ">
+          <Component Name="RIGHT_EQ">
+            <BitParameterBlock Name="FILTER_CONFIG">
+              <BitParameter Name="IIR_SECTION_COUNT">6</BitParameter>
+              <BitParameter Name="FIR_FIRST">0</BitParameter>
+              <BitParameter Name="FIR_ENABLE">0</BitParameter>
+              <BitParameter Name="IIR_ENABLE">0</BitParameter>
+            </BitParameterBlock>
+            <ParameterBlock Name="FIR_COEFFS">
+              <FixedPointParameter Name="INPUT_GAIN">1.000000</FixedPointParameter>
+              <FixedPointParameter Name="OUTPUT_GAIN">1.000000</FixedPointParameter>
+              <IntegerParameter Name="TAP_COUNT">64</IntegerParameter>
+              <FixedPointParameter Name="TAPS">-0.000730 -0.000820 -0.000940 -0.001000 -0.001030 -0.000970 -0.000760 -0.000300 0.000360 0.001340 0.002590 0.004050 0.005580 0.007080 0.008270 0.009000 0.008970 0.007960 0.005760 0.002250 -0.002620 -0.008910 -0.016470 -0.025050 -0.034390 -0.044000 -0.053490 -0.062340 -0.070120 -0.076380 -0.080780 0.916350 -0.083030 -0.080780 -0.076380 -0.070120 -0.062340 -0.053490 -0.044000 -0.034390 -0.025050 -0.016470 -0.008910 -0.002620 0.002250 0.005760 0.007960 0.008970 0.009000 0.008270 0.007080 0.005580 0.004050 0.002590 0.001340 0.000360 -0.000300 -0.000760 -0.000970 -0.001030 -0.001000 -0.000940 -0.000820 -0.000730</FixedPointParameter>
+            </ParameterBlock>
+            <ParameterBlock Name="IIR_COEFFS">
+              <ParameterBlock Name="SECTIONS">
+                <ParameterBlock Name="0">
+                  <IntegerParameter Name="SN_SHIFT1">-3</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="1">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="2">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">1</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.199060</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.554590</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.313380</FixedPointParameter>
+                  <FixedPointParameter Name="B1">-0.626800</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.313380</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="3">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="4">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+                <ParameterBlock Name="5">
+                  <IntegerParameter Name="SN_SHIFT1">0</IntegerParameter>
+                  <IntegerParameter Name="SN_SHIFT2">0</IntegerParameter>
+                  <FixedPointParameter Name="A2">-0.188320</FixedPointParameter>
+                  <FixedPointParameter Name="A1">0.307550</FixedPointParameter>
+                  <FixedPointParameter Name="B2">0.220180</FixedPointParameter>
+                  <FixedPointParameter Name="B1">0.440360</FixedPointParameter>
+                  <FixedPointParameter Name="B0">0.220180</FixedPointParameter>
+                </ParameterBlock>
+              </ParameterBlock>
+              <IntegerParameter Name="SN_SHIFT3">3</IntegerParameter>
+            </ParameterBlock>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SPEECH/RX/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">88</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">88</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">88</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">88</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">88</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/IMC/SOUND_CARD/PORTS/SIMPLE_TONES/VOLUME/LEVEL">
+          <IntegerParameter Name="LEVEL">78</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/NB_BANDS">
+          <IntegerParameter Name="NB_BANDS">1</IntegerParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/ATTACK">
+          <Component Name="ATTACK">
+            <IntegerParameter Name="LOUDNESS_RISE_TIME">10</IntegerParameter>
+            <IntegerParameter Name="GAIN_RISE_TIME">256</IntegerParameter>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE/IHF_PATH/SDRC_CTRL/RELEASE">
+          <Component Name="RELEASE">
+            <IntegerParameter Name="LOUDNESS_RISE_TIME">10</IntegerParameter>
+            <IntegerParameter Name="GAIN_RISE_TIME">128</IntegerParameter>
+          </Component>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="AudioConfiguration" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Default">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/CONFIGURATION/ALSA_CONF"/>
+      <ConfigurableElement Path="/Audio/CONFIGURATION/IFX_MODEM"/>
+      <ConfigurableElement Path="/Audio/CONFIGURATION/FM_CONF"/>
+      <ConfigurableElement Path="/Audio/INTEL_SSP/CONFIGURATION"/>
+      <ConfigurableElement Path="/Audio/CONFIGURATION/VOICE_VOLUME_CTRL_PARAMETER"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Default">
+        <ConfigurableElement Path="/Audio/CONFIGURATION/ALSA_CONF">
+          <Component Name="ALSA_CONF">
+            <Component Name="IN">
+              <IntegerParameter Name="DEFAULT_SAMPLE_RATE">48000</IntegerParameter>
+            </Component>
+            <Component Name="OUT">
+              <IntegerParameter Name="DEFAULT_SAMPLE_RATE">48000</IntegerParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/CONFIGURATION/IFX_MODEM">
+          <Component Name="IFX_MODEM">
+            <Component Name="I2S1">
+              <EnumParameter Name="CLK_SELECT">IFX_CLK0</EnumParameter>
+            </Component>
+            <Component Name="I2S2">
+              <EnumParameter Name="CLK_SELECT">IFX_CLK0</EnumParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/CONFIGURATION/FM_CONF">
+          <Component Name="FM_CONF">
+            <Component Name="SPEAKER">
+              <IntegerParameter Name="VOLUME">55</IntegerParameter>
+            </Component>
+            <Component Name="HEADSET">
+              <IntegerParameter Name="VOLUME">62</IntegerParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/INTEL_SSP/CONFIGURATION">
+          <Component Name="CONFIGURATION">
+            <Component Name="SSP_BT">
+              <BooleanParameter Name="MASTER">1</BooleanParameter>
+            </Component>
+            <Component Name="SSP_MODEM">
+              <BooleanParameter Name="MASTER">0</BooleanParameter>
+            </Component>
+          </Component>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/CONFIGURATION/VOICE_VOLUME_CTRL_PARAMETER">
+          <StringParameter Name="VOICE_VOLUME_CTRL_PARAMETER">/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/VOLUME/LEVEL</StringParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+  <ConfigurableDomain Name="LPE_Mixer" SequenceAware="false">
+    <Configurations>
+      <Configuration Name="Default">
+        <CompoundRule Type="All"/>
+      </Configuration>
+    </Configurations>
+    <ConfigurableElements>
+      <ConfigurableElement Path="/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM"/>
+      <ConfigurableElement Path="/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM"/>
+    </ConfigurableElements>
+    <Settings>
+      <Configuration Name="Default">
+        <ConfigurableElement Path="/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM">
+          <EnumParameter Name="INPUT_STREAM">MIX</EnumParameter>
+        </ConfigurableElement>
+        <ConfigurableElement Path="/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM">
+          <EnumParameter Name="INPUT_STREAM">MIX</EnumParameter>
+        </ConfigurableElement>
+      </Configuration>
+    </Settings>
+  </ConfigurableDomain>
+</ConfigurableDomains>

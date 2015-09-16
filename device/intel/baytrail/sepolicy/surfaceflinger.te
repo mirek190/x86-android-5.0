@@ -1,0 +1,13 @@
+# Additional surfaceflinger rules
+#allow surfaceflinger init:binder call;
+allow surfaceflinger coreu:binder { call transfer };
+allow surfaceflinger coreu:fd use;
+allow surfaceflinger sysfs_drm_resource:dir search;
+allow surfaceflinger sysfs_drm_resource:file { read getattr open };
+allow surfaceflinger config_file:dir search;
+allow surfaceflinger log_file:dir search;
+allow surfaceflinger display_service:service_manager add;
+allow surfaceflinger hwc_service:service_manager add;
+allow surfaceflinger ISEP_service:service_manager add;
+allow surfaceflinger system_server_service:service_manager add;
+allow system_app surfaceflinger_tmpfs:file rw_file_perms;

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x13</addr>
+      </i2c_addrs>
+      <id_reg_addr>0x40</id_reg_addr>
+      <ids>
+        <id>0x32</id>
+      </ids>
+      <device_name>BSBM0150:00</device_name>
+      <input_name>comp</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval>18</min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+      <odr_table>
+        <hz>6</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x4c_1 & 0xc7) | 0x10;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>10</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = regbuf_0x4c_1 & 0xc7;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>20</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x4c_1 & 0xc7) | 0x28;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>30</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x4c_1 & 0xc7) | 0x38;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+    </range_tables>
+    <sys_entries>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        /*wakeup from suspend*/
+        writereg_0x4b_0_1 = 0x1;
+        sleep_2;
+        /*set data rate 10hz and sleep mode*/
+	readreg_0x4c_0_1;
+	writereg_0x4c_0_1 = (regbuf_0x4c_1 & 0xc1 ) | 6;
+        /*set repetitions*/
+	writereg_0x51_0_1 = 4;
+	writereg_0x52_0_1 = 23;
+
+	/*trim data*/
+	readreg_0x5d_0_1;
+	readreg_0x5e_0_1;
+	readreg_0x64_0_1;
+	readreg_0x65_0_1;
+	readreg_0x70_0_1;
+	readreg_0x71_0_1;
+	readreg_0x6a_0_2;
+	readreg_0x68_0_2;
+	readreg_0x6e_0_2;
+	readreg_0x62_0_2;
+	readreg_0x6c_0_2;
+
+	/*enter suspend mode by 0x4b[0]=0*/
+        readreg_0x4b_0_1;
+        writereg_0x4b_0_1 = regbuf_0x4b_1 & 0xf7;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        /*enter sleep mode from suspend mode*/
+        readreg_0x4b_0_1;
+        writereg_0x4b_0_1 = regbuf_0x4b_1 | 0x1;
+        /*enter active mode*/
+        readreg_0x4c_0_1;
+	writereg_0x4c_0_1 = regbuf_0x4c_1 & 0xf9;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        /*enter sleep mode from active mode*/
+	writereg_0x4c_0_1 = (regbuf_0x4c_1 & 0xf9 ) | 0x6;
+	/*enter suspend mode by 0x4b[0]=0*/
+        readreg_0x4b_0_1;
+        writereg_0x4b_0_1 = regbuf_0x4b_1 & 0xf7;
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        /*do compensation with triming values which can be get at initial*/
+        readreg_0x42_0x0_8;
+        local_1 = le16_to_cpu(regbuf_0x42_2) >> 3;
+	__extern_c__ {
+
+	/*Raw data process algos for bmc150 compass
+	* Output 16LSB/uT with temperature compensation
+	*/
+	#define DIG_X1	((s8)data->regbuf[0x5d])
+	#define DIG_Y1	((s8)data->regbuf[0x5e])
+	#define DIG_X2	((s8)data->regbuf[0x64])
+	#define DIG_Y2	((s8)data->regbuf[0x65])
+	#define DIG_XY1	((u8)data->regbuf[0x71])
+	#define DIG_XY2	((s8)data->regbuf[0x70])
+
+	#define DIG_Z1	((u16)((data->regbuf[0x6b] << 8) | data->regbuf[0x6a]))
+	#define DIG_Z2	((s16)((data->regbuf[0x69] << 8) | data->regbuf[0x68]))
+	#define DIG_Z3	((s16)((data->regbuf[0x6f] << 8) | data->regbuf[0x6e]))
+	#define DIG_Z4	((s16)((data->regbuf[0x63] << 8) | data->regbuf[0x62]))
+
+	#define DIG_XYZ1 ((u16)(((data->regbuf[0x6d] & 0x7f) << 8) | data->regbuf[0x6c]))
+	#define DATA_R ((u16)((data->regbuf[0x49] << 6) | ((data->regbuf[0x48] & 0xfc) >> 2)))
+
+	short mdata_x = (short)local_1;
+	unsigned short data_R = DATA_R;
+	short inter_retval;
+
+	SENSOR_DBG(DBG_LEVEL4, data->dbg_on, "%s 0x%x",
+			data->config->input_name, data_R);
+
+	if (mdata_x == -4096)
+		local_1 = (int)(-2147483647-1);
+	else {
+		inter_retval = ((short)(((unsigned short)
+				((((int)DIG_XYZ1) << 14) /
+				(data_R != 0 ? data_R : DIG_XYZ1))) -
+				((unsigned short)0x4000)));
+
+		inter_retval = ((short)((((int)mdata_x) *
+				((((((((int)DIG_XY2) *
+				((((int)inter_retval) *
+				((int)inter_retval)) >> 7)) +
+				(((int)inter_retval) *
+				((int)(((short)DIG_XY1)
+				<< 7)))) >> 9) +
+				((int)0x100000)) *
+				((int)(((short)DIG_X2) +
+				((short)0xA0)))) >> 12)) >> 13)) +
+				(((short)DIG_X1) << 3);
+
+		local_1 = inter_retval;
+	}
+	return 0;
+	}
+	return local_1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        local_1 = le16_to_cpu(regbuf_0x44_2) >> 3;
+	__extern_c__ {
+	short mdata_y = (short)local_1;
+	unsigned short data_R = DATA_R;
+	short inter_retval;
+
+	SENSOR_DBG(DBG_LEVEL4, data->dbg_on, "%s 0x%x",
+			data->config->input_name, data_R);
+
+	if (mdata_y == -4096)
+		local_1 = (int)(-2147483647-1);
+	else {
+		inter_retval = ((short)(((unsigned short)(((
+				(int)DIG_XYZ1) << 14) /
+				(data_R != 0 ?
+				data_R : DIG_XYZ1))) -
+				((unsigned short)0x4000)));
+
+		inter_retval = ((short)((((int)mdata_y) *
+				((((((((int)
+				DIG_XY2) *
+				((((int) inter_retval) *
+				((int)inter_retval)) >> 7)) +
+				(((int)inter_retval) *
+				((int)(((short)
+				DIG_XY1) << 7)))) >> 9) +
+				((int)0x100000)) *
+				((int)(((short)DIG_Y2)
+				+ ((short)0xA0))))
+				>> 12)) >> 13)) +
+				(((short)DIG_Y1) << 3);
+
+		local_1 = inter_retval;
+	}
+	return 0;
+	}
+	return local_1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        local_1 = le16_to_cpu(regbuf_0x46_2) >> 1;
+	__extern_c__ {
+	short mdata_z = (short)local_1;
+	unsigned short data_R = DATA_R;
+
+	SENSOR_DBG(DBG_LEVEL4, data->dbg_on, "%s 0x%x",
+			data->config->input_name, data_R);
+
+	if (mdata_z != -16384) {
+		local_1 = (((((int)(mdata_z - DIG_Z4)) << 15) -
+			((((int)DIG_Z3) *
+			((int)(((short)data_R) -
+			((short)DIG_XYZ1))))>>2)) /
+			(DIG_Z2+
+			((short)(((((int)DIG_Z1) *
+			((((short)data_R) << 1)))+(1<<15))>>16))));
+	} else
+		local_1 = ((int)(-2147483647-1));
+
+	return 0;
+	}
+	return local_1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>compass</type>
+    <platform_config>
+      <data_node></data_node>
+      <driver_calibration_node></driver_calibration_node>
+      <driver_calibration_file></driver_calibration_file>
+      <driver_calibration_function></driver_calibration_function>
+      <calibration_file>/data/compass.conf</calibration_file>
+      <calibration_function>CompassGenericCalibration</calibration_function>
+      <fliter_length>50</fliter_length>
+    </platform_config>
+    <device>
+      <name>BMC150 Magnetic field sensor</name>
+      <vendor>BOSCH</vendor>
+      <version>1</version>
+      <maxRange>2500.0</maxRange>
+      <resolution>0.3</resolution>
+      <power>0.1</power>
+      <minDelay>20000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.0625" axis_y="0.0625" axis_z="-0.0625"></scale>
+    </device>
+  </hal_config>
+ </sensor>
+</sensors>
+

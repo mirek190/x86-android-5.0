@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x6b</addr>
+      </i2c_addrs>
+      <id_reg_addr>0xf</id_reg_addr>
+      <ids>
+        <id>0xd3</id>
+        <id>0xd4</id>
+        <id>0xd7</id>
+      </ids>
+      <device_name>l3g4200d_g</device_name>
+      <input_name>gyro</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval>500</max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+      <odr_table>
+        <hz>100</hz>
+        <action><![CDATA[
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0xf) | 0x00;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0xf) | 0x40;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>330</hz>
+        <action><![CDATA[
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0xf) | 0x90;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>500</hz>
+        <action><![CDATA[
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0xf) | 0xe0;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table>
+        <range>250</range>
+        <action><![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xcf) | 0x0;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>500</range>
+        <action><![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xcf) | 0x10;
+          ]]>
+        </action>
+      </range_table>
+      <range_table default="y">
+        <range>2000</range>
+        <action><![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xcf) | 0x30;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        writereg_0x20_0_1 = 0x7;
+        writereg_0x21_0_1 = 0x0;
+        writereg_0x22_0_1 = 0x0;
+        writereg_0x23_0_1 = 0x30;
+        writereg_0x24_0_1 = 0x0;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x20_0_1;
+        writereg_0x20_0_1 = regbuf_0x20_1 | 0x8;
+        sleep_500;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        readreg_0x20_0_1;
+        writereg_0x20_0_1 = regbuf_0x20_1 & 0xf7;
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x28_0x80_6;
+        return le16_to_cpu(regbuf_0x28_2);
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return le16_to_cpu(regbuf_0x2a_2);
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return le16_to_cpu(regbuf_0x2c_2);
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>gyroscope</type>
+    <platform_config>
+      <calibration_file>/data/gyro.conf</calibration_file>
+      <calibration_function>GyroscopeGenericCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>L3G4200D Gyroscope sensor</name>
+      <vendor>STMicroelectronics</vendor>
+      <version>1</version>
+      <maxRange unit="M_PI">11.1111111111111</maxRange>         <!-- 2000/180 -->
+      <resolution unit="M_PI">0.000388888888888889</resolution>   <!-- 70/1000/180 -->
+      <power>6.1</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="-0.000388888888888889" axis_y="0.000388888888888889" axis_z="-0.000388888888888889" unit="M_PI"></scale>
+    </device>
+  </hal_config>
+ </sensor>
+</sensors>
+

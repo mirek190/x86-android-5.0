@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+  </driver_config>
+  <hal_config>
+    <type>proximity</type>
+    <platform_config>
+      <name>stm8t143</name>
+      <activate_node>/sys/bus/platform/devices/SRCL0001:00/enable</activate_node>
+      <poll_node>/sys/bus/platform/devices/SRCL0001:00/poll</poll_node>
+      <data_node></data_node>
+      <calibration_file></calibration_file>
+      <calibration_function></calibration_function>
+    </platform_config>
+    <device>
+      <name>STM8T143 Digital Proximity Sensor</name>
+      <vendor>STM8T143</vendor>
+      <version>1</version>
+      <maxRange>6.0</maxRange>
+      <resolution>6.0</resolution>
+      <power>0.25</power>
+      <minDelay>0</minDelay>
+      <maxDelay>0</maxDelay>
+      <mapper axis_x="X"></mapper>
+      <scale axis_x="6.0"></scale>
+    </device>
+  </hal_config>
+ </sensor>
+</sensors>
+

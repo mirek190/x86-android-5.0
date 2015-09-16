@@ -1,0 +1,2 @@
+# Additional isolated_app rules
+allow isolated_app sdcard_internal:file { write getattr };

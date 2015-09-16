@@ -1,0 +1,15 @@
+# Additional system_server rules
+allow system_server surfaceflinger_tmpfs:file { read write };
+allow system_server gps_data_file:fifo_file { create setattr write open read };
+allow system_server unlabeled:file { write setattr };
+# below line breaks neverallow in domain.te on line xxx
+allow system_server init_shell:binder call;
+allow system_server sensorhubd:unix_stream_socket connectto;
+allow system_server mmgr:unix_stream_socket connectto;
+allow system_server mmgr_socket:sock_file write;
+allow system_server sysfs_drm_resource:dir search;
+allow system_server sysfs_drm_resource:file { read write open };
+allow system_server sensorhubd_socket:sock_file write;
+allow system_server gps_data_file:dir { search write add_name };
+allow system_server crashlogd:binder call;
+allow system_server cws_service:service_manager add;

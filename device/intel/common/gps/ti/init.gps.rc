@@ -1,0 +1,19 @@
+on init
+
+    insmod /lib/modules/gps_drv.ko
+
+on boot
+
+    chown system system /dev/tigps
+    chmod 0660 /dev/tigps
+
+on post-fs-data
+
+    mkdir /data/gps 0770 system system
+
+# launch TI GPS Navigation Daemon
+service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc/gps/config/pathconfigfile.txt\"
+    class main
+    user gps
+    group system
+    oneshot

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<CameraSettings>
+    <Profiles cameraId="0">
+        <sensorType value="SENSOR_TYPE_RAW"/> <!-- SENSOR_TYPE_SOC or SENSOR_TYPE_RAW -->
+        <facing value="CAMERA_FACING_BACK"/> <!-- CAMERA_FACING_FRONT or CAMERA_FACING_BACK -->
+        <orientation value="270"/> <!-- one of 0,90,180,270 -->
+        <dvs value="false"/> <!-- true or false -->
+        <hasSlowMotion value="false"/> <!-- true or false -->
+        <continuousCapture value="true"/> <!-- true or false -->
+        <supportedSnapshotSizes value="320x240,640x480,1024x768,1280x720,1280x960,1600x1200"/>
+        <supportedPreviewSizes value="1536x864,1280x720,720x480,640x480,640x360,352x288,320x240,176x144"/>
+        <supportedVideoSizes value="176x144,320x240,352x288,640x480,720x480,1280x720"/>
+        <videoPreviewSizePref value="1536x864"/>
+        <flipping value="" value_v="SENSOR_FLIP_V"/> <!-- value: SENSOR_FLIP_H or "", value_v: SENSOR_FLIP_V or "" -->
+        <previewViaOverlay value="false"/> <!-- true or false -->
+        <supportedBurstLength value="1,3,5,10"/> <!-- if not support, please set it to "" -->
+        <defaultBurstLength value="10"/> <!-- one value of the supportedBurstLength. if not support, please set it to "" -->
+        <maxBurstFPS value="15"/>
+        <supportedBurstFPS value="1,3,5,7,15"/>
+        <defaultSceneMode value="auto"/> <!-- one value of the supportedSceneModes. if not support, please set it to "" -->
+        <supportedSceneModes value="auto,portrait,sports,landscape,night,barcode,night-portrait"/> <!-- if not support, please set it to "" -->
+        <defaultFlashMode value="off"/> <!-- one value of the supportedFlashModes. if not support, please set it to "off" -->
+        <supportedFlashModes value="off"/> <!-- if not support, please set it to "off" -->
+        <defaultEffectMode value="none"/> <!-- one value of the supportedEffectModes. if not support, please set it to "none" -->
+        <supportedEffectModes value="none,mono,negative,sepia"/> <!-- if not support, please set it to "none" -->
+        <supportedIntelEffectModes value="none,mono,negative,sepia,vivid,still-sky-blue,still-grass-green,still-skin-whiten-low,still-skin-whiten-medium,still-skin-whiten-high"/> <!-- if not support, please set it to "none" -->
+        <supportedAwbModes value="auto,incandescent,fluorescent,daylight,cloudy-daylight"/> <!-- if not support, please set it to "" -->
+        <defaultAwbMode value="auto"/> <!-- if not support, please set it to "" -->
+        <supportedAwbLock value="false"/>
+        <maxEV value="6"/>
+        <minEV value="-6"/>
+        <stepEV value="0.33333333"/> <!-- if not support, please set it to 0 -->
+        <defaultEV value="0"/> <!-- if not support, please set it to 0 -->
+        <defaultIso value="iso-auto"/> <!-- one value of the supportedIso. if not support, please set it to "" -->
+        <supportedIso value="iso-auto,iso-100,iso-200,iso-400,iso-800"/> <!-- if not support, please set it to "" -->
+        <defaultAeMetering value="auto"/> <!-- one value of the supportedAeMetering. if not support, please set it to "" -->
+        <supportedAeMetering value="auto,center,spot"/> <!-- if not support, please set it to "" -->
+        <supportedAeLock value="false"/>
+        <defaultFocusMode value="fixed"/>  <!--auto"/--> <!-- one value of the supportedFocusModes. if not support, please set it to "fixed" -->
+        <supportedFocusModes value="fixed"/>   <!--auto,infinity,fixed,macro,continuous-video,continuous-picture"/--> <!-- if not support, please set it to "fixed" -->
+        <VFPPLimitedResolutionList value=""/> <!-- it depends on the real hardware, value could be 1024x768 or other value list. if no need to set, please set it to "" -->
+        <overlayRelativeRotation value="90"/> <!-- one of 0,90,180,270 -->
+        <maxSaturation value=""/>
+        <minSaturation value=""/>
+        <stepSaturation value=""/>
+        <defaultSaturation value=""/>
+        <supportedSaturation value=""/>
+        <maxContrast value=""/>
+        <minContrast value=""/>
+        <stepContrast value=""/>
+        <defaultContrast value=""/>
+        <supportedContrast value=""/>
+        <maxSharpness value=""/>
+        <minSharpness value=""/>
+        <stepSharpness value=""/>
+        <defaultSharpness value=""/>
+        <supportedSharpness value=""/>
+        <supportedPreviewFrameRate value="30,15,10"/>
+        <supportedPreviewFPSRange value="(10500,30304)"/>
+        <defaultPreviewFPSRange value="10500,30304"/> <!-- one value of the supportedPreviewFPSRange -->
+        <supportedPreviewUpdateModes value="standard,continuous,during-capture,windowless"/>
+        <defaultPreviewUpdateMode value="standard"/>
+        <hasFlash value="false"/>
+        <supportedRecordingFramerates value="30,15,10"/>
+        <synchronizeExposure value="true"/>
+    </Profiles>
+
+    <Profiles cameraId="1">
+        <sensorType value="SENSOR_TYPE_RAW"/>
+        <facing value="CAMERA_FACING_FRONT"/>
+        <orientation value="90"/> <!-- one of 0,90,180,270 -->
+        <dvs value="false"/>
+        <hasSlowMotion value="false"/>
+        <continuousCapture value="true"/>
+        <supportedSnapshotSizes value="320x240,640x480"/>
+        <supportedPreviewSizes value="352x288,320x240"/>
+        <supportedVideoSizes value="176x144,320x240,640x480"/>
+        <videoPreviewSizePref value="352x288"/>
+        <flipping value="" value_v=""/>
+        <previewViaOverlay value="false"/>
+        <supportedBurstLength value="1,3,5,10"/>
+        <defaultBurstLength value="10"/>
+        <maxBurstFPS value="15"/>
+        <supportedBurstFPS value="1,3,5,7,15"/>
+        <defaultSceneMode value="auto"/>
+        <supportedSceneModes value="auto,portrait,sports,landscape,night,barcode,night-portrait"/>
+        <defaultFlashMode value="off"/>
+        <supportedFlashModes value="off"/>
+        <defaultEffectMode value="none"/>
+        <supportedEffectModes value="none,mono,negative,sepia"/>
+        <supportedIntelEffectModes value="none,mono,negative,sepia,vivid,still-sky-blue,still-grass-green,still-skin-whiten-low,still-skin-whiten-medium,still-skin-whiten-high"/>
+        <supportedAwbModes value="auto,incandescent,fluorescent,daylight,cloudy-daylight"/>
+        <defaultAwbMode value="auto"/>
+        <supportedAwbLock value="false"/>
+        <maxEV value="6"/>
+        <minEV value="-6"/>
+        <stepEV value="0.33333333"/>
+        <defaultEV value="0"/>
+        <defaultIso value="iso-auto"/>
+        <supportedIso value="iso-auto,iso-100,iso-200,iso-400,iso-800"/>
+        <defaultAeMetering value="auto"/>
+        <supportedAeMetering value="auto,center,spot"/>
+        <supportedAeLock value="false"/>
+        <defaultFocusMode value="fixed"/>
+        <supportedFocusModes value="fixed"/>
+        <VFPPLimitedResolutionList value=""/>
+        <overlayRelativeRotation value="90"/>
+        <maxSaturation value=""/>
+        <minSaturation value=""/>
+        <stepSaturation value=""/>
+        <defaultSaturation value=""/>
+        <supportedSaturation value=""/>
+        <maxContrast value=""/>
+        <minContrast value=""/>
+        <stepContrast value=""/>
+        <defaultContrast value=""/>
+        <supportedContrast value=""/>
+        <maxSharpness value=""/>
+        <minSharpness value=""/>
+        <stepSharpness value=""/>
+        <defaultSharpness value=""/>
+        <supportedSharpness value=""/>
+        <supportedPreviewFrameRate value="30,15,10"/>
+        <supportedPreviewFPSRange value="(10500,30304),(11000,30304),(11500,30304)"/>
+        <defaultPreviewFPSRange value="10500,30304"/>
+        <supportedPreviewUpdateModes value="standard,continuous,during-capture,windowless"/>
+        <defaultPreviewUpdateMode value="standard"/>
+        <hasFlash value="false"/>
+        <supportedRecordingFramerates value="30,15,10"/>
+    </Profiles>
+
+    <Common>
+        <subDevName value="/dev/v4l-subdev7"/> <!-- it depends on the real hardware -->
+        <fileInject value="true"/> <!-- true or false -->
+        <maxContinuousRawRingBuffer value="12"/>
+        <productName value="ExampleModel"/> <!-- cfg the exif -->
+        <manufacturerName value="ExampleMaker"/> <!-- cfg the exif -->
+        <maxZoomFactor value="1024"/>
+        <supportAIQ value="true"/> <!-- true or false -->
+        <supportVideoSnapshot value="true"/> <!-- true or false -->
+        <numRecordingBuffers value="9"/>
+        <shutterLagCompensationMs value="40"/>
+        <mPanoramaMaxSnapshotCount value="10"/>
+        <previewFormat value="V4L2_PIX_FMT_YUYV"/> <!-- define the driver preview output format, V4L2_PIX_FMT_YVU420 or V4L2_PIX_FMT_NV12 -->
+	<supportPreviewLimitation value="false"/>
+        <boardName value="baylake"/>
+    </Common>
+</CameraSettings>
+
