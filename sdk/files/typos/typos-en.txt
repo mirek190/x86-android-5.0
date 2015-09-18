@@ -341,7 +341,7 @@ andriod->android
 #     License; this License is not intended to restrict the license of any
 #     rights under applicable law.
 
-abandonned->abandoned
+abandoned->abandoned
 aberation->aberration
 abilties->abilities
 abilty->ability

@@ -2284,7 +2284,7 @@ public class AudioManager {
      *  @param l the listener to be notified of audio focus changes
      *  @param streamType the main audio stream type affected by the focus request
      *  @param durationHint use {@link #AUDIOFOCUS_GAIN_TRANSIENT} to indicate this focus request
-     *      is temporary, and focus will be abandonned shortly. Examples of transient requests are
+     *      is temporary, and focus will be abandoned shortly. Examples of transient requests are
      *      for the playback of driving directions, or notifications sounds.
      *      Use {@link #AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK} to indicate also that it's ok for
      *      the previous focus owner to keep playing if it ducks its audio output.
