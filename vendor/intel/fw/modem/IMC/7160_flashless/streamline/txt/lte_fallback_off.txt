@@ -1,0 +1,3 @@
+# Set LTE CS fallback off
+nvm:dyn_cps.lte_caps.csfb_support=0
+nvm:store_nvm_sync(dyn_cps)

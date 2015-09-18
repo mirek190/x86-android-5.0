@@ -1,0 +1,32 @@
+' Penwell Example Config file
+' This file provides stitching settings.
+'************ Settings Section ***********************************************
+PlatformType = MFDD1
+'ImageType values are FWUSB, OSUSB
+ImageType = FWUSB
+'ImageName is the Output Filename 
+ImageName = ./Medfield_IFWI_D1.bin
+'
+
+'************ Signed FW Inputs to generate final IFWI  :  -G *****************
+'************ Signed SCU and Punit *******************************************
+Intel Signed FW = ./FW_Components/ScuPunit_Signed.bin
+
+'************ Signed MIP *****************************************************
+SIGNED_MIP_BIN = ./FW_Components/SignedD1MIP.bin
+
+'************ Signed IA Firmware *********************************************
+IA Signed FW = ./FW_Components/SignedIA.bin
+
+'*********** Signed ROM Patch ************************************************
+SIGNED_PATCH_BIN = ./FW_Components/Signed_SCU_ROM_PATCH_D1.00_CRAK.bin
+
+'*********** Signed Video Encode/Decode Firmware (VED FW) ********************
+SIGNED_VED_FW = ./FW_Components/Signed_MTX_FW.13.13_CRAK.bin
+
+'********** Signed Security Firmware *****************************************
+ICache_Image = ./FW_Components/Signed_iCache_C0_830.bin
+Resident_Image = ./FW_Components/Signed_Resident_C0_830.bin
+Extended_FW = ./FW_Components/Signed_extapp_C0D0_861.bin
+
+' End of file

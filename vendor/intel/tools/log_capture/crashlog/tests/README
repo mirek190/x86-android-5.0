@@ -1,0 +1,8 @@
+To run tests :
+
+make
+make tests
+
+Verify output of tests, should be success.
+
+make clean

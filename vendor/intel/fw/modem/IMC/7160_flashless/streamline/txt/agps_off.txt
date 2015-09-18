@@ -1,0 +1,4 @@
+#BZ154596 Disable A-GPS support
+nvm:dyn_cps.gnss_config.gps_support=0
+nvm:dyn_cps.gnss_config.glonass_support=0
+nvm:store_nvm_sync(dyn_cps)

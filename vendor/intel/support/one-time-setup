@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# this script is for Ubuntu 10.04 LTS 64-bit
+# it may not work for other Linux versions 
+
+MY_BIN_DIR=`dirname $0`
+if [ "x" == "x${MY_BIN_DIR}" ]; then
+    MY_BIN_DIR=.
+fi
+
+TODAY=`date +"%Y%m%d"`
+TIME=`date +"%H%M"`
+
+mkdir -p ~/save/$TODAY-$TIME
+cp -f ~/.bashrc ~/save/$TODAY-$TIME/bashrc
+
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+fi
+
+echo "" >> ~/.bashrc
+echo "# added to build Android" >> ~/.bashrc
+echo "export PATH=\${HOME}/bin:\$PATH" >> ~/.bashrc
+echo "export SAVE_PATH=\$PATH" >> ~/.bashrc
+ 
+# steps listed are from the umgwiki page "Development Host System Setup"
+
+# step 1 - install standard packages
+
+sudo apt-get install git-core gnupg flex bison gperf build-essential \
+ zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
+ lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev \
+ lib32readline5-dev lib32z-dev eclipse tofrodos
+
+sudo apt-get install libxml-simple-perl
+
+sudo ln -s /usr/bin/fromdos /usr/local/bin/dos2unix
+
+# step 2 - install valgrind - skipped
+
+# step 3 - download java 6 jdk
+TMP_DIR=/tmp/java_install
+JAVA_URL="http://download.oracle.com/otn-pub/java/jdk/6u30-b12"
+JAVA_BIN="jdk-6u30-linux-x64.bin"
+
+if [ ! -d ${TMP_DIR} ]; then
+    mkdir ${TMP_DIR}
+fi
+
+wget -t 10 -P ${TMP_DIR} ${JAVA_URL}/${JAVA_BIN}
+
+if [ $? -ne 0 ]; then
+    echo "ERROR: wget failure"
+    echo "   this script should be executed as root"
+    echo "   please check wget proxy settings and retry"
+    exit -1
+fi
+
+# step 4 - change permission on jdk
+chmod 755 ${TMP_DIR}/${JAVA_BIN}
+
+# step 5 - install jdk
+JAVA_BASE=/usr/lib/jvm
+JAVA_DIR=jdk1.6.0_30
+JAVA_LINK=java-6-sun
+if [ ! -d ${JAVA_BASE} ]; then
+    mkdir -p ${JAVA_BASE}
+fi
+cd ${JAVA_BASE}
+
+sh ${TMP_DIR}/${JAVA_BIN} -noregister
+
+if [ -h ${JAVA_BASE}/${JAVA_LINK} ]; then
+    rm ${JAVA_BASE}/${JAVA_LINK}
+fi
+
+ln -s ${JAVA_BASE}/${JAVA_DIR} ${JAVA_BASE}/${JAVA_LINK}
+
+rm -rf ${TMP_DIR}
+
+# step 6 - set environment variables for java
+
+JAVA_HOME=/usr/lib/jvm/java-6-sun
+ANT_HOME=/usr/share/ant
+
+echo " ">>~/.bashrc 
+echo "# java added for Android build">>~/.bashrc
+echo "JAVA_HOME=${JAVA_HOME}">>~/.bashrc
+echo "JAVA_FONTS=/usr/share/fonts/truetype">>~/.bashrc
+echo "ANT_HOME=${ANT_HOME}">>~/.bashrc
+echo " ">>~/.bashrc 
+echo "PATH=\${JAVA_HOME}/bin:\${ANT_HOME}/bin:\$PATH">>~/.bashrc
+echo " ">>~/.bashrc
+echo "export PATH JAVA_HOME JAVA_FONTS ANT_HOME">>~/.bashrc
+echo "export CLASSPATH=.">>~/.bashrc
+
+# step 7 - relink dash as bash - not needed - skipped
+
+# end of script

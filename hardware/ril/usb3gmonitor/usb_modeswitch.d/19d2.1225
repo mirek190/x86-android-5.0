@@ -1,0 +1,4 @@
+# ZTE MF668 (Variant), MF70
+TV= 0x19d2
+TP=0x1405
+StandardEject=1

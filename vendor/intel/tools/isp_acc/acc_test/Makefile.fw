@@ -1,0 +1,18 @@
+ISP_PRG             = add
+$(ISP_PRG)_FILES    = add.hive.c
+$(ISP_PRG)_CPPFLAGS = -DCSS_RUNTIME -I../isp_include
+$(ISP_PRG)_CPPFLAGS += -I$(HIVE_ACC_PKG)/build/css/isp/modes/common -D__ISP
+$(ISP_PRG)_CPPFLAGS += -I$(HIVE_ACC_PKG)/build/css/runtime/dmaproxy
+
+# Uncomment for CSS1.5
+#$(ISP_PRG)_CPPFLAGS += -DCSS15
+
+$(ISP_PRG)_CFLAGS   = -verbose -html -save-temps
+SYSTEM              = hive_isp_css_2400_system
+$(ISP_PRG)_LDFLAGS  = -embed -verbose
+$(ISP_PRG)_CELL     = isp2400_mamoiada
+
+# Make sure the acceleration package is installed at this location
+SH_CSS_PKG_DIR   = $(HIVE_ACC_PKG)/build
+
+include $(SH_CSS_PKG_DIR)/css/isp/Makefile.fw

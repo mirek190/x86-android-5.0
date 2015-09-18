@@ -1,0 +1,21 @@
+LOCAL_PATH:= $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := host.c
+
+LOCAL_C_INCLUDES += $(HIVE_CVSWORK)/ia_acc
+
+LOCAL_CFLAGS += -fno-pic -W -Wall -Werror -Dhrt_main=main -DCSS_RUNTIME=1
+LOCAL_LDFLAGS += -L$(HOME)/ia_acc
+
+LOCAL_SHARED_LIBRARIES :=
+
+LOCAL_STATIC_LIBRARIES := libia_acc
+
+LOCAL_MODULE := add_test
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_MODULE_TAGS := optional
+
+include $(BUILD_EXECUTABLE)

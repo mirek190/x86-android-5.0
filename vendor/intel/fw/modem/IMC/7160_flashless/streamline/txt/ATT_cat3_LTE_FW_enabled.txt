@@ -1,0 +1,3 @@
+# Cat3 feature enable LTE FW
+nvm:fix_4g_lte.l1cc_nvm.ueCategory_force.val1=2
+nvm:store_nvm_sync(fix_4g_lte)

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"सेंसर अंशांकन"</string>
+    <string name="compass_cal">"कम्पास अंशांकन"</string>
+    <string name="compass_cal_title">"अपने कम्पास जांचना"</string>
+    <string name="compass_cal_start">"प्रारंभ अंशांकन"</string>
+    <string name="compass_cal_intro" product="tablet">"टेबलेट पर कम्पास डिवाइस औजार सबसे सटीक डेटा कम्पास.तीन अक्षों के चारों ओर टेबलेट घुमाएँ.रोटेशन दोहराएँ तक सफलता संदेश संवाद बाहर चबूतरे.
+            \n\nशुरू करने के लिए तैयार हो? टच प्रारंभ अंशांकन बटन.</string>
+    <string name="compass_cal_intro" product="default">"फोन पर कम्पास डिवाइस औजार सबसे सटीक डेटा कम्पास.तीन अक्षों के चारों ओर फोन घुमाएँ.रोटेशन दोहराएँ तक सफलता संदेश संवाद बाहर चबूतरे.
+            \n\nशुरू करने के लिए तैयार हो? टच प्रारंभ अंशांकन बटन.</string>
+    <string name="compass_cal_alert_title">"नतीजा"</string>
+    <string name="compass_cal_alert_ok_btn">"ठीक"</string>
+    <string name="compass_cal_alert_success">"अंशांकन सफल"</string>
+    <string name="gyroscope_cal">"gyroscope अंशांकन"</string>
+    <string name="gyroscope_cal_intro">"एक मेज पर रखो और इसे स्थानांतरित नहीं करना.फिर प्रारंभ अंशांकन बटन प्रेस करने के लिए अंशांकन करना"</string>
+    <string name="gyroscope_cal_start">"प्रारंभ अंशांकन"</string>
+    <string name="gyroscope_cal_alert_title">"नतीजा"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"ठीक"</string>
+    <string name="gyroscope_cal_alert_success">"अंशांकन सफल"</string>
+    <string name="gyroscope_cal_alert_fail">"अंशांकन असफल हुआ"</string>
+</resources>

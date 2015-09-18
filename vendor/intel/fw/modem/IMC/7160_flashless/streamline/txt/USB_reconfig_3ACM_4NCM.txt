@@ -1,0 +1,1 @@
+usbmwtestfw:usb_profile_set_nvm_configuration(USBPOW_ID_DEFAULT,"3ACM;4NCM;SS","NO_SS",0x0000,"0000",0x0000,"0000")

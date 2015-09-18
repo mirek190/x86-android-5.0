@@ -1,0 +1,5 @@
+import init.nfc.vs.rc
+
+on post-fs-data
+    mkdir /data/nfc 0770 nfc nfc
+

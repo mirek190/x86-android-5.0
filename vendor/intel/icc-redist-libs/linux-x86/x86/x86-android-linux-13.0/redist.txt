@@ -1,0 +1,31 @@
+As specified in the End User License Agreement ("EULA") for the Intel(R) System Studio for Android* OS, this is the redist.txt file for the Intel(R) C++ Compiler for Android* OS.
+The Redistributables for the Intel(R) C++ Compiler for Android* OS are:
+<installdir>/lib/Copyrights.txt
+<installdir>/lib/Notices.txt
+<installdir>/lib/libbfp754.a
+<installdir>/lib/libchkp.so
+<installdir>/lib/libchkpwrap.a
+<installdir>/lib/libchkpwrap_w.a
+<installdir>/lib/libcilkrts.so
+<installdir>/lib/libdecimal.a
+<installdir>/lib/libimf.a
+<installdir>/lib/libimf.so
+<installdir>/lib/libimf_pic.a
+<installdir>/lib/libintlc.so
+<installdir>/lib/libipgo.a
+<installdir>/lib/libipgo_pic.a
+<installdir>/lib/libirc.a
+<installdir>/lib/libirc.so
+<installdir>/lib/libirc_fp.a
+<installdir>/lib/libirc_pic.a
+<installdir>/lib/libirc_s.a
+<installdir>/lib/libirc_s_pic.a
+<installdir>/lib/libirng.a
+<installdir>/lib/libirng.so
+<installdir>/lib/libpdbx.a
+<installdir>/lib/libpdbx.so
+<installdir>/lib/libpdbxinst.a
+<installdir>/lib/libsvml.a
+<installdir>/lib/libsvml.so
+<installdir>/lib/locale/en_US/irc_msg.cat
+<installdir>/lib/locale/en_US/libm.cat

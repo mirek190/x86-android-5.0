@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"校准传感器"</string>
+    <string name="compass_cal">"校准指南针"</string>
+    <string name="compass_cal_title">"校准您的指南针"</string>
+    <string name="compass_cal_start">"开始校准"</string>
+    <string name="compass_cal_intro" product="tablet">"校准您平板电脑上的指南针以得到最高精度的数据。将平板电脑以3维8字形晃动，重复晃动操作直到弹出有成功消息的对话框。
+            \n\n准备好了吗？ 请点击开始校准按钮。"</string>
+    <string name="compass_cal_intro" product="default">"校准您手机上的指南针以得到最高精度的数据。将手机以3维8字形晃动，重复晃动操作直到弹出有成功消息的对话框。
+            \n\n准备好了吗？ 请点击开始校准按钮。"</string>
+    <string name="compass_cal_alert_title">"结果"</string>
+    <string name="compass_cal_alert_ok_btn">"确定"</string>
+    <string name="compass_cal_alert_success">"校准成功!"</string>
+    <string name="result_text">"校准精度"</string>
+    <string name="gyroscope_cal">"校准陀螺仪"</string>
+    <string name="gyroscope_cal_intro" product="tablet">"把平板电脑放在桌子上，不要移动它。然后按开始校准按钮来进行校准。"</string>
+    <string name="gyroscope_cal_intro" product="default">"把手机放在桌子上，不要移动它。然后按开始校准按钮来进行校准。"</string>
+    <string name="gyroscope_cal_start">"开始校准"</string>
+    <string name="gyroscope_cal_alert_title">"结果"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"确定"</string>
+    <string name="gyroscope_cal_alert_success">"校准成功!"</string>
+    <string name="gyroscope_cal_alert_fail">"校准失败!"</string>
+</resources>

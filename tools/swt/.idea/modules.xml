@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../base/common/common.iml" filepath="$PROJECT_DIR$/../base/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../base/ddmlib/ddmlib.iml" filepath="$PROJECT_DIR$/../base/ddmlib/ddmlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ddms/app/ddms.iml" filepath="$PROJECT_DIR$/ddms/app/ddms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ddms/ddmuilib/ddmuilib.iml" filepath="$PROJECT_DIR$/ddms/ddmuilib/ddmuilib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../base/device_validator/dvlib/dvlib.iml" filepath="$PROJECT_DIR$/../base/device_validator/dvlib/dvlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../base/layoutlib-api/layoutlib-api.iml" filepath="$PROJECT_DIR$/../base/layoutlib-api/layoutlib-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../base/perflib/perflib.iml" filepath="$PROJECT_DIR$/../base/perflib/perflib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../base/sdklib/sdklib.iml" filepath="$PROJECT_DIR$/../base/sdklib/sdklib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdkmanager/app/sdkmanager.iml" filepath="$PROJECT_DIR$/sdkmanager/app/sdkmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdkstats/sdkstats.iml" filepath="$PROJECT_DIR$/sdkstats/sdkstats.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdkmanager/sdkuilib/sdkuilib.iml" filepath="$PROJECT_DIR$/sdkmanager/sdkuilib/sdkuilib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swtmenubar/swtmenubar.iml" filepath="$PROJECT_DIR$/swtmenubar/swtmenubar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traceview/traceview.iml" filepath="$PROJECT_DIR$/traceview/traceview.iml" />
+    </modules>
+  </component>
+</project>
+

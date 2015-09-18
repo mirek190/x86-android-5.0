@@ -1,0 +1,11 @@
+group = 'com.android.tools'
+archivesBaseName = 'chimpchat'
+version = rootProject.ext.baseVersion
+
+dependencies {
+    compile project(':base:sdklib')
+    compile project(':base:ddmlib')
+    compile project(':swt:hierarchyviewer2lib')
+
+    testCompile 'junit:junit:3.8.1'
+}

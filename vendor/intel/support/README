@@ -1,0 +1,38 @@
+To build the Medfield iCDK "mfld_cdk" image from the top of the source tree:
+  source build/envsetup.sh
+  lunch mfld_cdk-eng
+  make mfld_cdk
+
+host system build setup assumes:
+  o AOSP build system packages are present:
+  o http://source.android.com/source/download.html
+
+Ubuntu Linux 10.04 and 10.10 (64-bit x86)
+  sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl \
+               zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 lib32ncurses5-dev \
+               ia32-libs x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
+               tofrodos gawk mkisofs
+
+Gingerbread requires oracle / sun jdk 6
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+Install it to $HOME/bin and update your shell PATH variable to find this
+version of javac first in its search path.
+
+----------------------- ----------------------- -----------------------
+
+To load and boot your images, we use fastboot.
+Although you can script the fastboot yourself, you should
+instead use the flash_device.sh script in this directory.
+flash_device.sh may also be found in the tool/ directory in the
+release tree.
+  Usage: flash_device.sh
+
+Procedure to boot using fastboot:
+  * Update your firmware to the latest version (see the release tree)
+  * Update your target device with the latest kboot (see the release tree)
+  * Be sure to use the latest fastboot (tool directory in the release tree)
+  * Be sure to use the latest adb (tool directory in the release tree)
+  * Connect your platform to your Linux Host system via USB.
+  * Reboot the platform.
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2011 The WebRTC project authors. All Rights Reserved. -->
+<!--                                                                     -->
+<!-- Use of this source code is governed by a BSD-style license          -->
+<!-- that can be found in the LICENSE file in the root of the source     -->
+<!-- tree. An additional intellectual property rights grant can be found -->
+<!-- in the file PATENTS.  All contributing project authors may          -->
+<!-- be found in the AUTHORS file in the root of the source tree.        -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contactlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/contactlistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Spinner
+        android:id="@+id/filterspinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:layout_marginBottom="10px"/>
+
+    <LinearLayout
+        android:id="@+id/rl_callbutton_extras"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:baselineAligned="false"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+                
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"        
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+    
+            <Button
+                android:id="@+id/callbutton_videoonly"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:text="@string/call_video_only" />
+                
+        </LinearLayout>
+    
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"   
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+    
+            <Button
+                android:id="@+id/callbutton_audioonly"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                android:text="@string/call_audio_only" />
+    
+        </LinearLayout>
+            
+    </LinearLayout>
+
+    <TextView
+         android:id="@+id/dial_connectivity"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="30px"
+         android:paddingLeft="5px"
+         android:textSize="20px"
+         android:textColor="#FF0000" />
+
+    <Button
+        android:id="@+id/callbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/call" />
+
+</LinearLayout>

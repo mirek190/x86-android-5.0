@@ -1,0 +1,16 @@
+#!/bin/bash
+CAPSULEDIR=${ANDROID_BUILD_TOP}/vendor/intel/tools/xfstk-stitcher/bin/capsule_builder/
+WORK=${ANDROID_HOST_OUT}/capsulebuilder
+ARGS=$*
+mkdir -p $WORK
+
+# extract binary packages into workdir
+if [[ ! -d $WORK/usr ]] ; then
+    for deb in ${CAPSULEDIR}/*.deb
+    do
+    echo extracting $deb
+    dpkg -x $deb $WORK
+    done
+fi
+export PATH=$WORK/usr/bin:$PATH
+capsulebuilder $ARGS

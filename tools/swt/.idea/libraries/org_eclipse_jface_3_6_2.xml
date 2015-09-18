@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org-eclipse-jface-3.6.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../prebuilts/tools/common/m2/repository/com/android/external/eclipse/org-eclipse-jface/3.6.2/org-eclipse-jface-3.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,7 @@
+# Sagem F@ST 9520-35-GLR
+
+TV=  0x1076
+TP= 0x7f00
+
+GCTMode=1
+

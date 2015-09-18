@@ -1,0 +1,4 @@
+testprop0=lateteatoto
+testprop1="lateteatoto"
+testprop2=la tete a toto
+testprop3=

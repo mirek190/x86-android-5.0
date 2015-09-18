@@ -1,0 +1,142 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.intel.filemanager"
+    android:sharedUserId="android.media"
+    android:versionCode="1748"
+    android:versionName="0.5.35.1748" >
+
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />  
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="15" />
+    
+    <application
+        android:name="FileManagerApp"
+        android:debuggable="false"
+        android:icon="@drawable/ic_launcher_filemanager"
+        android:label="@string/fm_app_label"
+        android:theme="@style/DefaultActivityTheme"
+        android:largeHeap="true"
+        android:description="@string/description" >
+        <activity
+            android:name=".FileMainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="com.intel.filemanager/OpenDirectory" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.intel.filemanager.action.pastefile" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.intel.filemanager.action.FILELISTVIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="com.intel.filemanager/phonepick" />
+                <data android:mimeType="com.intel.filemanager/removablepick" />
+                <data android:mimeType="com.intel.filemanager/nostorage" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchActivity" />
+            
+            	<intent-filter>
+                <action android:name="com.intel.filemanager.intent.action.searchable" />
+            </intent-filter>
+            
+        </activity>
+        <activity
+            android:name=".SubCategoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:uiOptions="splitActionBarWhenNarrow"/>
+
+        <provider
+            android:name=".FavoriteProvider"
+            android:authorities="com.intel.filemanager" />
+
+        <activity 
+            android:name=".FileManagerSettings" 
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        
+        <activity
+            android:name="FMPicker"
+            android:configChanges="orientation|keyboardHidden|screenSize" >
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="com.intel.filemanager/filepick" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="com.intel.filemanager/folderpick" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+
+                <category android:name="android.intent.category.OPENABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="com.intel.filemanager/filepick" />
+            </intent-filter>
+        </activity>
+
+        <!-- shortcut begin -->
+        <activity-alias
+            android:name="FMPicker"
+            android:label="@string/create_shortcut"
+            android:targetActivity="FMPicker" >
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity-alias>
+        <!-- shortcut end -->
+
+        <activity android:name="OpenFileActivity" >
+            <intent-filter>
+                <action android:name="com.intel.filemanager.action.OPENFILE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="FileDetailInfor"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/file_infor"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
+
+            <!-- android:theme="@style/Theme.Translucent" -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:mimeType="com.intel.filemanager/filepeoperty" />
+            </intent-filter>
+        </activity>
+    </application>
+    
+</manifest>

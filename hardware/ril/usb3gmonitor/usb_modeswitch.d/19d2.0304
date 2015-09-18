@@ -1,0 +1,4 @@
+# ZTE MF821D (Variant)
+TV= 0x19d2
+TP= 0x0349
+StandardEject=1

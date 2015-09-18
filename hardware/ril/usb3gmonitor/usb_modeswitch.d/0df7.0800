@@ -1,0 +1,7 @@
+# Mobile Action ("Smart Cable")
+
+TC=0xff
+
+MobileActionMode=1
+NoDriverLoading=1
+

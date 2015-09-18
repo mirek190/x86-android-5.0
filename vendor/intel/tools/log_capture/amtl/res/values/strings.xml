@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" product="amtl">AMTL</string>
+    <string name="app_name" product="amtl2">AMTL_2230</string>
+    <string name="menu_name">Settings</string>
+    <string name="label_unknown">UNKNOWN</string>
+    <string name="label_modem_status">Modem status:</string>
+    <string name="label_mts_status">Modem Trace Server state:</string>
+    <string name="label_oct_status">Modem internal logging:</string>
+    <string name="expert_mode">Expert Mode</string>
+    <string name="apply_conf_text">Execute configuration</string>
+    <string name="save_log_text">Save logs</string>
+    <string name="master_txt">Master values to set:</string>
+    <string name="master_bb_sw_txt">BB_SW:</string>
+    <string name="master_3g_sw_txt">3G_SW:</string>
+    <string name="master_digrf_txt">DIGRF:</string>
+    <string name="master_digrfx_txt">DIGRFX:</string>
+    <string name="master_lte_l1_sw_txt">LTE_L1_SW:</string>
+    <string name="master_3g_dsp_txt">3G_DSP:</string>
+    <string name="txt_enter_path">Enter the Expert Modem Configuration file you want to apply:</string>
+    <string name="txt_choose">Validate selected file</string>
+
+</resources>

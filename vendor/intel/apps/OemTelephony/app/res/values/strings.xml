@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 Intel Corporation, All Rights Reserved
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Official label of the phone app, as seen in "Manage Applications"
+         and other settings UIs. -->
+    <string name="OemTelephonyAppLabel" product="default">OemTelephony</string>
+    <!-- DO NOT TRANSLATE -->
+    <string name="tel_thermal_permission" translatable="false">Telephony Thermal Management Permission</string>
+    <string name="tel_thermal_perm_desc" translatable="false">You need telephony thermal permission SET_THERMAL</string>
+    <string name="tel_field_test_permission" translatable="false">Telephony Field test Permission</string>
+    <string name="tel_field_test_perm_desc" translatable="false">You need telephony Field test permission FILED_TEST_INFO</string>
+
+    <string name="ok">OK</string>
+    <!-- Message displayed when registration fails with cause values 2, 3 and 6 -->
+    <string name="sim_not_provisioned">SIM not provisioned MM#2</string>
+    <string name="sim_not_allowed">SIM not allowed MM#3</string>
+    <string name="illegal_me">Phone not allowed MM#6</string>
+</resources>

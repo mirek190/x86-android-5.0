@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* assets/res/any/styles.xml
+**
+** Copyright 2006, Google Inc.
+**
+** Licensed under the Apache License, Version 2.0 (the "License"); 
+** you may not use this file except in compliance with the License. 
+** You may obtain a copy of the License at 
+**
+**     http://www.apache.org/licenses/LICENSE-2.0 
+**
+** Unless required by applicable law or agreed to in writing, software 
+** distributed under the License is distributed on an "AS IS" BASIS, 
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+** See the License for the specific language governing permissions and 
+** limitations under the License.
+*/
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android"> 
+    <style name="info_label">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.info_label</item>
+        <item name="android:paddingRight">4px</item>
+    </style>
+
+    <style name="info_value">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.info_value</item>
+    </style>
+
+    <style name="info_layout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">10px</item>
+        <item name="android:paddingTop">10px</item>
+        <item name="android:paddingRight">10px</item>
+        <item name="android:paddingBottom">10px</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="entry_layout">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextAppearance" parent="android:TextAppearance">
+    </style>
+    
+    <style name="empty_text_style" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">#969A93</item>
+    </style>
+
+    <style name="TextAppearance.info_label">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">#0123</item>
+    </style>
+
+    <style name="TextAppearance.info_value">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:color">#3210</item>
+    </style>
+    
+    <style name="Theme" parent="android:Theme">
+    </style>
+    
+    <style name="Theme.Translucent" parent="android:Theme.Holo.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowActionBar">true</item>
+    </style>
+    <style name="ListItemOne" parent="android:style/TextAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ListItemTwo" parent="android:style/TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="StorageProgressBarStyle" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:height">2dip</item>
+    </style>
+    
+    <style name="DefaultActivityTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/DefaultActionBarStyle</item>
+        <item name="android:actionBarWidgetTheme">@style/DefaultActionBarWidgetStyle</item>
+        <item name="android:actionBarTabStyle">@style/DefaultActionBarTabStyle</item>
+        <item name="android:actionBarTabTextStyle">@style/DefaultActionBarTabTextStyle</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom</item>
+    </style>
+    
+    <style name="DefaultActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_dark_holo</item>
+        <item name="android:backgroundStacked">@drawable/ab_solid_dark_holo</item>
+        <item name="android:displayOptions"></item>
+    </style>
+    
+    <style name="DefaultActionBarTabStyle" parent="@android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/action_bar_tab</item>
+    </style>
+    
+    <style name="DefaultActionBarTabTextStyle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
+    <style name="DefaultActionBarWidgetStyle" parent="@android:style/Theme.Holo.Light">
+        <item name="android:popupMenuStyle">@android:style/Widget.Holo.Light.PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/ListViewDropdownStyle</item>
+    </style>
+    
+    <style name="ListViewDropdownStyle" parent="@android:style/Widget.ListView.DropDown">
+        <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
+    </style>
+    
+	</resources>

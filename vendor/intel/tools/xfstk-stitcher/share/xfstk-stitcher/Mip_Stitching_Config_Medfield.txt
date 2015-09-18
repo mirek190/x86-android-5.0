@@ -1,0 +1,31 @@
+' Penwell Example Config file
+' This file provides stitching settings.
+'************ Settings Section ***********************************************
+PlatformType = MFDD1
+'ImageType values are FWUSB, OSUSB
+ImageType = FWUSB
+'ImageName is the Output Filename 
+ImageName = ./MIP_MFLD_D1.bin
+'
+'************ Inputs to generate master image profile (MIP)  :  -M *****************
+'----------- Penwell D1 Keys Section--------
+'---------- Key Index reference
+'--0: SMIP, primary chaabi fw
+'--1: Intel fw
+'--2: IA fw, security ext fw, OS
+'--3: IA fw, security ext fw, OS
+'--4: IA fw, security ext fw, OS
+'---------- Key file INPUT
+'
+Public Key0 = ./keys/C0_0_public.key
+Public Key1 = ./keys/CRAK_1_public.key
+Public Key2 = ./keys/C0_234_public.key
+Public Key3 = ./keys/C0_234_public.key
+Public Key4 = ./keys/C0_234_public.key
+
+'********** Signed Security Firmware *****************************************
+ICache_Image = ./FW_Components/Signed_iCache_C0_830.bin
+Resident_Image = ./FW_Components/Signed_Resident_C0_830.bin
+Extended_FW = ./FW_Components/Signed_extapp_C0D0_861.bin
+
+' End of file

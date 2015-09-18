@@ -1,0 +1,4 @@
+# ASUS request to change GPRS/EGPRS multi slot class to 10 for AT&T 13340 requirement
+nvm:dyn_cps.dtm_multi_slot_classes.multi_slot_class=10
+nvm:dyn_cps.dtm_multi_slot_classes.egprs_multi_slot_class=10
+nvm:store_nvm_sync(dyn_cps)

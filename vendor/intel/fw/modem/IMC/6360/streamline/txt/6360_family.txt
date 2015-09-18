@@ -1,0 +1,3 @@
+# Set customization description
+nvm:cal_prodparm.cust_parms.flex_ver="6360 family"
+nvm:store_nvm_sync(cal_prodparm)

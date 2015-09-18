@@ -1,0 +1,2 @@
+nvm:dyn_coredump.ForceFcdEnabled=0
+nvm:store_nvm_sync(dyn_coredump)

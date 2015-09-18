@@ -1,0 +1,4 @@
+# nvr_band_config
+nvm:fix_cps.gsm_band_config.nvr_band_config_list[0,9]={2,4,5,6,255,255,255,255,255,255}
+nvm:fix_cps.gsm_band_config.nvr_nbr_band_config=4
+nvm:store_nvm_sync(fix_cps)

@@ -1,0 +1,31 @@
+group = 'com.android.tools'
+archivesBaseName = 'hierarchyviewer2'
+
+dependencies {
+    compile project(':base:common')
+    compile project(':base:sdklib')
+    compile project(':base:ddmlib')
+    compile project(':swt:ddmuilib')
+    compile project(':swt:hierarchyviewer2lib')
+    compile project(':swt:swtmenubar')
+}
+
+sdk {
+    linux {
+       item('etc/hierarchyviewer')  { executable true }
+    }
+    mac {
+       item('etc/hierarchyviewer')  { executable true }
+    }
+    windows {
+       item 'etc/hierarchyviewer.bat'
+    }
+}
+
+
+// include swt for compilation
+sourceSets.main.compileClasspath += configurations.swt
+
+// configure the manifest of the buildDistributionJar task.
+sdkJar.manifest.attributes("Main-Class": "com.android.hierarchyviewer.HierarchyViewerApplication")
+

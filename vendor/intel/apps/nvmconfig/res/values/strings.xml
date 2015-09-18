@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Intel NVM Configurator</string>
+    <string name="txt_choose">Choose</string>
+    <string name="txt_change">Change</string>
+    <string name="txt_choose_variant">Please choose a variant below:</string>
+    <string name="txt_apply_variant">Apply variant</string>
+    <string name="txt_show_variant">Show variant details</string>
+    <string name="txt_variant_description">Description of the variant:</string>
+    <string name="txt_configuration_description">Configurations set in this variant:</string>
+
+</resources>

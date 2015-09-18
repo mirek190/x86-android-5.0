@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     /* file_info.xml ** ** Copyright 2006, Google Inc. ** ** Licensed under 
+    the Apache License, Version 2.0 (the "License"); ** you may not use this 
+    file except in compliance with the License. ** You may obtain a copy of the 
+    License at ** ** http://www.apache.org/licenses/LICENSE-2.0 ** ** Unless 
+    required by applicable law or agreed to in writing, software ** distributed 
+    under the License is distributed on an "AS IS" BASIS, ** WITHOUT WARRANTIES 
+    OR CONDITIONS OF ANY KIND, either express or implied. ** See the License 
+    for the specific language governing permissions and ** limitations under 
+    the License. */
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:divider="?android:attr/dividerVertical"
+    android:showDividers="middle"
+    android:dividerPadding="12dip"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal" >
+
+        <LinearLayout style="@style/info_layout" >
+
+            <LinearLayout
+                android:id="@+id/nameline"
+                style="@style/entry_layout" >
+
+                <TextView
+                    android:id="@+id/lbl_name"
+                    style="@style/info_label"
+                    android:text="@string/file_info_name_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+              <LinearLayout
+                android:id="@+id/pathline"
+                style="@style/entry_layout"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/lbl_path"
+                    style="@style/info_label"
+                    android:text="@string/file_info_path_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/path"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/sizeline"
+                style="@style/entry_layout" >
+
+                <TextView
+                    android:id="@+id/lbl_size"
+                    style="@style/info_label"
+                    android:text="@string/file_info_size_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/size"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+             <LinearLayout
+                android:id="@+id/lastmodifiedline"
+                style="@style/entry_layout"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/lastmodify_text"
+                    style="@style/info_label"
+                    android:text="@string/file_info_last_modified_label"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/lastmodified"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+             <LinearLayout
+                android:id="@+id/exttypeline"
+                style="@style/entry_layout"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/lbl_type"
+                    style="@style/info_label"
+                    android:text="@string/file_info_ext_type"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/exttype"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containfolderline"
+                style="@style/entry_layout" >
+
+                <TextView
+                    style="@style/info_label"
+                    android:text="@string/file_info_contain_folders"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/containfolder"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+             <LinearLayout
+                android:id="@+id/containfileline"
+                style="@style/entry_layout"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/lbl_containfile"
+                    style="@style/info_label"
+                    android:text="@string/file_info_contain_files"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/containfile"
+                    style="@style/info_value" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/positive_button"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@android:string/ok" />
+</LinearLayout>

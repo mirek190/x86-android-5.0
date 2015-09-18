@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2012 Intel Corporation, All Rights Reserved
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:androidprv="http://schemas.android.com/apk/prv/res/android"
+        package="com.intel.internal.telephony.OemTelephonyApp"
+        android:sharedUserId="android.uid.phone"
+>
+
+    <permission android:name="com.intel.telephony.permission.SET_THERMAL"
+        android:label="@string/tel_thermal_permission"
+        android:description="@string/tel_thermal_perm_desc"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="signatureOrSystem" />
+
+    <permission android:name="com.intel.telephony.permission.FIELD_TEST_INFO"
+        android:label="@string/tel_field_test_permission"
+        android:description="@string/tel_field_test_perm_desc"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="signatureOrSystem" />
+
+    <protected-broadcast android:name="intel.intent.action.MODEM_SENSOR_THRESHOLD_REACHED" />
+    <protected-broadcast android.name="intel.intent.action.CIPHERING_STATE_CHANGED" />
+    <protected-broadcast android:name="intel.intent.action.ACTION_REG_STATUS_AND_BAND_IND" />
+    <protected-broadcast android:name="intel.intent.action.CSG_STATE_CHANGED" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.ADD_SYSTEM_SERVICE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <application android:name="OemTelephonyApp"
+                 android:persistent="true"
+                 android:label="@string/OemTelephonyAppLabel"
+                 android:process="com.android.phone"
+                 android:allowBackup="false"
+                 android:supportsRtl="true">
+
+        <receiver android:name="com.intel.internal.telephony.OemTelephonyApp.BootCompletedReceiver"
+                    androidprv:primaryUserOnly="true">
+            <intent-filter  android:priority="10">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    <service android:name="oemtelephony" />
+
+    </application>
+</manifest>

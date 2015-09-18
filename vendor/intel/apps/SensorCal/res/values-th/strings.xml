@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"การปรับเทียบค่ามาตรฐาน เซนเซอร์"</string>
+    <string name="compass_cal">"การปรับเทียบค่ามาตรฐานเข็มทิศ"</string>
+    <string name="compass_cal_title">"ปรับเทียบค่ามาตรฐานเข็มทิศ"</string>
+    <string name="compass_cal_start">"เริ่มต้นการปรับเทียบค่ามาตรฐาน"</string>
+    <string name="compass_cal_intro">"รับข้อมูลเข็มทิศที่ถูกต้องที่สุดโดยการปรับเทียบค่ามาตรฐานอุปกรณ์เข็มทิศในโทรศัพท์ หมุนโทรศัพท์รอบ 3 แกนในการเปิด ทำซ้ำจนกระทั่งมีข้อความโต้ตอบความสำเร็จปรากฏออกมา
+	    \n\nเตรียมพร้อมเริ่มต้น?  กดปุ่มเริ่มต้นการปรับค่ามาตรฐาน."</string>
+    <string name="compass_cal_alert_title">"ผลลัพธ์"</string>
+    <string name="compass_cal_alert_ok_btn">"ตกลง, ยอมรับ"</string>
+    <string name="compass_cal_alert_success">"การปรับค่ามาตรฐานสำเร็จ"</string>
+    <string name="gyroscope_cal">"การปรับเทียบค่ามาตรฐาน Gyroscope"</string>
+    <string name="gyroscope_cal_intro">"วางอุปกรณ์บนโต๊ะ  และห้ามเคลื่อนย้ายไปมา,  จากนั้นกดปุ่มเริ่มต้นเพื่อปรับค่ามาตรฐาน"</string>
+    <string name="gyroscope_cal_start">"เริ่มต้นการปรับเทียบค่ามาตรฐาน"</string>
+    <string name="gyroscope_cal_alert_title">"ผลลัพธ์"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"ตกลง, ยอมรับ"</string>
+    <string name="gyroscope_cal_alert_success">"การปรับค่ามาตรฐานสำเร็จ"</string>
+    <string name="gyroscope_cal_alert_fail">"การปรับค่ามาตรฐานล้มเหลว"</string>
+</resources>

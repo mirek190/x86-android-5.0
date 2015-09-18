@@ -1,0 +1,11 @@
+config RTL8189ES
+        tristate "Realtek 8189ES SDIO or SPI WiFi"
+        ---help---
+          Help message of RTL8189ES
+
+config WLAN_SDIO
+        bool "Enable SDIO interface for Realtek"
+        depends on RTL8723AS || RTL8723BS || RTL8189ES
+        default n
+        ---help---
+          Use memory preallocated in platform

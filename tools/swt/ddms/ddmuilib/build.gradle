@@ -1,0 +1,15 @@
+group = 'com.android.tools.ddms'
+archivesBaseName = 'ddmuilib'
+
+dependencies {
+    compile project(':base:ddmlib')
+    compile 'jfree:jfreechart:1.0.9'
+    compile 'jfree:jfreechart-swt:1.0.9'
+
+    testCompile 'junit:junit:3.8.1'
+}
+
+sourceSets {
+    main.resources.srcDir 'src/main/java'
+    test.resources.srcDir 'src/test/java'
+}

@@ -1,0 +1,4 @@
+# Vodafone K5008-z (MF823)
+TV=  0x19d2
+TPList="1031,1032"
+StandardEject=1

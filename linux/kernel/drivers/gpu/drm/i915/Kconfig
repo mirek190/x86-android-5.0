@@ -1,0 +1,34 @@
+config DSI_MODE_NT35521_QC7_3G069I
+	tristate "lcd qc7 1280*800"
+	default n
+	
+config DSI_MODE_P088PW_3G081I
+	tristate "lcd qc7 1280*800"
+	default n
+	
+config DSI_MODE_NT35521_QC10_3G085I
+	tristate "lcd qc10 1280*800"
+	default n
+
+config DSI_MODE_KW080KD_3G080IH
+	tristate "DSI_MOD_KW080KD"
+	default n
+config DSI_MODE_KW101JEA_3G086I
+	tristate "DSI_MODE_KW101JEA_3G086I"
+	default n
+config DSI_MODE_AUO_3G086I
+	tristate "DSI_MODE_AUO_3G086I"
+	default n
+config DSI_MODE_EDP_IPAD2_3G068I
+	tristate "lcd IPAD2 2048*1536"
+	default n
+config DSI_MODE_EDP_IPAD2_3G062I
+	tristate "lcd IPAD2 2048*1536"
+	default n
+config DSI_MODE_KD080D14_H8I
+	tristate "DSI_MOD_KW080KD"
+	default n
+config DSI_MODE_LSL1080A102_NB31
+	tristate "DSI_MODE_LSL1080A102"
+	default n
+		

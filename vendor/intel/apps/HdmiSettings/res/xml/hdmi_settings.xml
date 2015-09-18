@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright © 2012 Intel Corporation
+ * All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice (including the next
+ * paragraph) shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ *
+ * Authors:
+ *    Lin A Jia <lin.a.jia@intel.com>
+ *
+ */
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/hdmi_settings"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+<Preference
+        android:disableDependentsState="false"
+        android:title="@string/hdmi_status_title"
+        android:key="hdmi_status"
+        android:selectable="false"
+        android:id="@+id/CheckBox_AutoConnect"/>
+
+<ListPreference
+        android:title="@string/hdmi_mode_title"
+        android:key="hdmi_mode"
+        android:summary="@string/hdmi_mode_summary"
+        android:enabled="true"
+        android:selectable="true">
+</ListPreference>
+
+<ListPreference
+        android:entries="@array/hdmi_scale_type"
+        android:entryValues="@array/hdmi_scale_values"
+        android:dialogTitle="@string/hdmi_scale_title"
+        android:key="hdmi_scale"
+        android:summary="@string/hdmi_scale_summary"
+        android:title="@string/hdmi_scale_title"
+        android:defaultValue="3"/>
+
+<com.intel.hdmi.OverscanPreference
+        android:key="hdmi_overscan"
+        android:dialogTitle="@string/hdmi_overscan_title"
+        android:summary="@string/hdmi_overscan_summary"
+        android:title="@string/hdmi_overscan_title"
+        android:persistent="true"/>
+
+</PreferenceScreen>

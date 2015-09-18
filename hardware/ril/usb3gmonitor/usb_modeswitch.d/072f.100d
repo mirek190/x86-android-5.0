@@ -1,0 +1,11 @@
+# InfoCert Business Key (SmartCard/Reader emulation)
+
+TV=  0x072f
+TP= 0x90cc
+
+MessageEndpoint=0x02
+
+MC="01b0000000000000000000000000000000000000000000000000000000000000"
+
+NoDriverLoading=1
+

@@ -1,0 +1,3 @@
+# Enable support for Fast Detach feature.
+nvm:dyn_cps.fd_with_airplane_mode.is_support=1
+nvm:store_nvm_sync(dyn_cps)

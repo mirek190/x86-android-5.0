@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="image">图片(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="video">视频(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="audio">音乐(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="app">已安装应用(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="book">书籍(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="fav">收藏(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="apk">安装包(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="doc">文档(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="arc">压缩包(<xliff:g id="count">%d</xliff:g>)</string>
+</resources>
+

@@ -1,0 +1,26 @@
+am start -a com.android.music.PLAYBACK_VIEWER -d file:///mnt/sdcard/testmp3.mp3 -n com.android.music/.MediaPlaybackActivity
+am start -a com.android.music.PLAYBACK_VIEWER -d file:///mnt/sdcard/testaac.aac -n com.android.music/.MediaPlaybackActivity
+
+am start -a android.content.Intent.ACTION_VIEW -d file:///mnt/sdcard/Lady_Gaga_MPEG4_320x240.mp4  -t video/mp4 
+am start -a android.content.Intent.ACTION_VIEW -d file:///mnt/sdcard/480x272_Lady_Gaga_264.mp4 -t video/mp4 
+
+am start -a android.intent.action.VIEW -d file:///sdcard/480x272_Lady_Gaga_264.mp4 -t video/mp4 -n com.android.gallery/com.android.camera.MovieView
+sometimes works.
+ 
+
+
+send menu key event that unlocks eclair....
+input keyevent 82
+
+http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_HOME
+for more key codes....
+
+edit screen time out:
+cd /data/data/com.android.providers.settings/databases
+sqlite3 settings.db
+
+update system set value="3600000" where name="screen_off_timeout";
+.dump system
+
+time out units are in ms.
+

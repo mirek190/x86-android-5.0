@@ -1,0 +1,27 @@
+group = 'com.android.tools'
+archivesBaseName = 'sdkmanager'
+
+dependencies {
+    compile project(':base:common')
+    compile project(':base:sdklib')
+    compile project(':swt:sdkuilib')
+
+    testCompile project(':base:sdklib-test')
+    testCompile 'junit:junit:3.8.1'
+}
+
+sdk {
+    linux {
+       item('etc/android')  { executable true }
+    }
+    mac {
+       item('etc/android')  { executable true }
+    }
+    windows {
+       item 'etc/android.bat'
+    }
+}
+
+// configure the manifest of the buildDistributionJar task.
+sdkJar.manifest.attributes("Main-Class": "com.android.sdkmanager.Main")
+

@@ -1,0 +1,3 @@
+#BZ168281 Set supported codec list
+nvm:fix_cps.supported_codec_list[0,31]={14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,6,10,14,14,14,14,14,14,14,14,14,14,14,14,14,14}
+nvm:store_nvm_sync(fix_cps)

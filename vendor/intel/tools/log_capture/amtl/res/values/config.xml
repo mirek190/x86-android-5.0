@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="application_id" product="amtl">1</integer>
+    <string name="property" product="amtl">"service.amtl1.cfg"</string>
+    <string name="modem_event" product="amtl">"modem-event"</string>
+    <string name="tty_file_name" product="amtl">"/dev/gsmtty19"</string>
+    <string name="mts_input_prop" product="amtl">"persist.service.mts.input"</string>
+    <string name="mts_output_prop" product="amtl">"persist.service.mts.output"</string>
+    <string name="mts_output_type_prop" product="amtl">"persist.service.mts.output_type"</string>
+    <string name="mts_rotate_num_prop" product="amtl">"persist.service.mts.rotate_num"</string>
+    <string name="mts_rotate_size_prop" product="amtl">"persist.service.mts.rotate_size"</string>
+    <string name="mts_interface_prop" product="amtl">"persist.service.mts.interface"</string>
+    <string name="mts_buffer_size_prop" product="amtl">"persist.service.mts.buffer_size"</string>
+    <string name="mts_service" product="amtl">"persist.service.mtsp.enable"</string>
+    <string name="mts_status_prop" product="amtl">"init.svc.mtsp"</string>
+    <string name="log_tag" product="amtl">AMTL</string>
+    <string name="modem_conf_class_name" product="amtl">"com.intel.amtl.models.config.ModemConfV2"</string>
+    <string name="modem_control_class_name" product="amtl">"com.intel.amtl.modem.ModemControllerV2"</string>
+    <string name="show_app_label" product="amtl">1</string>
+
+    <integer name="application_id" product="amtl2">2</integer>
+    <string name="property" product="amtl2">"service.amtl2.cfg"</string>
+    <string name="modem_event" product="amtl2">"modem-event2"</string>
+    <string name="tty_file_name" product="amtl2">"/dev/gsmtty83"</string>
+    <string name="mts_input_prop" product="amtl2">"persist.sys.mts2.input"</string>
+    <string name="mts_output_prop" product="amtl2">"persist.sys.mts2.output"</string>
+    <string name="mts_output_type_prop" product="amtl2">"persist.sys.mts2.output_type"</string>
+    <string name="mts_rotate_num_prop" product="amtl2">"persist.sys.mts2.rotate_num"</string>
+    <string name="mts_rotate_size_prop" product="amtl2">"persist.sys.mts2.rotate_size"</string>
+    <string name="mts_interface_prop" product="amtl2">"persist.sys.mts2.interface"</string>
+    <string name="mts_buffer_size_prop" product="amtl2">"persist.sys.mts2.buffer_size"</string>
+    <string name="mts_service" product="amtl2">"persist.sys.mtsp2.enable"</string>
+    <string name="mts_status_prop" product="amtl2">"init.svc.mtsp2"</string>
+    <string name="log_tag" product="amtl2">AMTL2</string>
+    <string name="modem_conf_class_name" product="amtl2">"com.intel.amtl.models.config.ModemConfV1"</string>
+    <string name="modem_control_class_name" product="amtl2">"com.intel.amtl.modem.ModemControllerV1"</string>
+    <string name="show_app_label" product="amtl2">2</string>
+
+
+</resources>

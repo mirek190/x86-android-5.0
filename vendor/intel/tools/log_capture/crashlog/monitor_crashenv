@@ -1,0 +1,36 @@
+#!/system/bin/sh
+
+# Usage: monitor_crashenv [-l directory]
+# -l : to list a directory content
+
+logs_root=$(getprop persist.crashlogd.root)
+if [ -z $logs_root ]; then
+    logs_root="/logs"
+fi
+
+/system/bin/mkdir -p $logs_root/info
+/system/bin/chmod 0770 $logs_root/info
+/system/bin/chown system.system $logs_root/info
+if [ -f $logs_root/reserved ]; then
+    /system/bin/rm $logs_root/reserved
+fi
+/system/bin/date > $logs_root/info/infosystem.txt
+/system/bin/df >> $logs_root/info/infosystem.txt
+/system/bin/du -k $logs_root >> $logs_root/info/infosystem.txt
+/system/bin/cat $logs_root/history_event >> $logs_root/info/infosystem.txt
+/system/bin/logcat -b system -b events -b main -b radio -v threadtime -t 1000 >> $logs_root/info/infosystem.txt
+
+# list content of directories crashlogd failed to watch
+while getopts l: OPT; do
+    case "$OPT" in
+    l)
+        DIR=$OPTARG
+        echo "\n=========  list content of directory : $DIR  =========" >> $logs_root/info/infosystem.txt
+        ls -l $DIR >> $logs_root/info/infosystem.txt
+        ;;
+    esac
+done
+
+/system/bin/chmod 0660 $logs_root/info/infosystem.txt
+/system/bin/chown system.log $logs_root/info/infosystem.txt
+/system/bin/dd if=/dev/zero of=$logs_root/reserved bs=1024 count=20

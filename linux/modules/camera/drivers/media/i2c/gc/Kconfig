@@ -1,0 +1,11 @@
+#
+# Kconfig for gc2035 sensor driver
+#
+config VIDEO_GC2155
+       tristate "GC 2155 sensor support"
+       depends on I2C && VIDEO_V4L2
+       ---help---
+         This is a Video4Linux2 sensor-level driver for the galaxy
+         gc2155 2MP SOC sensor.
+
+         It currently only works with the atomisp driver.

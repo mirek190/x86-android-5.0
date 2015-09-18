@@ -1,0 +1,25 @@
+# 
+# Config file for generating signed IAFW32 Blob and/or PDR region for BYT
+# If only IAFW needs to be signed, comment out the PDR_REGION tag
+# If only PDR region needs to be signed, comment out the IAFW tag
+#
+#
+# Parameters for IAFW signing for BYT
+#
+ROM:RedBIOS_B0_secUMA_bstep36S.ROM
+FUSE_FILE:fuses_KM_0.txt
+SVN_ID:1
+#
+# Parameters for PDR signing for BYT
+#
+#PDR_REGION:pdr_region.bin
+PDR_SVN_ID:1
+ARB_IMAGE_TYPE:2
+#
+# Keys
+#
+OEM_PRIVATE_KEY:OEM_priv.pem
+OEM_PUBLIC_KEY:OEM_pub.pub
+SB_PRIVATE_KEY:SB_priv.pem
+SB_PUBLIC_KEY:SB_pub.pub
+OS_PUBLIC_KEY:OS_pub.pub

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Fix crash in AOSP email (https://code.google.com/p/android-developer-preview/issues/detail?id=1565) -->
+    <string name="account_manager_type_pop3" translatable="false">com.android.pop3</string>
+    <string name="account_manager_type_imap" translatable="false">com.android.imap</string>
+    <string name="account_manager_type_legacy_imap" translatable="false">com.android.imap</string>
+</resources>

@@ -1,0 +1,3 @@
+# PS Handover LTE to 3G disabled
+nvm:fix_cps_feat_config.features.feat_psho_utran_to_eutran=0
+nvm:store_nvm_sync(fix_cps_feat_config)

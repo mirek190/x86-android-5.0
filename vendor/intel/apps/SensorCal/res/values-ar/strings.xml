@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"معايره أجهزه الأستشعار "</string>
+    <string name="compass_cal">"معايرة البوصله"</string>
+    <string name="compass_cal_title">"معايرة البوصلة الخاصة بك"</string>
+    <string name="compass_cal_start">"بدء المعايرة"</string>
+    <string name="compass_cal_intro" product="tablet">"أحصل على بيانات البوصله بدقه اكثر من خلال معايرة جهاز البوصله على ﺎﻠﺠﻫﺍﺯ ﺎﻠﻟﻮﺤﻳ. أدر الجهاز حول المحاور الثلاث . كرر الدوران حتى تظهر لك رساله نجاح العمليه.
+            \n\n جاهز لبدء البرنامج ؟ اضغط على زر بدايه المعايره °"
+    </string>
+    <string name="compass_cal_intro" product="default">"أحصل على بيانات البوصله بدقه اكثر من خلال معايرة جهاز البوصله على الهاتف. أدر الجهاز حول المحاور الثلاث . كرر الدوران حتى تظهر لك رساله نجاح العمليه.
+            \n\n جاهز لبدء البرنامج ؟ اضغط على زر بدايه المعايره °"
+    </string>
+    <string name="compass_cal_alert_title">"نتيجة"</string>
+    <string name="compass_cal_alert_ok_btn">"نعم"</string>
+    <string name="compass_cal_alert_success">"تمت المعايره بنجاح"</string>
+    <string name="gyroscope_cal">"معايرة الجيروسكوب"</string>
+    <string name="gyroscope_cal_intro">" ضع الجهاز على الطاوله ولا تقم بتحريك الجهاز. بعد ذلك اضغط على زر بدايه المعايره حتى تبدأ المعايره."</string>
+    <string name="gyroscope_cal_start">"بدء المعايرة"</string>
+    <string name="gyroscope_cal_alert_title">"نتيجة"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"نعم"</string>
+    <string name="gyroscope_cal_alert_success">"تمت المعايره بنجاح"</string>
+    <string name="gyroscope_cal_alert_fail">"المعايره فاشله"</string>
+</resources>

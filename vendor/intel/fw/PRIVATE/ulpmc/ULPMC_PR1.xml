@@ -1,0 +1,54 @@
+<!--  MAIN -->
+<header title="ULPMC Config Parameters Header">
+  <header_st startAddress="0x1900">
+  <hdr_node name="USB Charging current" byte_cnt="1" offset="0000">
+    <data>3C</data>
+  </hdr_node>
+  <hdr_node name="AC Charging current" byte_cnt="1" offset="0001">
+    <data>80</data>
+  </hdr_node>
+  <hdr_node name="Charging voltage" byte_cnt="1" offset="0002">
+    <data>D7</data>
+  </hdr_node>
+  <hdr_node name="Pre charge and termination current" byte_cnt="1" offset="0003">
+    <data>11</data>
+  </hdr_node>
+  <hdr_node name="Battery charging hysteresis" byte_cnt="1" offset="0004">
+    <data>05</data>
+  </hdr_node>
+  <hdr_node name="Charger Input Voltage and current limit" byte_cnt="1" offset="0005">
+    <data>06</data>
+  </hdr_node>
+  <hdr_node name="BoardId" byte_cnt="1" offset="0006">
+    <data>01</data>
+  </hdr_node>
+  <hdr_node name="RTC CT" byte_cnt="2" offset="0007">
+    <data>64 00</data>
+  </hdr_node>
+  <hdr_node name="RTC RC" byte_cnt="2" offset="0009">
+    <data>32 00</data>
+  </hdr_node>
+  <hdr_node name="OS ANDROID" byte_cnt="1" offset="000B">
+    <data>01</data>
+  </hdr_node>
+  <hdr_node name="Reserved" byte_cnt="4" offset="000C">
+    <data>00 00 00 00</data>
+  </hdr_node>
+  <hdr_node name="LPAT table" byte_cnt="46" offset="0010">
+    <data>1F 03 11 03 00 03 EB 02 D3 02 B7 02 98 02 75 02 4F 02 27 02 FD 01 D3 01 A9 01 80 01 59 01 34 01 12 01 F2 00 D6 00 BC 00 A6 00 91 00 80 00</data>
+  </hdr_node>
+  <hdr_node name="Differential Charging Current" byte_cnt="5" offset="003E">
+    <data>40 20 10 08 04</data>
+  </hdr_node>
+  <hdr_node name="Sensor 0 Aux2 trip" byte_cnt="2" offset="0043">
+    <data>3C 0B</data>
+  </hdr_node>
+  <hdr_node name="Sensor 0 Aux3 trip" byte_cnt="2" offset="0045">
+    <data>50 0C</data>
+  </hdr_node>
+  <hdr_node name="Reserved Thermal" byte_cnt="8" offset="0047">
+    <data>00 00 00 00 00 00 00 00</data>
+  </hdr_node>
+  </header_st>
+  </header>
+   <!--  END MAIN -->

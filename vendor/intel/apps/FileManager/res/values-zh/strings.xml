@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="description">提供了按照文件类型和按照文件存储路径浏览文件的方式　\n
+支持各种多媒体类型，支持收藏功能　\n
+提供了基于Lucene搜索引擎的搜索功能，支持按照分类搜索文件和按照路径搜索文件　\n
+支持各种文件的基本操作
+　　 </string>
+    <string name="file_info_last_modified_label">最后更新:</string>
+    <string name="file_info_name_label">名称:</string>
+    <string name="max_input_reached">输入达到上限</string>
+    <string name="create_shortcut">文件夹链接</string>
+    <string name="create_shortcut_not_exist">文件夹不存在</string>
+    <string name="file_info_path_label">路径:</string>
+    <string name="file_info_size_label">大小:</string>
+    <string name="file_info_ext_type">类型:</string>
+    <string name="file_info_contain_folders">包含文件夹:</string>
+    <string name="file_info_contain_files">包含文件:</string>
+    <string name="file_info_folder_property">文件夹属性</string>
+    <string name="file_info_file_property">文件属性</string>
+    <string name="fm_directory_title">存储卡</string>
+    <string name="fm_title_title">文件管理</string>
+    <string name="fm_title_internal">存储卡 1</string>
+    <string name="fm_title_external">存储卡 2</string>
+    <string name="fm_title_external2">存储卡 3</string>
+    <string name="fm_app_label">文件夹</string>
+    <string name="picker_button_choose">选择当前</string>
+    <string name="picker_button_save">保存</string>
+    <string name="picker_button_discard">放弃</string>
+    <string name="fm_multi_select">选择文件(文件夹)</string>
+    <string name="fm_options_delete">删除</string>
+    <string name="fm_options_multi_share">分享</string>
+    <string name="fm_options_new">新建文件夹</string>
+    <string name="fm_options_order">排序</string>
+    <string name="fm_options_order_size">大小</string>
+    <string name="fm_options_order_type">类型</string>
+    <string name="fm_options_order_time">时间</string>
+    <string name="fm_options_order_name">名称</string>
+    <string name="fm_options_copy">复制</string>
+    <string name="fm_options_cut">剪切</string>
+    <string name="fm_options_property">属性</string>
+    <string name="fm_save_saveas">另存为:</string>
+    <string name="fm_save_tmp">临时</string>
+    <string name="fm_move_moveto">移动到</string>
+    <string name="fm_share_no_way_to_share">无法共享此文件</string>
+    <string name="fm_paste_folder_already_exist">文件夹名已存在</string>
+    <string name="fm_paste_file_already_exist">文件名已存在</string>
+    <string name="fm_operate_over">操作完成</string>
+    <string name="fm_input_name_first">请先输入文件名</string>
+    <string name="fm_cannot_open_file">无法打开此文件</string>
+    <string name="fm_name_invalid_name">文件或文件名无效，请重新输入。</string>
+    <string name="fm_name_invalid_name_file">文件名无效，请重新输入。</string>
+    <string name="fm_name_invalid_name_folder">文件夹名无效，请重新输入。</string>
+    <string name="fm_name_invalid_head_file">文件名必须以字母或数字开头，请重新输入。</string>
+    <string name="fm_name_invalid_head_folder">文件夹名必须以字母或数字开头，请重新输入。</string>    
+    <string name="op_filename_too_long">文件或文件夹名长度过长，请重新输入</string>
+    <string name="text_contain_unacceptable_char">文件或文件夹名不能包含" \\ / : * &lt; > ? | \" "  \' ;</string>
+    <string name="fm_name_invalid_head">文件或文件夹名必须以字母或数字开头，请重新输入。</string> 
+    <string name="wallpaper_set_error">将 %s 设为壁纸失败</string>
+    <string name="infor_detail_phone">手机</string>
+    <string name="infor_detail_sd">存储卡</string>
+    <string name="sdcard_unmount">SD 卡已卸载或不存在</string>
+    <string name="fm_op_title_paste">粘贴</string>
+    <string name="fm_op_title_zip">压缩</string>
+    <string name="fm_op_title_unzip">解压缩</string>
+    <string name="fm_op_title_delete">删除</string>
+    <string name="fm_op_select_empty">请先选择文件</string>
+    <string name="fm_op_open_fail">无应用程序可打开此文件</string>
+    <string name="fm_sdcard_ext_no_operation">sdcard_ext是外接存储卡根目录,操作取消!</string>
+    <string name="error_sd_readonly">存储卡是只读状态，请检查</string>
+    <string name="file_infor">文件信息</string>
+    <string name="op_file_not_exist">文件 %s 不存在</string>
+    <string name="op_no_enough_space">存储空间不足，请释放空间后重试</string>
+    <string name="op_file_exists">同名文件已存在，是否覆盖?</string>
+    <string name="op_file_srcequaldes">文件源与目标相同</string>
+    <string name="op_file_overwrite">全部覆盖</string>
+    <string name="yn_dialog_title">请选择</string>
+    <string name="unspt_dialog_title">文件(夹)名无效</string>
+    <string name="confirm_dialog_title">错误</string>
+    <string name="fm_ringtone_setting_error">将 %s 设为铃声失败，不支持该类别。</string>
+    <string name="text_dialog_zip">压缩到</string>
+    <string name="text_dialog_rename">重命名为</string>
+    <string name="text_contain_unacceptable_char_file">文件名不能包含" \\ / : * &lt; > ? | \" "  \' ;</string>
+    <string name="text_contain_unacceptable_char_folder">文件夹名不能包含" \\ / : * &lt; > ? | \" "  \' ;</string>
+    <string name="dialog_delete_confirm">删除 %s ？</string>
+    <string name="dialog_mult_delete_confirm">删除所选文件？</string>
+    <string name="processing_zipfile">压缩文件 %s</string>
+    <string name="op_error_no_dir">无法创建文件夹 %s</string>
+    <string name="op_filename_too_long_file">文件名长度过长，请重新输入</string>
+    <string name="op_filename_too_long_folder">文件夹名长度过长，请重新输入</string>
+    <string name="op_search_app">寻找打开方式</string>
+    <string name="op_open_app">正在载入打开方式，请稍候...</string>
+    <string name="op_uri_error">URI不合法.</string>
+    <string name="op_permission_deny">没有权限打开此文件</string>
+    <string name="op_no_space">确定</string>
+    <string name="op_read_zip_error">读取压缩包失败</string>
+    <string name="file_unwrite">文件 %s 为只读，无法删除</string>
+    <string name="no_file">没有文件</string>
+    <string name="sdcard_missing_message">无存储卡</string>
+    <string name="sdcard_busy_message">存储卡正忙</string>
+    <string name="bt_trans">蓝牙传输</string>
+    <string name="bt_select_invalid">不能分享文件夹</string>
+    <string name="external_card">外置存储卡</string>
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_yes">是</string>
+    <string name="dialog_no">否</string>
+    <string name="enter_filename">请输入文件(夹)名：</string>
+    <string name="enter_foldername">请输入文件夹名：</string>
+
+    <string name="sd_rootpath">当前是SD卡根目录 !</string>
+    <string name="image">图片\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="video">视频\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="audio">音乐\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="app">已安装应用\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="book">书籍\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="fav">收藏\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="apk">安装包\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="doc">文档\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="arc">压缩包\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="no_image">没有图片</string>
+    <string name="no_video">没有视频</string>
+    <string name="no_audio">没有音乐</string>
+    <string name="no_app">没有安装任何应用</string>
+    <string name="no_book">没有书籍</string>
+    <string name="no_fav">没有收藏</string>
+    <string name="no_apk">没有安装包</string>
+    <string name="no_doc">没有文档</string>
+    <string name="no_arc">没有压缩包</string>
+    <string name="operation_copy">复制</string>
+    <string name="operation_cut">剪切</string>
+    <string name="operation_delete">删除</string>
+    <string name="operation_share">分享</string>
+    <string name="operation_property">属性</string>
+    <string name="operation_rename">重命名</string>
+    <string name="operation_zip">压缩</string>
+    <string name="operation_unzip">解压缩</string>
+    <string name="operation_set_wallpaper">设为壁纸</string>
+    <string name="operation_set_ringtone">设为铃声</string>
+    <string name="operation_fav_add">收藏</string>
+    <string name="operation_fav_remove">取消收藏</string>
+    <string name="operation_uninstall">卸载</string>
+    <string name="operation_open_path">浏览目录</string>
+    <string name="operation_more">更多</string>
+    <string name="operation_app_info">应用程序信息</string>
+    <string name="tab_title_categroy">分类浏览</string>
+    <string name="tab_title_file">目录浏览</string>
+    <string name="storege_total">总计:</string>
+    <string name="storege_free">剩余:</string>
+    <string name="add_fav_success">成功添加到收藏夹</string>
+    <string name="del_fav_success">已从收藏夹移除</string>
+    <string name="set_ringtone_success">铃声设置成功</string>
+    <string name="title_set_ringtone">设置铃声</string>
+
+    <string-array name="ringtone_type">
+        <item>设置为闹钟铃声</item>
+        <item>设置为手机铃声</item>
+        <item>设置为提醒铃声</item>
+    </string-array>
+    
+    <string name="error_file_not_exist">文件不存在</string>
+    
+    <string name="enable_show_hiddenfile">隐藏文件</string>
+    <string name="enable_show_hiddenfile_summary">显示隐藏文件（文件夹）</string>
+    <string name="fm_options_settings">设置</string>
+    <string name="launch_app_error">应用程序无法启动</string>
+    
+    <string name="dialog_title_unzip">解压文件</string>
+    <string name="dialog_msg_unzip">解压文件到其所在目录</string>
+    
+</resources>
+

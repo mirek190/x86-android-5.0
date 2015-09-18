@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<CameraSettings>
+    <Profiles cameraId="0">
+        <Supported_hardware>
+            <hwType value="SUPPORTED_HW_CSS_2600"/> <!-- SUPPORTED_HW_CSS_2400,SUPPORTED_HW_CSS_2500,SUPPORTED_HW_CSS_2600,SUPPORTED_HW_USB -->
+        </Supported_hardware>
+
+        <Android_metadata> <!-- Android static metadata only -->
+            <!-- Control -->
+            <control.aeAvailableAntibandingModes value="OFF,50HZ,60Hz,AUTO"/>
+            <control.aeAvailableModes value="OFF,ON,ON_AUTO_FLASH"/>
+            <control.aeAvailableTargetFpsRanges value="30,30"/>
+            <control.aeCompensationRange value="-7,7"/>
+            <control.aeCompensationStep value="1,2"/>
+            <control.afAvailableModes value="OFF,AUTO,MACRO,CONTINUOUS_VIDEO,CONTINUOUS_PICTURE"/>
+            <control.availableEffects value="OFF,MONO,NEGATIVE,SEPIA"/>
+            <control.awbAvailableModes value="AUTO,INCANDESCENT,FLUORESCENT,WARM_FLUORESCENT,DAYLIGHT,CLOUDY_DAYLIGHT,SHADE,TWILIGHT"/>
+            <control.availableSceneModes value="PORTRAIT,LANDSCAPE,NIGHT,FIREWORKS,SPORTS"/>
+            <control.sceneModeOverrides value="ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO"/>
+            <control.availableVideoStabilizationModes value="OFF,ON"/>
+            <control.maxRegions value="1,0,1"/>
+            <!-- JPEG -->
+            <jpeg.maxSize value="19368960"/>  <!-- 4160*3104*1.5 -->
+            <jpeg.availableThumbnailSizes value="320x240,320x180,160x120,0x0"/>
+            <!-- Lens Info-->
+            <lens.info.availableApertures value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.availableFilterDensities value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.availableFocalLengths value="2.04,4.28"/>
+            <lens.info.availableOpticalStabilization value="OFF"/> <!-- OPTIONS: OFF, ON -->
+            <lens.info.geometricCorrectionMap value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.geometricCorrectionMapSize value="0,0"/> <!-- TODO VALUE -->
+            <lens.info.hyperfocalDistance value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.minimumFocusDistance value="0.1"/>
+            <lens.info.shadingMapSize value="0,0"/> <!-- TODO VALUE -->
+            <!-- Lens -->
+            <lens.facing value="BACK"/> <!-- TODO VALUE -->
+            <lens.opticalAxisAngle value="0.0,0.0"/> <!-- TODO VALUE -->
+            <lens.position value="0.0,0.0,0.0"/> <!-- TODO VALUE -->
+            <!-- Request -->
+            <request.maxNumOutputStreams value="1,3,1"/> <!-- TODO VALUE -->
+            <request.pipelineMaxDepth value="3"/> <!-- IPU4 CURRENT VALUE -->
+            <request.maxNumInputStreams value="1"/>
+            <request.partialResultCount value="1"/> <!-- TODO VALUE -->
+            <request.availableCapabilities value="BACKWARD_COMPATIBLE,MANUAL_SENSOR,MANUAL_POST_PROCESSING,ZSL"/> <!-- OPTIONS: BACKWARD_COMPATIBLE, OPTIONAL, MANUAL_SENSOR, MANUAL_POST_PROCESSING, GCAM, ZSL, DNG -->
+            <request.availableRequestKeys value="0"/> <!-- TODO VALUE -->
+            <request.availableResultKeys value="0"/> <!-- TODO VALUE -->
+            <request.availableCharacteristicsKeys value="0"/> <!-- TODO VALUE -->
+            <!-- Scaler -->
+            <scaler.availableFormats value="RAW16,YV12,IMPLEMENTATION_DEFINED,YCbCr_420_888,BLOB"/> <!-- OPTIONS: RAW16, RAW_OPAQUE, YV12, YCrCb_420_SP, IMPLEMENTATION_DEFINED, YCbCr_420_888, BLOB -->
+            <scaler.availableJpegMinDurations value="250000,250000,250000,250000,250000,250000,250000,250000,250000,250000,250000"/> <!-- DEPRECATED DO NOT USE 4fps-->
+            <scaler.availableJpegSizes value="1280x720,1920x1080"/> <!-- DEPRECATED DO NOT USE -->
+            <scaler.availableMaxDigitalZoom value="16.0"/>
+            <scaler.availableProcessedMinDurations value="66666,66666,66666,66666,66666,66666,66666,66666,66666,66666,66666"/> <!-- DEPRECATED DO NOT USE 30fps-->
+            <scaler.availableProcessedSizes value="1920x1080,1280x720,720x480"/> <!-- DEPRECATED DO NOT USE -->
+            <scaler.availableRawMinDurations value="33333,33333"/> <!-- DEPRECATED DO NOT USE 30fps-->
+            <scaler.availableRawSizes value="4208x3120,4208x2372"/>
+            <scaler.availableInputOutputFormatsMap value="RAW_OPAQUE,2,BLOB,IMPLEMENTATION_DEFINED"/>
+            <scaler.availableStreamConfigurations value="RAW16,1920x1080,OUTPUT,BLOB,1920x1080,OUTPUT,BLOB,1280x720,OUTPUT,BLOB,640x480,OUTPUT,BLOB,320x240,OUTPUT,YCbCr_420_888,1920x1080,OUTPUT,YCbCr_420_888,1280x720,OUTPUT,YCbCr_420_888,640x480,OUTPUT,YCbCr_420_888,320x240,OUTPUT,IMPLEMENTATION_DEFINED,1920x1080,OUTPUT,IMPLEMENTATION_DEFINED,1280x720,OUTPUT,IMPLEMENTATION_DEFINED,640x480,OUTPUT,IMPLEMENTATION_DEFINED,320x240,OUTPUT"/>
+            <scaler.availableMinFrameDurations value="RAW16,4208x3120,41666666,BLOB,4208x3120,41666666,BLOB,4208x2372,41666666,BLOB,1920x1080,41666666,BLOB,1280x720,41666666,BLOB,640x480,41666666,BLOB,320x240,41666666,YCbCr_420_888,4208x3120,41666666,YCbCr_420_888,4208x2372,41666666,YCbCr_420_888,1920x1080,41666666,YCbCr_420_888,1280x720,41666666,YCbCr_420_888,640x480,41666666,YCbCr_420_888,320x240,41666666,IMPLEMENTATION_DEFINED,4208x3120,41666666,IMPLEMENTATION_DEFINED,4208x2372,41666666,IMPLEMENTATION_DEFINED,1920x1080,41666666,IMPLEMENTATION_DEFINED,1280x720,41666666,IMPLEMENTATION_DEFINED,640x480,41666666,IMPLEMENTATION_DEFINED,320x240,41666666"/>
+            <scaler.availableStallDurations value="BLOB,4208x3120,41666666,BLOB,4208x2372,41666666,BLOB,1920x1080,41666666,BLOB,1280x720,41666666,BLOB,640x480,41666666,BLOB,320x240,41666666"/>
+            <!-- Sensor Info -->
+            <sensor.info.activeArraySize value="0,0,1920,1080"/>
+            <sensor.info.sensitivityRange value="100,1600"/>
+            <sensor.info.colorFilterArrangement value="RGGB"/> <!-- TODO VALUE -->
+            <sensor.info.exposureTimeRange value="100000,200000000"/>
+            <sensor.info.maxFrameDuration value="200000000"/>
+            <sensor.info.physicalSize value="1.0,1.0"/>
+            <sensor.info.pixelArraySize value="4224x2136"/>
+            <sensor.info.whiteLevel value="0"/> <!-- TODO VALUE -->
+            <!-- Sensor -->
+            <sensor.baseGainFactor value="0"/> <!-- TODO VALUE -->
+            <sensor.blackLevelPattern value="0,0,0,0"/> <!-- TODO VALUE -->
+            <sensor.maxAnalogSensitivity value="0"/> <!-- TODO VALUE -->
+            <sensor.orientation value="90"/>
+            <sensor.profileHueSatMapDimensions value="0,0,0"/> <!-- TODO VALUE -->
+            <sensor.availableTestPatternModes value="0"/> <!-- TODO VALUE -->
+            <!-- Info -->
+            <info.supportedHardwareLevel value="LIMITED"/> <!-- disable zsl stream due to no enought memory -->
+            <!-- Statistics Info -->
+            <statistics.info.availableFaceDetectModes value="OFF,SIMPLE"/>
+            <statistics.info.histogramBucketCount value="0"/> <!-- TODO VALUE -->
+            <statistics.info.maxFaceCount value="32"/>
+            <statistics.info.maxHistogramCount value="0"/> <!-- TODO VALUE -->
+            <statistics.info.maxSharpnessMapValue value="0"/> <!-- TODO VALUE -->
+            <statistics.info.sharpnessMapSize value="0,0"/> <!-- TODO VALUE -->
+            <statistics.info.availableHotPixelMapModes value="0"/> <!-- TODO VALUE -->
+            <!-- Tonemap -->
+            <tonemap.maxCurvePoints value="0"/>
+            <tonemap.availableToneMapModes value="FAST"/> <!-- OPTIONS: CONTRAST_CURVE, FAST, HIGH_QUALITY-->
+            <!-- LED -->
+            <led.availableLeds value="0"/> <!-- TODO VALUE -->
+            <!-- Flash -->
+            <flash.colorTemperature value="0"/> <!-- TODO VALUE -->
+            <flash.maxEnergy value="0"/> <!-- TODO VALUE -->
+            <!-- Flash info -->
+            <flash.info.available value="TRUE"/> <!-- OPTIONS: TRUE, FALSE-->
+            <flash.info.chargeDuration value="1000000"/>
+            <flash.maxEnergy value="10"/> <!-- TODO RANDOM -->
+            <!-- Sync -->
+            <sync.maxLatency value="UNKNOWN"/> <!-- TODO VALUE -->
+            <!-- Edge -->
+            <edge.availableEdgeModes value="FAST"/> <!-- OPTIONS: OFF, FAST, HIGH_QUALITY -->
+            <!-- Hot Pixel -->
+            <hotPixel.availableHotPixelModes value="FAST"/> <!--OPTIONS: OFF, FAST, HIGH_QUALITY -->
+            <!-- Noise Reduction -->
+            <noiseReduction.availableNoiseReductionModes value="FAST"/> <!-- OPTIONS: OFF, FAST, HIGH_QUALITY -->
+
+        </Android_metadata>
+
+<!-- ******************PSL specific section start **************************************************************-->
+        <Hal_tuning_IPU2> <!-- Parameters to tune the HAL and hacks for the HAL that are camera dependent -->
+            <flipping value="" value_v=""/> <!-- value: SENSOR_FLIP_H or "", value_v: SENSOR_FLIP_V or "" -->
+            <maxContinuousRawRingBuffer value="15"/>
+            <shutterLagCompensationMs value="40"/>
+            <enableIspPerframeSettings value="false"/> <!-- true or false. This configuration is for debugging, to enable/disable isp per-frame settings -->
+        </Hal_tuning_IPU2>
+
+        <Sensor_info_IPU2> <!-- Information that parametrizes the behavior or qualities of the physical sensor -->
+            <sensorType value="SENSOR_TYPE_RAW"/> <!-- SENSOR_TYPE_SOC or SENSOR_TYPE_RAW -->
+            <gain.lag value="1"/> <!-- camera3 HAL CPF parameters moved here start-->
+            <exposure.lag value="2"/>
+            <fov value= "54.8" value_v="42.5"/>
+            <zoomDigital.max value="1024"/>
+            <ispVamemType value="1"/>
+            <statistics.initialSkip value="1"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <frame.initialSkip value="3"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <perFrameSettings value="true"/> <!-- true or false -->
+            <postviewSizes value="320x240,320x180"/> <!-- Assign postview size for every supported ratio -->
+            <supportedHighSpeedResolutionFps value="1280x720@60"/> <!-- resolution@fps -->
+            <minDepthOfReqQ value="4"/>
+            <maxBurstLength value="4"/>
+            <isoAnalogGain1 value="64"/> <!--Pseudo ISO corresponding analog gain value 1.0. -->
+        </Sensor_info_IPU2>
+
+        <Hal_tuning_IPU4> <!-- Parameters to tune the HAL and hacks for the HAL that are camera dependent -->
+            <flipping value="" value_v=""/> <!-- value: SENSOR_FLIP_H or "", value_v: SENSOR_FLIP_V or "" -->
+            <maxContinuousRawRingBuffer value="15"/>
+            <shutterLagCompensationMs value="40"/>
+            <enableIspPerframeSettings value="false"/> <!-- true or false. This configuration is for debugging, to enable/disable isp per-frame settings -->
+            <gfxHalToV4L2PixelFmtTable.impl_defined value="V4L2_PIX_FMT_NV12"/>
+            <gfxHalToV4L2PixelFmtTable.raw_sensor value="V4L2_PIX_FMT_SRGGB10"/>
+            <gfxHalToV4L2PixelFmtTable.ycbcr_420_888 value="V4L2_PIX_FMT_NV12"/>
+        </Hal_tuning_IPU4>
+
+        <Sensor_info_IPU4> <!-- Information that parametrizes the behavior or qualities of the physical sensor -->
+            <sensorType value="SENSOR_TYPE_RAW"/> <!-- SENSOR_TYPE_SOC or SENSOR_TYPE_RAW -->
+            <gain.lag value="1"/> <!-- camera3 HAL CPF parameters moved here start-->
+            <exposure.sync value="true"/> <!-- compensate expsure sync-->
+            <exposure.lag value="2"/>
+            <fov value= "54.8" value_v="42.5"/>
+            <zoomDigital.max value="1024"/>
+            <ispVamemType value="1"/>
+            <statistics.initialSkip value="1"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <frame.initialSkip value="3"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <perFrameSettings value="true"/> <!-- true or false -->
+            <postviewSizes value="320x240,320x180"/> <!-- Assign postview size for every supported ratio -->
+            <supportedHighSpeedResolutionFps value="1280x720@60"/> <!-- resolution@fps -->
+            <minDepthOfReqQ value="4"/>
+            <maxBurstLength value="4"/>
+            <isoAnalogGain1 value="64"/> <!--Pseudo ISO corresponding analog gain value 1.0. -->
+        </Sensor_info_IPU4>
+
+        <MediaCtl_elements_IPU4>
+            <element name="imx135 pixel array 4-0010" type="pixel_array"/>
+            <element name="imx135 scaler 4-0010" type="scaler"/>
+            <element name="imx135 binner 4-0010" type="binner"/>
+            <element name="Intel IPU4 CSI-2 0" type="back_end"/>
+        </MediaCtl_elements_IPU4>
+
+<!--    example pipe config
+        <MediaCtl_config>
+            <config width="2" height="1"/>
+            <link srcName="srcDev" srcPad="0" sinkName="sinkDev" sinkPad="1" enable="true"/>
+            <control name="setSmth" ctrlId="IOCTL_CID_SETSMTH" value="123" ctrlName="set something"/>
+            <selection name="slkName" pad="0" target="V4L2_SEL4208_CROP" top="0" left="0" width="123" height="456"/>
+        </MediaCtl_config>
+-->
+
+        <MediaCtl_config_IPU4> <!-- FULL RES -->
+            <config width="4208" height="3120"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="4208" height="3120" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- FULL 16:9 RES -->
+            <config width="4208" height="2372"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="2372"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="4208" height="2372" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="4208" height="2372" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="4208" height="2372" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 4160x3104 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="4160" height="3104"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4160" height="3104" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4160" height="3104"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4160" height="3104" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4160" height="3104" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="4160" height="3104" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="4160" height="3104" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="4160" height="3104" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 4160x2336 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="4160" height="2336"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4172" height="2348"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="4172" height="2348" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="4172" height="2348" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="4172" height="2348" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2560x1920 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2560" height="1920"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2572" height="1932"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2572" height="1932" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2572" height="1932" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2572" height="1932" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2400x2400 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2400" height="2400"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2412" height="2412"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2412" height="2412" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2412" height="2412" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2412" height="2412" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2386x2386 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2386" height="2386"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2398" height="2398"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2398" height="2398" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2398" height="2398" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2398" height="2398" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2048x1536 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2048" height="1536"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2060" height="1548"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2060" height="1548" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2060" height="1548" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2060" height="1548" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2028x2706 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2028" height="2706"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2040" height="2718"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2040" height="2718" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2040" height="2718" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2040" height="2718" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 2028x1536 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="2028" height="1536"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="2040" height="1548"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="2040" height="1548" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="2040" height="1548" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="2040" height="1548" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+             <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 1080p - USING SCALING-->
+            <config width="1920" height="1080"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HFLIP" value="1" ctrlName="set hflip"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="456" left="168" width="3840" height="2160"/>
+            <format name="imx135 binner 4-0010" pad="0" width="3840" height="2160" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <selection name="imx135 binner 4-0010" pad="0" target="V4L2_SEL_TGT_COMPOSE" top="0" left="0" width="1920" height="1080"/>
+            <format name="imx135 binner 4-0010" pad="1" width="1920" height="1080" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="1920" height="1080" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="1920" height="1080" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="1920" height="1080" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="1920" height="1080" format="V4L2_PIX_FMT_SGRBG10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 1600x1200 - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="1600" height="1200"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="1612" height="1212"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="1612" height="112" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="1612" height="1212" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="1612" height="1212" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- 720p - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="1280" height="720"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="1280" height="720"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="1280" height="720" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="1280" height="720" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="1280" height="720" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- VGA - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="640" height="480"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="640" height="480"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="640" height="480" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="640" height="480" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="640" height="480" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- QVGA - THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! -->
+            <config width="320" height="240"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="320" height="240"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="320" height="240" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="320" height="240" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="320" height="240" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+        <MediaCtl_config_IPU4> <!-- THIS IS A CROPPING SOLUTION! CHANGES FIELD OF VIEW! Needed for CATS-->
+            <config width="720" height="480"/>
+            <link srcName="imx135 scaler 4-0010" srcPad="1" sinkName="Intel IPU4 CSI-2 0" sinkPad="0" enable="true"/>
+            <format name="imx135 pixel array 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 pixel array 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="4208" height="3120"/>
+            <format name="imx135 binner 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="imx135 scaler 4-0010" pad="0" width="4208" height="3120" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <selection name="imx135 scaler 4-0010" pad="0" target="V4L2_SEL_TGT_CROP" top="0" left="0" width="732" height="492"/>
+            <format name="imx135 scaler 4-0010" pad="1" width="732" height="492" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0" pad="0" width="732" height="492" format="V4L2_MBUS_FMT_SRGGB10_1X10"/>
+            <format name="Intel IPU4 CSI-2 0 capture" pad="0" width="732" height="492" format="V4L2_PIX_FMT_SRGGB10"/>
+            <control name="imx135 scaler 4-0010" ctrlId="V4L2_CID_LINK_FREQ" value="1" ctrlName="link freq"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_VBLANK" value="170" ctrlName="set vblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx135 pixel array 4-0010" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 0 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+<!-- ******************PSL specific section end **************************************************************-->
+
+    </Profiles>
+
+    <Profiles cameraId="1">
+        <Supported_hardware>
+            <hwType value="SUPPORTED_HW_CSS_2600"/> <!-- SUPPORTED_HW_CSS_2400,SUPPORTED_HW_CSS_2500,SUPPORTED_HW_CSS_2600,SUPPORTED_HW_USB -->
+        </Supported_hardware>
+        <Android_metadata> <!-- Android static metadata only -->
+            <!-- Control -->
+            <control.aeAvailableAntibandingModes value="OFF,50HZ,60Hz,AUTO"/>
+            <control.aeAvailableModes value="OFF,ON,ON_AUTO_FLASH"/>
+            <control.aeAvailableTargetFpsRanges value="30,30"/>
+            <control.aeCompensationRange value="-7,7"/>
+            <control.aeCompensationStep value="1,2"/>
+            <control.afAvailableModes value="OFF,AUTO,MACRO,CONTINUOUS_VIDEO,CONTINUOUS_PICTURE"/>
+            <control.availableEffects value="OFF,MONO,NEGATIVE,SEPIA"/>
+            <control.awbAvailableModes value="AUTO,INCANDESCENT,FLUORESCENT,WARM_FLUORESCENT,DAYLIGHT,CLOUDY_DAYLIGHT,SHADE,TWILIGHT"/>
+            <control.availableSceneModes value="PORTRAIT,LANDSCAPE,NIGHT,FIREWORKS,SPORTS"/>
+            <control.sceneModeOverrides value="ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO,ON,AUTO,AUTO"/>
+            <control.availableVideoStabilizationModes value="OFF,ON"/>
+            <control.maxRegions value="1,0,1"/>
+            <!-- JPEG -->
+            <jpeg.maxSize value="19368960"/>  <!-- 4160*3104*1.5 -->
+            <jpeg.availableThumbnailSizes value="320x240,320x180,160x120,0x0"/>
+            <!-- Lens Info-->
+            <lens.info.availableApertures value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.availableFilterDensities value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.availableFocalLengths value="2.04,4.28"/>
+            <lens.info.availableOpticalStabilization value="OFF"/> <!-- OPTIONS: OFF, ON -->
+            <lens.info.geometricCorrectionMap value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.geometricCorrectionMapSize value="0,0"/> <!-- TODO VALUE -->
+            <lens.info.hyperfocalDistance value="0.0"/> <!-- TODO VALUE -->
+            <lens.info.minimumFocusDistance value="0.1"/>
+            <lens.info.shadingMapSize value="0,0"/> <!-- TODO VALUE -->
+            <!-- Lens -->
+            <lens.facing value="FRONT"/> <!-- TODO VALUE -->
+            <lens.opticalAxisAngle value="0.0,0.0"/> <!-- TODO VALUE -->
+            <lens.position value="0.0,0.0,0.0"/> <!-- TODO VALUE -->
+            <!-- Request -->
+            <request.maxNumOutputStreams value="1,3,1"/> <!-- TODO VALUE -->
+            <request.pipelineMaxDepth value="3"/> <!-- IPU4 CURRENT VALUE -->
+            <request.maxNumInputStreams value="0,0,0"/> <!-- TODO VALUE -->
+            <request.partialResultCount value="1"/> <!-- TODO VALUE -->
+            <request.availableCapabilities value="BACKWARD_COMPATIBLE"/> <!-- TODO VALUE, OPTIONS: BACKWARD_COMPATIBLE, OPTIONAL, MANUAL_SENSOR, GCAM, ZSL, DNG -->
+            <request.availableRequestKeys value="0"/> <!-- TODO VALUE -->
+            <request.availableResultKeys value="0"/> <!-- TODO VALUE -->
+            <request.availableCharacteristicsKeys value="0"/> <!-- TODO VALUE -->
+            <!-- Scaler -->
+            <scaler.availableFormats value="RAW16,YV12,IMPLEMENTATION_DEFINED,YCbCr_420_888,BLOB"/> <!-- OPTIONS: RAW16, RAW_OPAQUE, YV12, YCrCb_420_SP, IMPLEMENTATION_DEFINED, YCbCr_420_888, BLOB -->
+            <scaler.availableJpegMinDurations value="250000,250000,250000,250000,250000,250000,250000,250000,250000,250000,250000"/> <!-- DEPRECATED DO NOT USE 4fps-->
+            <scaler.availableJpegSizes value="1920x1080"/> <!-- DEPRECATED DO NOT USE -->
+            <scaler.availableMaxDigitalZoom value="16.0"/>
+            <scaler.availableProcessedMinDurations value="66666,66666,66666,66666,66666,66666,66666,66666,66666,66666,66666"/> <!-- DEPRECATED DO NOT USE 30fps-->
+            <scaler.availableProcessedSizes value="1920x1080"/> <!-- DEPRECATED DO NOT USE -->
+            <scaler.availableRawMinDurations value="33333,33333"/> <!-- DEPRECATED DO NOT USE 30fps-->
+            <scaler.availableRawSizes value="1920x1080"/>
+            <scaler.availableStreamConfigurations value="BLOB,1920x1080,OUTPUT,YCbCr_420_888,1920x1080,OUTPUT,IMPLEMENTATION_DEFINED,1920x1080,OUTPUT"/>
+            <scaler.availableMinFrameDurations value="BLOB,1920x1080,41666666,YCbCr_420_888,1920x1080,41666666,IMPLEMENTATION_DEFINED,1920x1080,41666666"/>
+            <scaler.availableStallDurations value="BLOB,1920x1080,41666666"/>
+            <!-- Sensor Info -->
+            <sensor.info.activeArraySize value="0,0,1920,1080"/>
+            <sensor.info.sensitivityRange value="100,1600"/>
+            <sensor.info.colorFilterArrangement value="RGGB"/> <!-- TODO VALUE -->
+            <sensor.info.exposureTimeRange value="100000,200000000"/>
+            <sensor.info.maxFrameDuration value="200000000"/>
+            <sensor.info.physicalSize value="1.0,1.0"/>
+            <sensor.info.pixelArraySize value="1976x1200"/>
+            <sensor.info.whiteLevel value="0"/> <!-- TODO VALUE -->
+            <!-- Sensor -->
+            <sensor.baseGainFactor value="0"/> <!-- TODO VALUE -->
+            <sensor.blackLevelPattern value="0,0,0,0"/> <!-- TODO VALUE -->
+            <sensor.maxAnalogSensitivity value="0"/> <!-- TODO VALUE -->
+            <sensor.orientation value="90"/>
+            <sensor.profileHueSatMapDimensions value="0,0,0"/> <!-- TODO VALUE -->
+            <sensor.availableTestPatternModes value="0"/> <!-- TODO VALUE -->
+            <!-- Info -->
+            <info.supportedHardwareLevel value="LIMITED"/> <!-- disable zsl stream due to no enought memory -->
+            <!-- Statistics Info -->
+            <statistics.info.availableFaceDetectModes value="OFF,SIMPLE"/>
+            <statistics.info.histogramBucketCount value="0"/> <!-- TODO VALUE -->
+            <statistics.info.maxFaceCount value="32"/>
+            <statistics.info.maxHistogramCount value="0"/> <!-- TODO VALUE -->
+            <statistics.info.maxSharpnessMapValue value="0"/> <!-- TODO VALUE -->
+            <statistics.info.sharpnessMapSize value="0,0"/> <!-- TODO VALUE -->
+            <statistics.info.availableHotPixelMapModes value="0"/> <!-- TODO VALUE -->
+            <!-- Tonemap -->
+            <tonemap.maxCurvePoints value="0"/>
+            <tonemap.availableToneMapModes value="FAST"/> <!-- OPTIONS: CONTRAST_CURVE, FAST, HIGH_QUALITY-->
+            <!-- LED -->
+            <led.availableLeds value="0"/> <!-- TODO VALUE -->
+            <!-- Flash -->
+            <flash.colorTemperature value="0"/> <!-- TODO VALUE -->
+            <flash.maxEnergy value="0"/> <!-- TODO VALUE -->
+            <!-- Flash info -->
+            <flash.info.available value="FALSE"/> <!-- OPTIONS: TRUE, FALSE-->
+            <flash.info.chargeDuration value="1000000"/>
+            <flash.maxEnergy value="10"/> <!-- TODO RANDOM -->
+            <!-- Sync -->
+            <sync.maxLatency value="UNKNOWN"/> <!-- TODO VALUE -->
+            <!-- Edge -->
+            <edge.availableEdgeModes value="FAST"/> <!-- OPTIONS: OFF, FAST, HIGH_QUALITY -->
+            <!-- Hot Pixel -->
+            <hotPixel.availableHotPixelModes value="FAST"/> <!--OPTIONS: OFF, FAST, HIGH_QUALITY -->
+            <!-- Noise Reduction -->
+            <noiseReduction.availableNoiseReductionModes value="FAST"/> <!-- OPTIONS: OFF, FAST, HIGH_QUALITY -->
+
+        </Android_metadata>
+
+<!-- ******************PSL specific section start **************************************************************-->
+        <Hal_tuning_IPU2> <!-- Parameters to tune the HAL and hacks for the HAL that are camera dependent -->
+            <flipping value="" value_v=""/> <!-- value: SENSOR_FLIP_H or "", value_v: SENSOR_FLIP_V or "" -->
+            <maxContinuousRawRingBuffer value="15"/>
+            <shutterLagCompensationMs value="40"/>
+            <enableIspPerframeSettings value="false"/> <!-- true or false. This configuration is for debugging, to enable/disable isp per-frame settings -->
+        </Hal_tuning_IPU2>
+
+        <Sensor_info_IPU2> <!-- Information that parametrizes the behavior or qualities of the physical sensor -->
+            <sensorType value="SENSOR_TYPE_RAW"/> <!-- SENSOR_TYPE_SOC or SENSOR_TYPE_RAW -->
+            <gain.lag value="1"/> <!-- camera3 HAL CPF parameters moved here start-->
+            <exposure.lag value="2"/>
+            <fov value= "54.8" value_v="42.5"/>
+            <zoomDigital.max value="1024"/>
+            <ispVamemType value="1"/>
+            <statistics.initialSkip value="1"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <frame.initialSkip value="3"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <perFrameSettings value="true"/> <!-- true or false -->
+            <postviewSizes value="320x240,320x180"/> <!-- Assign postview size for every supported ratio -->
+            <supportedHighSpeedResolutionFps value="1280x720@60"/> <!-- resolution@fps -->
+            <minDepthOfReqQ value="4"/>
+            <maxBurstLength value="4"/>
+            <isoAnalogGain1 value="64"/> <!--Pseudo ISO corresponding analog gain value 1.0. -->
+        </Sensor_info_IPU2>
+
+        <Hal_tuning_IPU4> <!-- Parameters to tune the HAL and hacks for the HAL that are camera dependent -->
+            <flipping value="" value_v=""/> <!-- value: SENSOR_FLIP_H or "", value_v: SENSOR_FLIP_V or "" -->
+            <maxContinuousRawRingBuffer value="15"/>
+            <shutterLagCompensationMs value="40"/>
+            <enableIspPerframeSettings value="false"/> <!-- true or false. This configuration is for debugging, to enable/disable isp per-frame settings -->
+            <gfxHalToV4L2PixelFmtTable.impl_defined value="V4L2_PIX_FMT_NV12"/>
+            <gfxHalToV4L2PixelFmtTable.raw_sensor value="V4L2_PIX_FMT_SRGGB10"/>
+            <gfxHalToV4L2PixelFmtTable.ycbcr_420_888 value="V4L2_PIX_FMT_NV12"/>
+        </Hal_tuning_IPU4>
+
+        <Sensor_info_IPU4> <!-- Information that parametrizes the behavior or qualities of the physical sensor -->
+            <sensorType value="SENSOR_TYPE_RAW"/> <!-- SENSOR_TYPE_SOC or SENSOR_TYPE_RAW -->
+            <gain.lag value="1"/> <!-- camera3 HAL CPF parameters moved here start-->
+            <exposure.sync value="true"/> <!-- compensate expsure sync-->
+            <exposure.lag value="2"/>
+            <fov value= "54.8" value_v="42.5"/>
+            <zoomDigital.max value="1024"/>
+            <ispVamemType value="1"/>
+            <statistics.initialSkip value="1"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <frame.initialSkip value="3"/> <!-- camera3 HAL CPF parameters moved here end-->
+            <perFrameSettings value="true"/> <!-- true or false -->
+            <postviewSizes value="320x240,320x180"/> <!-- Assign postview size for every supported ratio -->
+            <supportedHighSpeedResolutionFps value="1280x720@60"/> <!-- resolution@fps -->
+            <minDepthOfReqQ value="4"/>
+            <maxBurstLength value="4"/>
+            <isoAnalogGain1 value="64"/> <!--Pseudo ISO corresponding analog gain value 1.0. -->
+        </Sensor_info_IPU4>
+
+        <MediaCtl_elements_IPU4>
+            <element name="imx132 pixel array 4-0036" type="pixel_array"/>
+            <element name="imx132 binner 4-0036" type="binner"/>
+            <element name="Intel IPU4 CSI-2 1" type="back_end"/>
+        </MediaCtl_elements_IPU4>
+
+<!--    example pipe config
+        <MediaCtl_config>
+            <config width="2" height="1"/>
+            <link srcName="srcDev" srcPad="0" sinkName="sinkDev" sinkPad="1" enable="true"/>
+            <control name="setSmth" ctrlId="IOCTL_CID_SETSMTH" value="123" ctrlName="set something"/>
+            <selection name="slkName" pad="0" target="V4L2_SEL4208_CROP" top="0" left="0" width="123" height="456"/>
+        </MediaCtl_config>
+-->
+
+        <MediaCtl_config_IPU4> <!-- 1080p - USING SCALING-->
+            <config width="1920" height="1080"/>
+            <link srcName="imx132 binner 4-0036" srcPad="1" sinkName="Intel IPU4 CSI-2 1" sinkPad="0" enable="true"/>
+            <control name="imx132 pixel array 4-0036" ctrlId="V4L2_CID_HFLIP" value="1" ctrlName="set hflip"/>
+            <format name="imx132 pixel array 4-0036" pad="0" width="1976" height="1200" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <selection name="imx132 pixel array 4-0036" pad="0" target="V4L2_SEL_TGT_CROP" top="50" left="170" width="1936" height="1096"/>
+            <format name="imx132 binner 4-0036" pad="0" width="1936" height="1096" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="imx132 binner 4-0036" pad="1" width="1936" height="1096" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="Intel IPU4 CSI-2 1" pad="0" width="1936" height="1096" format="V4L2_MBUS_FMT_SGRBG10_1X10"/>
+            <format name="Intel IPU4 CSI-2 1 capture" pad="0" width="1936" height="1096" format="V4L2_PIX_FMT_SGRBG10"/>
+            <control name="imx132 binner 4-0036" ctrlId="V4L2_CID_LINK_FREQ" value="0" ctrlName="link freq"/>
+            <control name="imx132 pixel array 4-0036" ctrlId="V4L2_CID_VBLANK" value="364" ctrlName="set vblank"/>
+            <control name="imx132 pixel array 4-0036" ctrlId="V4L2_CID_HBLANK" value="365" ctrlName="set hblank"/>
+            <control name="imx132 pixel array 4-0036" ctrlId="V4L2_CID_EXPOSURE" value="1500" ctrlName="exposure"/>
+            <videonode name="Intel IPU4 CSI-2 1 capture" videoNodeType="VIDEO_RAW_BAYER"/>
+        </MediaCtl_config_IPU4>
+
+<!-- ******************PSL specific section end **************************************************************-->
+
+    </Profiles>
+    <Common> <!-- Common parameters of camera and hacks -->
+        <subDevName value="/dev/v4l-subdev8"/> <!-- it depends on the real hardware -->
+        <fileInject value="false"/> <!-- true or false -->
+        <productName value="ExampleModel"/> <!-- cfg the exif -->
+        <manufacturerName value="ExampleMaker"/> <!-- cfg the exif -->
+        <boardName value="mofd_v1_2600"/>
+        <previewFormat value="V4L2_PIX_FMT_NV12"/> <!-- define the driver preview output format, V4L2_PIX_FMT_YVU420 or V4L2_PIX_FMT_NV12 -->
+        <supportDualVideo value="true"/> <!-- true or false -->
+        <supportExtendedMakernote value="true"/> <!-- true or false -->
+    </Common>
+</CameraSettings>
+

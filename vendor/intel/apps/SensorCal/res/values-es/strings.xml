@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"Calibre el censor"</string>
+    <string name="compass_cal">"Calibre la brújula"</string>
+    <string name="compass_cal_title">"Calibre la brújula"</string>
+    <string name="compass_cal_start">"Iniciar la calibración"</string>
+    <string name="compass_cal_intro" product="tablet">"Obtener la calibración más exacta de la brújula en su tablet. Cambiar de posición el tablet en torno a los tres ejes dimensionales. Repita este procedimiento hasta que el cuadro de mensaje que parecen tener éxito.
+            \n\n ¿ Listo para empezar? Pulse el botón Iniciar la calibración." </string>
+    <string name="compass_cal_intro" product="default">"Obtener la calibración más exacta de la brújula en su teléfono móvil (celular tele). Cambiar de posición el teléfono en torno a los tres ejes dimensionales. Repita este procedimiento hasta que el cuadro de mensaje que parecen tener éxito.
+            \n\n ¿ Listo para empezar? Pulse el botón Iniciar la calibración." </string>
+    <string name="compass_cal_alert_title">"Resultado"</string>
+    <string name="compass_cal_alert_ok_btn">OK</string>
+    <string name="compass_cal_alert_success">"El éxito de la calibración"</string>
+    <string name="gyroscope_cal">"Calibre el giroscopio"</string>
+    <string name="gyroscope_cal_intro">"Coloque la unidad sobre una mesa y después no la mueva. Pulse el botón Iniciar la calibración."</string>
+    <string name="gyroscope_cal_start">"Iniciar la calibración"</string>
+    <string name="gyroscope_cal_alert_title">"Resultado"</string>
+    <string name="gyroscope_cal_alert_ok_btn">OK</string>
+    <string name="gyroscope_cal_alert_success">"El éxito de la calibración"</string>
+    <string name="gyroscope_cal_alert_fail">"Calibración de fracaso!"</string>
+</resources>

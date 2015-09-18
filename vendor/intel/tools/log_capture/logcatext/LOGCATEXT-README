@@ -1,0 +1,21 @@
+Started from system/core/logcat
+
+Last google commit:
+
+Author: Mark Salyzyn <salyzyn@google.com>  2014-07-11 00:07:39
+Committer: Mark Salyzyn <salyzyn@google.com>  2014-07-25 01:20:51
+Parent: 42461b7a59673b3567857a5ce501dd2b2fe496ba (am 9a357b88: am badc23f8: am f6ef1f53: Merge "logcat: parse failure for -n <KBsize> and -r <rotate limit>")
+Child:  6bbcd7fc4ea537bb21ce082162e1fcfe3b3c7b22 ([PATCH 3/8] Integrate logcat for recovery OS in Jelly Bean)
+Branches: remotes/m/platform/android/imin_legacy, remotes/umg/platform/android/imin_legacy
+Follows: android-4.4.3_r1, android-4.4.3_r1.1, android-4.4.4_r1, android-4.4.4_r2, android-4.4w_r1
+Precedes:
+
+    logcat: test: logrotate flags
+
+    - test -f -n and -r flags
+    - fix issue with parse error for sizes in bytes (no multiplier)
+
+    (cherry pick from d03caa23ddd8670ccd83eaf4ef4fc0c78e065c1b)
+
+    Bug: 16147190
+    Change-Id: Iadf2fd903d5e881d02f1d2b491441cc8090ee1c9

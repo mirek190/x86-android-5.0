@@ -1,0 +1,3 @@
+# Disable USB HS core for power saving -- SMS05224049 | [PF450CL][1422.05] 2G/3G Phone+Pad suspend current too high
+nvm:fix_usb.usb_hs_configuration.core_init = 0
+nvm:store_nvm_sync(fix_usb)

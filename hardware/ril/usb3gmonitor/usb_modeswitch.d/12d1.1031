@@ -1,0 +1,10 @@
+# Huawei U8110 / Joy, Vodafone 845 (Android smartphone)
+
+TV=  0x12d1
+TP= 0x1035
+
+MC="55534243123456780600000080010a11060000000000000000000000000000"
+
+# for Android SDK
+NoDriverLoading=1
+

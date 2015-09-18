@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"Cảm biến hiệu chỉnh"</string>
+    <string name="compass_cal">"La bàn hiệu chỉnh"</string>
+    <string name="compass_cal_title">"Điều chỉnh la bàn"</string>
+    <string name="compass_cal_start">"bắt đầu điều chỉnh"</string>
+    <string name="compass_cal_intro" product="tablet">"Thông qua điều chỉnh bộ phận la bàn trên máy tính bảng để đạt được dữ liệu la bàn chính xác nhất. Lần lượt xoay máy tính bảng xung quanh 3 trục. Lập lại những động tác trên cho đến khi tin báo thành công hiện ra.
+            \n\nBạn đã sẵn sàng chưa ? hãy ấn nút bắt đầu." </string>
+    <string name="compass_cal_intro" product="default">"Thông qua điều chỉnh bộ phận la bàn trên điện thoại để đạt được dữ liệu la bàn chính xác nhất. Lần lượt xoay điện thoại xung quanh 3 trục. Lập lại những động tác trên cho đến khi tin báo thành công hiện ra.
+            \n\nBạn đã sẵn sàng chưa ? hãy ấn nút bắt đầu." </string>
+    <string name="compass_cal_alert_title">"kết quả"</string>
+    <string name="compass_cal_alert_ok_btn">"Xác nhận"</string>
+    <string name="compass_cal_alert_success">"Điều chỉnh thành công!"</string>
+    <string name="gyroscope_cal">"Sự định cở con quay hồi chuyển"</string>
+    <string name="gyroscope_cal_intro">"Đặt thiết bị lên bàn và để yên đó. Sau đó ấn nút bắt đầu để bắt đầu hiệu chỉnh."</string>
+    <string name="gyroscope_cal_start">"bắt đầu điều chỉnh"</string>
+    <string name="gyroscope_cal_alert_title">"kết quả"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"Xác nhận"</string>
+    <string name="gyroscope_cal_alert_success">"Điều chỉnh thành công!"</string>
+    <string name="gyroscope_cal_alert_fail">"Điều chỉnh thất bại !"</string>
+</resources>

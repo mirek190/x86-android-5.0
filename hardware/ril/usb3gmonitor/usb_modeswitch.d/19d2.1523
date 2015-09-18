@@ -1,0 +1,4 @@
+# ZTE MF591 TMobile
+TV= 0x19d2
+TP= 0x1525
+StandardEject=1

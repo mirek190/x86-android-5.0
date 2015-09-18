@@ -1,0 +1,4 @@
+# ZTE MF60
+TV= 0x19d2
+TP= 0x1402
+StandardEject=1

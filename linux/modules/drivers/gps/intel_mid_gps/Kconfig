@@ -1,0 +1,18 @@
+#
+# Intel MID GPS driver.
+#
+
+config INTEL_MID_GPS
+	tristate "Intel MID GPS driver"
+	default n
+	help
+	  Select this driver to enable kernel interface for GPS devices
+	  used in Intel MID platforms.
+	  This driver exports GPIO to user space GPS software
+	  that use a standard tty to communicate with the GPS device.
+
+config GPS_CSRGSD5T
+	bool  "CSR GPS support instead of platform default"
+	depends on INTEL_MID_GPS
+	help
+	  Select this will enable both RESET and ENALBE pin for csr gps.

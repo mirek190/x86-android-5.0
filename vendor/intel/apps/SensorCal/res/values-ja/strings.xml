@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"センサー較正"</string>
+    <string name="compass_cal">"コンパス較正"</string>
+    <string name="compass_cal_title">"あなたのコンパスを較正"</string>
+    <string name="compass_cal_start">"較正を開始"</string>
+    <string name="compass_cal_intro" product="tablet">"携帯タブレットでコンパス装置を較正することによって最も正確なコンパスデータを取得します。順番に3つの軸の周りに携帯タブレットを回転させる。成功メッセージのダイアログが飛び出すまで、回転を繰り返します。
+            \n\n開始の準備はできましたか？スタート較正ボタンを押します。"
+    </string>
+    <string name="compass_cal_intro" product="default">"携帯電話でコンパス装置を較正することによって最も正確なコンパスデータを取得します。順番に3つの軸の周りに携帯電話を回転させる。成功メッセージのダイアログが飛び出すまで、回転を繰り返します。
+            \n\n開始の準備はできましたか？スタート較正ボタンを押します。"
+    </string>
+    <string name="compass_cal_alert_title">"結果"</string>
+    <string name="compass_cal_alert_ok_btn">OK</string>
+    <string name="compass_cal_alert_success">"較正に成功しました！"</string>
+    <string name="gyroscope_cal">"ジャイロ較正"</string>
+    <string name="gyroscope_cal_intro">"テーブルの上にデバイスを置き、それを移動しません。その後、較正を行うためにスタート較正ボタンを押してください"</string>
+    <string name="gyroscope_cal_start">"較正を開始"</string>
+    <string name="gyroscope_cal_alert_title">"結果"</string>
+    <string name="gyroscope_cal_alert_ok_btn">OK</string>
+    <string name="gyroscope_cal_alert_success">"較正に成功しました！"</string>
+    <string name="gyroscope_cal_alert_fail">"較正失敗しました！"</string>
+</resources>

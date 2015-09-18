@@ -1,0 +1,3 @@
+# Enable ENS support
+nvm:dyn_cps.ps_features.ens_support = 1
+nvm:store_nvm_sync(dyn_cps)

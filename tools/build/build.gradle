@@ -1,0 +1,91 @@
+buildscript {
+    repositories {
+        maven { url "$rootDir/../../prebuilts/tools/common/gradle-plugins/repository" }
+    }
+    dependencies {
+        classpath 'com.android.tools.internal:internal-plugins:1.0'
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'clone-artifacts'
+
+// artifact cloning destinations
+cloneArtifacts {
+    mainRepo = "$rootDir/../../prebuilts/tools/common/m2/repository"
+    secondaryRepo = "$rootDir/../../prebuilts/tools/common/m2/internal"
+}
+
+// ext.androidHostOut is shared by all tools/{base,build,swt} gradle projects/
+ext.androidHostOut = file("$rootDir/../../out/host/gradle")
+ext.androidRootDir = file(new File(ext.androidHostOut, "../../../"))
+// rootProject.buildDir is specific to this gradle build.
+buildDir = new File(file(ext.androidHostOut), "tools/build/build")
+
+ext.localRepo = project.hasProperty('localRepo') ? localRepo : "$ext.androidHostOut/repo"
+
+subprojects {
+    // Change buildDir first so that all plugins pick up the new value.
+    project.buildDir = project.file("$project.parent.buildDir/../$project.name")
+
+    apply plugin: 'idea'
+    apply plugin: 'findbugs'
+
+    repositories {
+        maven { url = uri("$rootProject.ext.androidHostOut/repo") }
+    }
+
+    // find bug dependencies is added dynamically so it's hard for the
+    // clone artifact plugin to find it. This custom config lets us manually
+    // add such dependencies.
+    configurations {
+        hidden
+    }
+    dependencies {
+        hidden "com.google.code.findbugs:findbugs:2.0.1"
+    }
+
+    project.ext {
+        baseVersion = '0.7.0'
+    }
+
+    task disableTestFailures << {
+        tasks.withType(Test) {
+            ignoreFailures = true
+        }
+    }
+
+    findbugs {
+        ignoreFailures = true
+        effort = "max"
+        reportLevel = "high"
+    }
+
+    group = 'com.android.tools.build'
+    project.ext.baseAndroidVersion = "22.2.0"
+    if (!project.has("release")) {
+        project.ext.baseAndroidVersion = project.ext.baseAndroidVersion + "-SNAPSHOT"
+    }
+
+}
+
+task prepareRepo(type: Copy) {
+    from { rootProject.cloneArtifacts.mainRepo }
+    from { rootProject.cloneArtifacts.secondaryRepo }
+    into { "$rootProject.ext.androidHostOut/repo" }
+}
+
+// delay evaluation of this project before all subprojects have been evaluated.
+subprojects.each { subproject -> evaluationDependsOn(subproject.name) }
+
+def testTasks = subprojects.collect { it.tasks.withType(Test) }.flatten()
+
+task aggregateResults(type: Copy) {
+    from { testTasks*.testResultsDir }
+    into { file("$buildDir/results") }
+}
+
+task clean(type: Delete) {
+   delete '$buildDir'
+}
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:foreground="?android:attr/windowContentOverlay"
+    android:foregroundGravity="fill_horizontal|top"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/nameline"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10px" >
+
+        <TextView
+            android:id="@+id/saveas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5px"
+            android:text="@string/fm_save_saveas" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/namefield"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:maxLines="1"
+            android:singleLine="true" >
+        </EditText>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/no_file_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textAppearance="@style/empty_text_style"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/seperator"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="10px"
+        android:background="#FFFFFFFF" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" 
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_button"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity= "bottom"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bottom_button_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:minHeight="48dp"
+            android:text="@string/picker_button_discard" />
+        
+         <Button
+            android:id="@+id/bottom_button_ok"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:minHeight="48dp"
+            android:text="@string/picker_button_save" />
+        
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'clone-artifacts'
+
+dependencies {
+    compile "com.android.tools.ddms:ddmlib:$project.ext.baseAndroidVersion"
+}
+
+archivesBaseName = 'builder-test-api'
+project.ext.pomName = 'Android Builder Test API library'
+project.ext.pomDesc = 'API for the Test extension point in the Builder library.'
+
+apply from: '../publish.gradle'
+apply from: '../javadoc.gradle'

@@ -1,0 +1,3 @@
+# ASUS request to change PDP address type to IPv4 only for AT&T 13340 requirement
+nvm:dyn_ims_volte.MmbIPType[0,7]={73,80,118,52,0,0,0,0}
+nvm:store_nvm_sync(dyn_ims_volte)

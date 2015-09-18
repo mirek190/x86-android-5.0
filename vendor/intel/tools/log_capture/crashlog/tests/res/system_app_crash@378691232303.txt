@@ -1,0 +1,27 @@
+Process: com.intel.camera
+Flags: 0x8be45
+Package: com.intel.camera v1
+Build: intel/mfld_gi/mfld_gi:4.0.4/IMM76D/r3-weekly-438:userdebug/dev-keys
+
+java.lang.RuntimeException: Unable to start activity ComponentInfo{com.intel.camera/com.intel.camera.VideoCamera}: java.lang.RuntimeException: setParameters failed
+	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:1956)
+	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:1981)
+	at android.app.ActivityThread.access$600(ActivityThread.java:123)
+	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1147)
+	at android.os.Handler.dispatchMessage(Handler.java:99)
+	at android.os.Looper.loop(Looper.java:137)
+	at android.app.ActivityThread.main(ActivityThread.java:4424)
+	at java.lang.reflect.Method.invokeNative(Native Method)
+	at java.lang.reflect.Method.invoke(Method.java:511)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:784)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:551)
+	at dalvik.system.NativeStart.main(Native Method)
+Caused by: java.lang.RuntimeException: setParameters failed
+	at android.hardware.Camera.native_setParameters(Native Method)
+	at android.hardware.Camera.setParameters(Camera.java:1304)
+	at com.intel.camera.VideoCamera.initializeContinuousFocus(VideoCamera.java:1563)
+	at com.intel.camera.VideoCamera.onCreate(VideoCamera.java:1499)
+	at android.app.Activity.performCreate(Activity.java:4466)
+	at android.app.Instrumentation.callActivityOnCreate(Instrumentation.java:1049)
+	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:1920)
+	... 11 more

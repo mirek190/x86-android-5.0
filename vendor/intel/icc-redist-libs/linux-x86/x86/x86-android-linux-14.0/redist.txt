@@ -1,0 +1,39 @@
+As specified in the End User License Agreement ("EULA") for the Intel(R) System
+Software Tools for Android* OS, this is the redist.txt file for the
+Intel(R) C++ Compiler 14.0 Update 1 for Android*.
+
+The Redistributables for the Intel(R) C++ Compiler 14.0 Update 1 for Android* are: 
+<installdir>/compiler/lib/ia32/Copyrights.txt
+<installdir>/compiler/lib/ia32/Notices.txt
+<installdir>/compiler/lib/ia32/gnustl/libchkpwrap.a
+<installdir>/compiler/lib/ia32/gnustl/libchkpwrap_w.a
+<installdir>/compiler/lib/ia32/gnustl/libcilkrts.so
+<installdir>/compiler/lib/ia32/gnustl/libpdbx.a
+<installdir>/compiler/lib/ia32/gnustl/libpdbx.so
+<installdir>/compiler/lib/ia32/gnustl/libpdbxinst.a
+<installdir>/compiler/lib/ia32/libbfp754.a
+<installdir>/compiler/lib/ia32/libchkp.so
+<installdir>/compiler/lib/ia32/libdecimal.a
+<installdir>/compiler/lib/ia32/libimf.a
+<installdir>/compiler/lib/ia32/libimf.so
+<installdir>/compiler/lib/ia32/libimf_pic.a
+<installdir>/compiler/lib/ia32/libintlc.so
+<installdir>/compiler/lib/ia32/libipgo.a
+<installdir>/compiler/lib/ia32/libipgo_pic.a
+<installdir>/compiler/lib/ia32/libirc.a
+<installdir>/compiler/lib/ia32/libirc.so
+<installdir>/compiler/lib/ia32/libirc_fp.a
+<installdir>/compiler/lib/ia32/libirc_pic.a
+<installdir>/compiler/lib/ia32/libirc_s.a
+<installdir>/compiler/lib/ia32/libirc_s_pic.a
+<installdir>/compiler/lib/ia32/libirng.a
+<installdir>/compiler/lib/ia32/libirng.so
+<installdir>/compiler/lib/ia32/libsvml.a
+<installdir>/compiler/lib/ia32/libsvml.so
+<installdir>/compiler/lib/ia32/locale/en_US/irc_msg.cat
+<installdir>/compiler/lib/ia32/locale/en_US/libm.cat
+<installdir>/compiler/lib/ia32/stlport/libchkpwrap.a
+<installdir>/compiler/lib/ia32/stlport/libchkpwrap_w.a
+<installdir>/compiler/lib/ia32/stlport/libcilkrts.so
+<installdir>/compiler/lib/ia32/stlport/libpdbx.a
+<installdir>/compiler/lib/ia32/stlport/libpdbx.so

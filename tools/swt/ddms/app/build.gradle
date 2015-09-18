@@ -1,0 +1,27 @@
+group = 'com.android.tools.ddms'
+archivesBaseName = 'ddms'
+
+dependencies {
+    compile project(':base:common')
+    compile project(':base:ddmlib')
+    compile project(':swt:ddmuilib')
+    compile project(':swt:sdkstats')
+    compile project(':swt:swtmenubar')
+}
+
+sdk {
+    linux {
+       item('etc/ddms') { executable true }
+    }
+    mac {
+       item('etc/ddms') { executable true }
+    }
+    windows {
+       item 'etc/ddms.bat'
+    }
+}
+
+
+// configure the manifest of the buildDistributionJar task.
+sdkJar.manifest.attributes("Main-Class": "com.android.ddms.Main")
+

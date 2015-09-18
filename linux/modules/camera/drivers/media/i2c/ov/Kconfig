@@ -1,0 +1,14 @@
+config VIDEO_OV
+       tristate "OV sensor support"
+       depends on I2C && VIDEO_V4L2
+       ---help---
+         This is a Video4Linux2 sensor-level driver for omnivision
+         SOC sensor.
+
+         It currently only works with the atomisp driver.
+
+config VIDEO_OV2685
+       bool "OV2685 sensor support"
+       depends on VIDEO_OV
+       ---help---
+         This is ov2685 specific data

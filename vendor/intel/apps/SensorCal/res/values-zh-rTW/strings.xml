@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"校準傳感器"</string>
+    <string name="compass_cal">"校準指南針"</string>
+    <string name="compass_cal_title">"校準您的指南針"</string>
+    <string name="compass_cal_start">"開始校準"</string>
+    <string name="compass_cal_intro" product="tablet">"校準您平板電腦上的指南針以得到最高精度的數據。將平板電腦以3維8字形晃動， 重複晃動操作直到彈出成功提示。
+            \n\n準備好了嗎？請點擊開始校準按鈕。"</string>
+    <string name="compass_cal_intro" product="default">"校準您手機上的指南針以得到最高精度的數據。將手機以3維8字形晃動， 重複晃動操作直到彈出成功提示。
+            \n\n準備好了嗎？請點擊開始校準按鈕。"</string>
+    <string name="compass_cal_alert_title">"結果"</string>
+    <string name="compass_cal_alert_ok_btn">"確定"</string>
+    <string name="compass_cal_alert_success">"校準成功!"</string>
+    <string name="gyroscope_cal">"校準陀螺儀"</string>
+    <string name="gyroscope_cal_intro" product="tablet">"把平板電腦放在桌子上，不要移動它。然後按開始校準按鈕來進行校準。"</string>
+    <string name="gyroscope_cal_intro" product="default">"把手機放在桌子上，不要移動它。然後按開始校準按鈕來進行校準。"</string>
+    <string name="gyroscope_cal_start">"開始校準"</string>
+    <string name="gyroscope_cal_alert_title">"結果"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"確定"</string>
+    <string name="gyroscope_cal_alert_success">"校準成功!"</string>
+    <string name="gyroscope_cal_alert_fail">"校準失敗!"</string>
+</resources>

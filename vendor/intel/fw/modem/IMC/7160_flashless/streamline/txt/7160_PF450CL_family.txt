@@ -1,0 +1,3 @@
+# Flex_ver is used for define the version number
+nvm:cal_prodparm.cust_parms.flex_ver="PF450CL_7160V1_3_1427_01_AT_T_OPERATOR"
+nvm:store_nvm_sync(cal_prodparm)

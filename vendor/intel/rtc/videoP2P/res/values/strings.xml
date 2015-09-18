@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2011 The WebRTC project authors. All Rights Reserved. -->
+<!--                                                                     -->
+<!-- Use of this source code is governed by a BSD-style license          -->
+<!-- that can be found in the LICENSE file in the root of the source     -->
+<!-- tree. An additional intellectual property rights grant can be found -->
+<!-- in the file PATENTS.  All contributing project authors may          -->
+<!-- be found in the AUTHORS file in the root of the source tree.        -->
+
+<resources>
+    
+    <string name="app_name">VideoP2P</string>
+    <string name="share">Share</string>
+    <string name="logout">Logout</string>
+    <string name="login">Login</string>
+    <string name="close">Close</string>
+    <string name="call">Call</string>
+    <string name="call_video_only">Video only call</string>
+    <string name="call_audio_only">Audio only call</string>    
+    <string name="hangup">Hang up</string>
+    <string name="save">Cancel</string>
+    <string name="cancel">Save</string>
+    <string name="start_record">Start Record</string>
+    <string name="video_res_min">Resolution Min</string>
+    <string name="video_res_max">Resolution Max</string>
+    <string name="video_fps_min">Frame Rate Min</string>
+    <string name="video_fps_max">Frame Rate Max</string>
+    <string name="video_aspect_ratio_min">Aspect Ratio Min</string>
+    <string name="video_aspect_ratio_max">Aspect Ratio Max</string>
+    <string name="video_codec">Video Codec</string>
+    <string name="audio_codec">Audio Codec</string>
+    <string name="video_bitrate">Video Bitrate</string>
+    <string name="audio_bitrate">Audio Bitrate</string>
+    <string name="no_connection">No Connection</string>
+</resources>

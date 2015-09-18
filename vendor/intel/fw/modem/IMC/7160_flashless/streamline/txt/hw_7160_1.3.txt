@@ -1,0 +1,4 @@
+#BZ169358 Add XMM7160 v1.3 features
+nvm:dyn_cps.r9_classmark_fields.otdoa_support=1
+nvm:dyn_cps.r9_classmark_fields.lpp_supported=1
+nvm:store_nvm_sync(dyn_cps)

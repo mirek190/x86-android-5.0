@@ -1,0 +1,4 @@
+# ZTE MF656A, MF668A, MF669
+TV= 0x19d2
+TP= 0x0124
+StandardEject=1

@@ -1,0 +1,3 @@
+# Disable enhanced cell ID
+nvm:dyn_cps.r9_classmark_fields.ecid_support = 0
+nvm:store_nvm_sync(dyn_cps)

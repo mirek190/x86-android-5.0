@@ -1,0 +1,147 @@
+# INTEL CONFIDENTIAL
+#
+# Copyright (C) 2010 - 2013 Intel Corporation.
+# All Rights Reserved.
+#
+# The source code contained or described herein and all documents
+# related to the source code ("Material") are owned by Intel Corporation
+# or licensors. Title to the Material remains with Intel
+# Corporation or its licensors. The Material contains trade
+# secrets and proprietary and confidential information of Intel or its
+# licensors. The Material is protected by worldwide copyright
+# and trade secret laws and treaty provisions. No part of the Material may
+# be used, copied, reproduced, modified, published, uploaded, posted,
+# transmitted, distributed, or disclosed in any way without Intel's prior
+# express written permission.
+#
+# No License under any patent, copyright, trade secret or other intellectual
+# property right is granted to or conferred upon you by disclosure or
+# delivery of the Materials, either expressly, by implication, inducement,
+# estoppel or otherwise. Any license under such intellectual property rights
+# must be express and approved by Intel in writing.
+
+# Makefile for FW generation
+# Assumes the following application dependent variables:
+
+# ISP_PRG		= simple_extension_isp_prg
+# $(ISP_PRG)_FILES	= extension.hive.c isp_proxy.hive.c
+# SYSTEM		= hive_isp_css_2400_system
+# SH_CSS_PKG_DIR        = $(HOME)/ccm_wa/hiveisp/icp/packages/sh_css_sw_20120907_1411_acc
+# PACKAGE               = build
+###############################################################################
+
+.PHONY: $(DIR_PREFIX)$(TARGETS)/gen_firmware.$(APPL)
+
+SYSTEM  ?= hive_isp_css_2400_system
+# avoid sharing intermediate files because the map.h files
+# differ between unsched and sched.
+NO_SHARE_INTERMEDIATES = 1
+
+METHOD ?= sched
+
+# required to select 64-bit rtl targets. i.e. lib.rtl64 rather than lib.rtl
+SIM_64BIT=true
+
+PWD = $(shell pwd)
+INSTALL_DIR ?= $(HIVE_CVSWORK)/$(UNAME)/host_$(SYSTEM)/
+CSS_DIR = $(SH_CSS_PKG_DIR)/$(FRAMEWORK)/css
+
+INTERFACE_DIR = $(CSS_DIR)/isp/modes/interface
+
+include $(CSS_DIR)/css_config.mk
+
+PROGRAMS = $(ISP_PRG)
+APPL     = $(ISP_PRG)
+
+
+# isp
+$(ISP_PRG)_CELL     = $(HIVEFLEX_ISP)
+ifneq "$(VERBOSE)" ""
+$(ISP_PRG)_CFLAGS  += -save-temps -verbose -html
+endif
+$(ISP_PRG)_LDFLAGS += -embed -pad-code
+$(ISP_PRG)_CPPFLAGS += -D__ACC
+$(ISP_PRG)_CPPFLAGS += -DSYSTEM=$(SYSTEM)
+$(ISP_PRG)_CPPFLAGS += -D__ISP
+$(ISP_PRG)_CPPFLAGS += -I$(HIVE_CVSWORK)/$(UNAME)/host/include
+$(ISP_PRG)_CPPFLAGS += -I$(HIVEISP)/host/include
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)
+$(ISP_PRG)_CPPFLAGS += -I$(SH_CSS_PKG_DIR)/build/css
+
+$(ISP_PRG)_CPPFLAGS += -I$(INTERFACE_DIR)
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/isp/modes/common
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_include
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_include/isp
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_include/stdint
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/$(DLI_SYSTEM)
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/$(DLI_SYSTEM)/isp
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_shared
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_shared/isp
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/base/circbuf/interface
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_kernel/pipeline
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/hive_isp_css_kernel/pipeline/isp
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/isp/kernels
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/runtime/binary/interface
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/runtime/frame/interface
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/runtime/isp_param/interface
+$(ISP_PRG)_CPPFLAGS += -I$(CSS_DIR)/runtime/dmaproxy/interface
+
+HIVE_OVERLOADING = 1
+CRUN_DYNAMIC_LINK_PROGRAMS = 1
+
+NO_HOST = 1
+
+include $(HIVEBIN)/../share/apps/hive_make.mk
+
+##### Firmware
+
+TARGETS = $(METHOD)
+
+firmware: $(METHOD) $(DIR_PREFIX)$(METHOD)/gen_firmware.$(APPL)
+	cd $(DIR_PREFIX)$(METHOD); \
+	./gen_firmware.$(APPL) $(APPL).bin ; \
+	mkdir -p $(INSTALL_DIR)/$(METHOD)/firmware ; \
+	$(INSTALL) $(APPL).bin $(INSTALL_DIR)/$(METHOD)/firmware
+
+$(DIR_PREFIX)$(METHOD)/gen_firmware.$(APPL): $(CSS_DIR)/isp/mk_firmware.h $(CSS_DIR)/isp/mk_firmware.c $(CSS_DIR)/isp/mk_firmware_isp.c
+	cd $(DIR_PREFIX)$(METHOD); \
+	$(CC) -g -m32 -o gen_firmware.$(APPL) \
+	  $(CSS_DIR)/isp/mk_firmware.c \
+	  $(CSS_DIR)/isp/mk_firmware_isp.c \
+	  $(CSS_DIR)/runtime/isp_param/src/isp_param.mk_fw.c \
+	  -DTARGET_$(METHOD) -DAPPL=$(APPL) -DCELL=$(HIVEFLEX_ISP) -D__ACC \
+	  -DSYSTEM_$(SYSTEM) \
+	  -DSYSTEM=$(SYSTEM) \
+	  -D__ACC \
+	  -I$(CSS_DIR) -I. -I.. \
+	  -I$(INTERFACE_DIR) \
+	  -I$(CSS_DIR)/runtime/binary/interface \
+	  -I$(CSS_DIR)/runtime/frame/interface \
+	  -I$(CSS_DIR)/base/circbuf/interface \
+	  -I$(CSS_DIR)/runtime/isp_param/interface \
+          -I$(SH_CSS_PKG_DIR)/include/css \
+	  -I$(HIVECORES)/$(HIVEFLEX_ISP)/hrt/include \
+	  -I$(HIVESYSTEMS)/$(SYSTEM)/hrt/include \
+	  -I$(HIVEBIN)/../include \
+	  -I$(HIVECORES)/../devices/$(RX)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(GDC)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(DMA)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IF)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IFBIN)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IFSW)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(ACQ)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(CAPT)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(ISYS)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IF)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IFBIN)/hrt/include \
+	  -I$(HIVECORES)/../devices/$(IFSW)/hrt/include \
+	  -I$(CSS_DIR)/hive_isp_css_include/stdint \
+	  -I$(CSS_DIR)/hive_isp_css_include \
+	  -I$(CSS_DIR)/hive_isp_css_include/host \
+	  -I$(CSS_DIR)/$(DLI_SYSTEM) \
+	  -I$(CSS_DIR)/$(DLI_SYSTEM)/host \
+	  -I$(CSS_DIR)/isp/kernels
+
+c_run:
+	$(MAKE) -f Makefile.fw crun METHOD=crun
+

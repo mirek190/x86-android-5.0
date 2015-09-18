@@ -1,0 +1,3 @@
+# Declare UE category 3
+nvm:dyn_cps.eutran_caps.ue_category=3
+nvm:store_nvm_sync(dyn_cps)

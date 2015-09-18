@@ -1,0 +1,3 @@
+#BZ143259 Disable CSD features
+nvm:fix_cps.csd_params.ms_mt_ds_supported=0
+nvm:store_nvm_sync(fix_cps)

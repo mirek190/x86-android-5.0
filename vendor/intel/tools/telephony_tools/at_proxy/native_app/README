@@ -1,0 +1,134 @@
+/*****************************************************************
+ * INTEL CONFIDENTIAL
+ * Copyright 2012 Intel Corporation All Rights Reserved.
+ * The source code contained or described herein and all documents
+ * related to the source code ("Material") are owned by Intel Corporation
+ * or its suppliers or licensors. Title to the Material remains with
+ * Intel Corporation or its suppliers and licensors. The Material contains
+ * trade secrets and proprietary and confidential information of Intel or
+ * its suppliers and licensors. The Material is protected by worldwide
+ * copyright and trade secret laws and treaty provisions. No part of the
+ * Material may be used, copied, reproduced, modified, published, uploaded,
+ * posted, transmitted, distributed, or disclosed in any way without Intel's
+ * prior express written permission.
+ *
+ * No license under any patent, copyright, trade secret or other intellectual
+ * property right is granted to or conferred upon you by disclosure or delivery
+ * of the Materials, either expressly, by implication, inducement, estoppel or
+ * otherwise. Any license under such intellectual property rights must be
+ * express and approved by Intel in writing.
+ */
+
+/*
+ * Copyright (C) 2012 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+
+File name:
+  README
+
+Version:
+  0.3 - 30 Aug 2012: USB issue fixed on at-proxy disabling.
+  0.2 - 21 Aug 2012: Jelly Bean version: remove Lexington platform, update
+                     Clovertrail platforms. Update current behaviors on JB.
+                     Update Win 7 issues also.
+  0.1 - 26 Apr 2012: Create first version of the document.
+
+Content:
+
+A - ENABLING / DISABLING AT-PROXY TOOL:
+---------------------------------------
+A.1 - On Provisioning OS (Droidboot OS):
+A.1.1 - From Android, switch to Provisioning OS by typing:
+        "adb reboot bootloader".
+A.1.2 - Then enable at-proxy by typing: "fastboot oem proxy start". This command
+        will return "Failed" answer: It's a known issue because this command
+        re-enumerate adb composite USB link (which is broken on re-enumeration).
+A.1.3 - Check your devices (with Windows device manager) you should see:
+        "Medfield Virtual COM port" enumerated (on linux, it's: /dev/ttyACM0).
+        If not, this is a Windows 7 drivers issue (see C.1.1).
+A.1.4 - If you want to flash modem after at-proxy enabling, first stop at-proxy,
+        by typing command: "fastboot oem proxy stop".
+A.1.5 - To switch again to Android OS after at-proxy use, type the command:
+        "fastboot continue".
+
+A.2 - On Main OS (Android OS):
+A.2.1 - On Android, it's preferable to first stop the ril-daemon (but it's not
+        mandatory) to avoid Android framework and at-proxy access to the modem
+        at the same time and disturb each other. Type the command:
+        "adb shell", then "stop ril-daemon". In a multi SIM device, you will
+        have to disable the instance of the RIL as well : "stop ril-daemon1"
+A.2.2 - Then start at-proxy in normal mode by typing:
+        "adb shell", then "setprop persist.system.at-proxy.mode 1"
+A.2.3 - at-proxy logs the at-commands and modem answers in: "/data/logs/logcat"
+        file.
+A.2.4 - An other mode is available on Android: "Tunnelling-like" mode. It's not
+        a real tunnelling mode because at-command are directly send to the modem
+        without filtering and processing, but through the MUX driver
+        (on /dev/ttygsm10). So user must be aware to use "at+xmux=" command
+        carefully to avoid breaking muxed communication between modem and MUX.
+        This mode also not logs at command in logcat.
+        Run at-proxy in this mode with following command:
+        "adb shell", then "setprop persist.system.at-proxy.mode 2"
+A.2.5 - To disable at-proxy, type:
+        "adb shell", then "setprop persist.system.at-proxy.mode 0".
+        Don't forget to enable ril-daemon (if disabled) by typing:
+        "start ril-daemon" and "start ril-daemon1" in multi SIM.
+
+B - USING AT-PROXY TOOL:
+------------------------
+B.1 - On Provisioning OS (Recovery OS / Droidboot OS):
+B.1.1 - Enable at-proxy tool with correct fastboot command (A.1.2).
+B.1.2 - at-proxy is working in "Tunnelling" mode, this means all received
+        at-commands are redirect to the modem through HSI Driver
+        (on /dev/ttyIFX0) without any filtering or processing.
+
+B.2 - On Main OS (Android OS):
+B.2.1 - Enable at-proxy tool with correct adb command.
+B.1.2 - at-proxy is working in "Normal" or "Tunnelling-like" mode, depending the
+        user choice, but in both mode at-commands are redirect to the modem
+        through MUX (on /dev/gsmtty10).
+
+B.3 - On all OS (Recovery OS / Droidboot OS / Android OS):
+B.3.1 - Open the COM port corresponding to "Medfield Virtual COM port", with
+        a terminal program (Tera Term, putty, Hyper-terminal...) with speed port
+        set to 115200 baud.
+B.3.2 - To enable echoing type on terminal: "ate1"+[CR] (typed command will
+        not appears until echoing is enabled). Modem will answer: "OK".
+B.3.3 - Then to check modem communication is correct, get the modem firmware
+        version by typing: "at+xgendata"+[CR]
+
+C - WINDOWS 7 USB ISSUES:
+-------------------------------
+C.1 - On all OS (Recovery OS / Droidboot OS / Android OS):
+C.1.1 - First check you have installed last INTEL USB drivers for Windows 7.
+        Last drivers install software could be found here:
+        http://jfumgbuild-depot.jf.intel.com/tools/USB_drivers/
+C.1.2 - In Device Manager: open "Universal Serial Bus Controllers" list
+C.1.3 - If INTEL Phone device is correctly detected, a "Linux gadget Device"
+        should appears. Other installed Windows devices should be:
+        "Medfield Virtual COM port", "RNDIS interface" and "Adb composite",
+        depending on which Intel Phone USB mode is set... If devices are not
+        correctly installed, follow instructions provides on C.1.1
+C.1.4 - Other know issues is Phone is not detected when using command:
+        "adb devices" (on Android OS) or "fastboot devices" (on Droidboot OS).
+        Issue surely comes from bad "adb" or "fastboot" binary use (Google
+        instead of Intel). Download and install PhoneFlashTool (or update it):
+        http://jfumgbuild-depot.jf.intel.com/tools/PhoneFlashTool/
+        Then open PhoneFlashTool install directory:
+        c:\Program Files (x86)\Intel\Phone Flash Tool
+        and use fastboot and adb binary instead Google SDK ones, or edit your
+        Windows environment variables to change PATH and include this directory.
+
+End of README file.

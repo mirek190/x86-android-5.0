@@ -1,0 +1,3 @@
+# Send location status to USIMAP only after completion of PLMN search.
+nvm:fix_cps.location_management.send_if_plmn_search_end=1
+nvm:store_nvm_sync(fix_cps)

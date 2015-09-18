@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="resources/" kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_OUT_FRAMEWORK/swt.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/sdkstats"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

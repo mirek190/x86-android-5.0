@@ -1,0 +1,61 @@
+// this applied only to swt/* projects
+subprojects { Project project ->
+    // only configure leaf projects.
+    if (!project.getSubprojects().isEmpty()) return
+
+    apply from: "$rootDir/buildSrc/base/baseJava.gradle"
+    apply plugin: 'sdk-java-lib'
+
+    version = rootProject.ext.baseVersion
+
+    // configuration for swt dependency since the packaged jar is platform dependent
+    // but at compile time we don't care. Also we don't want the artifact in the
+    // main repo, so use the provided configuration
+    configurations {
+        swt
+    }
+
+    dependencies{
+        swt "com.android.external.eclipse:swt:3.5.0"
+        compile 'com.android.external.eclipse:org-eclipse-jface:3.6.2'
+        testCompile "com.android.external.eclipse:swt:3.5.0"
+    }
+
+    // include swt for compilation
+    sourceSets.main.compileClasspath += configurations.swt
+}
+
+apply plugin: 'sdk-files'
+
+sdk {
+    linux {
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/linux-x86/swt/swt.jar") {
+            into 'lib/x86'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/linux-x86/swt/NOTICE"
+        }
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/linux-x86_64/swt/swt.jar") {
+            into 'lib/x86_64'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/linux-x86_64/swt/NOTICE"
+        }
+    }
+    mac {
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/darwin-x86/swt/swt.jar") {
+            into 'lib/x86'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/darwin-x86/swt/NOTICE"
+        }
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/darwin-x86_64/swt/swt.jar") {
+            into 'lib/x86_64'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/darwin-x86_64/swt/NOTICE"
+        }
+    }
+    windows {
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/windows/swt/swt.jar") {
+            into 'lib/x86'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/windows/swt/NOTICE"
+        }
+        item("$rootProject.projectDir.parentFile/prebuilts/tools/windows-x86_64/swt/swt.jar") {
+            into 'lib/x86_64'
+            notice "$rootProject.projectDir.parentFile/prebuilts/tools/windows-x86_64/swt/NOTICE"
+        }
+    }
+}

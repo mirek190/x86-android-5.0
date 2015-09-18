@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ddmlib"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ddmuilib"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,9 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item type="id" name="frc_layout" />
+    <item type="id" name="frc" />
+    <item type="id" name="frc_switcher" />
+    <item type="id" name="vpp" />
+    <item type="id" name="vpp_desc" />
+    <item type="id" name="vpp_switcher" />
+    <item type="id" name="divider" />
+</resources>

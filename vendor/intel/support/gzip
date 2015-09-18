@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# gzip "wrapper" for minigzip only for use with Kbuild.
+# gzip hack necessary to get the kernel to compress the
+# bzImage with minigzip instead of host gzip, so that the
+# newer verion of deflate algorithn inside zlib is used.
+# This is needed by OTA applypatch, which makes much larger
+# binary diffs of compressed data if the deflate versions
+# are out of alignment.
+
+minigzip -c -9

@@ -1,0 +1,22 @@
+Naming of the modem firmware files are very important.
+You must respect the following rules otherwise modem flashing
+will not work.
+
+Each firmware file must be named as:
+XMM_<MODEL>_REV<XX>_<YYYY>.<ZZ>_*_<IPC>_<MEMORY>.fls
+
+XX: revision of the modem (2 digits).
+YYYY: arbitrary fw version (given by modem vendor, 4 digits)
+ZZ: arbitrary fw version (given by modem vendor, 2 digits)
+IPC: MIPI or HSIC
+MEMORY: NAND or FLASHLESS
+
+Example for saltbay PR0 :
+XMM_7160_REV20_1317.01_4G_V2_PSV_HSIC_FLASHLESS.fls
+
+Example for saltbay PR1 :
+XMM_7160_REV30_1317.01_4G_V2_PSV_HSIC_FLASHLESS.fls
+
+Example for saltbay PR1.1 :
+XMM_7160_REV35_1317.01_4G_V2_PSV_HSIC_FLASHLESS.fls
+

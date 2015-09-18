@@ -1,0 +1,5 @@
+# Disable multislot for gprs / edge
+nvm:dyn_cps.dtm_multi_slot_classes.dtm_gprs_multi_slot_class=0
+nvm:dyn_cps.dtm_multi_slot_classes.dtm_egprs_multi_slot_class=0
+nvm:store_nvm_sync(dyn_cps)
+

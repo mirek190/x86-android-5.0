@@ -1,0 +1,8 @@
+# Philips TalkTalk (NXP Semiconductors "Dragonfly")
+
+TV=  0x0471
+TPList="1206,1234"
+
+MC="5553424312345678000000000000061b000000030000000000000000000000"
+NeedResponse=1
+

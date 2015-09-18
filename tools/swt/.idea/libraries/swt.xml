@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="swt">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../prebuilts/tools/$SWT_PLATFORM$/swt/swt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

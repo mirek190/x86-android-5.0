@@ -1,0 +1,3 @@
+# Coexistence - Flag that indicates if RT arbiter will be used: "1"- used / "0" - not used.
+nvm:cal_idc.rt_coex_params.use_rt_arbiter=0
+nvm:store_nvm_sync(cal_idc)

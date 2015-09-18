@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"센서 보정"</string>
+    <string name="compass_cal">"나침반 보정"</string>
+    <string name="compass_cal_title">"나침반을 보정합니다"</string>
+    <string name="compass_cal_start">"보정을 시작합니다"</string>
+    <string name="compass_cal_intro" product="tablet">"태블릿로 나침반 장치를 보정함으로써 가장 정확한 자료를 얻습니다. 차례차례 세 축 주위로 태블릿 회전합니다. 성공 메시지가 뜰 때까지 회전을 계속합니다.
+            \n\n준비되었나요? 보정시작 버튼을 누르세요." </string>
+    <string name="compass_cal_intro" product="default">"전화로 나침반 장치를 보정함으로써 가장 정확한 자료를 얻습니다. 차례차례 세 축 주위로 전화를 회전합니다. 성공 메시지가 뜰 때까지 회전을 계속합니다.
+            \n\n준비되었나요? 보정시작 버튼을 누르세요." </string>
+    <string name="compass_cal_alert_title">"결과"</string>
+    <string name="compass_cal_alert_ok_btn">"완료"</string>
+    <string name="compass_cal_alert_success">"보정 성공"</string>
+    <string name="gyroscope_cal">"자이로스코프 보정"</string>
+    <string name="gyroscope_cal_intro">"장치를 테이블에 놓고 움직이지 마세요. 다음 보정을 위해 보정시작 버튼을 누르세요."</string>
+    <string name="gyroscope_cal_start">"보정을 시작합니다"</string>
+    <string name="gyroscope_cal_alert_title">"결과"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"완료"</string>
+    <string name="gyroscope_cal_alert_success">"보정 성공"</string>
+    <string name="gyroscope_cal_alert_fail">"보정 실패"</string>
+</resources>

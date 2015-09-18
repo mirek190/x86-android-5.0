@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        layout="@layout/category_grid" />
+
+    <LinearLayout
+        android:id="@+id/scardinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundcolor"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/usage_info1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <TextView
+                    android:id="@+id/tv_internal_path"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dip" 
+                    android:layout_weight="1"
+                    android:text="@string/fm_title_internal" />
+
+                <TextView
+                    android:id="@+id/tv_total1"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_free1"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <ProgressBar
+                    android:id="@+id/pb_stroge_info1"
+                    style="@style/StorageProgressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:background="@drawable/drawable_progress0"
+                    android:max="100"
+                    android:progress="0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/usage_info2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dip" 
+                    android:layout_weight="1"
+                    android:text="@string/fm_title_external" />
+
+                <TextView
+                    android:id="@+id/tv_total2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_free2"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <ProgressBar
+                    android:id="@+id/pb_stroge_info2"
+                    style="@style/StorageProgressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:background="@drawable/drawable_progress0"
+                    android:max="100"
+                    android:progress="0" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/usage_info3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dip"
+                    android:layout_weight="1"
+                    android:text="@string/fm_title_external2" />
+
+                <TextView
+                    android:id="@+id/tv_total3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_free3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/paddingbottom" >
+
+                <ProgressBar
+                    android:id="@+id/pb_stroge_info3"
+                    style="@style/StorageProgressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:background="@drawable/drawable_progress0"
+                    android:max="100"
+                    android:progress="0" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

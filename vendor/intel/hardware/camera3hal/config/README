@@ -1,0 +1,13 @@
+This folders contains the configure files for camera HAL.
+
+GMIN:
+	baytrail/ecs_e7/camera3_profiles.xml
+	baytrail/fxn_anchor8/camera3_profiles.xml
+	sofia3g/Sf3g_mrd0_p0/camera3_profiles.xml
+
+IMIN_LEGACY:
+	baytrail/byt_t_ffrd8/camera3_profiles.xml
+	baytrail/byt_t_crv2/camera3_profiles.xml
+	baytrail/anzhen4_mrd8/camera3_profiles.xml
+	baytrail/anzhen4_mrd7/camera3_profiles.xml
+	merrifield/saltbay/camera3_profiles.xml

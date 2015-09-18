@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"Calibrar o sensor"</string>
+    <string name="compass_cal">"Calibrar a bússola"</string>
+    <string name="compass_cal_title">"Calibrar sua bússola"</string>
+    <string name="compass_cal_start">"Iniciar calibração"</string>
+    <string name="compass_cal_intro" product="tablet">"Obtenha maior precisão da calibração da bússola do seu tablet. Gire o tablet em torno dos 3 eixos dimensionais. Repita este procedimento até que a caixa de mensagem sucesso apareça.
+            \n\nPronto para iniciar? Pressione o botão Iniciar calibração"</string>
+    <string name="compass_cal_intro" product="default">"Obtenha maior precisão da calibração da bússola do seu celular (tele móvel). Gire o telefone em torno dos 3 eixos dimensionais. Repita este procedimento até que a caixa de mensagem sucesso apareça.
+            \n\nPronto para iniciar? Pressione o botão Iniciar calibração"</string>
+    <string name="compass_cal_alert_title">"Resultado"</string>
+    <string name="compass_cal_alert_ok_btn">OK</string>
+    <string name="compass_cal_alert_success">"Calibração bem sucedida"</string>
+    <string name="gyroscope_cal">"Calibrar o giroscópio"</string>
+    <string name="gyroscope_cal_intro">"Coloque o aparelho sobre uma mesa e após não o mova. Pressione o botão iniciar calibração para fazer a calibração."</string>
+    <string name="gyroscope_cal_start">"Iniciar calibração"</string>
+    <string name="gyroscope_cal_alert_title">"Resultado"</string>
+    <string name="gyroscope_cal_alert_ok_btn">OK</string>
+    <string name="gyroscope_cal_alert_success">"Calibração bem sucedida"</string>
+    <string name="gyroscope_cal_alert_fail">"Falha na calibração"</string>
+</resources>

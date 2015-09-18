@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">ATProxy</string>
+    <string name="dbpath_contacts">/data/data/com.android.providers.contacts/databases</string>
+    <string name="dbname_contacts">contacts2.db</string>
+
+    <string name="dbpath_calendar">/data/data/com.android.providers.calendar/databases</string>
+    <string name="dbname_calendar">calendar.db</string>
+
+    <string name="uri_alarm">content://com.android.deskclock/alarms</string>
+
+    <string name="pkg_countdown">com.android.deskclock</string>
+
+
+    <string name="durationformat"><xliff:g id="hours" example="3">%02d</xliff:g>:<xliff:g id="minutes" example="42">%02d</xliff:g>:<xliff:g id="seconds" example="28">%02d</xliff:g></string>
+    <string name="timeformat"><xliff:g id="hours" example="3">%02d</xliff:g>:<xliff:g id="minutes" example="42">%02d</xliff:g></string>
+
+</resources>

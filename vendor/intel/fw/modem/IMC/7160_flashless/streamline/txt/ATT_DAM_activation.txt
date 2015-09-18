@@ -1,0 +1,3 @@
+# Activate DAM feature for ATT
+nvm:dyn_cps.dam.support=1
+nvm:store_nvm_sync(dyn_cps)

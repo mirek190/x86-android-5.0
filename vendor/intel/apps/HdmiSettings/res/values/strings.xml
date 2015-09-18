@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+ * Copyright © 2012 Intel Corporation
+ * All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice (including the next
+ * paragraph) shall be included in all copies or substantial portions of the
+ * Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
+ *
+ * Authors:
+ *    Lin A Jia <lin.a.jia@intel.com>
+ *
+ */
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Hdmi Settings screen heading-->
+    <string name="hdmi_settings_title">HDMI</string>
+
+    <!-- HDMI Setting -->
+    <string name="hdmi_settings">HDMI</string>
+    <!-- HDMI Setting, hdmi status options-->
+    <string name="hdmi_status_title">HDMI Status</string>
+    <string name="hdmi_status_summary_on">HDMI Connected</string>
+    <string name="hdmi_status_summary_off">HDMI Disconnected</string>
+    <!-- HDMI Setting, mode setting options-->
+    <string name="hdmi_mode_title">Modes</string>
+    <string name="hdmi_mode_summary">Adjust HDMI Display Mode</string>
+    <!-- HDMI Setting, scale mode options-->
+    <string name="hdmi_scale_title">Scale Modes</string>
+    <string name="hdmi_scale_summary">Adjust HDMI Display Scale Mode</string>
+    <!-- HDMI Setting, scale adjustment options-->
+    <string name="hdmi_overscan_title">Overscan Compensation</string>
+    <string name="hdmi_overscan_summary">Adjust HDMI Display Screen</string>
+    <!-- HDMI Settings, ratio control text-->
+    <string name="vertical">Vertical</string>
+    <string name="horizontal">Horizontal</string>
+
+</resources>
+

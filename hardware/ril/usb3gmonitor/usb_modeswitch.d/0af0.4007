@@ -1,0 +1,8 @@
+# Option iCon 711
+
+TV=  0x0af0
+TP= 0x4005
+
+SierraMode=1
+
+NoDriverLoading=1

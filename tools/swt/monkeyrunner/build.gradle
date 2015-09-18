@@ -1,0 +1,37 @@
+group = 'com.android.tools'
+archivesBaseName = 'monkeyrunner'
+
+dependencies {
+    compile project(':base:common')
+    compile project(':base:sdklib')
+    compile project(':base:ddmlib')
+    compile project(':swt:chimpchat')
+    compile project(':swt:hierarchyviewer2lib')
+
+    // Specific prebuilts and external libs used by mr.
+    compile 'com.google.jsilver:jsilver:1.0.0'
+    compile 'org.python:jython-standalone:2.5.3'
+
+    testCompile 'junit:junit:3.8.1'
+}
+
+sourceSets {
+    main.resources.srcDir 'src/main/java'
+    test.resources.srcDir 'src/test/java'
+}
+
+sdk {
+    linux {
+       item('etc/monkeyrunner')  { executable true }
+    }
+    mac {
+       item('etc/monkeyrunner')  { executable true }
+    }
+    windows {
+       item 'etc/monkeyrunner.bat'
+    }
+}
+
+// configure the manifest of the buildDistributionJar task.
+sdkJar.manifest.attributes("Main-Class": "com.android.monkeyrunner.MonkeyRunnerStarter")
+

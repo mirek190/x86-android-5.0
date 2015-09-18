@@ -1,0 +1,4 @@
+# Configure RAT switch when LA/RA update reject with cause 15.
+# ADAPT specific
+nvm:fix_cps.mm.rat_switch_cause_15=0
+nvm:store_nvm_sync(fix_cps)

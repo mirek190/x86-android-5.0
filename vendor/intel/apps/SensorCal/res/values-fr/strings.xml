@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"Calibration du détecteur"</string>
+    <string name="compass_cal">"Calibration de la boussole"</string>
+    <string name="compass_cal_title">"Calibrer votre boussole"</string>
+    <string name="compass_cal_start">"Démarrer la calibration"</string>
+    <string name="compass_cal_intro" product="tablet">"Calibrer la boussole sur votre tablette pour avoir plus de précision des données de la boussole. Tournez le tablette autour des 3 axes, un axe après  l’autre. Répéter la rotation jusqu’à l’apparition du message de succès.
+            \n\nPrêt pour démarrer? Touchez le bouton « démarrage calibration »." </string>
+    <string name="compass_cal_intro" product="default">"Calibrer la boussole sur votre téléphone pour avoir plus de précision des données de la boussole. Tournez le téléphone autour des 3 axes, un axe après  l’autre. Répéter la rotation jusqu’à l’apparition du message de succès.
+            \n\nPrêt pour démarrer? Touchez le bouton « démarrage calibration »." </string>
+    <string name="compass_cal_alert_title">"Résultat"</string>
+    <string name="compass_cal_alert_ok_btn">"Bien"</string>
+    <string name="compass_cal_alert_success">"Calibration réussie!"</string>
+    <string name="gyroscope_cal">"Calibration du gyroscope"</string>
+    <string name="gyroscope_cal_intro">"Poser l’appareil sur la table sans le bouger. Appuyez ensuite le bouton « démarrage calibration » pour faire la calibration."</string>
+    <string name="gyroscope_cal_start">"Démarrer la calibration"</string>
+    <string name="gyroscope_cal_alert_title">"Résultat"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"Bien"</string>
+    <string name="gyroscope_cal_alert_success">"Calibration réussie!"</string>
+    <string name="gyroscope_cal_alert_fail">"Echec calibration!"</string>
+</resources>

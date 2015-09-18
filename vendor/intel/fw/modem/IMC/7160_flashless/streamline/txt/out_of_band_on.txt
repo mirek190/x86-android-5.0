@@ -1,0 +1,2 @@
+# Enable out of band signaling
+usbmwtestfw:usb_profile_set_nvm_configuration(USBPOW_ID_HSIC,"2ACM;5NCM","HSIC_ENUM_AUX;NO_REMOTE_WAKEUP;CDC_ACM_NOTIF=0",0x0000,"0000",0x0000,"0000")

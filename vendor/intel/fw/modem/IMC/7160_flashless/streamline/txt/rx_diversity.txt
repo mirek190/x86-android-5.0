@@ -1,0 +1,7 @@
+# Enable Rx Diversity
+nvm:fix_cps.darp.u8DARP=1
+nvm:fix_cps.darp.u8RxDiv3G=1
+nvm:fix_cps.darp.u8CtrlMode2G=0
+nvm:fix_cps.darp.u8CtrlMode3G=1
+nvm:fix_cps.darp.u8NwReporting=1
+nvm:store_nvm_sync(fix_cps)

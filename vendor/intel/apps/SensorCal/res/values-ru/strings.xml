@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"Сенсор калибровка"</string>
+    <string name="compass_cal">"Компас калибровка"</string>
+    <string name="compass_cal_title">"Калибровать компас"</string>
+    <string name="compass_cal_start">"Пуск калибровка"</string>
+    <string name="compass_cal_intro" product="tablet">"Получить наиболее точные данные компаса путем калибровки компаса устройство по планшетном ПК. Поверните планшетном ПК по 3 осям, в свою очередь. Повторите вращение до диалоговом успех сообщение выскакивает.
+            \n\nГотовый? Нажмите начинать калибровка кнопка."</string>
+    <string name="compass_cal_intro" product="default">"Получить наиболее точные данные компаса путем калибровки компаса устройство по телефон. Поверните телефон по 3 осям, в свою очередь. Повторите вращение до диалоговом успех сообщение выскакивает.
+            \n\nГотовый? Нажмите начинать калибровка кнопка."</string>
+    <string name="compass_cal_alert_title">"Результат"</string>
+    <string name="compass_cal_alert_ok_btn">"ОК"</string>
+    <string name="compass_cal_alert_success">"Успешный калибровка!"</string>
+    <string name="gyroscope_cal">"Гироскоп калибровка"</string>
+    <string name="gyroscope_cal_intro" product="tablet">"Положите (твой) планшетном ПК на столе и не перемещать. Тогда нажимать начинать калибровка кнопка. Пуск калибровка."</string>
+    <string name="gyroscope_cal_intro" product="default">"Положите (твой) телефон на столе и не перемещать. Тогда нажимать начинать калибровка кнопка. Пуск калибровка."</string>
+    <string name="gyroscope_cal_start">"Пуск калибровка"</string>
+    <string name="gyroscope_cal_alert_title">"Результат"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"ОК"</string>
+    <string name="gyroscope_cal_alert_success">"Успешный калибровка!"</string>
+    <string name="gyroscope_cal_alert_fail">"Неудачный калибровка!"</string>
+
+</resources>

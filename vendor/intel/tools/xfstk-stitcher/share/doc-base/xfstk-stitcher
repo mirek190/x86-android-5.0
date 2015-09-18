@@ -1,0 +1,10 @@
+Document: xfstk-stitcher
+Title: xfstk-stitcher Manual
+Abstract: This manual describes what xfstk-stitcher 
+ is and how it can be used to
+ generate firmware for Intel(R) SoC products.
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/xfstk-stitcher/html/index.html
+Files: /usr/share/doc/xfstk-stitcher/html/*.html

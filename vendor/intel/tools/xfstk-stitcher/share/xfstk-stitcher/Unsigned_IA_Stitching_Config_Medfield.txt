@@ -1,0 +1,26 @@
+' Penwell Example Config file
+' This file provides stitching settings.
+'************ Settings Section ***********************************************
+PlatformType = MFDD1
+'ImageType values are FWUSB
+ImageType = FWUSB
+'ImageName is the Output Filename 
+ImageName = ./Unsigned_IA_Firmware.bin
+
+'************ IA Firmware Files Section **************************************
+x86 FW Boot = ./FW_Components/IA32FW_v00.5Ca_ppv.bin
+Spectra-FTL = ./FW_Components/IA32FWSupp_v00.5Ca_ppv.bin
+Validation Hooks = ./FW_Components/OemHooks_patchdb_medfield_ppv.bin
+
+'************ Signed SCU and Punit *******************************************
+Intel Signed FW = ./FW_Components/ScuPunit_Signed.bin
+
+'*********** Signed Video Encode/Decode Firmware (VED FW) ********************
+SIGNED_VED_FW = ./FW_Components/Signed_MTX_FW.13.13_CRAK.bin
+
+'********** Signed Security Firmware *****************************************
+ICache_Image = ./FW_Components/Signed_iCache_C0_830.bin
+Resident_Image = ./FW_Components/Signed_Resident_C0_830.bin
+Extended_FW = ./FW_Components/Signed_extapp_C0D0_861.bin
+
+' End of file

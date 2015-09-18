@@ -1,0 +1,3 @@
+# CAT Auto Response: ATT requirement for FF in BZ 184613.
+nvm:dyn_uta_3.data[59] = 1
+nvm:store_nvm_sync(dyn_uta_3)

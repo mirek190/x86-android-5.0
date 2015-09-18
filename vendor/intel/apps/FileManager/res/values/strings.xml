@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="description">File Manager can help you to browse and manage all kinds of files. \n
+Clean and friendly user interface, easy to use functions, make sure it to be an essential resources manage tool.
+    </string>
+    <string name="file_info_last_modified_label">Last modified:</string>
+    <string name="file_info_name_label">Name:</string>
+    <string name="max_input_reached">Max input characters has reached</string>
+    <string name="create_shortcut">Folder shortcut</string>
+    <string name="create_shortcut_not_exist">Folder not exist</string>
+    <string name="file_info_path_label">Location:</string>
+    <string name="file_info_size_label">Size:</string>
+    <string name="file_info_ext_type">Type:</string>
+    <string name="file_info_contain_folders">Contains folders:</string>
+    <string name="file_info_contain_files">Contains files:</string>
+    <string name="file_info_folder_property">Folder Properties</string>
+    <string name="file_info_file_property">File Properties</string>
+    <string name="fm_directory_title">SD Card</string>
+    <string name="fm_title_title">File Manager</string>
+    <string name="fm_title_internal">SD Card 1</string>
+    <string name="fm_title_external">SD Card 2 </string>
+    <string name="fm_title_external2">SD Card 3</string>
+    <string name="fm_app_label">File Manager</string>
+    <string name="picker_button_choose">Select current</string>
+    <string name="picker_button_save">Save</string>
+    <string name="picker_button_discard">Discard</string>
+    <string name="fm_multi_select">Select file(folder)</string>
+    <string name="fm_options_delete">Delete</string>
+    <string name="fm_options_multi_share">Share</string>
+    <string name="fm_options_new">New folder</string>
+    <string name="fm_options_order">Sort by</string>
+    <string name="fm_options_order_size">Size</string>
+    <string name="fm_options_order_type">Type</string>
+    <string name="fm_options_order_time">Time</string>
+    <string name="fm_options_order_name">Name</string>
+    <string name="fm_options_copy">Copy</string>
+    <string name="fm_options_cut">Cut</string>
+    <string name="fm_options_property">Property</string>
+    <string name="fm_save_saveas">Save as:</string>
+    <string name="fm_save_tmp">Temp</string>
+    <string name="fm_move_moveto">Move to</string>
+    <string name="fm_share_no_way_to_share">No way to share this file</string>
+    <string name="fm_paste_folder_already_exist">Same name folder already exists</string>
+    <string name="fm_paste_file_already_exist">Same name file already exists</string>
+    <string name="fm_operate_over">Operation finished</string>
+    <string name="fm_input_name_first">Input name firstly</string>
+    <string name="fm_cannot_open_file">Can not open this file</string>
+    <string name="fm_name_invalid_name">File name is invalid, please reinput.</string>
+    <string name="fm_name_invalid_name_file">File name is invalid, please reinput.</string>
+    <string name="fm_name_invalid_name_folder">Folder name is invalid, please reinput.</string>
+    <string name="fm_name_invalid_head_file">File name must start with character or
+       digital number, please reinput.</string>
+    <string name="fm_name_invalid_head_folder">Folder name must start with character or
+       digital number, please reinput.</string>
+    <string name="wallpaper_set_error">Set %s as wallpaper failed</string>
+    <string name="infor_detail_phone">Phone</string>
+    <string name="infor_detail_sd">Storage Card</string>
+    <string name="sdcard_unmount">SD Card unavailable or not present</string>
+    <string name="fm_op_title_paste">Pasting</string>
+    <string name="fm_op_title_zip">Zip</string>
+    <string name="fm_op_title_unzip">Unzip</string>
+    <string name="fm_op_title_delete">Delete</string>
+    <string name="fm_op_select_empty">Please pick file firstly</string>
+    <string name="fm_op_open_fail">No application can open this file</string>
+    <string name="fm_sdcard_ext_no_operation">sdcard_ext is external card root path, operation cancel!</string>
+    <string name="file_infor">File Information</string>
+    <string name="op_file_not_exist">File %s not exists</string>
+    <string name="op_no_enough_space">No enough space, please delete some files</string>
+    <string name="op_file_exists">Same name file already exists, overwrite?</string>
+    <string name="op_file_srcequaldes">Source path equals with target</string>
+    <string name="op_file_overwrite">Overwrite</string>
+    <string name="yn_dialog_title">Make a choice</string>
+    <string name="unspt_dialog_title">Name Invalid</string>
+    <string name="confirm_dialog_title">Error</string>
+    <string name="fm_ringtone_setting_error">Set %s as ringtone failed!Unsupported type.</string>
+    <string name="error_sd_readonly">Storage card read-only, please check</string>
+    <string name="text_dialog_zip">Zip to</string>
+    <string name="text_dialog_rename">Rename to</string>
+    <string name="text_contain_unacceptable_char_file">File name should not contain" \\ / : *
+       &lt; > ? | \" "  \';</string>
+    <string name="text_contain_unacceptable_char_folder">Folder name should not contain" \\ / : *
+       &lt; > ? | \" "  \';</string>
+    <string name="dialog_delete_confirm">Delete %s?</string>
+    <string name="dialog_mult_delete_confirm">Delete the selected file(s)?</string>
+    <string name="processing_zipfile">Zip file %s</string>
+    <string name="op_error_no_dir">Can not make dir %s</string>
+    <string name="op_filename_too_long">The file or folder name is too long, please reinput</string>
+    <string name="text_contain_unacceptable_char">File or folder name should not contain" \\ / : *
+       &lt; > ? | \" "  \';</string>
+    <string name="fm_name_invalid_head">File or folder name must start with character or
+       digital number, please reinput.</string>    
+    <string name="op_filename_too_long_file">The file name is too long, please reinput</string>
+    <string name="op_filename_too_long_folder">The folder name is too long, please reinput</string>
+    <string name="op_search_app">Search application</string>
+    <string name="op_open_app">Application is loading the resource,please wait...</string>
+    <string name="op_uri_error">URI error.</string>
+    <string name="op_permission_deny">No permission to open this file</string>
+    <string name="op_no_space">OK</string>
+    <string name="op_read_zip_error">Read zip file error</string>
+    <string name="file_unwrite">File %s is read-only, cannot delete</string>
+    <string name="no_file">No files</string>
+    <string name="sdcard_missing_message">No Storage Card</string>
+    <string name="sdcard_busy_message">Storage card is busy</string>
+    <string name="bt_trans">Bluetooth transfer</string>
+    <string name="bt_select_invalid">The folders could not be shared</string>
+
+    <string name="external_card">External Storage Card</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+    <string name="enter_filename">Please enter file name:</string>
+    <string name="enter_foldername">Please enter folder name:</string>
+
+    <string name="sd_rootpath">SDcard root path !</string>
+    <string name="image">Pictures\n(<xliff:g id="count" >%d</xliff:g>)</string>
+    <string name="video">Videos\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="audio">Music\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="app">Installed Apps\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="book">Books\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="fav">Favorites\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="apk">Apks\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="doc">Documents\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="arc">Archives\n(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="no_image">No pictures</string>
+    <string name="no_video">No videos</string>
+    <string name="no_audio">No music</string>
+    <string name="no_app">No installed applications</string>
+    <string name="no_book">No books</string>
+    <string name="no_fav">No favorites</string>
+    <string name="no_apk">No apks</string>
+    <string name="no_doc">No documents</string>
+    <string name="no_arc">No archives</string>
+    <string name="operation_copy">Copy</string>
+    <string name="operation_cut">Cut</string>
+    <string name="operation_delete">Delete</string>
+    <string name="operation_share">Share</string>
+    <string name="operation_property">Property</string>
+    <string name="operation_rename">Rename</string>
+    <string name="operation_zip">Compress</string>
+    <string name="operation_unzip">Decompress</string>
+    <string name="operation_set_wallpaper">Set wallpaper</string>
+    <string name="operation_set_ringtone">Set ringtone</string>
+    <string name="operation_fav_add">Add favorite</string>
+    <string name="operation_fav_remove">Remove favorite</string>
+    <string name="operation_uninstall">Uninstall</string>
+    <string name="operation_open_path">Open directory</string>
+    <string name="operation_more">More</string>
+    <string name="operation_app_info">App info</string>
+    <string name="tab_title_categroy">Category</string>
+    <string name="tab_title_file">Directory</string>
+    <string name="storege_total">Total:</string>
+    <string name="storege_free">Free:</string>
+    <string name="add_fav_success">Added into favorite successfully</string>
+    <string name="del_fav_success">Removed from favorite successfully</string>
+    <string name="set_ringtone_success">Set ringtone successfully</string>
+    <string name="title_set_ringtone">Set Ringtone</string>
+
+    <string-array name="ringtone_type">
+        <item>Set as alarm ringtone</item>
+        <item>Set as phone ringtone</item>
+        <item>Set as notification</item>
+    </string-array>
+    
+    <string name="error_file_not_exist">File not exist</string>
+    <string name="enable_show_hiddenfile">Hidden files</string>
+    <string name="enable_show_hiddenfile_summary">Show the hidden files(folders)</string>
+    <string name="fm_options_settings">Settings</string>
+    <string name="launch_app_error">The application can not be launched</string>
+    
+    <string name="dialog_title_unzip">Decompress the file</string>
+    <string name="dialog_msg_unzip">Decompress the file under the path of the file</string>
+</resources>
+

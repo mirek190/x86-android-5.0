@@ -1,0 +1,10 @@
+EVENT=CRASH
+ID=8c96c6e1f8a84e219e90
+SN=Medfield89F2EECE
+DATE=2010-03-27/08:46:20  
+UPTIME=0002:27:55
+BUILD=main-weekly-637,intel/redhookbay/redhookbay:4.2.2/JDQ39/main-weekly-637:userdebug/dev-keys,3.4.21-184026-g66db354,buildbot@umgsw-1-build5,CLV_6360_MODEM_01.1309.J,F9.4A,00.3A,20.1C,A0.38,00.45
+BOARD=redhookbay
+IMEI=004402520044474
+TYPE=HPROF
+_END

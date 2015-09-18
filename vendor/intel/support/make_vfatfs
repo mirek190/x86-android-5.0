@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+if [ $# -lt 4 ]
+then
+    echo "Usage: "$(basename $0)" VOL_NAME IMG_FILE IMG_SIZE IN_DIR"
+    echo "IMG_SIZE must be expressed in Megabyte"
+    exit -1
+fi
+
+# Some distributions put tools like mkdosfs in sbin, which isn't
+# always in the default PATH
+PATH="${PATH}:/sbin:/usr/sbin"
+
+VOL_NAME=$1
+IMG_FILE=$2
+IMG_SIZE=$3
+IN_DIR=$4
+
+# create filesystem image
+rm -f $IMG_FILE
+echo "Create FAT filesystem of size $IMG_SIZE"
+mkdosfs -F 32 -n $VOL_NAME -C $IMG_FILE $(($IMG_SIZE * 1024))
+
+for f in $IN_DIR/*; do
+    echo "Copying $f"
+    mcopy -s -Q -i $IMG_FILE $f ::$(basename $f)
+done

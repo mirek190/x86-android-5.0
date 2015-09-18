@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="sensor_cal">"کالیبراسیون سنسور"</string>
+    <string name="compass_cal">"کالیبراسیون قطب نما"</string>
+    <string name="compass_cal_title">"قطب نما را کالیبره کنید"</string>
+    <string name="compass_cal_start">"شروع کالیبراسیون"</string>
+    <string name="compass_cal_intro">"اطلاعات دقیق تر قطب نما را دریافت کنید با کالیبره کردن دستگاه قطب نما بر روی موبایل. موبایل را در اطراف 3 محور به نوبه خود چرخ دهید. چرخش را تکرار کنید تا وقت که پیام موفقیت ماهواره یی در یافت گردد.
+	    \n\nیا آمادگی تمام شد؟ ..دکمه آغاز کالیبراسیون را لمس کنید."</string>
+    <string name="compass_cal_alert_title">"نتیجه"</string>
+    <string name="compass_cal_alert_ok_btn">"OK"</string>
+    <string name="compass_cal_alert_success">"کالیبراسیون با موفقیت انجام شد!"</string>
+    <string name="gyroscope_cal">"کالیبراسیون ژیروسکوپ"</string>
+    <string name="gyroscope_cal_intro">"دستگاه را بر روی یک میز قرار دهید بدون اینکه آنرا حرکت بدهید. بعداً دکمه شروع را فشار دهید تا کالیبراسیون صورت بگیرد."</string>
+    <string name="gyroscope_cal_start">"شروع کالیبراسیون"</string>
+    <string name="gyroscope_cal_alert_title">"نتیجه"</string>
+    <string name="gyroscope_cal_alert_ok_btn">"OK"</string>
+    <string name="gyroscope_cal_alert_success">"کالیبراسیون با موفقیت انجام شد!"</string>
+    <string name="gyroscope_cal_alert_fail">"کالیبراسیون نا موفق بود!"</string>
+</resources>

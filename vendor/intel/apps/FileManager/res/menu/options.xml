@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_new"
+        android:alphabeticShortcut="n"
+        android:title="@string/fm_options_new"
+        android:showAsAction="never"
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_property"
+        android:alphabeticShortcut="o"
+        android:title="@string/fm_options_property"
+        android:showAsAction="never" 
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_order"
+        android:alphabeticShortcut="o"
+        android:showAsAction="never"
+        android:title="@string/fm_options_order"
+        android:visible="false">
+        <menu>
+            <group android:checkableBehavior="single" >
+                <item
+                    android:id="@+id/action_order_by_name"
+                    android:icon="@drawable/file_icon_unkonwn"
+                    android:showAsAction="never"
+                    android:title="@string/fm_options_order_name"/>
+                <item
+                    android:id="@+id/action_order_by_size"
+                    android:icon="@drawable/file_icon_unkonwn"
+                    android:showAsAction="never"
+                    android:title="@string/fm_options_order_size"/>
+                <item
+                    android:id="@+id/action_order_by_time"
+                    android:icon="@drawable/file_icon_unkonwn"
+                    android:showAsAction="never"
+                    android:title="@string/fm_options_order_time"/>
+                <item
+                    android:id="@+id/action_order_by_type"
+                    android:icon="@drawable/file_icon_unkonwn"
+                    android:showAsAction="never"
+                    android:title="@string/fm_options_order_type"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:id="@+id/action_fav"
+        android:alphabeticShortcut="f"
+        android:title="@string/operation_fav_add"
+        android:showAsAction="never" 
+        android:visible="false"/>
+    <item
+        android:id="@+id/action_setting"
+        android:showAsAction="never"
+        android:title="@string/fm_options_settings"
+        android:visible="true"/>
+</menu>

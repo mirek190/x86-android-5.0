@@ -1,0 +1,5 @@
+# Configure MM to sends the signal GMMREG_CS_ATTACH_IND indicating the CS registration status
+# before GMMREG_ATTACH_CNF/GMMREG_ATTACH_REJ
+# ADAPT specific
+nvm:fix_cps.mm.cs_attach_ind=1
+nvm:store_nvm_sync(fix_cps)

@@ -1,0 +1,3 @@
+#114626 AGPS_blanking timing needs to be set to the max
+nvm:fix_2g_drv.mixed_fix.agps_settings.pa_blanking_adv_in_ticks=514
+nvm:store_nvm_sync(fix_2g_drv)

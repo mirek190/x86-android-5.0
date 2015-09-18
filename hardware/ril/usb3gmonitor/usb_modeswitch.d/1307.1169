@@ -1,0 +1,8 @@
+# Cisco AM10 "Valet Connector"
+
+TV=  0x13b1
+TP= 0x0031
+
+CiscoMode=1
+NoDriverLoading=1
+

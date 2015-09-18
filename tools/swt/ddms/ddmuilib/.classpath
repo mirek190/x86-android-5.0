@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ddmlib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/com/android/external/eclipse/org-eclipse-core-commands/3.6.0/org-eclipse-core-commands-3.6.0.jar"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/com/android/external/eclipse/org-eclipse-equinox-common/3.6.0/org-eclipse-equinox-common-3.6.0.jar"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/com/android/external/eclipse/org-eclipse-jface/3.6.2/org-eclipse-jface-3.6.2.jar"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jfreechart/1.0.9/jfreechart-1.0.9.jar" sourcepath="/ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jfreechart/1.0.9/jfreechart-1.0.9-sources.jar"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jfreechart-swt/1.0.9/jfreechart-swt-1.0.9.jar" sourcepath="/ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jfreechart-swt/1.0.9/jfreechart-swt-1.0.9-sources.jar"/>
+	<classpathentry exported="true" kind="var" path="ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jcommon/1.0.12/jcommon-1.0.12.jar" sourcepath="/ANDROID_SRC/prebuilts/tools/common/m2/repository/jfree/jcommon/1.0.12/jcommon-1.0.12-sources.jar"/>
+	<classpathentry kind="var" path="ANDROID_SRC/prebuilts/tools/linux-x86/swt/swt.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

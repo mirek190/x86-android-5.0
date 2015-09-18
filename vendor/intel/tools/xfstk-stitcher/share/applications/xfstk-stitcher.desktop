@@ -1,0 +1,17 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=xfstk-stitcher
+GenericName=xfstk-stitcher
+Comment=Intel cross platform firmware & software tool.
+Exec=/usr/bin/xfstk-stitcher-ui
+Icon=/usr/share/pixmaps/xfstk-stitcher-48x48.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=
+Name[en_US]=xfstk-stitcher
+GenericName[en_US.utf8]=xfstk-stitcher
+

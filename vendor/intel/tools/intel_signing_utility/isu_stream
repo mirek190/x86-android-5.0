@@ -1,0 +1,130 @@
+#!/usr/bin/env python
+
+# This script reads from stdin an image hash and size and writes to stdout the
+# VRL header computed by isu.
+
+import os
+import sys
+import tempfile
+import shutil
+import subprocess
+import argparse
+
+ISU_HOME = os.path.abspath(os.path.dirname(__file__))
+ISU_PROG = os.path.join(ISU_HOME, 'isu')
+ISU_MODE = '6'  # ISU hash mode, which we use by default.
+ISU_PLATFORM_BYT = '2'
+ISU_SVN_BYT = '1'
+
+def run_isu(pem_file=None, image_type=None):
+
+    workdir = tempfile.mkdtemp(prefix='isu')
+
+    try:
+        # Read the image hash and size from stdin and save it to a temporary
+        # file passed as an input file to ISU.
+        digest_file = os.path.join(workdir, 'img.sha')
+        with open(digest_file, 'w') as f:
+            f.write(sys.stdin.read())
+
+        # Temporary output file where ISU stores the signed VRL header.
+        header_file = os.path.join(workdir, 'img.vrl')
+
+        isu_cmd = [ISU_PROG, '-i', digest_file,
+                             '-o', header_file,
+                             '-l', pem_file,
+                             '-t', image_type]
+        proc = subprocess.Popen(isu_cmd,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        out, err = proc.communicate()
+        # The calling program will read stdout to get the VRL header, let's do
+        # not mess around with it, and redirect ISU babbles to stderr instead.
+        print >>sys.stderr, out
+        if proc.returncode:
+            raise RuntimeError(err)
+
+        # Write the VRL header to stdout.
+        with open(header_file) as f:
+            sys.stdout.write(f.read())
+    finally:
+        shutil.rmtree(workdir)
+
+def run_isu_byt(pem_file=None, image_type=None):
+
+    workdir = tempfile.mkdtemp(prefix='isu')
+
+    try:
+        # Read the image hash and size from stdin and save it to a temporary
+        # file passed as an input file to ISU.
+        digest_file = os.path.join(workdir, 'img.sha')
+        with open(digest_file, 'w') as f:
+            f.write(sys.stdin.read())
+
+        # Temporary output file where ISU stores the signed manifest.
+        manifest_file = os.path.join(workdir, 'OSManifest')
+        print >>sys.stderr, "manifest_file: %s" % manifest_file
+        manifest_file_path = os.path.abspath(manifest_file)
+        print >>sys.stderr, "manifest_file_path: %s" % manifest_file_path
+
+        isu_cmd = [ISU_PROG, '-i', digest_file,
+                             '-o', os.path.abspath(manifest_file),
+                             '-l', os.path.abspath(pem_file),
+                             '-t', image_type,
+                             '-p', ISU_PLATFORM_BYT,
+                             '-v', ISU_SVN_BYT]
+        print >>sys.stderr, "isu_cmd: %s" % isu_cmd
+        proc = subprocess.Popen(isu_cmd,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+        out, err = proc.communicate()
+        # The calling program will read stdout to get the manifest, let's do
+        # not mess around with it, and redirect ISU babbles to stderr instead.
+        print >>sys.stderr, out
+        if proc.returncode:
+            raise RuntimeError(err)
+
+        manifest_output = manifest_file_path + '_OS_manifest.bin'
+        print >>sys.stderr, "manifest_output: %s" % manifest_output
+        # Write the manifest to stdout.
+        with open(manifest_output) as f:
+            sys.stdout.write(f.read())
+    finally:
+        shutil.rmtree(workdir)
+
+def main():
+    cmd_parser = argparse.ArgumentParser()
+    cmd_parser.add_argument('-k', '--cert', required=True,
+                            dest='pem_file', metavar='certificate-file',
+                            help="Certificate file in PEM format")
+    cmd_parser.add_argument('-t', '--type', default=ISU_MODE,
+                            dest='image_type', metavar='image-type',
+                            help="Image type to sign (see isu for values)")
+    cmd_parser.add_argument('-p', '--platform', default='none',
+                            dest='platform', metavar='platform',
+                            help="Platform type (see isu for values)")
+    args = cmd_parser.parse_args()
+    try:
+        # This is not likely to happen, but we live in a strange world.
+        if not os.path.isfile(ISU_PROG):
+            raise IOError("Cannot sign image: %s is missing." % ISU_PROG)
+
+        # When the developer uses local signing mode, the CERT file shall be
+        # copied by the developer in ISU environment.  Let's check for its
+        # existence.  Note that we could have let isu handle the case, but the
+        # error message it returns is cryptic.
+        if not os.path.isfile(args.pem_file):
+            raise IOError("Key file %s is missing. "
+                          "Did you copy it in your environment?" % args.pem_file)
+
+        if args.platform == ISU_PLATFORM_BYT:
+                run_isu_byt(pem_file=args.pem_file, image_type=args.image_type)
+        else:
+                run_isu(pem_file=args.pem_file, image_type=args.image_type)
+    except Exception, e:
+        print >>sys.stderr, "Error: %s" % e
+        return 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

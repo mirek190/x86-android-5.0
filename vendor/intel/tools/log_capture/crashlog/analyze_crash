@@ -1,0 +1,307 @@
+#!/system/xbin/ash
+
+help()
+{
+  echo "analyze_crash <tag> <path> [<crashid> <uptime> <build> <modem version> <board> <date> <imei>]"
+}
+
+prepare_crashfile()
+{
+  if [ "$1" == "BZ" ] ; then
+    echo "EVENT=BZ" > $2
+  else
+    echo "EVENT=CRASH" > $2
+  fi
+  echo "ID=$3" >> $2
+  echo "SN=`cat /logs/uuid.txt`" >> $2
+  echo "DATE=$7" >> $2
+  echo "UPTIME=$4" >> $2
+  echo "BUILD=$5" >> $2
+  echo "BOARD=$6" >> $2
+  echo "IMEI=$8" >> $2
+  if [ "$1" == "BZ" ] ; then
+    echo "TYPE=MANUAL" >> $2
+  else
+    echo "TYPE=$1" >> $2
+  fi
+
+}
+
+fulldropbox()
+{
+  echo "DATA0=full dropbox" >> $1
+}
+
+finish_crashfile()
+{
+  echo "_END" >> $1
+  ispathinsdcard=`echo $1 | grep "mnt.*sdcard" | wc -l`
+  if [ $ispathinsdcard == 0 ] ; then
+	chown system.log $1
+  fi
+}
+
+anr()
+{
+  anr=`ls $1 | grep "system_app_anr.*txt.gz" | wc -l`
+  if [ $anr == 1 ] ; then
+    pid=`gunzip -c $1/system_app_anr*.txt.gz | grep "Process:" | awk -F":" '{print $2}'`
+    type=`gunzip -c $1/system_app_anr*.txt.gz | grep "Subject:" | awk -F":" '{print $2}'`
+    cpu=`gunzip -c $1/system_app_anr*.txt.gz | grep  "TOTAL" | awk -F"TOTAL" '{print $1}'`
+    stack=`gunzip -c $1/system_app_anr*.txt.gz | grep -m8 -o "^  at.*(" | awk -F"at " '{print $2}' | awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+    echo "DATA0=$pid" >> $2
+    echo "DATA1=$type" >> $2
+    echo "DATA2=$stack" >> $2
+    echo "DATA3=cpu:$cpu" >> $2
+  else
+    anr=`ls $1 | grep "system_app_anr.*txt" | wc -l`
+    if [ $anr == 1 ] ; then
+      pid=`grep "Process:" $1/system_app_anr*.txt | awk -F":" '{print $2}'`
+      type=`grep "Subject:" $1/system_app_anr*.txt | awk -F":" '{print $2}'`
+      cpu=`grep  "TOTAL" $1/system_app_anr*.txt | awk -F"TOTAL" '{print $1}'`
+      stack=`grep -m8 -o "^  at.*(" $1/system_app_anr*.txt | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+      echo "DATA0=$pid" >> $2
+      echo "DATA1=$type" >> $2
+      echo "DATA2=$stack" >> $2
+      echo "DATA3=cpu:$cpu" >> $2
+    fi
+  fi
+}
+
+uiwdt()
+{
+  uiwdt=`ls $1 | grep "system_server_watchdog.*txt.gz" | wc -l`
+  if [ $uiwdt == 1 ] ; then
+    pid=`gunzip -c $1/system_server_watchdog*.txt.gz | grep "Process:" | awk -F":" '{print $2}'`
+    type=`gunzip -c $1/system_server_watchdog*.txt.gz | grep "Subject:" | awk -F":" '{print $2}'`
+    stack=`gunzip -c $1/system_server_watchdog*.txt.gz | grep -m8 -o "^  at.*(" | awk -F"at " '{print $2}' | awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+    echo "DATA0=$pid" >> $2
+    echo "DATA1=$type" >> $2
+    echo "DATA2=$stack" >> $2
+  else
+    uiwdt=`ls $1 | grep "system_server_watchdog.*txt" | wc -l`
+    if [ $uiwdt == 1 ] ; then
+      pid=`grep "Process:" $1/system_server_watchdog*.txt | awk -F":" '{print $2}'`
+      type=`grep "Subject:" $1/system_server_watchdog*.txt | awk -F":" '{print $2}'`
+      stack=`grep -m8 -o "^  at.*(" $1/system_server_watchdog*.txt | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+      echo "DATA0=$pid" >> $2
+      echo "DATA1=$type" >> $2
+      echo "DATA2=$stack" >> $2
+    fi
+  fi
+}
+
+wtf()
+{
+  wtf=`ls $1 | grep "wtf.*.gz" | wc -l`
+  if [ $wtf == 1 ] ; then
+    pid=`gunzip -c $1/*_wtf*.gz | grep "Process:" | awk -F":" '{print $2}'`
+    type=`gunzip -c $1/*_wtf*.gz | grep "Subject:" | awk -F":" '{print $2}'`
+
+    echo "DATA0=$pid" >> $2
+    echo "DATA1=$type" >> $2
+  else
+    wtf=`ls $1 | grep "wtf.*.txt" | wc -l`
+    if [ $wtf == 1 ] ; then
+      pid=`grep "Process:" $1/*_wtf*.txt | awk -F":" '{print $2}'`
+      type=`grep "Subject:" $1/*_wtf*.txt | awk -F":" '{print $2}'`
+
+      echo "DATA0=$pid" >> $2
+      echo "DATA1=$type" >> $2
+    fi
+  fi
+}
+
+javacrash()
+{
+  javacrash=`ls $1 | grep "system_app_crash.*.txt.gz" | wc -l`
+  if [ $javacrash == 1 ] ; then
+    pid=`gunzip -c $1/system_app_crash*.txt.gz | grep "Process:" | awk -F":" '{print $2}'`
+    exception=`gunzip -c $1/system_app_crash*.txt.gz | grep -m1 -o "^java.lang.*"`
+    stack=`gunzip -c $1/system_app_crash*.txt.gz | grep -m4 -o "at .*" | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+    echo "DATA0=$pid" >> $2
+    echo "DATA1=$exception" >> $2
+    echo "DATA2=$stack" >> $2
+  else
+    javacrash=`ls $1 | grep "system_app_crash.*.txt" | wc -l`
+    if [ $javacrash == 1 ] ; then
+       pid=`grep "Process:" $1/system_app_crash*.txt | awk -F":" '{print $2}'`
+       exception=`grep -m1 -o "^java.lang.*" $1/system_app_crash*.txt`
+       stack=`grep -m4 -o "at .*" $1/system_app_crash*.txt | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+       echo "DATA0=$pid" >> $2
+       echo "DATA1=$exception" >> $2
+       echo "DATA2=$stack" >> $2
+    fi
+  fi
+  systemcrash=`ls $1 | grep "system_server_crash.*.txt.gz" | wc -l`
+  if [ $systemcrash == 1 ] ; then
+    pid=`gunzip -c $1/system_server_crash*.txt.gz | grep "Process:" | awk -F":" '{print $2}'`
+    exception=`gunzip -c $1/system_server_crash*.txt.gz | grep -m1 -o "^java.lang.*"`
+    stack=`gunzip -c $1/system_server_crash*.txt.gz | grep -m4 -o "at .*" | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+    echo "DATA0=$pid" >> $2
+    echo "DATA1=$exception" >> $2
+    echo "DATA2=$stack" >> $2
+  else
+    systemcrash=`ls $1 | grep "system_server_crash.*.txt" | wc -l`
+    if [ $systemcrash == 1 ] ; then
+       pid=`grep "Process:" $1/system_server_crash*.txt | awk -F":" '{print $2}'`
+       exception=`grep -m1 -o "^java.lang.*" $1/system_server_crash*.txt`
+       stack=`grep -m4 -o "at .*" $1/system_server_crash*.txt | awk -F"at " '{print $2}' |awk -F"(" '{print $1}' | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+
+       echo "DATA0=$pid" >> $2
+       echo "DATA1=$exception" >> $2
+       echo "DATA2=$stack" >> $2
+    fi
+  fi
+}
+
+fabricerr()
+{
+  ifabric=`ls $1 | grep "ipanic_fabric_err" | wc -l`
+  if [ $ifabric == 1 ] ; then
+    forced_fabric=`grep "HW WDT expired" $1/ipanic_fabric_err* | wc -l`
+    if [ $forced_fabric == 1 ] ; then
+       data0=`grep "DW0:" $1/ipanic_fabric_err*`
+       data1=`grep "DW1:" $1/ipanic_fabric_err*`
+       data2=`grep "DW11:" $1/ipanic_fabric_err*`
+    else
+       data0=`grep "[erroir|:]" $1/ipanic_fabric_err* | grep -v -E 'Fabric Error|summary|Additional|Decoded' | grep -m1 ".*" | awk -F"[" '{print $1}'`
+       data1=`grep "[erroir|:]" $1/ipanic_fabric_err* | grep -v -E 'Fabric Error|summary|Additional|Decoded' | grep -m2 ".*" | tail -1 | awk -F"(" '{print $1}'`
+       data2=`grep "[erroir|:]" $1/ipanic_fabric_err* | grep -v -E 'Fabric Error|summary|Additional|Decoded' | tail -n +3 | grep -m4 ".*" | sed  -e "N;s/\n/ /" | sed -e "N;s/\n/ /"`
+    fi
+    echo "DATA0=$data0" >> $2
+    echo "DATA1=$data1" >> $2
+    echo "DATA2=$data2" >> $2
+  fi
+}
+
+iwdt()
+{
+  echo "DATA0=$2" >> $1
+}
+
+ipanic()
+{
+  ipanic=`ls $1 | grep "ipanic_console" | wc -l`
+  if [ $ipanic == 1 ] ; then
+    data=`grep -o "EIP:.*SS:ESP" $1/emmc_ipanic_console* | awk -F" " '{print $3}'`
+    comm=`grep -o -m1 "comm: .*" $1/emmc_ipanic_console* | awk -F" " '{print $2}'`
+    panic=`grep -o "Kernel panic - not syncing: .*" $1/emmc_ipanic_console* | awk -F":" '{print $2}'`
+    echo "DATA0=$data" >> $2
+    echo "DATA1=$comm" >> $2
+    echo "DATA2=$panic" >> $2
+  fi
+}
+
+tombstone()
+{
+  tombstone=`ls $1 | grep "tombstone_" | wc -l`
+  if [ $tombstone == 1 ] ; then
+    process=`grep ">>>" $1/tombstone_* | awk -F">>>" '{print $2}' | awk -F"<" '{print $1}'`
+    signal=`grep -A4 "Build fingerprint" $1/tombstone_* | grep "signal" | awk -F"(" '{print $2}' | awk -F")" '{print $1}'`
+    flag=`grep -m1 -o "flags .*" $1/tombstone_* | awk -F" " '{print $2}'`
+    symbols=`grep -A14 "Build fingerprint" $1/tombstone_* | grep "#0[0-7]"| awk -F"(" '{print $2}'| awk -F")" '{print $1}'|sed ':a;N;$!ba;s/\n/ /g'|sed 's/^ $//'`
+    libs=`grep -A14 "Build fingerprint" $1/tombstone_* | grep "#0[0-7]"| awk -F" " '{print $4}'|sed ':a;N;$!ba;s/\n/ /g'|sed 's/^ $//'`
+
+    echo "DATA0=$process" >> $2
+    echo "DATA1=$signal" >> $2
+
+    if [ "$symbols" == "" ] ; then
+      # No symbols found, print the libs with offset if found
+      echo "DATA2=$libs" >> $2
+    else
+      echo "DATA2=$symbols" >> $2
+    fi
+  fi
+}
+
+modemcrash()
+{
+  modemcrash=`ls $1 | grep "mpanic" | wc -l`
+  if [ $modemcrash == 1 ] ; then
+    echo "DATA0=`cat $1/mpanic.txt`" >> $2
+  fi
+}
+
+if [ $# -ge 3 ] ; then
+  tag=$1
+  output=$2
+  crashid=$3
+  uptime=$4
+  build=$5
+  board=$6
+  date=$7
+  imei=$8
+  crashfilename=$output/"crashfile"
+
+  if [ "$tag" == "SWWDT_RESET" ] ; then
+      tag="WDT"
+      wdt="KernelWatchdog"
+  fi
+  if [ "$tag" == "HWWDT_RESET" ] ; then
+      tag="WDT"
+      wdt="SecureWatchdog"
+  fi
+  if [ "$tag" == "LOST_DROPBOX_JAVACRASH" ] ; then
+      tag="JAVACRASH"
+      dropbox="full"
+  fi
+  if [ "$tag" == "LOST_DROPBOX_ANR" ] ; then
+      tag="ANR"
+      dropbox="full"
+  fi
+  if [ "$tag" == "LOST_DROPBOX_UIWDT" ] ; then
+      tag="UIWDT"
+      dropbox="full"
+  fi
+  if [ "$tag" == "LOST_DROPBOX_WTF" ] ; then
+      tag="WTF"
+      dropbox="full"
+  fi
+
+  if [ -d "$output" ] ; then
+    prepare_crashfile $tag $crashfilename $crashid $uptime $build $board $date $imei
+
+    if [ "$dropbox" == "full" ] ; then
+      fulldropbox $crashfilename
+    fi
+
+    if [ "$tag" == "WDT" ] ; then
+      iwdt $crashfilename $wdt
+    fi
+    if [ "$tag" == "IPANIC" -o "$tag" == "IPANIC_FORCED" -o "$tag" ==  "IPANIC_FAKE" ] ; then
+      ipanic $output $crashfilename
+    fi
+    if [ "$tag" == "JAVACRASH" ] ; then
+      javacrash $output $crashfilename
+    fi
+    if [ "$tag" == "ANR" ] ; then
+      anr $output $crashfilename
+    fi
+    if [ "$tag" == "UIWDT" ] ; then
+      uiwdt $output $crashfilename
+    fi
+    if [ "$tag" == "WTF" ] ; then
+      wtf $output $crashfilename
+    fi
+    if [ "$tag" == "TOMBSTONE" ] ; then
+      tombstone $output $crashfilename
+    fi
+    if [ "$tag" == "FABRICERR" -o "$tag" == "MEMERR" -o "$tag" == "INSTERR" -o "$tag" == "SRAMECCERR" -o "$tag" == "HWWDTLOGERR" ] ; then
+      fabricerr $output $crashfilename
+    fi
+    if [ "$tag" == "MPANIC" ] ; then
+      modemcrash $output $crashfilename
+    fi
+    finish_crashfile $crashfilename
+  fi
+else
+   help
+fi

@@ -1,0 +1,4 @@
+# ENS by default enabled on IA7260
+# Mandatory AT&T feature to consider the ENS RAT on SIM card
+nvm:fix_cps_feat_config.features.sim_based_ens_rat_supported=1
+nvm:store_nvm_sync(fix_cps_feat_config)

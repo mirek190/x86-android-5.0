@@ -1,0 +1,44 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.intel.sensor"
+        coreApp="true"
+        android:sharedUserId="android.uid.system">
+
+    <original-package android:name="com.intel.sensor" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <application android:label="@string/sensor_cal"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Material.Settings"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:hardwareAccelerated="true">
+
+        <!-- Settings -->
+        <activity android:name="SensorCalSettings" android:label="@string/sensor_cal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.intel.settings.SENSOR_CALIBRATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.icon" android:resource="@drawable/ic_settings_sensor_calibration"/>
+            <meta-data android:name="com.android.settings.title" android:resource="@string/sensor_cal"/>
+        </activity>
+
+        <activity android:name="GyroscopeCal" android:configChanges="orientation|screenSize" android:label="@string/gyroscope_cal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.GYROSCOPE_CAL" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="CompassCal" android:configChanges="orientation|screenSize" android:label="@string/compass_cal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.COMPASS_CAL" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>

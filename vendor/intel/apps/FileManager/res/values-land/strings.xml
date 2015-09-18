@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="image">Pictures(<xliff:g id="count" >%d</xliff:g>)</string>
+    <string name="video">Videos(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="audio">Music(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="app">Installed Apps(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="book">Books(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="fav">Favorites(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="apk">Apks(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="doc">Documents(<xliff:g id="count">%d</xliff:g>)</string>
+    <string name="arc">Archives(<xliff:g id="count">%d</xliff:g>)</string>
+</resources>
+
