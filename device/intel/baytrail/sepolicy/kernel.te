@@ -1,0 +1,5 @@
+# Additional kernel rules
+allow kernel self:capability mknod;
+allow kernel self:process setfscreate;
+allow kernel system_prop:property_service set;
+allow kernel self:tcp_socket create;

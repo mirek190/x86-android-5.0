@@ -1,0 +1,11 @@
+on boot
+    start intel_fw_props
+    start intel_prop
+
+service intel_fw_props /sbin/intel_fw_props
+    oneshot
+    seclabel u:r:intel_fw_props:s0
+
+service intel_prop /sbin/intel_prop
+    oneshot
+    seclabel u:r:intel_props:s0

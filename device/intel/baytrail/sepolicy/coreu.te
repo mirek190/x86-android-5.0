@@ -1,0 +1,27 @@
+# rules for coreu
+type coreu, domain;
+type coreu_exec, exec_type, file_type;
+init_daemon_domain(coreu);
+
+allow coreu debugfs:file read;
+allow coreu dumpstate:fd use;
+allow coreu fuse:file write;
+allow coreu gpu_device:chr_file { read write getattr open ioctl };
+allow coreu hdcpd_tmpfs:file { read write open lock };
+allow coreu self:capability { setuid sys_nice ipc_lock setgid dac_override sys_admin };
+allow coreu servicemanager:binder { transfer call };
+allow coreu sysfs_drm_resource:file { read write open };
+allow coreu sysfs_drm_resource:dir search;
+allow coreu system_data_file:file create_file_perms;
+allow coreu coreu_tmpfs:file { lock create open };
+allow coreu rootfs:dir mounton;
+allow coreu tmpfs:dir { write add_name };
+# below line breaks neverallow in domain.te on line 263
+allow coreu tmpfs:filesystem mount;
+allow coreu msr_device:chr_file rw_file_perms;
+allow coreu system_data_file:dir { write add_name };
+allow coreu dumpstate:unix_stream_socket { read write };
+allow coreu coreu_service:service_manager add;
+allow coreu mediaserver:process signull;
+allow coreu self:netlink_kobject_uevent_socket create_socket_perms;
+allow coreu surfaceflinger:binder { call transfer };

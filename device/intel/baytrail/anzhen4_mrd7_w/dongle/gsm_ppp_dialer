@@ -1,0 +1,11 @@
+ABORT           "NO CARRIER" 
+ABORT           "ERROR"
+TIMEOUT         120
+""    AT	
+OK    AT
+OK    AT
+OK    ATS0=0
+OK    AT
+OK    AT
+OK		ATD*99#
+CONNECT

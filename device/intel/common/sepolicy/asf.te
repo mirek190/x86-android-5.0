@@ -1,0 +1,26 @@
+# rules for ASF
+type asf, domain;
+type asf_exec, exec_type, file_type;
+domain_auto_trans(init, asf_exec, asf)
+permissive_or_unconfined(asf)
+
+allow asf securityfile_service:service_manager add;
+
+#============= asf ==============
+r_dir_file(asf, app_data_file)
+r_dir_file(asf, fuse)
+r_dir_file(asf, property_data_file)
+r_dir_file(asf, security_file)
+r_dir_file(asf, shell_data_file)
+allow asf system_prop:property_service set;
+
+#============= system_app ==============
+allow system_app asf:binder { transfer call };
+
+#============= dumpstate ==============
+allow dumpstate asf:binder call;
+
+#============= servicemanager ==============
+allow servicemanager asf:dir search;
+allow servicemanager asf:file { read open };
+allow servicemanager asf:process getattr;

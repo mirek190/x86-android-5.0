@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="WM8958" Type="ALSA" Endianness="Little">
+
+    <ComponentLibrary>
+
+        <!-- === OUTPUTS === -->
+
+        <!-- OUTPUTS / MIXERS -->
+        <ComponentType Name="OUTPUT_SOURCE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1 Output Mixer %2 Switch"/>
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="7" Mapping="Control:%1 Output Mixer %2 Volume"/>
+        </ComponentType>
+        <ComponentType Name="OUTPUT_MIXER">
+            <Component Name="DAC" Type="OUTPUT_SOURCE" Mapping="Amend2:DAC"/>
+            <Component Name="IN1L" Type="OUTPUT_SOURCE" Mapping="Amend2:IN1L"/>
+            <Component Name="IN1R" Type="OUTPUT_SOURCE" Mapping="Amend2:IN1R"/>
+            <Component Name="IN2LN" Type="OUTPUT_SOURCE" Mapping="Amend2:IN2LN"/>
+            <Component Name="IN2RN" Type="OUTPUT_SOURCE" Mapping="Amend2:IN2RN"/>
+            <Component Name="LEFT_INPUT" Type="OUTPUT_SOURCE" Mapping="Amend2:Left Input"/>
+            <Component Name="RIGHT_INPUT" Type="OUTPUT_SOURCE" Mapping="Amend2:Right Input"/>
+        </ComponentType>
+        <ComponentType Name="OUTPUT_MIXER_LEFT" Extends="OUTPUT_MIXER">
+            <Component Name="IN2LP" Type="OUTPUT_SOURCE" Mapping="Amend2:IN2LP"/>
+        </ComponentType>
+        <ComponentType Name="OUTPUT_MIXER_RIGHT" Extends="OUTPUT_MIXER">
+            <Component Name="IN2RP" Type="OUTPUT_SOURCE" Mapping="Amend2:IN2RP"/>
+        </ComponentType>
+        <ComponentType Name="OUTPUT_MIXER_TYPE">
+            <Component Name="LEFT" Type="OUTPUT_MIXER_LEFT" Mapping="Amend1:Left"/>
+            <Component Name="RIGHT" Type="OUTPUT_MIXER_RIGHT" Mapping="Amend1:Right"/>
+        </ComponentType>
+        <ComponentType Name="OUTPUT_BASE">
+            <BooleanParameter Name="ENABLED" ArrayLength="2" Mapping="Control:%1 Switch"/>
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:%1 Volume">
+              <BooleanParameter Name="MUTED"/>
+              <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="63"/>
+            </ParameterBlock>
+            <BooleanParameter Name="ZC_ENABLED" ArrayLength="2" Mapping="Control:%1 ZC Switch"/>
+        </ComponentType>
+
+        <!-- OUTPUTS / HEADPHONE -->
+        <ComponentType Name="HEADPHONE_MUX_SOURCE_TYPE">
+            <EnumParameter Name="SOURCE" Size="8" Mapping="Control:%2 Headphone Mux">
+                <ValuePair Literal="MIXER" Numerical="0"/>
+                <ValuePair Literal="DAC" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="HEADPHONE_MUX_TYPE">
+            <Component Name="LEFT" Type="HEADPHONE_MUX_SOURCE_TYPE" Mapping="Amend2:Left"/>
+            <Component Name="RIGHT" Type="HEADPHONE_MUX_SOURCE_TYPE" Mapping="Amend2:Right"/>
+        </ComponentType>
+        <ComponentType Name="HEADPHONE_OUTPUT" Extends="OUTPUT_BASE">
+            <Component Name="MUX" Type="HEADPHONE_MUX_TYPE"/>
+        </ComponentType>
+
+        <!-- OUTPUTS / SPEAKER -->
+        <ComponentType Name="SPK_OUTPUT_SOURCE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:SPK%2 %3 Switch"/>
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="1" Mapping="Control:SPK%2 %3 Volume"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_MIXER">
+            <Component Name="DAC1" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:DAC1"/>
+            <Component Name="DAC2" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:DAC2"/>
+            <Component Name="INPUT" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:Input"/>
+            <Component Name="OUTPUT" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:Output"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_MIXER_LEFT" Extends="SPEAKER_MIXER">
+            <Component Name="IN1LP" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:IN1LP"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_MIXER_RIGHT" Extends="SPEAKER_MIXER">
+            <Component Name="IN1RP" Type="SPK_OUTPUT_SOURCE" Mapping="Amend3:IN1RP"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_MIXERS">
+            <Component Name="LEFT" Type="SPEAKER_MIXER_LEFT" Mapping="Amend2:L"/>
+            <Component Name="RIGHT" Type="SPEAKER_MIXER_RIGHT" Mapping="Amend2:R"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_BOOST">
+            <BooleanParameter Name="DIRECT_VOICE_ENABLED" Mapping="Control:SPK%2 Boost Direct Voice Switch"/>
+            <BooleanParameter Name="SPKL_ENABLED" Mapping="Control:SPK%2 Boost SPKL Switch"/>
+            <BooleanParameter Name="SPKR_ENABLED" Mapping="Control:SPK%2 Boost SPKR Switch"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_BOOSTS">
+            <IntegerParameter Name="VOLUME" Min="0" Max="7" Size="8" ArrayLength="2" Mapping="Control:%1 Boost Volume"/>
+            <Component Name="LEFT" Type="SPEAKER_BOOST" Mapping="Amend2:L"/>
+            <Component Name="RIGHT" Type="SPEAKER_BOOST" Mapping="Amend2:R"/>
+        </ComponentType>
+        <ComponentType Name="SPEAKER_OUTPUT" Extends="OUTPUT_BASE">
+            <IntegerParameter Name="MIXER_VOLUME" Min="0" Max="3" Size="8" ArrayLength="2" Mapping="Control:%1 Mixer Volume"/>
+            <Component Name="MIXER" Type="SPEAKER_MIXERS"/>
+            <Component Name="BOOST" Type="SPEAKER_BOOSTS"/>
+            <EnumParameter Size="8" Name="MODE" Mapping="Control:%1 Mode">
+                <ValuePair Literal="ClassD" Numerical="0"/>
+                <ValuePair Literal="ClassAB" Numerical="1"/>
+            </EnumParameter>
+            <EnumParameter Size="8" Name="REFERENCE" Mapping="Control:%1 Reference">
+                <ValuePair Literal="SPKVDD/2" Numerical="0"/>
+                <ValuePair Literal="VMID" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <!-- OUTPUTS / EARPIECE -->
+        <ComponentType Name="EARPIECE_MIXERS">
+            <BooleanParameter Name="LEFT_ENABLED" Mapping="Control:%1 Mixer Left Output Switch"/>
+            <BooleanParameter Name="RIGHT_ENABLED" Mapping="Control:%1 Mixer Right Output Switch"/>
+            <BooleanParameter Name="DIRECT_VOICE_ENABLED" Mapping="Control:%1 Mixer Direct Voice Switch"/>
+        </ComponentType>
+        <ComponentType Name="EARPIECE_OUTPUT">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1 Switch"/>
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="1" Mapping="Control:%1 Volume"/>
+            <Component Name="MIXER" Type="EARPIECE_MIXERS"/>
+        </ComponentType>
+
+        <!-- OUTPUTS / LINEOUT -->
+        <ComponentType Name="LINEOUT_P_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 Switch"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_1P_TYPE" Extends="LINEOUT_P_TYPE">
+            <BooleanParameter Name="LEFT_ENABLED" Mapping="Control:%1%2 Mixer Left Output Switch"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_2P_TYPE" Extends="LINEOUT_P_TYPE">
+            <BooleanParameter Name="RIGHT_ENABLED" Mapping="Control:%1%2 Mixer Right Output Switch"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_N_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 Switch"/>
+            <BooleanParameter Name="LEFT_ENABLED" Mapping="Control:%1%2 Mixer Left Output Switch"/>
+            <BooleanParameter Name="RIGHT_ENABLED" Mapping="Control:%1%2 Mixer Right Output Switch"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_OUTPUT">
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="1" Mapping="Control:%1 Volume"/>
+            <Component Name="NEGATIVE" Type="LINEOUT_N_TYPE" Mapping="Amend2:N"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_OUTPUT1" Extends="LINEOUT_OUTPUT">
+            <Component Name="POSITIVE" Type="LINEOUT_1P_TYPE" Mapping="Amend2:P"/>
+        </ComponentType>
+        <ComponentType Name="LINEOUT_OUTPUT2" Extends="LINEOUT_OUTPUT">
+            <Component Name="POSITIVE" Type="LINEOUT_2P_TYPE" Mapping="Amend2:P"/>
+        </ComponentType>
+
+        <!-- OUTPUTS / HPOUT1RVOL & HPOUT1LVOL -->
+        <ComponentType Name="EARPIECE_LINEOUT_OUTPUT">
+            <BooleanParameter Name="ENABLED" ArrayLength="2" Mapping="Control:Output Switch"/>
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:Output Volume">
+              <BooleanParameter Name="MUTED"/>
+              <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="63"/>
+            </ParameterBlock>
+            <BooleanParameter Name="ZC_ENABLED" ArrayLength="2" Mapping="Control:Output ZC Switch"/>
+        </ComponentType>
+
+        <!-- OUTPUTS / Root Component -->
+        <ComponentType Name="OUTPUTS">
+            <Component Name="SPEAKER" Type="SPEAKER_OUTPUT" Mapping="Amend1:Speaker"/>
+            <Component Name="HEADPHONE" Type="HEADPHONE_OUTPUT" Mapping="Amend1:Headphone"/>
+            <Component Name="EARPIECE" Type="EARPIECE_OUTPUT" Mapping="Amend1:Earpiece"/>
+            <Component Name="LINEOUT1" Type="LINEOUT_OUTPUT1" Mapping="Amend1:LINEOUT1"/>
+            <Component Name="LINEOUT2" Type="LINEOUT_OUTPUT2" Mapping="Amend1:LINEOUT2"/>
+            <Component Name="EARPIECE_LINEOUT" Type="EARPIECE_LINEOUT_OUTPUT"/>
+            <Component Name="MIXER" Type="OUTPUT_MIXER_TYPE"/>
+        </ComponentType>
+
+        <!-- === INPUTS === -->
+
+        <ComponentType Name="INPUT_BASE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:IN%1%2 Switch"/>
+            <IntegerParameter Name="VOLUME" Min="0" Max="31" Size="8" Mapping="Control:IN%1%2 Volume"/>
+            <BooleanParameter Name="ZC_ENABLED" Mapping="Control:IN%1%2 ZC Switch"/>
+            <BooleanParameter Name="PGA_N_ENABLED" Mapping="Control:IN%1%2 PGA IN%1%2N Switch"/>
+            <BooleanParameter Name="PGA_P_ENABLED" Mapping="Control:IN%1%2 PGA IN%1%2P Switch"/>
+        </ComponentType>
+        <ComponentType Name="INPUT_TYPE">
+            <Component Name="LEFT" Type="INPUT_BASE" Mapping="Amend2:L"/>
+            <Component Name="RIGHT" Type="INPUT_BASE" Mapping="Amend2:R"/>
+        </ComponentType>
+        <ComponentType Name="IN_MIXER_TYPE">
+            <BooleanParameter Name="ENABLED" Size="8" Mapping="Control:MIXIN%1 IN%2%1 Switch"/>
+            <IntegerParameter Name="VOLUME" Min="0" Max="1" Size="8" Mapping="Control:MIXIN%1 IN%2%1 Volume"/>
+        </ComponentType>
+        <ComponentType Name="INPUT_MIXER_BASE">
+            <IntegerParameter Name="DIRECT_VOICE_VOLUME" Min="0" Max="6" Size="8" Mapping="Control:MIXIN%1 Direct Voice Volume"/>
+            <Component Name="IN1" Type="IN_MIXER_TYPE" Mapping="Amend2:1"/>
+            <IntegerParameter Name="IN1P_VOLUME" Min="0" Max="7" Size="8" Mapping="Control:MIXIN%1 IN1%1P Volume"/>
+            <Component Name="IN2" Type="IN_MIXER_TYPE" Mapping="Amend2:2"/>
+            <IntegerParameter Name="OUTPUT_RECORD_VOLUME" Min="0" Max="7" Size="8" Mapping="Control:MIXIN%1 Output Record Volume"/>
+        </ComponentType>
+        <ComponentType Name="INPUT_MIXERS">
+            <Component Name="LEFT" Type="INPUT_MIXER_BASE" Mapping="Amend1:L"/>
+            <Component Name="RIGHT" Type="INPUT_MIXER_BASE" Mapping="Amend1:R"/>
+        </ComponentType>
+        <ComponentType Name="INPUTS">
+            <Component Name="1" Type="INPUT_TYPE" Mapping="Amend1:1"/>
+            <Component Name="2" Type="INPUT_TYPE" Mapping="Amend1:2"/>
+            <Component Name="MIXER" Type="INPUT_MIXERS"/>
+        </ComponentType>
+
+        <!-- === AIF === -->
+
+        <ComponentType Name="SOURCE_TYPE">
+            <EnumParameter Size="8" Name="SOURCE" Mapping="Control:%1%2%3 Source">
+                <ValuePair Literal="Left" Numerical="0"/>
+                <ValuePair Literal="Right" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="SOURCE_MUX_TYPE" Extends="SOURCE_TYPE">
+            <EnumParameter Size="8" Name="MUX" Mapping="Control:%1%2%3 Mux">
+                <ValuePair Literal="AIF2" Numerical="0"/>
+                <ValuePair Literal="AIF3" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="SOURCES_TYPE">
+            <Component Name="LEFT" Type="SOURCE_TYPE" Mapping="Amend3:L"/>
+            <Component Name="RIGHT" Type="SOURCE_TYPE" Mapping="Amend3:R"/>
+        </ComponentType>
+        <ComponentType Name="SOURCES_MUX_TYPE">
+            <Component Name="LEFT" Type="SOURCE_MUX_TYPE" Mapping="Amend3:L"/>
+            <Component Name="RIGHT" Type="SOURCE_MUX_TYPE" Mapping="Amend3:R"/>
+        </ComponentType>
+
+        <!-- AIF / ADC -->
+        <ComponentType Name="AIFADC_MIXER">
+            <BooleanParameter Name="ADC_DMIC_ENABLED" Mapping="Control:%1%2%3 Mixer %4DMIC Switch"/>
+            <BooleanParameter Name="AIF2_ENABLED" Mapping="Control:%1%2%3 Mixer AIF2 Switch"/>
+        </ComponentType>
+        <ComponentType Name="AIF2_ADC">
+            <BooleanParameter Name="DRC_ENABLED" Mapping="Control:%1%2%3 DRC Switch"/>
+        </ComponentType>
+        <ComponentType Name="AIF1_ADC" Extends="AIF2_ADC">
+            <Component Name="MIXER" Type="AIFADC_MIXER"/>
+        </ComponentType>
+        <ComponentType Name="HPF_TYPE">
+            <BooleanParameter Name="ENABLED" ArrayLength="2" Mapping="Control:%1%2 HPF Switch"/>
+            <EnumParameter Size="8" Name="MODE" Mapping="Control:%1%2 HPF Mode">
+                <ValuePair Literal="HiFi" Numerical="0"/>
+                <ValuePair Literal="Voice1" Numerical="1"/>
+                <ValuePair Literal="Voice2" Numerical="2"/>
+                <ValuePair Literal="Voice3" Numerical="3"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="AIFADC_BLOCK_TYPE">
+            <IntegerParameter Name="VOLUME" ArrayLength="2" Min="0" Max="120" Size="8" Mapping="Control:%1%2 Volume" Description="Limits: 0 - 120, dBscale-min=-71.25dB, dBscale-max=17.725dB, step=0.75dB"/>
+            <Component Name="HPF" Type="HPF_TYPE"/>
+        </ComponentType>
+        <ComponentType Name="AIF1ADC_BLOCK_TYPE" Extends="AIFADC_BLOCK_TYPE">
+            <Component Name="LEFT" Type="AIF1_ADC" Mapping="Amend3:L"/>
+            <Component Name="RIGHT" Type="AIF1_ADC" Mapping="Amend3:R"/>
+        </ComponentType>
+        <ComponentType Name="AIF2ADC_BLOCK_TYPE" Extends="AIFADC_BLOCK_TYPE">
+            <Component Name="LEFT" Type="AIF2_ADC" Mapping="Amend3:L"/>
+            <Component Name="RIGHT" Type="AIF2_ADC" Mapping="Amend3:R"/>
+            <EnumParameter  Name="MUX" Size="8" Mapping="Control:AIF2ADC Mux">
+                <ValuePair Literal="AIF2DACDAT" Numerical="0"/>
+                <ValuePair Literal="AIF3DACDAT" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="AIF1ADC_TYPE">
+            <Component Name="INPUT" Type="SOURCES_TYPE" Mapping="Amend2:ADC"/>
+            <Component Name="1" Type="AIF1ADC_BLOCK_TYPE" Mapping="Amend2:ADC1,Amend4:ADC/"/>
+            <Component Name="2" Type="AIF1ADC_BLOCK_TYPE" Mapping="Amend2:ADC2,Amend4:"/>
+        </ComponentType>
+        <ComponentType Name="AIF2ADC_TYPE" Extends="AIF2ADC_BLOCK_TYPE">
+            <Component Name="INPUT" Type="SOURCES_TYPE"/>
+        </ComponentType>
+        <ComponentType Name="AIF3ADC_TYPE">
+            <EnumParameter  Name="MUX" Size="8" Mapping="Control:AIF3ADC Mux">
+                <ValuePair Literal="AIF1ADCDAT" Numerical="0"/>
+                <ValuePair Literal="AIF2ADCDAT" Numerical="1"/>
+                <ValuePair Literal="AIF2DACDAT" Numerical="2"/>
+                <ValuePair Literal="Mono PCM" Numerical="3"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <!-- AIF / DAC -->
+        <ComponentType Name="DAC_ALGO_3D_TYPE">
+            <IntegerParameter Name="VOLUME" Min="0" Max="15" Size="8" Mapping="Control:%1%2 3D Stereo Volume" Description="Limits: 0 - 15, [0%] [-16.00dB]"/>
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 3D Stereo Switch"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_EQ_TYPE">
+            <IntegerParameter Name="VOLUME" Min="0" Max="31" Size="8" Mapping="Control:%1%4 EQ%3 Volume" Description="Limits: 0 - 31"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_EQS_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%4 EQ Switch"/>
+            <BooleanParameter Name="ENHANCED_ENABLED" Mapping="Control:%1%2 Enhanced EQ Switch"/>
+            <Component Name="1" Type="DAC_ALGO_EQ_TYPE" Mapping="Amend3:1"/>
+            <Component Name="2" Type="DAC_ALGO_EQ_TYPE" Mapping="Amend3:2"/>
+            <Component Name="3" Type="DAC_ALGO_EQ_TYPE" Mapping="Amend3:3"/>
+            <Component Name="4" Type="DAC_ALGO_EQ_TYPE" Mapping="Amend3:4"/>
+            <Component Name="5" Type="DAC_ALGO_EQ_TYPE" Mapping="Amend3:5"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_DRC_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 DRC Switch"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_HPF_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 HPF%3 Switch"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_HPFS_TYPE">
+            <Component Name="1" Type="DAC_ALGO_HPF_TYPE" Mapping="Amend3:1"/>
+            <Component Name="2" Type="DAC_ALGO_HPF_TYPE" Mapping="Amend3:2"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_MBC_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 MBC Switch"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_NOISE_GAGE_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 Noise Gate Switch"/>
+            <EnumParameter Size="8" Name="HOLD_TIME" Mapping="Control:%1%2 Noise Gate Hold Time">
+                <ValuePair Literal="t30ms" Numerical="0"/>
+                <ValuePair Literal="t125ms" Numerical="1"/>
+                <ValuePair Literal="t250ms" Numerical="2"/>
+                <ValuePair Literal="t500ms" Numerical="3"/>
+            </EnumParameter>
+            <IntegerParameter Name="THRESHOLD" Min="0" Max="7" Size="8" Mapping="Control:%1%2 Noise Gate Threshold Volume" Description="Limits: 0 - 7"/>
+        </ComponentType>
+        <ComponentType Name="DAC_ALGO_VSS_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:%1%2 VSS Switch"/>
+        </ComponentType>
+        <ComponentType Name="AIF_DAC_ALGOS_TYPE">
+            <IntegerParameter Name="VOLUME" ArrayLength="2" Min="0" Max="96" Size="8" Mapping="Control:%1%2 Volume" Description="Limits: 0 - 96, dBscale-min=-71.25dB, dBscale-max=0dB, step=0.75dB"/>
+            <Component Name="3D" Type="DAC_ALGO_3D_TYPE"/>
+            <Component Name="DRC" Type="DAC_ALGO_DRC_TYPE"/>
+            <Component Name="EQ" Type="DAC_ALGO_EQS_TYPE"/>
+            <Component Name="HPF" Type="DAC_ALGO_HPFS_TYPE"/>
+            <Component Name="MBC" Type="DAC_ALGO_MBC_TYPE"/>
+            <Component Name="NOISE_GATE" Type="DAC_ALGO_NOISE_GAGE_TYPE"/>
+            <Component Name="VSS" Type="DAC_ALGO_VSS_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="AIF1DAC_TYPE">
+            <Component Name="INPUT" Type="SOURCES_TYPE" Mapping="Amend2:DAC"/>
+            <EnumParameter  Name="MUX" Size="8" Mapping="Control:AIF1DAC Mux">
+                <ValuePair Literal="AIF1DACDAT" Numerical="0"/>
+                <ValuePair Literal="AIF3DACDAT" Numerical="1"/>
+            </EnumParameter>
+            <Component Name="1" Type="AIF_DAC_ALGOS_TYPE" Mapping="Amend2:DAC1,Amend4:DAC1"/>
+            <Component Name="2" Type="AIF_DAC_ALGOS_TYPE" Mapping="Amend2:DAC2,Amend4:DAC2"/>
+        </ComponentType>
+        <ComponentType Name="AIF2DAC_TYPE" Extends="AIF_DAC_ALGOS_TYPE">
+            <Component Name="INPUT" Type="SOURCES_MUX_TYPE"/>
+            <EnumParameter  Name="MUX" Size="8" Mapping="Control:AIF2DAC Mux">
+                <ValuePair Literal="AIF2DACDAT" Numerical="0"/>
+                <ValuePair Literal="AIF3DACDAT" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="AIF3DAC_TYPE">
+            <EnumParameter  Name="MUX" Size="8" Mapping="Control:Mono PCM Out Mux">
+                <ValuePair Literal="None" Numerical="0"/>
+                <ValuePair Literal="AIF2ADCL" Numerical="1"/>
+                <ValuePair Literal="AIF2ADCR" Numerical="2"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <!-- AIF / DRC common settings -->
+        <ComponentType Name="DRC_CONTROL_TYPE">
+            <BitParameterBlock Name="CONTROL_1" Size="16">
+                <BitParameter Name="SIG_DET_RMS" Size="5" Pos="3" Description="Signal Dectect RMS Threshold"/>
+                <BitParameter Name="SIG_DET_PK" Size="2" Pos="1" Description="Signal Dectect Peak Threshold"/>
+                <BitParameter Name="NG_ENABLED" Size="1" Pos="0" Description="Noise Gate enable"/>
+                <BitParameter Name="SIG_DET_MODE" Size="1" Pos="15" Description="Signal Detect Mode"/>
+                <BitParameter Name="SIG_DET_ENABLED" Size="1" Pos="14" Description="Signal Detect enable"/>
+                <BitParameter Name="KNEE2_OP_ENABLED" Size="1" Pos="13" Description="Gate threshold 'Knee2' output enable"/>
+                <BitParameter Name="QR_ENABLED" Size="1" Pos="12" Description="Quick-release enable"/>
+                <BitParameter Name="ANTICLIP_ENABLED" Size="1" Pos="11" Description="Anti-clip enable"/>
+            </BitParameterBlock>
+            <IntegerParameter Name="CONTROL_2" Size="16"/>
+            <BitParameterBlock Name="CONTROL_3" Size="16">
+                <BitParameter Name="NG_MIN_GAIN" Size="4" Pos="4" Description="Minimum gain to attenuate audio signals when the noise gate is activated"/>
+                <BitParameter Name="NG_EXP" Size="2" Pos="2" Description="Noise Gate slope"/>
+                <BitParameter Name="QR_THR" Size="2" Pos="0" Description="Quick-release threshold (crest factor in dB)"/>
+                <BitParameter Name="QR_DCY" Size="2" Pos="14" Description="Quick-release decay rate (seconds/6dB)"/>
+                <BitParameter Name="HI_COMP" Size="3" Pos="11" Description="Compressor slope (upper region)"/>
+                <BitParameter Name="LO_COMP" Size="3" Pos="8" Description="Compressor slope (lower region)"/>
+            </BitParameterBlock>
+            <IntegerParameter Name="CONTROL_4" Size="16"/>
+            <IntegerParameter Name="CONTROL_5" Size="16"/>
+        </ComponentType>
+        <ComponentType Name="DRC_CONTROLS_TYPE">
+            <Component Name="1" Type="DRC_CONTROL_TYPE" Mapping="ByteControl:%1.1 DRC"/>
+            <Component Name="2" Type="DRC_CONTROL_TYPE" Mapping="ByteControl:%1.2 DRC"/>
+        </ComponentType>
+
+        <!-- AIF / Root Component -->
+        <ComponentType Name="AIF1_TYPE">
+            <IntegerParameter Name="BOOST" Min="0" Max="3" Size="8" Mapping="Control:%1 Boost Volume" Description="Limits: 0 - 3"/>
+            <Component Name="DAC" Type="AIF1DAC_TYPE"/>
+            <Component Name="ADC" Type="AIF1ADC_TYPE"/>
+            <Component Name="DRC_SETTINGS" Type="DRC_CONTROLS_TYPE"/>
+        </ComponentType>
+        <ComponentType Name="AIF2_TYPE">
+            <IntegerParameter Name="BOOST" Min="0" Max="3" Size="8" Mapping="Control:%1 Boost Volume" Description="Limits: 0 - 3"/>
+            <Component Name="DAC" Type="AIF2DAC_TYPE" Mapping="Amend2:DAC,Amend4:"/>
+            <Component Name="ADC" Type="AIF2ADC_TYPE" Mapping="Amend2:ADC"/>
+            <Component Name="DRC_SETTINGS" Type="DRC_CONTROL_TYPE" Mapping="ByteControl:%1 DRC"/>
+        </ComponentType>
+        <ComponentType Name="AIF3_TYPE">
+            <IntegerParameter Name="BOOST" Min="0" Max="3" Size="8" Mapping="Control:%1 Boost Volume" Description="Limits: 0 - 3"/>
+            <Component Name="DAC" Type="AIF3DAC_TYPE" Mapping="Amend2:DAC,Amend5:"/>
+            <Component Name="ADC" Type="AIF3ADC_TYPE"/>
+        </ComponentType>
+
+        <!-- === DIGITAL CORE == -->
+
+        <!-- DIGITAL CORE / ADC-->
+        <ComponentType Name="ADC_INPUT">
+            <EnumParameter Name="INPUT" Size="8" Mapping="Control:%1 Mux">
+                <ValuePair Literal="ADC" Numerical="0"/>
+                <ValuePair Literal="DMIC" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="ADC_TYPE">
+            <EnumParameter Name="OSR" Size="8" Mapping="Control:ADC OSR">
+                <ValuePair Literal="LOW_PERFORMANCE" Numerical="0"/>
+                <ValuePair Literal="HIGH_PERFORMANCE" Numerical="1"/>
+            </EnumParameter>
+            <Component Name="LEFT" Type="ADC_INPUT" Mapping="Amend1:ADCL"/>
+            <Component Name="RIGHT" Type="ADC_INPUT" Mapping="Amend1:ADCR"/>
+        </ComponentType>
+
+        <!-- DIGITAL CORE / DAC-->
+        <ComponentType Name="DAC_CHANNEL_INPUTS">
+            <BooleanParameter Name="LEFT_SIDETONE_ENABLED" Mapping="Control:%1%2%3 Mixer Left Sidetone Switch"/>
+            <BooleanParameter Name="RIGHT_SIDETONE_ENABLED" Mapping="Control:%1%2%3 Mixer Right Sidetone Switch"/>
+            <BooleanParameter Name="AIF1.1_ENABLED" Mapping="Control:%1%2%3 Mixer AIF1.1 Switch"/>
+            <BooleanParameter Name="AIF1.2_ENABLED" Mapping="Control:%1%2%3 Mixer AIF1.2 Switch"/>
+            <BooleanParameter Name="AIF2_ENABLED" Mapping="Control:%1%2%3 Mixer AIF2 Switch"/>
+        </ComponentType>
+        <ComponentType Name="DAC_INPUTS">
+            <Component Name="LEFT" Type="DAC_CHANNEL_INPUTS" Mapping="Amend3:L"/>
+            <Component Name="RIGHT" Type="DAC_CHANNEL_INPUTS" Mapping="Amend3:R"/>
+        </ComponentType>
+        <ComponentType Name="DAC_TYPE">
+            <BooleanParameter Name="ENABLED" ArrayLength="2" Mapping="Control:%2 Switch"/>
+            <IntegerParameter Name="VOLUME" Min="0" Max="112" Size="8" ArrayLength="2" Mapping="Control:%2 Volume" Description="Limits: 0 - 112, dBscale-min=-71.25dB, dBscale-max=12dB, step=0.75dB"/>
+            <Component Name="INPUTS" Type="DAC_INPUTS"/>
+        </ComponentType>
+        <ComponentType Name="DACS_TYPE">
+            <EnumParameter Name="OSR" Size="8" Mapping="Control:DAC OSR">
+                <ValuePair Literal="LOW_PERFORMANCE" Numerical="0"/>
+                <ValuePair Literal="HIGH_PERFORMANCE" Numerical="1"/>
+            </EnumParameter>
+            <Component Name="1" Type="DAC_TYPE" Mapping="Amend1:,Amend2:DAC1"/>
+            <Component Name="2" Type="DAC_TYPE" Mapping="Amend1:AIF2,Amend2:DAC2"/> <!-- strange -->
+        </ComponentType>
+
+        <!-- DIGITAL_CORE / SIDETONE -->
+        <ComponentType Name="SIDETONE_SOURCE_TYPE">
+            <EnumParameter Name="SOURCE" Size="8" Mapping="Control:%1 Sidetone">
+                <ValuePair Literal="ADC/DMIC1" Numerical="0"/>
+                <ValuePair Literal="DMIC2" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_MIXING_TYPE">
+            <Component Name="LEFT" Type="SIDETONE_SOURCE_TYPE" Mapping="Amend1:Left"/>
+            <Component Name="RIGHT" Type="SIDETONE_SOURCE_TYPE" Mapping="Amend1:Right"/>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_VOLUME">
+            <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="12" Mapping="Control:%1 %2 Sidetone Volume"/>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_VOLUMES">
+            <Component Name="LEFT" Type="SIDETONE_VOLUME" Mapping="Amend2:Left"/>
+            <Component Name="RIGHT" Type="SIDETONE_VOLUME" Mapping="Amend2:Right"/>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_HPF_TYPE">
+            <BooleanParameter Name="ENABLED" Mapping="Control:Sidetone HPF Switch"/>
+            <EnumParameter Size="8" Name="MODE" Mapping="Control:Sidetone HPF Mux">
+                <ValuePair Literal="f2.7kHz" Numerical="0"/>
+                <ValuePair Literal="f1.35kHz" Numerical="1"/>
+                <ValuePair Literal="f675Hz" Numerical="2"/>
+                <ValuePair Literal="f370Hz" Numerical="3"/>
+                <ValuePair Literal="f180Hz" Numerical="4"/>
+                <ValuePair Literal="f90Hz" Numerical="5"/>
+                <ValuePair Literal="f45Hz" Numerical="6"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_VOLUME_CONTROL_TYPE">
+            <Component Name="HPF" Type="SIDETONE_HPF_TYPE"/>
+            <Component Name="1" Type="SIDETONE_VOLUMES" Mapping="Amend1:DAC1"/>
+            <Component Name="2" Type="SIDETONE_VOLUMES" Mapping="Amend1:DAC2"/>
+        </ComponentType>
+        <ComponentType Name="SIDETONE_TYPE">
+            <Component Name="MIXING" Type="SIDETONE_MIXING_TYPE"/>
+            <Component Name="CONTROL" Type="SIDETONE_VOLUME_CONTROL_TYPE"/>
+        </ComponentType>
+
+        <!-- DIGITAL_CORE / Root Component -->
+        <ComponentType Name="DIGITAL_CORE_TYPE">
+            <Component Name="DAC" Type="DACS_TYPE"/>
+            <Component Name="ADC" Type="ADC_TYPE"/>
+            <Component Name="SIDETONE" Type="SIDETONE_TYPE"/>
+        </ComponentType>
+
+        <!-- === SSP Port control === -->
+
+        <ComponentType Name="SSP_PORT" Description="SSP Port">
+            <ParameterBlock Name="CONFIG" Mapping="PortConfig">
+                <BooleanParameter Name="PLAYBACK_ENABLED"/>
+                <BooleanParameter Name="CAPTURE_ENABLED"/>
+                <EnumParameter Name="FORMAT" Size="8">
+                    <ValuePair Literal="S16LE" Numerical="2"/>
+                </EnumParameter>
+                <IntegerParameter Name="CHANNEL_NUMBER" Size="8" Min="1" Max="2"/>
+                <IntegerParameter Name="SAMPLE_RATE" Size="16"/>
+            </ParameterBlock>
+        </ComponentType>
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="OUTPUT" Type="OUTPUTS" Mapping="Card:wm8958audio"/>
+        <Component Name="INPUT" Type="INPUTS" Mapping="Card:wm8958audio"/>
+        <Component Name="AIF1" Type="AIF1_TYPE" Mapping="Card:wm8958audio,Amend1:AIF1"/>
+        <Component Name="AIF2" Type="AIF2_TYPE" Mapping="Card:wm8958audio,Amend1:AIF2"/>
+        <Component Name="AIF3" Type="AIF3_TYPE" Mapping="Card:wm8958audio,Amend1:AIF3"/>
+        <Component Name="DIGITAL_CORE" Type="DIGITAL_CORE_TYPE" Mapping="Card:wm8958audio"/>
+        <Component Name="SSP_PORT" Type="SSP_PORT" Mapping="Card:wm8958audio,Device:2"/>
+    </InstanceDefinition>
+</Subsystem>

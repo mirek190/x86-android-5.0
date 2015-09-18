@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Thermal Management Configuration File -->
+<!--  Intel Corporation 2011-2012  -->
+<thermalthrottleconfig>
+  <!-- Config xml file version should be in sync with iTUX version number-->
+  <ConfigFileVersion>3.0</ConfigFileVersion>
+
+  <!--Platform Parameters-->
+  <PlatformInfo>
+      <!--PlatformName reference. In future will be compared against ro.board.platform-->
+      <PlatformName>baytrail_crv</PlatformName>
+      <!--standard cooling devices register in /sys/class/thermal/cooling_deviceX/ Herein
+      referred as 'Path Enumerated at Runtime by Framework in Kernel Thermal' or PERFKT-->
+  </PlatformInfo>
+
+  <!--Cooling Devices-->
+
+  <ContributingDeviceInfo>
+    <CDeviceName>Display</CDeviceName>
+    <CDeviceID>1</CDeviceID>
+
+    <!--CDeviceClassPath: pluggable custom class path name or "auto" meaning no separate plugin required-->
+
+    <CDeviceClassPath>com.intel.thermal.BrightnessControl</CDeviceClassPath>
+
+    <!--CDevicethrottlePath: "auto" means lookin PERFTK path. "none" means implemented inside plugin -->
+
+    <CDeviceThrottlePath>none</CDeviceThrottlePath>
+
+    <!--Throttle values are written to cooling device throttle path -->
+    <!--values can be a absolute target unit (eg cpu frequencies) or -->
+    <!--relative levels (e.g 0,1,2 for charge level or brightness limit percentage) -->
+
+    <ThrottleValues>
+      <ThrottleNormal>100</ThrottleNormal>
+      <ThrottleWarning>40</ThrottleWarning>
+      <ThrottleAlert>40</ThrottleAlert>
+    </ThrottleValues>
+  </ContributingDeviceInfo>
+
+
+  <ContributingDeviceInfo>
+    <CDeviceName>Battery</CDeviceName>
+    <CDeviceID>2</CDeviceID>
+    <CDeviceClassPath>com.intel.thermal.BatteryChargeCurrentControl</CDeviceClassPath>
+    <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+
+  <ContributingDeviceInfo>
+    <CDeviceName>SoC</CDeviceName>
+    <CDeviceID>3</CDeviceID>
+    <CDeviceClassPath>com.intel.thermal.SoCControl</CDeviceClassPath>
+    <CDeviceThrottlePath>auto</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+
+<!--
+  <ContributingDeviceInfo>
+      <CDeviceName>Modem</CDeviceName>
+      <CDeviceID>4</CDeviceID>
+      <CDeviceClassPath>com.intel.thermal.ModemCooling</CDeviceClassPath>
+      <CDeviceThrottlePath>none</CDeviceThrottlePath>
+  </ContributingDeviceInfo>
+
+  <ContributingDeviceInfo>
+      <CDeviceName>ModemAirplane</CDeviceName>
+      <CDeviceID>5</CDeviceID>
+      <CDeviceClassPath>none</CDeviceClassPath>
+  </ContributingDeviceInfo>
+-->
+
+  <ContributingDeviceInfo>
+      <CDeviceName>Otg</CDeviceName>
+      <CDeviceID>6</CDeviceID>
+      <CDeviceClassPath>com.intel.thermal.UsbOtgControl</CDeviceClassPath>
+  </ContributingDeviceInfo>
+
+  <ContributingDeviceInfo>
+      <CDeviceName>CameraFlash</CDeviceName>
+      <CDeviceID>7</CDeviceID>
+      <CDeviceClassPath>com.intel.thermal.CameraFlashControl</CDeviceClassPath>
+      <ThrottleValues>
+         <ThrottleNormal>0</ThrottleNormal>
+         <ThrottleWarning>3</ThrottleWarning>
+         <ThrottleAlert>3</ThrottleAlert>
+      </ThrottleValues>
+  </ContributingDeviceInfo>
+  <!--Map the cooling devices with specfic zones for throttling-->
+<Profile>
+  <Name>Default</Name>
+  <ZoneThrottleInfo>
+    <ZoneID>1</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <!--set CriticalShutDown to 1, if platform needs to shutdown
+        if this zone reaches critical thermal state to avoid any user impact-->
+    <!--list of cooling device IDs registered for the zone-->
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>2</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>3</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>4</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>0</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+<!--
+  <ZoneThrottleInfo>
+    <ZoneID>5</ZoneID>
+    <CriticalShutDown>0</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>5</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>0</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+-->
+
+  <ZoneThrottleInfo>
+    <ZoneID>6</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+</Profile>
+<Profile>
+  <Name>BatterySaver</Name>
+  <ProfileEntryExit>
+    <CoolingDevId>6</CoolingDevId>
+    <CoolingDevId>7</CoolingDevId>
+  </ProfileEntryExit>
+  <ZoneThrottleInfo>
+    <ZoneID>1</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <!--set CriticalShutDown to 1, if platform needs to shutdown
+        if this zone reaches critical thermal state to avoid any user impact-->
+    <!--list of cooling device IDs registered for the zone-->
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>2</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>3</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>4</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+  <ZoneThrottleInfo>
+    <ZoneID>0</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+
+<!--
+  <ZoneThrottleInfo>
+    <ZoneID>5</ZoneID>
+    <CriticalShutDown>0</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>5</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>0</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+-->
+  <ZoneThrottleInfo>
+    <ZoneID>6</ZoneID>
+    <CriticalShutDown>1</CriticalShutDown>
+    <CoolingDeviceInfo>
+      <CoolingDevId>1</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>2</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+    <CoolingDeviceInfo>
+      <CoolingDevId>3</CoolingDevId>
+      <ThrottleDeviceMask>
+        <Normal>0</Normal>
+        <Warning>1</Warning>
+        <Alert>1</Alert>
+      </ThrottleDeviceMask>
+      <DethrottleDeviceMask>
+        <Normal>1</Normal>
+        <Warning>1</Warning>
+        <Alert>0</Alert>
+      </DethrottleDeviceMask>
+    </CoolingDeviceInfo>
+  </ZoneThrottleInfo>
+</Profile>
+</thermalthrottleconfig>

@@ -1,0 +1,11 @@
+# additional rules for gpsd
+allow gpsd sysfs_wake_lock:file { open read write };
+unix_socket_connect(gpsd, mmgr, mmgr)
+allow gpsd keystore:binder call;
+allow gpsd servicemanager:binder call;
+allow gpsd tty_device:chr_file { read write ioctl open };
+allow gpsd default_prop:property_service set;
+# device should be named
+allow gpsd init:unix_stream_socket connectto;
+allow gpsd property_socket:sock_file write;
+allow gpsd keystore:keystore_key saw;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="virtual_devices" Type="ALSA" Endianness="Little">
+
+    <ComponentLibrary>
+        <ComponentType Name="VirtualDevice" Description="Virtual Device">
+            <ParameterBlock Name="config" Mapping="PortConfig">
+                <BooleanParameter Name="playback_enabled"/>
+                <BooleanParameter Name="capture_enabled"/>
+                <EnumParameter Name="format" Size="8">
+                    <ValuePair Literal="S16LE" Numerical="2"/>
+                </EnumParameter>
+                <IntegerParameter Name="channel_number" Size="8" Min="1" Max="2"/>
+                <IntegerParameter Name="sample_rate" Size="16"/>
+            </ParameterBlock>
+        </ComponentType>
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="context_awareness" Type="VirtualDevice" Mapping="Card:wm8958audio,Device:4"/>
+        <Component Name="always_listening" Type="VirtualDevice" Mapping="Card:wm8958audio,Device:5"/>
+    </InstanceDefinition>
+</Subsystem>

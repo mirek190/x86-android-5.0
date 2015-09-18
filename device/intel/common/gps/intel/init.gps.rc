@@ -1,0 +1,36 @@
+on post-fs-data
+
+    mkdir /data/gps 0770 gps system
+
+on post-fs
+
+    # PDB GPIO
+    chmod 0660 /sys/devices/platform/intel_mid_gps/intel_mid_gps/enable
+    chown gps system /sys/devices/platform/intel_mid_gps/intel_mid_gps/enable
+
+on property:ro.spid.gps.tty=ttyMFD1
+    chmod 0660 /dev/ttyMFD1
+    chown gps system /dev/ttyMFD1
+    chmod 0660 /sys/class/tty/ttyMFD1/../../power/control
+    chown gps system /sys/class/tty/ttyMFD1/../../power/control
+    mkdir /dev/gps 0770 gps system
+    symlink /dev/ttyMFD1 /dev/gps/ttyGPS
+    symlink /sys/class/tty/ttyMFD1/../../power/control /dev/gps/ttyGPSPowerControl
+    start gnssCG2000
+
+on property:ro.spid.gps.tty=ttyS2
+    chmod 0660 /dev/ttyS2
+    chown gps system /dev/ttyS2
+    chmod 0660 /sys/class/tty/ttyS2/../../power/control
+    chown gps system /sys/class/tty/ttyS2/../../power/control
+    mkdir /dev/gps 0770 gps system
+    symlink /dev/ttyS2 /dev/gps/ttyGPS
+    symlink /sys/class/tty/ttyS2/../../power/control /dev/gps/ttyGPSPowerControl
+    start gnssCG2000
+
+service gnssCG2000 /system/bin/gnssCG2000
+    class main
+    disabled
+    user gps
+    group system radio
+    socket gnss stream 0660 gps system

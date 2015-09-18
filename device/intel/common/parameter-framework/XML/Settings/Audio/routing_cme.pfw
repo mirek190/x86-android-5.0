@@ -1,0 +1,24 @@
+domainGroup: Routing
+	domainGroup: Enable
+		RoutageState Includes Path
+
+		domainGroup: Cme
+
+			domain: Capture
+
+				conf: Open
+					OpenedCaptureRoutes Includes CmeVoice
+					/Audio/CME/capture/open = 1
+
+				conf: Close
+					/Audio/CME/capture/open = 0
+
+
+			domain: Playback
+
+				conf: Open
+					OpenedPlaybackRoutes Includes CmeVoice
+					/Audio/CME/playback/open = 1
+
+				conf: Close
+					/Audio/CME/playback/open = 0

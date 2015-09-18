@@ -1,0 +1,10 @@
+# Rules for fg_algo_iface
+type fg_algo_iface, domain;
+type fg_algo_iface_exec, exec_type, file_type;
+init_daemon_domain(fg_algo_iface)
+
+allow fg_algo_iface sysfs_intel_fg_iface:file { read write open };
+allow fg_algo_iface sysfs_intel_fg_iface:dir search;
+
+allow fg_algo_iface config_file:dir rw_dir_perms;
+allow fg_algo_iface config_file:file rw_file_perms;

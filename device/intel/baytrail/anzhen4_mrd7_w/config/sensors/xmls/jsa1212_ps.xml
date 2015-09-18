@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+    <driver_config/>
+    <hal_config>
+      <type>proximity</type>
+      <platform_config>
+        <name>jsa1212_ps</name>
+        <activate_node>/sys/bus/i2c/devices/3-0044/ps_enable</activate_node>
+        <poll_node>/sys/bus/i2c/devices/3-0044/ps_poll</poll_node>
+        <data_node/>
+        <calibration_file/>
+        <calibration_function/>
+      </platform_config>
+      <device>
+        <name>JSA1212 Digital Proximity Sensor</name>
+        <vendor>JSA</vendor>
+        <version>1</version>
+        <maxRange>6.0</maxRange>
+        <resolution>6.0</resolution>
+        <power>0.25</power>
+        <minDelay>0</minDelay>
+        <mapper axis_x="X"/>
+        <scale axis_x="6.0"/>
+      </device>
+    </hal_config>
+  </sensor>
+</sensors>

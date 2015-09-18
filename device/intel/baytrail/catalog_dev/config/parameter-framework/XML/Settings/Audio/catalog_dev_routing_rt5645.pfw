@@ -1,0 +1,300 @@
+supDomain: Allways.Disable
+#########
+# Always Disable in all stage
+########
+	domain: Capture
+		conf: default
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/OUT/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/STEREO/2/STO/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/STEREO/2/STO/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/IN/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/HPO/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/HPO/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/IN/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/OUT/SWITCH = 0
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/STEREO/1/STEREO/SOURCE = ADC/DMIC
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/STEREO/1/STEREO/SOURCE = ADC/DMIC
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/MONO/1/SOURCE = ADC
+			/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/MONO/1/SOURCE = ADC
+			/Audio/REALTEK/SOUND_CARD/IF/1/SOURCE = ADC1
+
+##############################
+#	 Mute & Unmute Steps
+##############################
+
+supDomain: Routing.Mute
+	# Definition of Mute and Unmute for futur use in this supDomain
+	RoutageState Includes Flow
+
+	supDomain: HWCodec.Capture
+
+		domain: MainMic
+			conf: Unmute
+				ALL
+					SelectedInputDevice Includes Main
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: HeadsetMic
+			conf: Unmute
+				ALL
+					SelectedInputDevice Includes Headset
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: Headset
+			conf: Unmute
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+
+			conf: Mute
+
+#supDomain: Routing.Digital
+########
+# run in mute stage
+########
+#	RoutageState Includes Flow
+#	supDomain: Playback
+#		domain: CSV
+#			conf: enable
+#				ALL
+#					OpenedPlaybackRoutes Includes HwCodecCSV
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/MONO/LEFT/L2/SWITCH = 1
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/MONO/RIGHT/R2/SWITCH = 1
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/DAC2/SWITCH = 1
+#
+#			conf: disable
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/MONO/LEFT/L2/SWITCH = 0
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/MONO/RIGHT/R2/SWITCH = 0
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/DAC_MIXER/DAC2/SWITCH = 0
+#
+#	supDomain: Capture
+#		domain: CSV
+#			conf: enable
+#				ALL
+#					OpenedCaptureRoutes  Includes HwCodecCSV
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/MONO/1/SWITCH = 1
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/MONO/1/SWITCH = 1
+#			conf: disable
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/MONO/1/SWITCH = 0
+#				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/MONO/1/SWITCH = 0
+
+#	supDomain: Speaker
+#		domain: CSV
+#     		conf: enable
+#				ALL
+#					SelectedOutputDevice Is IHF
+#					OpenedPlaybackRoutes Includes HwCodecCSV
+#				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPEAKER_MIXER/LEFT/DAC/2/SWITCH = 1
+#				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPEAKER_MIXER/RIGHT/DAC/2/SWITCH = 1
+#			conf: disable
+#				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPEAKER_MIXER/LEFT/DAC/2/SWITCH = 0
+#				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPEAKER_MIXER/RIGHT/DAC/2/SWITCH = 0
+
+#	supDomain: Headset
+#       domain: CSV
+#           conf: enable
+#               ALL
+#                   ANY
+#                       SelectedOutputDevice Includes Headset
+#                       SelectedOutputDevice Includes Headphones
+#                   OpenedPlaybackRoutes Includes HwCodecCSV
+#               /Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HPOVOL_MIXER/LEFT/DAC2/SWITCH = 1
+#               /Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HPOVOL_MIXER/RIGHT/DAC2/SWITCH = 1
+#           conf: disable
+#               /Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HPOVOL_MIXER/LEFT/DAC2/SWITCH = 0
+#               /Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HPOVOL_MIXER/RIGHT/DAC2/SWITCH = 0
+
+##############################
+#	 Enable & Disable Steps
+##############################
+supDomain: Routing.Enable
+	# Definition of Enable and Disable for future use in this supDomain
+	RoutageState Includes Path
+
+	supDomain: HWCodec.Capture
+
+		domain: MainMic
+			conf: Enable
+				ALL
+					ANY
+						SelectedInputDevice Includes Main
+						SelectedOutputDevice Includes Headphones
+						SelectedOutputDevice Includes IHF
+					OpenedCaptureRoutes Includes HwCodecMedia
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/BST/2/SWITCH = 1
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/BST/2/SWITCH = 1
+
+			conf: Disable
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/BST/2/SWITCH = 0
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/BST/2/SWITCH = 0
+
+		domain: HeadsetMic
+			conf: Enable
+				ALL
+					SelectedInputDevice Includes Headset
+					OpenedCaptureRoutes Includes HwCodecMedia
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/BST/1/SWITCH = 1
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/BST/1/SWITCH = 1
+
+			conf: Disable
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/LEFT/BST/1/SWITCH = 0
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/REC_MIXER/RIGHT/BST/1/SWITCH = 0
+		domain: Common
+			conf: Enable
+				ALL
+					ANY
+						SelectedInputDevice Includes Main
+						SelectedInputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+						SelectedOutputDevice Includes IHF
+					OpenedCaptureRoutes Includes HwCodecMedia
+				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/STEREO/1/STO/SWITCH = 1
+				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/STEREO/1/STO/SWITCH = 1
+			conf: Disable
+				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/LEFT/STEREO/1/STO/SWITCH = 0
+				/Audio/REALTEK/SOUND_CARD/MIXER/DIGITAL/ADC_MIXER/RIGHT/STEREO/1/STO/SWITCH = 0
+
+	supDomain: HWCodec.Playback
+		domain: Headset
+			conf: Enable
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HP_EN_MIXER/SWITCH = 1
+
+			conf: Disable
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/HP_EN_MIXER/SWITCH = 0
+
+		domain: IHF
+			conf: Enable
+				ALL
+					SelectedOutputDevice Includes IHF
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPK_EN_MIXER/SWITCH = 1
+
+			conf: Disable
+				/Audio/REALTEK/SOUND_CARD/MIXER/ANALOG/SPK_EN_MIXER/SWITCH = 1
+
+		domain: Common
+			conf: Enable
+				ALL
+					ANY
+						SelectedOutputDevice Includes IHF
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+					OpenedPlaybackRoutes Includes HwCodecMedia
+			conf: Disable
+
+##############################
+#	 Configure Step
+##############################
+#
+
+supDomain: Volume.Configure
+	RoutageState Includes Configure
+
+	domain: Speaker
+		conf: media
+			ALL
+				SelectedOutputDevice Is IHF
+				OpenedPlaybackRoutes Includes HwCodecMedia
+			/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME = 31 31
+#		conf: CSV
+#			ALL
+#				OpenedPlaybackRoutes Includes HwCodecCSV
+#				SelectedOutputDevice Is IHF
+#			/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME = 31 31
+		conf: doul
+			ALL
+				SelectedOutputDevice Includes IHF
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+				OpenedPlaybackRoutes Includes HwCodecMedia
+			/Audio/REALTEK/SOUND_CARD/OUTPUT/SPEAKER/ANALOG/VOLUME = 31 31
+	domain: Headset
+		conf: media
+			ALL
+				OpenedPlaybackRoutes Includes HwCodecMedia
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+			/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME = 31 31
+#		conf: CSV
+#			ALL
+#				OpenedPlaybackRoutes Includes HwCodecCSV
+#				ANY
+#					SelectedOutputDevice Includes Headset
+#					SelectedOutputDevice Includes Headphones
+#			/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME = 31 31
+		conf: doul
+			ALL
+				SelectedOutputDevice Includes IHF
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+				OpenedPlaybackRoutes Includes HwCodecMedia
+			/Audio/REALTEK/SOUND_CARD/OUTPUT/HEADPHONE/ANALOG/VOLUME = 31 31
+	domain: mainMIC
+		conf: meida
+			ALL
+				OpenedCaptureRoutes  Includes HwCodecMedia
+				SelectedInputDevice Includes Main
+			/Audio/REALTEK/SOUND_CARD/INPUT/ANALOG/2/BOOST_GAIN = 4
+			/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME = 87 87
+#		conf: CSV
+#			ALL
+#				OpenedCaptureRoutes  Includes HwCodecCSV
+#				ANY
+#					SelectedOutputDevice Includes Headphones
+#					SelectedOutputDevice Includes IHF
+#			/Audio/REALTEK/SOUND_CARD/INPUT/ANALOG/2/BOOST_GAIN = 4
+#			/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME = 87 87
+
+	domain: HeadsetMIC
+		conf: meida
+			ALL
+				OpenedCaptureRoutes  Includes HwCodecMedia
+				SelectedInputDevice Includes Headset
+			/Audio/REALTEK/SOUND_CARD/INPUT/ANALOG/1/BOOST_GAIN = 4
+			/Audio/REALTEK/SOUND_CARD/INPUT/DIGITAL/STEREO/VOLUME = 87 87
+
+
+
+##############################
+#	 Configure Step
+##############################
+#
+supDomain: Routing.Configure
+	RoutageState Includes Configure
+
+
+	supDomain: LPE_Mixer
+		domain: IHF
+			conf: Activated
+				ALL
+					SelectedOutputDevice Includes IHF
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = NONE
+
+		domain: HS
+			conf: Activated
+				ALL
+					OpenedPlaybackRoutes Includes HwCodecMedia
+					SelectedOutputDevice Excludes IHF
+					ANY
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = NONE
+

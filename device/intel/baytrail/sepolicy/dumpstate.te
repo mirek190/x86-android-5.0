@@ -1,0 +1,10 @@
+# Additional rules for dumpstate
+allow dumpstate fuse:dir { search write add_name setattr remove_name};
+allow dumpstate fuse:file create_file_perms;
+allow dumpstate config_file:filesystem getattr;
+allow dumpstate factory_file:filesystem getattr;
+allow dumpstate log_file:filesystem getattr;
+#allow dumpstate init:binder call;
+allow dumpstate coreu:binder call;
+allow dumpstate logcat_exec:file { read execute open execute_no_trans };
+allow dumpstate crashlogd:process signal;

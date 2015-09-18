@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+   <driver_config>
+   <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0xe</addr>
+      </i2c_addrs>
+      <id_reg_addr>0x0</id_reg_addr>
+      <ids>
+        <id>0x17</id>
+      </ids>
+      <device_name>KMX61G</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>251</report_interval>
+    </basic_info>
+    <odr_tables>
+       <odr_table>
+        <hz>1</hz>
+        <action><![CDATA[
+         writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x8; 
+         readreg_0x28_0_1;
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 1;
+         ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>4</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0xa; 
+        readreg_0x28_0_1;
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 4;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>6</hz>
+        <action><![CDATA[
+         writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0xb; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 6;
+         ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>12</hz>
+        <action><![CDATA[
+           writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x0; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 12;
+        ]]>
+        </action>
+      </odr_table>
+         <odr_table>
+        <hz>50</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x2; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 50;
+        ]]>
+        </action>
+      </odr_table>
+     <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x4; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 200;
+       ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>800</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x6; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 800;
+     ]]>
+        </action>
+      </odr_table>    <odr_table>
+        <hz>1600</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0xf0) | 0x7; 
+         readreg_0x2a_0_1;
+         writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+         writereg_0x29_0_1 = 0x0;
+         global_3 = 1600;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+         ]]>
+        </action>
+      </range_table>
+       <range_table>
+        <range>6</range>
+        <action>
+          <![CDATA[
+        ]]>
+        </action>
+      </range_table>
+     <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+       /* reset ram*/
+       writereg_0x2b_0x0_1 = 0x80;
+       sleep_10;
+       /* Wake up the device in standby mode. */
+       writereg_0x29_0x0_1 = 0x3;
+      /* Enable interrupt pin, active high, latching */
+       writereg_0x2d_0x0_1 = 0x34;
+       /* Default mode 2G 14 bits all IRQ's off */
+       writereg_0x2a_0x0_1 = 0x13;
+       /* Set the default output data rate. */
+       writereg_0x2c_0x0_1 = 0x29;
+       /* Clear any outstanding interrupt signal. */
+       readreg_0x28_0_1;
+       global_3 = 2;
+       global_1 = 0;
+       ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x29_0_1 ;
+        readreg_0x2a_0_1 ;
+        readreg_0x2b_0_1 ;
+        readreg_0x2c_0_1 ;
+        readreg_0x2d_0_1 ;
+        readreg_0x2e_0_1 ;
+        readreg_0x2f_0_1;
+        readreg_0x29_0_1;
+        /* reinitialize */
+        /* Wake up the device in standby mode. */
+        writereg_0x29_0x0_1 = 0x3;
+        /* Enable interrupt pin, active high, latching */
+        writereg_0x2d_0x0_1 = 0x34;
+        /* Default mode 2G 14 bits all IRQ's off */
+        writereg_0x2a_0x0_1 = 0x13;
+        /* Set the default output data rate. */
+        writereg_0x2c_0x0_1 = 0x29;
+        /* Clear any outstanding interrupt signal. */
+        readreg_0x28_0_1;
+        global_3 = 2;
+        global_1 = 0;
+        /*writereg_0x2a_0x0_1 = 0x13;*/
+        /*writereg_0x2d_0x0_1 = 0x34;*/
+        readreg_0x2a_0_1;
+        writereg_0x2a_0x0_1 = (regbuf_0x2a_1 & 0xdf )|0x20;
+        writereg_0x29_0x0_1 = 0x0;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+       readreg_0x29_0_1;
+       /*writereg_0x29_0_1 = 0x3;*/
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+        readreg_0x01_0_1;
+        if(global_3 <= 4 )
+        readreg_0x28_0_1;
+        return (regbuf_0x01_1 & 0x10);
+        endif        
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0xa_0x0_6;
+        return (le16_to_cpu(regbuf_0xa_2) >> 2) * 1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0xc_2) >> 2) * 1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0xe_2) >> 2) * 1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+	  <name>accel</name>
+	  <activate_node>/sys/bus/i2c/devices/3-000e/accel/enable</activate_node>
+      <poll_node>/sys/bus/i2c/devices/3-000e/accel/poll</poll_node>
+      <data_node></data_node>
+	  <calibration_function>AccelCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>KMX61G Accelerometer</name>
+      <vendor>Kionix</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.001</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.001" axis_y="0.001" axis_z="0.001" unit="GRAVITY_EARTH"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+  <sensor>
+   <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0xe</addr><!-- disable for avoiding conflict-->
+      </i2c_addrs>
+      <id_reg_addr>0x0</id_reg_addr>
+      <ids>
+        <id>0x17</id>
+      </ids>
+      <device_name>KMX61G</device_name>
+      <input_name>comp</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval>18</min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+     <odr_tables>
+       <odr_table>
+        <hz>1</hz>
+        <action><![CDATA[
+         writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x80; 
+         writereg_0x29_0_1 = 0x0;
+         ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>2</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x90; 
+        writereg_0x29_0_1 = 0x0;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>6</hz>
+        <action><![CDATA[
+           writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0xb0; 
+        writereg_0x29_0_1 = 0x0;
+         ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>12</hz>
+        <action><![CDATA[
+           writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x00; 
+        writereg_0x29_0_1 = 0x0;
+        ]]>
+        </action>
+      </odr_table>
+         <odr_table>
+        <hz>50</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x20; 
+         writereg_0x29_0_1 = 0x0;
+        ]]>
+        </action>
+      </odr_table>
+     <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x40; 
+         writereg_0x29_0_1 = 0x0;
+       ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>800</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x60; 
+         writereg_0x29_0_1 = 0x0;
+     ]]>
+        </action>
+      </odr_table>    <odr_table>
+        <hz>1600</hz>
+        <action><![CDATA[
+          writereg_0x29_0_1 = 0x3;
+         readreg_0x2c_0_1;
+         writereg_0x2c_0_1 = (regbuf_0x2c_1 & 0x0f) | 0x70; 
+         writereg_0x29_0_1 = 0x0;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+    </range_tables>
+    <sys_entries>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x29_0_1;
+        writereg_0x29_0x0_1 = 0x0;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+       readreg_0x28_0_1;
+       readreg_0x29_0_1;
+       /* can't be disabled unless accel disabled*/
+       /*writereg_0x29_0_1 = 0x3;*/
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x12_0x0_6;
+        return (le16_to_cpu(regbuf_0x12_2) >> 2) * 1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0x14_2) >> 2) * 1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0x16_2) >> 2) * 1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>compass</type>
+    <platform_config>
+	  <name>comp</name>
+	  <activate_node>/sys/bus/i2c/devices/3-000e/comp/enable</activate_node>
+      <poll_node>/sys/bus/i2c/devices/3-000e/comp/poll</poll_node>
+      <data_node></data_node>
+      <driver_calibration_node></driver_calibration_node>
+      <driver_calibration_file></driver_calibration_file>
+      <driver_calibration_function></driver_calibration_function>
+      <calibration_file>/data/compass.conf</calibration_file>
+      <calibration_function>CompassGenericCalibration</calibration_function>
+      <fliter_length>50</fliter_length>
+    </platform_config>
+    <device>
+      <name>KMX61G Magnetic field sensor</name>
+      <vendor>Kionix</vendor>
+      <version>1</version>
+      <maxRange>2500.0</maxRange>
+      <resolution>0.3</resolution>
+      <power>0.1</power>
+      <minDelay>20000</minDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.1465" axis_y="0.1465" axis_z="-0.1465"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

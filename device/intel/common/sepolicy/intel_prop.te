@@ -1,0 +1,6 @@
+# Rules for intel_prop (read Android props from fw)
+type intel_prop, domain;
+
+allow intel_prop init:unix_stream_socket connectto;
+allow intel_prop system_prop:property_service set;
+allow intel_prop property_socket:sock_file write;

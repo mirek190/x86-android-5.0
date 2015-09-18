@@ -1,0 +1,2 @@
+# Additional rules for vdc
+allow vdc fuse:file { write getattr };

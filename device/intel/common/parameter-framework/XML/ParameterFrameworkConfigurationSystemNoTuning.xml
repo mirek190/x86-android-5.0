@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParameterFrameworkConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Schemas/ParameterFrameworkConfiguration.xsd"
+	SystemClassName="System" ServerPort="5010" TuningAllowed="false">
+    <SubsystemPlugins>
+        <Location Folder="/system/lib/parameter-framework-plugins/System">
+            <Plugin Name="libproperty-subsystem.so"/>
+        </Location>
+    </SubsystemPlugins>
+    <StructureDescriptionFileLocation Path="Structure/System/SystemClass.xml"/>
+    <SettingsConfiguration>
+        <ConfigurableDomainsFileLocation Path="Settings/System/SystemConfigurableDomains.xml"/>
+    </SettingsConfiguration>
+</ParameterFrameworkConfiguration>

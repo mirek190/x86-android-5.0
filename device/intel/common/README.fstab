@@ -1,0 +1,29 @@
+Following static files have been removed, and are generated at build time:
+
+fstab:
+  file used in main OS (Android) to mount all partitions using mount_all init.rc function
+
+recovery.fstab:
+  file used in recovery and droidboot for mounting/erasing partition based on name
+
+
+Script to generate fstab:
+  vendor/intel/support/partition.py
+
+    Input:
+      This script is using 3 json files:
+        - storage/default_partition.json: contains partitions details
+        - storage/default_mount.json: contains partitions to mount for each supported OS
+        - storage/default_override.json: contains override to apply to partition and mount files (this file is not optional, it must be set)
+
+    Support:
+      Script supports MBR and GPT. A partition table file is created and added to flashfiles.
+
+
+    New platform:
+        - Override should be applied using storage/default_override.json file and put under platform in storage/ with filename set in BoardConfig.mk
+          OVERRIDE_PARTITION_FILE = "vendor/intel/my_device/storage/my_override.json"
+
+
+    Usage:
+       ./vendor/intel/support/partition.py ./device/intel/common/storage/default_partition.json ./device/intel/common/storage/default_mount.json "./device/intel/common/storage/default_override.json" "out/target/product/mfld_pr2" "mfld_pr2" out/target/product/mfld_pr2/partition.tbl

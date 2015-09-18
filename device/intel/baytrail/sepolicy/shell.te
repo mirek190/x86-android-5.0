@@ -1,0 +1,10 @@
+# Additional shell rules
+allow shell logcat_exec:file { getattr execute read open execute_no_trans };
+allow shell log_file:dir { read getattr open};
+allow shell log_file:file getattr;
+allow shell config_file:dir getattr;
+allow shell factory_file:dir getattr;
+
+# to allow adb shell screencap
+allow shell graphics_device:dir search;
+allow shell surfaceflinger_tmpfs:file { read write };

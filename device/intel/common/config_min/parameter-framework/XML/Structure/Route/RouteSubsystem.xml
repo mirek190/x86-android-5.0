@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="route_mgr" Type="ROUTEMGR" Endianness="Little">
+    <ComponentLibrary>
+
+    <!-- Route library -->
+        <ComponentType Name="Route">
+            <ParameterBlock Name="status" Mapping="Route:'%1_%2'">
+                <BooleanParameter Name="applicable"/>
+                <BooleanParameter Name="need_reconfigure"/>
+                <BooleanParameter Name="need_reroute"/>
+            </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="RoutePlayback">
+            <Component Name="route_playback" Type="Route" Mapping="Direction:out,Type:route,Amend2:Playback"/>
+        </ComponentType>
+        <ComponentType Name="RouteCapture">
+            <Component Name="route_capture" Type="Route" Mapping="Direction:in,Type:route,Amend2:Capture"/>
+        </ComponentType>
+        <ComponentType Name="RouteFullDuplex">
+            <Component Name="route_full_duplex_playback" Type="RoutePlayback"/>
+            <Component Name="route_full_duplex_capture" Type="RouteCapture"/>
+        </ComponentType>
+
+        <ComponentType Name="StreamRouteConfig" Extends="Route">
+            <ParameterBlock Name="config" Mapping="StreamRoute:'%1_%2'">
+                <BooleanParameter Name="require_preenable"/>
+                <BooleanParameter Name="require_postdisable"/>
+                <IntegerParameter Name="silence_prolog_ms" Size="32"/>
+                <IntegerParameter Name="channels" Size="32"/>
+                <StringParameter Name="channels_policy" MaxLength="256" Description="CSV list of policy per channels: copy, average or ignore are supported"/>
+                <IntegerParameter Name="rate" Size="32"/>
+                <EnumParameter Name="format" Size="8">
+                     <ValuePair Literal="Pcm16Bit" Numerical="1"/>
+                     <ValuePair Literal="Pcm8Bit24Bit" Numerical="3"/>
+                     <ValuePair Literal="Pcm32Bit" Numerical="4"/>
+                </EnumParameter>
+                <IntegerParameter Name="period_size" Size="32" Description="in frames"/>
+                <IntegerParameter Name="period_count" Size="32" Description="in frames"/>
+                <IntegerParameter Name="start_threshold" Size="32" Description="in frames"/>
+                <IntegerParameter Name="stop_threshold" Size="32" Description="in frames"/>
+                <IntegerParameter Name="silence_threshold" Size="32" Description="in frames"/>
+                <IntegerParameter Name="avail_min" Size="32" Description="in frames"/>
+                <IntegerParameter Name="applicability_mask" Size="32" Description="Applicable OutputFlags for playback, InputSources translated into a mask for capture"/>
+                <StringParameter Name="effects_supported" MaxLength="256" Description="CSV Human readeable effects list"/>
+            </ParameterBlock>
+        </ComponentType>
+        <ComponentType Name="StreamRoutePlayback">
+                <Component Name="stream_route_playback" Type="StreamRouteConfig" Mapping="Direction:out,Type:StreamRoute,Amend2:Playback"/>
+        </ComponentType>
+        <ComponentType Name="StreamRouteCapture">
+                <Component Name="stream_route_capture" Type="StreamRouteConfig" Mapping="Direction:in,Type:StreamRoute,Amend2:Capture"/>
+        </ComponentType>
+        <ComponentType Name="StreamRouteFullDuplex">
+                <Component Name="stream_route_full_duplex_playback" Type="StreamRoutePlayback"/>
+                <Component Name="stream_route_full_duplex_capture" Type="StreamRouteCapture"/>
+        </ComponentType>
+
+        <ComponentType Name="PlatformRoutes">
+            <Component Name="media" Type="StreamRouteFullDuplex" Mapping="Amend1:Media,Id:0,Card:card1,Device:0,Ports:"
+								    Description="Amend Card must inform the name of the card to use for this stream route"/>
+        </ComponentType>
+
+        <ComponentType Name="Mode" Mapping="Type:ModeType,Inclusive:0">
+            <EnumParameter Name="mode" Size="32" Mapping="Criterion">
+                <ValuePair Literal="Normal" Numerical="0"/>
+                <ValuePair Literal="RingTone" Numerical="1"/>
+                <ValuePair Literal="InCsvCall" Numerical="2"/>
+                <ValuePair Literal="InVoipCall" Numerical="3"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="InputDevices" Mapping="Type:InputDevicesType,Inclusive:1">
+            <BitParameterBlock Name="input_devices" Size="32" Mapping="Criterion">
+                <BitParameter Name="Communication" Size="1" Pos="0"/>
+                <BitParameter Name="Ambient" Size="1" Pos="1"/>
+                <BitParameter Name="Main" Size="1" Pos="2"/>
+                <BitParameter Name="SCO_Headset" Size="1" Pos="3"/>
+                <BitParameter Name="Headset" Size="1" Pos="4"/>
+                <BitParameter Name="AuxDigital" Size="1" Pos="5"/>
+                <BitParameter Name="VoiceCall" Size="1" Pos="6"/>
+                <BitParameter Name="Back" Size="1" Pos="7"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="OutputDevices" Mapping="Type:OutputDevicesType,Inclusive:1">
+            <BitParameterBlock Name="output_devices" Size="32" Mapping="Criterion">
+                <BitParameter Name="Earpiece" Size="1" Pos="0"/>
+                <BitParameter Name="IHF" Size="1" Pos="1"/>
+                <BitParameter Name="Headset" Size="1" Pos="2"/>
+                <BitParameter Name="Headphones" Size="1" Pos="3"/>
+                <BitParameter Name="SCO" Size="1" Pos="4"/>
+                <BitParameter Name="SCO_Headset" Size="1" Pos="5"/>
+                <BitParameter Name="SCO_CarKit" Size="1" Pos="6"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="Band" Mapping="Type:BandType,Inclusive:0">
+            <EnumParameter Name="band" Size="32" Mapping="Criterion">
+                <ValuePair Literal="Unknown" Numerical="0"/>
+                <ValuePair Literal="NB" Numerical="1"/>
+                <ValuePair Literal="WB" Numerical="2"/>
+                <ValuePair Literal="SuperWB" Numerical="3"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="InputSources" Mapping="Type:InputSourcesType,Inclusive:1">
+            <BitParameterBlock Name="input_sources" Size="32" Mapping="Criterion">
+                <BitParameter Name="Default" Size="1" Pos="0"/>
+                <BitParameter Name="Mic" Size="1" Pos="1"/>
+                <BitParameter Name="VoiceUplink" Size="1" Pos="2"/>
+                <BitParameter Name="VoiceDownlink" Size="1" Pos="3"/>
+                <BitParameter Name="VoiceCall" Size="1" Pos="4"/>
+                <BitParameter Name="Camcorder" Size="1" Pos="5"/>
+                <BitParameter Name="VoiceRecognition" Size="1" Pos="6"/>
+                <BitParameter Name="VoiceCommunication" Size="1" Pos="7"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="OutputFlags" Mapping="Type:OutputFlagsType,Inclusive:1">
+            <BitParameterBlock Name="output_flags" Size="32" Mapping="Criterion">
+                <BitParameter Name="none" Size="1" Pos="0"/>
+                <BitParameter Name="direct" Size="1" Pos="1"/>
+                <BitParameter Name="primary" Size="1" Pos="2"/>
+                <BitParameter Name="fast" Size="1" Pos="3"/>
+                <BitParameter Name="deep_buffer" Size="1" Pos="4"/>
+                <BitParameter Name="compress_offload" Size="1" Pos="5"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="TtyDirection" Mapping="Type:TtyDirectionType,Inclusive:1">
+            <BitParameterBlock Name="tty_direction" Size="32" Mapping="Criterion">
+                <BitParameter Name="Downlink" Size="1" Pos="0"/>
+                <BitParameter Name="Uplink" Size="1" Pos="1"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="Boolean" Mapping="Type:BooleanType,Inclusive:0">
+            <EnumParameter Name="boolean" Size="32" Mapping="Criterion">
+                <ValuePair Literal="False" Numerical="0"/>
+                <ValuePair Literal="True" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="State" Mapping="Type:StateType,Inclusive:0">
+            <EnumParameter Name="state" Size="32" Mapping="Criterion">
+                <ValuePair Literal="Off" Numerical="0"/>
+                <ValuePair Literal="On" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="Preprocessing" Mapping="Type:PreProcessingType,Inclusive:1">
+            <BitParameterBlock Name="preprocessing_enabled" Size="32" Mapping="Criterion">
+                <BitParameter Name="Aec" Size="1" Pos="0"/>
+                <BitParameter Name="Agc" Size="1" Pos="1"/>
+                <BitParameter Name="Ns" Size="1" Pos="2"/>
+            </BitParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="PlatformCriteria">
+            <Component Name="mode_criterion" Type="Mode" Mapping="Name:Mode"/>
+            <Component Name="input_devices_criterion" Type="InputDevices" Mapping="Name:SelectedInputDevice"/>
+            <Component Name="output_devices_criterion" Type="OutputDevices" Mapping="Name:SelectedOutputDevice"/>
+            <Component Name="band_type_criterion" Type="Band" Mapping="Name:BandType"/>
+            <Component Name="screen_state_criterion" Type="State" Mapping="Name:ScreenState"/>
+            <Component Name="fm_mode_criterion" Type="State" Mapping="Name:FmMode"/>
+            <Component Name="input_sources_criterion" Type="InputSources" Mapping="Name:AudioSource"/>
+            <Component Name="output_flags_criterion" Type="OutputFlags" Mapping="Name:OutputFlags,"/>
+            <Component Name="bt_headset_nrec_criterion" Type="Boolean" Mapping="Name:BtHeadsetNrEc"/>
+            <Component Name="bt_headset_band_criterion" Type="Band" Mapping="Name:BtHeadsetBandType"/>
+            <Component Name="hac_mode_criterion" Type="State" Mapping="Name:HAC"/>
+            <Component Name="tty_direction_criterion" Type="TtyDirection" Mapping="Name:TTYDirection"/>
+            <Component Name="mic_mute_criterion" Type="State" Mapping="Name:MicMute"/>
+            <Component Name="preproc_enabled_criterion" Type="Preprocessing" Mapping="Name:PreProcEnabled"/>
+        </ComponentType>
+
+        <ComponentType Name="Port">
+            <BooleanParameter Name="blocked" Mapping="Port:'%1_Port'"/>
+        </ComponentType>
+
+        <ComponentType Name="PlatformPorts">
+            <!--Component Name="port_1" Type="Port" Mapping="Amend1:Port1,Id:0,Groups:Group0"/>
+            <Component Name="port_2" Type="Port" Mapping="Amend1:Port2,Id:1,Groups:Group0"/-->
+        </ComponentType>
+
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="ports" Type="PlatformPorts"/>
+        <Component Name="routes" Type="PlatformRoutes"/>
+        <Component Name="criteria" Type="PlatformCriteria"/>
+    </InstanceDefinition>
+</Subsystem>

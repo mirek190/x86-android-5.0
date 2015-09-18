@@ -1,0 +1,9 @@
+on boot
+    setprop chss.datapath /system/etc/chub
+    setprop chss.database /system/etc/chub/info_manager.db
+
+service chssd /system/bin/chssd
+    class main
+    user system
+    group system
+    disabled

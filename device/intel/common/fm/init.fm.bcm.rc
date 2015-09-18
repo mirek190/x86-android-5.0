@@ -1,0 +1,10 @@
+########################################################
+#  FM CONFIGURATION - BCM SPECIFIC
+########################################################
+on post-fs-data
+#shared transport user space mgr service for Bluetooth, FM and GPS
+service uim /system/bin/brcm-uim-sysfs
+    class core
+    user root
+    group bluetooth net_bt_admin
+    oneshot

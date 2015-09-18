@@ -1,0 +1,4 @@
+Keep vanilla AOSP resources customization here.
+
+Intel extensions for resources that are not in Google's code are not allowed
+and shall be put in overlays_extensions instead.

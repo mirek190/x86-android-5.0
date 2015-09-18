@@ -1,0 +1,20 @@
+
+######################################
+############### Enable ###############
+######################################
+
+supDomain: Routing.Enable
+	RoutageState Includes Path
+
+	domain: Power.Wakelock
+
+		conf: Acquired
+			ANY
+				OpenedPlaybackRoutes Includes ModemIA
+				OpenedCaptureRoutes Includes FMIA
+				OpenedPlaybackRoutes Includes CmeVoice
+				OpenedCaptureRoutes Includes CmeVoice
+			/Audio/POWER/WAKE_LOCK/PARTIAL/LOCKED = 1
+
+		conf: Released
+			/Audio/POWER/WAKE_LOCK/PARTIAL/LOCKED = 0

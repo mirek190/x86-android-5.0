@@ -1,0 +1,8 @@
+# Additional bluetooth rules
+type bd_prov_exec, exec_type, file_type;
+domain_auto_trans(init, bd_prov_exec, bluetooth)
+allow bluetooth mei_device:chr_file { ioctl open read write };
+allow bluetooth tty_device:chr_file { read write ioctl open };
+#allow bluetooth unlabeled:dir search;
+allow bluetooth sysfs_rfkill:dir r_dir_perms;
+allow bluetooth sysfs_rfkill:file rw_file_perms;

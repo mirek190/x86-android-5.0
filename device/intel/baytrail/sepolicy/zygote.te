@@ -1,0 +1,6 @@
+# Additional zygote rules
+allow zygote property_socket:sock_file write;
+allow zygote system_prop:property_service set;
+allow zygote self:process execmem;
+allow zygote gpu_device:chr_file rw_file_perms;
+#allow zygote system_file:file write;

@@ -1,0 +1,105 @@
+# Additional file_contexts
+
+#rootfs
+/logs(/.*)?                     u:object_r:log_file:s0
+/config(/.*)?                   u:object_r:config_file:s0
+/factory(/.*)?                  u:object_r:factory_file:s0
+
+# label graphics device with a new type
+/dev/dri/card0                  u:object_r:gpu_device:s0
+/dev/sw_sync                    u:object_r:graphics_device:s0
+/dev/intel_sst_ctrl             u:object_r:intel_sst_ctrl_device:s0
+
+# mei device, since app domain doesn't have access to tee device
+/dev/mei                        u:object_r:mei_device:s0
+/dev/meimm                      u:object_r:mei_device:s0
+
+# GPS
+/dev/gsmtty(.*)?                u:object_r:tty_device:s0
+/dev/ttyMFD(.*)?                u:object_r:tty_device:s0
+/system/bin/gpsd                u:object_r:gpsd_exec:s0
+/system/bin/gpscerd             u:object_r:gpsd_exec:s0
+
+# mmgr
+/dev/socket/mmgr                u:object_r:mmgr_socket:s0
+/system/bin/mmgr                u:object_r:mmgr_exec:s0
+/sys/devices/pci0000:00/(.*)?/hsic_enable        u:object_r:sysfs_hsic_enable:s0
+/dev/mdm_ctrl(.*)?              u:object_r:tty_device:s0
+/dev/ttyACM(.*)?                u:object_r:tty_device:s0
+
+# coreu
+/system/bin/coreu               u:object_r:coreu_exec:s0
+
+# hdcpd
+/system/bin/hdcpd               u:object_r:hdcpd_exec:s0
+/data/hdcp(/.*)?                u:object_r:hdcpd_data_file:s0
+
+# sensorhubd
+/system/bin/sensorhubd          u:object_r:sensorhubd_exec:s0
+/sys/devices/platform/80860F41:04/i2c-5/5-0040/control  u:object_r:sysfs_hwmon_control:s0
+/dev/socket/sensorhubd          u:object_r:sensorhubd_socket:s0
+/dev/i2c(.*)?                   u:object_r:i2c_device:s0
+/sys/class/gpio/gpio59/value    u:object_r:sysfs_gpio_value:s0
+/sys/class/gpio/gpio95/value    u:object_r:sysfs_gpio_value:s0
+
+# nvm_server
+/system/bin/nvm_server          u:object_r:nvm_server_exec:s0
+/dev/socket/nvm-ctl             u:object_r:nvm_ctl_socket:s0
+
+# ueventd
+/sys/devices/pci(.*)?/L2_autosuspend_enable u:object_r:sysfs_autosuspend_enable:s0
+
+# crashlogd
+/system/bin/crashlogd           u:object_r:crashlogd_exec:s0
+
+# bd_prov (bluetooth)
+/system/bin/bd_prov             u:object_r:bd_prov_exec:s0
+
+# vw drm
+/sys/devices/pci0000:00/0000:00:02.0/resource0 u:object_r:sysfs_drm_resource:s0
+/sys/devices/pci0000:00/0000:00:02.0/drm/(.*)? u:object_r:sysfs_drm_resource:s0
+
+# thermal management
+/sys/devices/platform/coretemp.0/(.*)? u:object_r:sysfs_thermal_management:s0
+/sys/devices/virtual/thermal(.*)?      u:object_r:sysfs_thermal_management:s0
+/dev/socket/logconfig                  u:object_r:thermal_socket:s0
+/sbin/thermald                         u:object_r:thermal_exec:s0
+
+
+# CPU
+/dev/msr[0-3]                   u:object_r:msr_device:s0
+
+# healthd
+/dev/max170xx                   u:object_r:tty_device:s0
+
+# camera
+/dev/media0                     u:object_r:camera_device:s0
+/dev/v4l-subdev(.*)?            u:object_r:camera_device:s0
+
+# fg_conf
+/system/bin/fg_conf             u:object_r:fg_conf_exec:s0
+
+# wlan_prov
+/system/bin/wlan_prov           u:object_r:wlan_prov_exec:s0
+
+# bcu_cpufreqrel
+/system/bin/bcu_cpufreqrel      u:object_r:bcu_cpufreqrel_exec:s0
+
+# logcat for all the init scripts
+/system/bin/logcat              u:object_r:logcat_exec:s0
+
+#rfkill
+/sys/devices/platform/80860F0A:00/BCM2E1A:00/rfkill(/.*)?          u:object_r:sysfs_rfkill:s0
+/sys/devices/INT33BB:00/mmc_host/mmc1/mmc1:0001/mmc1:0001:2(/.*)?  u:object_r:sysfs_rfkill:s0
+/sys/devices/platform/80860F0A:00/OBDA8723:00/rfkill(/.*)?         u:object_r:sysfs_rfkill:s0
+
+# fg_algo_iface
+/system/bin/fg_algo_iface                       u:object_r:fg_algo_iface_exec:s0
+/sys/class/misc/intel_fg_iface(/.*)?            u:object_r:sysfs_intel_fg_iface:s0
+/sys/devices/virtual/misc/intel_fg_iface(/.*)?  u:object_r:sysfs_intel_fg_iface:s0
+
+#usb3gmonitor
+/system/bin/usb3gmonitor        u:object_r:usb3gmonitor_exec:s0
+
+#ttyUSB
+/dev/ttyUSB(.*)?                u:object_r:tty_device:s0

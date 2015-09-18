@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- SD card & phone storage settings item title that will result in the phone unmounting the SD card.  This will be done before the user phyiscally removes the SD card from the phone.  Kind of like the "Safely remove" on some operating systems.   [CHAR LIMIT=25] -->
+    <string name="sd_eject">Unmount </string>
+    <!-- SD card & phone storage settings item title that will result in the phone unmounting the SD card.  This will be done before the user phyiscally removes the SD card from the phone.  Kind of like the "Safely remove" on some operating systems.   -->
+    <string name="sd_eject_summary">Unmount the removable storage so you can safely remove it</string>
+    <!-- SD card & phone storage settings item title for toggling PTP mode on and off.  When PTP mode is on the device will appear on the USB bus as a PTP camera device instead of an MTP music player.   -->
+
+    <!-- SD card & phone storage settings item summary that is displayed when no SD card is inserted.  This version of the string can probably never come up on current hardware. [CHAR LIMIT=25] -->
+    <string name="sd_insert_summary">Insert removable storage for mounting</string>
+    <!-- Storage setting item that will mount USB storage if it unmounted. A user should never see this. [CHAR LIMIT=25] -->
+    <string name="sd_mount">Mount </string>
+    <!-- Subtext for Mount USB storage in Storage settings. User should never see this since we use automount. -->
+    <string name="sd_mount_summary" product="nosdcard"></string>
+    <!-- Subtext for Mount SD Card in Storage settings. User should never see this since we use automount. -->
+    <string name="sd_mount_summary" product="default"></string>
+    <!-- SD card & phone storage settings item title that will result in the phone formatting the USB storage.   [CHAR LIMIT=25] -->
+    <string name="sd_format">Erase </string>
+    <!-- SD card & phone storage settings item title that will result in the phone unmounting the SD card.   [CHAR LIMIT=80] -->
+    <string name="sd_format_summary">Erases all data on the removable storage, such as music and photos</string>
+    <!-- SD card status when it is mounted as read only. Will be appended to size, starts with an unbreakable space -->
+    <!-- SD card & phone storage settings item summary that will result in the phone connected to PC and MTP/PTP enabled.   [CHAR LIMIT=80] -->
+    <string name="mtp_ptp_mode_summary">MTP or PTP function is active</string>
+    <!--
+    <string name="read_only">\u0020(Read-only)</string>
+    -->
+    <!-- SD card eject confirmation dialog title   [CHAR LIMIT=25] -->
+    <string name="dlg_confirm_unmount_title">Unmount removable storage?</string>
+    <!-- SD card eject confirmation dialog  [CHAR LIMIT=NONE] -->
+    <string name="dlg_confirm_unmount_text">If you unmount the removable storage, some apps you are using will stop and may be unavailable until you remount the removable storage.</string>
+    <!-- SD card eject error dialog title   [CHAR LIMIT=30] -->
+    <string name="dlg_error_unmount_title" product="nosdcard"></string>
+    <!-- SD card eject error dialog title   -->
+    <string name="dlg_error_unmount_title" product="default"></string>
+    <!-- SD card eject error dialog text   [CHAR LIMIT=NONE] -->
+    <string name="dlg_error_unmount_text">Couldn\'t unmount removable storage. Try again later.</string>
+    <!-- SD card unmount informative text   [CHAR LIMIT=NONE] -->
+    <string name="unmount_inform_text">Removable storage will be unmounted.</string>
+    <!-- SD card eject progress title   -->
+    <string name="sd_ejecting_title">Unmounting</string>
+    <!-- SD card eject progress text   -->
+    <string name="sd_ejecting_summary">Unmount in progress</string>
+
+    <!-- Media Format -->
+    <!-- SD card & phone storage settings screen, setting option name under Internal phone storage heading [CHAR LIMIT=25] -->
+    <string name="media_format_title" >Erase removable storage</string>
+    <!-- SD card & phone storage settings screen, setting option summary text under Internal phone storage heading [CHAR LIMIT=30] -->
+    <string name="media_format_summary" >Erases all data in removable storage</string>
+    <!-- SD card & phone storage settings screen, message on screen after user selects Factory data reset [CHAR LIMIT=NONE] -->
+    <string name="media_format_desc" >Erase all data in removable storage? You will lose <b>all</b> stored data!</string>
+    <!-- SD card & phone storage settings screen, button on screen after user selects Factory data reset [CHAR LIMIT=25] -->
+    <string name="media_format_button_text" >Erase removable storage</string>
+    <!-- SD card & phone storage settings screen, message on screen after user selects Format media button [CHAR LIMIT=NONE] -->
+    <string name="media_format_final_desc" >Erase the removable storage, deleting all files stored there? You can\'t reverse this action!</string>
+    <!-- SD card & phone storage settings screen, button on screen after user selects Format media button -->
+    <string name="media_format_final_button_text">Erase everything</string>
+    <!-- Message to draw an unlock pattern before clearing the device -->
+    <string name="media_format_gesture_prompt">Draw your unlock pattern</string>
+    <!-- Explanation of drawing unlock pattern to format card [CHAR LIMIT=NONE] -->
+    <string name="media_format_gesture_explanation" >You need to draw your unlock pattern to confirm that you want to erase the removable storage.</string>
+    <!-- Explanation of drawing unlock pattern to format card [CHAR LIMIT=NONE] -->
+</resources>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x68</addr>
+      </i2c_addrs>
+      <id_reg_addr>0x0</id_reg_addr>
+      <ids>
+        <id>0xf</id>
+      </ids>
+      <device_name>BSBG0160:00</device_name>
+      <input_name>gyro</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval>500</max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+       <odr_table>
+	<hz>12</hz>
+         <action><![CDATA[
+	writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x5;
+           ]]>
+         </action>
+       </odr_table>
+       <odr_table>
+        <hz>23</hz>
+         <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x4;
+           ]]>
+         </action>
+       </odr_table>
+       <odr_table>
+        <hz>32</hz>
+         <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x7;
+           ]]>
+         </action>
+       </odr_table>
+       <odr_table>
+        <hz>47</hz>
+         <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x3;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>64</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x6;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>116</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x2;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>230</hz>
+        <action><![CDATA[
+          writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x1;
+           ]]>
+         </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table>
+        <range>250</range>
+        <action><![CDATA[
+	  writereg_0xf_0x0_1 = (regbuf_0xf_1 & 0xf8) | 0x3;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>500</range>
+        <action><![CDATA[
+	  writereg_0xf_0x0_1 = (regbuf_0xf_1 & 0xf8) | 0x2;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>1000</range>
+        <action><![CDATA[
+	  writereg_0xf_0x0_1 = (regbuf_0xf_1 & 0xf8) | 0x1;
+          ]]>
+        </action>
+      </range_table>
+      <range_table default="y">
+        <range>2000</range>
+        <action><![CDATA[
+	  writereg_0xf_0x0_1 = regbuf_0xf_1 & 0xf8;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+	/*init odr and range*/
+        readreg_0x10_0_1;
+        readreg_0xf_0_1;
+	writereg_0x10_0x0_1 = (regbuf_0x10_1 & 0xf0) | 0x7;
+	writereg_0xf_0x0_1 = regbuf_0xf_1 & 0xf8;
+        /*set suspend mode*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = (regbuf_0x11_1 & 0x5f) | 0x80;
+        sleep_30;
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0x3f;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        /*set normal mode*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = regbuf_0x11_1 & 0x5f;
+        sleep_1;
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0x3f;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        /*set suspend mode, 25uA*/
+        readreg_0x11_0_1;
+        writereg_0x11_0_1 = (regbuf_0x11_1 & 0x5f) | 0x80;
+        sleep_1;
+        readreg_0x12_0_1;
+        writereg_0x12_0_1 = regbuf_0x12_1 & 0x3f;
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x2_0x0_6;
+        return le16_to_cpu(regbuf_0x2_2);
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return le16_to_cpu(regbuf_0x4_2);
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return le16_to_cpu(regbuf_0x6_2);
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>gyroscope</type>
+    <platform_config>
+      <calibration_file>/data/gyro.conf</calibration_file>
+      <calibration_function>GyroscopeGenericCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>BMG160 Gyroscope sensor</name>
+      <vendor>BOSCH</vendor>
+      <version>1</version>
+      <maxRange unit="M_PI">11.1111111111111</maxRange>         <!-- 2000/180 -->
+      <resolution unit="M_PI">0.00033875339</resolution>        <!-- 1/180/16.4 -->
+      <power>6.1</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="Y" axis_y="X" axis_z="Z"></mapper>
+      <scale axis_x="0.00033875339" axis_y="-0.00033875339" axis_z="0.00033875339" unit="M_PI"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

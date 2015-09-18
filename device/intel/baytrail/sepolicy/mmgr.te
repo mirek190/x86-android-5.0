@@ -1,0 +1,31 @@
+# Rules for mmgr
+type mmgr, domain, mlstrustedobject;
+type mmgr_exec, exec_type, file_type;
+init_daemon_domain(mmgr)
+
+allow mmgr init:unix_stream_socket connectto;
+allow mmgr property_socket:sock_file write;
+allow mmgr sysfs_wake_lock:file { read write open };
+allow mmgr system_prop:property_service set;
+allow mmgr config_file:dir create_dir_perms;
+allow mmgr config_file:file create_file_perms;
+allow mmgr log_file:dir create_dir_perms;
+allow mmgr log_file:file create_file_perms;
+allow mmgr factory_file:dir create_dir_perms;
+allow mmgr factory_file:file create_file_perms;
+allow mmgr usb_device:chr_file { read write getattr open ioctl };
+allow mmgr usb_device:dir { read open search };
+allow mmgr cache_file:dir create_dir_perms;
+allow mmgr cache_file:file { write create unlink open };
+
+allow mmgr sysfs_hsic_enable:file { write open };
+# Below line breaks neverallow in domain.te on line 278
+allow mmgr dalvikcache_data_file:file execute;
+allow mmgr self:process execmem;
+allow mmgr servicemanager:binder call;
+allow mmgr shell_exec:file { read execute open execute_no_trans };
+allow mmgr system_file:file execute_no_trans;
+allow mmgr zygote_exec:file { read getattr open execute execute_no_trans };
+allow mmgr sysfs_autosuspend_enable:file { write open };
+allow mmgr tty_device:chr_file { read write ioctl open };
+allow mmgr device:dir read;

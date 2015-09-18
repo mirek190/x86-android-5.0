@@ -1,0 +1,39 @@
+on init
+    setprop alsa.mixer.earpiece Headphone
+    setprop alsa.mixer.speaker Speaker
+    setprop alsa.mixer.headset Headphone
+    setprop alsa.mixer.headphone Headphone
+    setprop alsa.mixer.builtinMic Mic1
+    setprop alsa.mixer.headsetMic Mic1
+    setprop alsa.mixer.defaultCard baytrailaudio
+    setprop Audiocomms.Audience.IsPresent "false"
+    setprop alsa.mixer.defaultGain 1.0
+    setprop camera.hal.control 24
+
+    # Temporary until ZSL works. Odd that Google specified this as a
+    # property and not HAL output...
+    setprop camera.disable_zsl_mode 1
+
+    # Temporary disable HW+GPU JPEG decoding in skia to pass CTS test
+    setprop skia.libmix.disabled 1
+
+    # atomisp driver depends on these modules. So load these on init. atomisp
+    # driver is loaded from "on charger" trigger as well from init.common.rc
+    insmod /lib/modules/videobuf-core.ko
+    insmod /lib/modules/videobuf-vmalloc.ko
+    insmod /lib/modules/vxd392.ko
+
+on post-fs
+    # Defer loading modules that may require firmware till fs is ready
+    insmod /lib/modules/libmsrlisthelper.ko
+    insmod /lib/modules/imx1x5.ko
+    insmod /lib/modules/gc2235.ko
+    insmod /lib/modules/ov2722.ko
+    insmod /lib/modules/lm3554.ko
+    insmod /lib/modules/lm3642.ko
+    insmod /lib/modules/atomisp-css2400b0_v21.ko dypool_enable=y repool_pgnr=18432 dypool_pgnr=18432
+
+on post-fs
+    # Permissions for pmdown_time
+    chown media system /sys/devices/platform/AMCR0F28:00/Baytrail\ Audio/pmdown_time
+    chown media system /sys/devices/platform/AMCR0F28:00/Baytrail\ Voice/pmdown_time

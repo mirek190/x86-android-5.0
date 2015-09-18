@@ -1,0 +1,177 @@
+##############################
+# 	Mute & Unmute Steps
+##############################
+supDomain: Routing.Mute
+	RoutageState Includes Flow
+	domain: Modem.Voice
+		conf: Unmute
+			ANY
+				OpenedCaptureRoutes Includes HwCodecCSV
+				OpenedCaptureRoutes Includes BtCSV
+				OpenedPlaybackRoutes Includes HwCodecCSV
+				OpenedPlaybackRoutes Includes BtCSV
+
+			#enable src
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/ENABLED = 1
+			#/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/ENABLED = 1
+			
+			#set src volume
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/MUTED = 0
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/LEVEL =88
+			/Audio/IMC/SOUND_CARD/PORTS/SPEECH/RX/VOLUME/LEVEL = 88
+			#set dest volume
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/VOLUME/MUTED = 0
+			/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/VOLUME/LEVEL = 88
+			
+		conf: Mute
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/ENABLED = 0
+			#/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/ENABLED = 0
+			
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/MUTED = 1
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/LEVEL = 0
+			/Audio/IMC/SOUND_CARD/PORTS/SPEECH/RX/VOLUME/LEVEL = 0
+			/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/VOLUME/MUTED = 1
+			/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/VOLUME/LEVEL = 0
+
+##############################
+# 	Enable & Disable Steps
+##############################
+supDomain: Routing.Enable
+	RoutageState Includes Path
+	supDomain: Modem
+		supDomain: Voice
+			domain: capture
+				conf: Enable
+					ANY
+						OpenedCaptureRoutes Includes HwCodecCSV
+						OpenedCaptureRoutes Includes BtCSV
+					#set dest for src
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/SPEECH_TX = 1
+				conf: Disable
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/SPEECH_TX = 0
+
+			domain: playback sequenceAware
+				conf: Enable
+					ANY
+						OpenedPlaybackRoutes Includes HwCodecCSV
+						OpenedPlaybackRoutes Includes BtCSV
+					#set dest for src
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S2_TX = 1
+					#/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/PCM_GENERAL_DESTINATION = 0
+				conf: Disable
+					#/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/PCM_GENERAL_DESTINATION = 1
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S2_TX = 0
+
+##############################
+# 	Configure Step
+##############################
+supDomain: Routing.Configure
+	RoutageState Includes Configure
+	supDomain: Modem
+		domain: Endpoint.I2S
+			supConf: HwCodecCSV
+				OpenedPlaybackRoutes Includes HwCodecCSV
+
+				conf: Headphone
+					SelectedOutputDevice Includes Headphones
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Headset
+
+				conf: Earpiece
+					SelectedOutputDevice Includes Earpiece
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handset
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handset
+
+				supConf: Headset
+					SelectedOutputDevice Includes Headset
+					conf: TTY.Uplink
+						TTYDirection Includes Uplink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = TTY
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Headset
+					conf: Normal
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Headset
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Headset
+
+				supConf: Handsfree
+					SelectedOutputDevice Includes IHF
+					conf: TTY.Uplink
+						TTYDirection Includes Uplink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = TTY
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handsfree
+					conf: Normal
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handsfree
+
+			supConf: BtCSV
+				ALL
+					OpenedPlaybackRoutes Includes BtCSV
+					ANY
+						SelectedOutputDevice Includes SCO
+						SelectedOutputDevice Includes SCO_Headset
+						SelectedOutputDevice Includes SCO_CarKit
+				conf: HeadsetNrEc
+					BtHeadsetNrEc Is True
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Bluetooth
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Bluetooth
+
+			conf: Notsupported
+				# No acoustics
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = UserDefined15
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = UserDefined15
+
+		domain: Endpoint.Speech
+			conf: Default
+				/Audio/IMC/SOUND_CARD/PORTS/SPEECH/TX/MODE = NETWORK
+				/Audio/IMC/SOUND_CARD/PORTS/SPEECH/RX/MODE = NETWORK
+
+		domain: Calibration
+			conf: Default
+				ANY
+					OpenedPlaybackRoutes Includes ModemMix
+					OpenedPlaybackRoutes Includes BtCSV
+					OpenedPlaybackRoutes Includes HwCodecCSV
+					OpenedCaptureRoutes  Includes ModemMix
+					OpenedCaptureRoutes  Includes BtCSV
+					OpenedCaptureRoutes  Includes HwCodecCSV
+
+				component: /Audio/IMC/SOUND_CARD/
+					component: PORTS/
+						I2S2/TX/CONFIG/CLOCK = 0
+						I2S2/RX/CONFIG/CLOCK = 0
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SLAVE = 0
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SLAVE = 0
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/QUANTIZATION = s16
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/QUANTIZATION = s16
+
+		domain: I2S
+			conf: Bluetooth
+				ALL
+					ANY
+						SelectedOutputDevice Includes SCO
+						SelectedOutputDevice Includes SCO_Headset
+						SelectedOutputDevice Includes SCO_CarKit
+						SelectedInputDevice  Includes SCO_Headset
+					ANY
+						OpenedPlaybackRoutes Includes BtCSV
+						OpenedCaptureRoutes  Includes BtCSV
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SAMPLING_RATE = f8
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SAMPLING_RATE = f8
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/CHANNELS = MONO
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/CHANNELS = MONO
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/TRANSMISSION_MODE = PCM
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/TRANSMISSION_MODE = PCM
+
+			conf: Default
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SAMPLING_RATE = f48
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SAMPLING_RATE = f48
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/CHANNELS = STEREO
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/CHANNELS = STEREO
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/TRANSMISSION_MODE = I2S
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/TRANSMISSION_MODE = I2S

@@ -1,0 +1,77 @@
+import /droidboot.init.${ro.hardware}.rc
+import /init.droidboot.debug.rc
+import /init.watchdog.rc
+import /init.firmware.rc
+
+on early-init
+    start ueventd
+
+on init
+    export PATH /sbin:/system/sbin:/system/bin:/system/xbin
+    export ANDROID_ROOT /system
+    export ANDROID_DATA /data
+
+    symlink /system/etc /etc
+
+    mount /tmp /tmp tmpfs
+    mount /data /data tmpfs
+
+    write /proc/sys/kernel/panic_on_oops 1
+
+    # set usb serial number
+    write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+
+# Trigger remaining init steps:
+on late-init
+    trigger fs
+    trigger boot
+
+on fs
+     mkdir /dev/usb-ffs 0770 shell shell
+     mkdir /dev/usb-ffs/adb 0770 shell shell
+     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+     write /sys/class/android_usb/android0/f_ffs/aliases adb
+
+on boot
+    ifup lo
+    hostname localhost
+    domainname localdomain
+    # USB settings to allow charging, but not to be declare as Fastboot Device
+    setprop sys.usb.config charging
+    class_start default
+    class_start core
+
+    setprop sys.usb.config adb
+    start adbd
+
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 8087
+    write /sys/class/android_usb/android0/idProduct 0fff
+    write /sys/class/android_usb/android0/iProduct "Android-Phone"
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+
+service ueventd /sbin/ueventd
+    critical
+
+service console /system/bin/sh
+    console
+
+on property:sys.powerctl=*
+    powerctl ${sys.powerctl}
+
+service thermald /sbin/thermald POS
+    user root
+
+on property:sys.forcecoldboot=yes
+    write /sys/module/intel_mid/parameters/force_cold_boot 1
+
+service adbd /sbin/adbd
+    class core
+    disabled
+
+on property:service.adb.root=1
+    write /sys/class/android_usb/android0/enable 0
+    restart adbd
+    write /sys/class/android_usb/android0/enable 1

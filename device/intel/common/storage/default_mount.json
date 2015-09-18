@@ -1,0 +1,64 @@
+{
+	"oses": {
+
+		"mos": {
+			"fstab_file": "root/fstab.$model",
+			"recovery_fstab_dest_file": null,
+			"mount": [
+				"system",
+				"cache",
+				"config",
+				"data",
+				"logs",
+				"factory"
+				]
+		},
+
+		"cos": {
+			"fstab_file": "root/fstab.charger.$model",
+			"recovery_fstab_dest_file": null,
+			"mount": [
+				"system",
+				"logs"
+				]
+		},
+
+		"ros": {
+			"fstab_file": "recovery/root/fstab.$model",
+			"recovery_fstab_dest_file": "recovery/root/etc/recovery.fstab",
+			"mount": [
+				"logs",
+				"config"
+				]
+		},
+
+		"pos": {
+			"fstab_file": "droidboot/root/fstab.$model",
+			"recovery_fstab_dest_file": "droidboot/root/system/etc/recovery.fstab",
+			"mount": [
+				"factory",
+				"logs",
+				"config"
+				]
+		},
+
+		"tos": {
+			"fstab_file": "testos/root/fstab.$model",
+			"recovery_fstab_dest_file": "testos/root/system/etc/recovery.fstab",
+			"mount": [
+				"factory",
+				"config"
+				]
+		},
+
+		"ramconsole": {
+			"fstab_file": "root/fstab.ramconsole.$model",
+			"recovery_fstab_dest_file": null,
+			"mount": [
+				"system",
+				"logs"
+				]
+		}
+	}
+}
+

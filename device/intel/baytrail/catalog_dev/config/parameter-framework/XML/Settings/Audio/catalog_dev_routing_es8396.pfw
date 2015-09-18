@@ -1,0 +1,188 @@
+##############################
+#	 Mute & Unmute Steps
+##############################
+
+supDomain: Routing.Mute
+	# Definition of Mute and Unmute for futur use in this supDomain
+	RoutageState Includes Flow
+
+	supDomain: HWCodec.Capture
+
+		domain: MainMic
+			conf: Unmute
+				ALL
+					SelectedInputDevice Includes Main
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: HeadsetMic
+			conf: Unmute
+				ALL
+					SelectedInputDevice Includes Headset
+					OpenedCaptureRoutes Includes HwCodecMedia
+
+			conf: Mute
+
+		domain: Headset
+			conf: Unmute
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+
+			conf: Mute
+##############################
+#	 Enable & Disable Steps
+##############################
+supDomain: Routing.Enable
+	# Definition of Enable and Disable for future use in this supDomain
+	RoutageState Includes Path
+
+	supDomain: HWCodec.Capture
+
+		domain: MainMic
+			conf: Enable
+				ALL
+					ANY
+						SelectedInputDevice Includes Main
+						SelectedOutputDevice Includes Headphones
+						SelectedOutputDevice Includes IHF
+					OpenedCaptureRoutes Includes HwCodecMedia
+				/Audio/EVERST/SOUND_CARD/INPUT/AMIC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/MIXER/AMIC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/INPUT/PGA/LAXIN/PMIC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/INPUT/ANALOG/RAXIN/NMIC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/LAXMI/R/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/AXMIX/L/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/1/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/MIXER/DMIC/MUX = dmic disable,use adc
+				/Audio/EVERST/SOUND_CARD/MIXER/MAST/MUX = ADC out
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/CAPTURE/VOLUME = 127 127
+
+			conf: Disable
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/CAPTURE/VOLUME = 0 0
+				/Audio/EVERST/SOUND_CARD/MIXER/MAST/MUX = ADC out
+				/Audio/EVERST/SOUND_CARD/MIXER/DMIC/MUX = dmic disable,use adc
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/1/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/AXMIX/L/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/LAXMI/R/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/INPUT/ANALOG/RAXIN/NMIC/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/INPUT/PGA/LAXIN/PMIC/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/MIXER/AMIC/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/INPUT/AMIC/SWITCH = 0
+
+		domain: HeadsetMic
+			conf: Enable
+				ALL
+					SelectedInputDevice Includes Headset
+					OpenedCaptureRoutes Includes HwCodecMedia
+				/Audio/EVERST/SOUND_CARD/INPUT/MIXER/AINL/3/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/INPUT/ANALOG/RMONIN/MONO/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/LMNM/L/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/MNMIX/R/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/1/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/MIXER/DMIC/MUX = dmic disable,use adc
+				/Audio/EVERST/SOUND_CARD/MIXER/MAST/MUX = ADC out
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/CAPTURE/VOLUME = 127 127
+				/Audio/EVERST/SOUND_CARD/MIXER/MNIN/VOLUME = 127 127
+
+			conf: Disable
+				/Audio/EVERST/SOUND_CARD/MIXER/MNIN/VOLUME = 0 0
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/CAPTURE/VOLUME = 0 0
+				/Audio/EVERST/SOUND_CARD/MIXER/MAST/MUX = ADC out
+				/Audio/EVERST/SOUND_CARD/MIXER/DMIC/MUX = dmic disable,use adc
+				/Audio/EVERST/SOUND_CARD/INPUT/MIXER/AINL/3/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/LMNM/L/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/PGA/MNMIX/R/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/INPUT/ANALOG/RMONIN/MONO/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/INPUT/ADC/1/SWITCH = 0
+
+	supDomain: HWCodec.Playback
+		domain: Headset
+			conf: Enable
+				ANY
+					SelectedOutputDevice Includes Headset
+					SelectedOutputDevice Includes Headphones
+				/Audio/EVERST/SOUND_CARD/MIXER/DACSRC/MUX = SDP2 in
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/1/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/PLAYBACK/VOLUME = 127 127
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/HPL/DACL/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/HPR/DACR/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/AMP/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/AMP/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/HPR/DACR/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/HEADPHONE/HPL/DACL/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/PLAYBACK/VOLUME = 0 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/1/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/MIXER/DACSRC/MUX = SDP2 in
+
+		domain: IHF
+			conf: Enable
+				ALL
+					SelectedOutputDevice Includes IHF
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/SPKR/RDAC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/SPKL/LDAC/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/MIXER/OUTPUT/SPEAKER/R/MUX = SPKR Route
+				/Audio/EVERST/SOUND_CARD/MIXER/OUTPUT/SPEAKER/L/MUX = SPKL Route
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/AMP/SWITCH = 1
+
+			conf: Disable
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/AMP/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/SPKR/RDAC/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/SPEAKER/SPKL/LDAC/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/MIXER/OUTPUT/SPEAKER/R/MUX = NO Out
+				/Audio/EVERST/SOUND_CARD/MIXER/OUTPUT/SPEAKER/L/MUX = NO Out
+
+		domain: Common
+			conf: Enable
+				ALL
+					ANY
+						SelectedOutputDevice Includes IHF
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+					OpenedPlaybackRoutes Includes HwCodecMedia
+				/Audio/EVERST/SOUND_CARD/MIXER/DACSRC/MUX = SDP2 in
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/1/SWITCH = 1
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/PLAYBACK/VOLUME = 127 127
+			conf: Disable
+				/Audio/EVERST/SOUND_CARD/MIXER/DACSRC/MUX = SDP2 in
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/1/SWITCH = 0
+				/Audio/EVERST/SOUND_CARD/OUTPUT/DAC/PLAYBACK/VOLUME = 0 0
+
+
+##############################
+#	 Configure Step
+##############################
+#
+supDomain: Routing.Configure
+	RoutageState Includes Configure
+
+
+	supDomain: LPE_Mixer
+		domain: IHF
+			conf: Activated
+				ALL
+					SelectedOutputDevice Includes IHF
+					OpenedPlaybackRoutes Includes HwCodecMedia
+
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/IHF/INPUT_STREAM = NONE
+
+		domain: HS
+			conf: Activated
+				ALL
+					OpenedPlaybackRoutes Includes HwCodecMedia
+					SelectedOutputDevice Excludes IHF
+					ANY
+						SelectedOutputDevice Includes Headset
+						SelectedOutputDevice Includes Headphones
+
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = MIX
+
+			conf: Deactivated
+				/Audio/LPE_MIXER/SOUND_CARD/HS/INPUT_STREAM = NONE
+

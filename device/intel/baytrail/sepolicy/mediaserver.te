@@ -1,0 +1,24 @@
+# Additional mediaserver rules
+allow mediaserver socket_device:sock_file write;
+allow mediaserver dalvikcache_data_file:dir search;
+allow mediaserver system_app_data_file:dir search;
+allow mediaserver system_server:unix_stream_socket { read write };
+allow mediaserver sysfs_wake_lock:file { read write open };
+allow mediaserver default_prop:property_service set;
+allow mediaserver asec_apk_file:dir { write add_name };
+allow mediaserver asec_apk_file:file create_file_perms;
+allow mediaserver log_file:dir { search write add_name };
+allow mediaserver log_file:file create_file_perms;
+unix_socket_connect(mediaserver, mmgr, mmgr)
+allow mediaserver tty_device:chr_file { read write ioctl open getattr };
+allow mediaserver intel_sst_ctrl_device:chr_file { read write ioctl open };
+allow mediaserver camera_device:chr_file rw_file_perms;
+allow mediaserver surfaceflinger_tmpfs:file { read write };
+allow mediaserver system_data_file:file create_file_perms;
+allow mediaserver system_data_file:dir rw_dir_perms;
+allow mediaserver system_data_file:sock_file write;
+allow mediaserver mei_device:chr_file { open ioctl read write };
+allow mediaserver hdcpd_data_file:dir rw_dir_perms;
+allow mediaserver hdcpd:unix_stream_socket connectto;
+allow mediaserver coreu:binder { call transfer };
+allow mediaserver coreu:fd use;

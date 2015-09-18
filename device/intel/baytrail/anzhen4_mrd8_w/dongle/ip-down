@@ -1,0 +1,9 @@
+#!/system/bin/sh
+NAME=${LINKNAME:-"$1"}
+/system/bin/setprop "net.$NAME.local-ip" ""
+/system/bin/setprop "net.$NAME.remote-ip" ""
+/system/bin/setprop "net.$NAME.gw" ""
+/system/bin/setprop "net.$NAME.dns1" ""
+/system/bin/setprop "net.$NAME.dns2" ""
+
+/system/bin/setprop "net.dongle" "stopped"

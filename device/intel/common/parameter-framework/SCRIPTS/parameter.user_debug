@@ -1,0 +1,9 @@
+#!/system/bin/sh
+socket_opened=$(netstat | grep 0.0.0.0:5000)
+if [[ ! -z $socket_opened ]]
+then
+        remote-process localhost 5000 "$@"
+else
+        echo "The audio PFW remote-processor is not running (disabled by default on user-debug builds)"
+fi
+

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+    <driver_config>
+      <basic_info>
+        <i2c_bus_num>3</i2c_bus_num>
+        <i2c_addrs>
+          <addr>0xc</addr>
+        </i2c_addrs>
+        <id_reg_addr>0x0</id_reg_addr>
+        <ids>
+          <id>0x48</id>
+        </ids>
+        <device_name>CPAK8963:00</device_name>
+        <input_name>comp</input_name>
+        <event_type>EV_REL</event_type>
+        <method>polling</method>
+        <default_poll_interval>200</default_poll_interval>
+        <min_poll_interval>18</min_poll_interval>
+        <max_poll_interval/>
+        <gpio_num/>
+        <irq_flag/>
+        <irq_serialize/>
+      </basic_info>
+      <odr_tables>
+    </odr_tables>
+      <range_tables>
+    </range_tables>
+      <sys_entries>
+    </sys_entries>
+      <sensor_actions>
+        <init><![CDATA[
+        /*power down mode*/
+        /*writereg_0x31_0_1 = 0x0;*/
+        ]]></init>
+        <deinit>
+      </deinit>
+        <enable><![CDATA[
+        /*enter continuous measurement mode 2*/
+        writereg_0x31_0_1 = 0x6;
+        ]]></enable>
+        <disable><![CDATA[
+        /*enter power down mode*/
+        writereg_0x31_0_1 = 0x0;
+        sleep_1;
+        ]]></disable>
+        <int_ack>
+      </int_ack>
+        <get_data_x><![CDATA[
+        readreg_0x11_0x0_6;
+        readreg_0x18_0x0_6;
+        return le16_to_cpu(regbuf_0x11_2);
+        ]]></get_data_x>
+        <get_data_y><![CDATA[
+        return le16_to_cpu(regbuf_0x13_2);
+        ]]></get_data_y>
+        <get_data_z><![CDATA[
+        return le16_to_cpu(regbuf_0x15_2);
+        ]]></get_data_z>
+      </sensor_actions>
+    </driver_config>
+    <hal_config>
+      <type>compass</type>
+      <platform_config>
+        <name>comp</name>
+        <activate_node>/sys/bus/i2c/devices/3-000c/enable</activate_node>
+        <poll_node>/sys/bus/i2c/devices/3-000c/poll</poll_node>
+        <data_node/>
+        <driver_calibration_node/>
+        <driver_calibration_file/>
+        <driver_calibration_function/>
+        <calibration_file>/data/compass.conf</calibration_file>
+        <calibration_function>CompassGenericCalibration</calibration_function>
+        <fliter_length>50</fliter_length>
+      </platform_config>
+      <device>
+        <name>AK09911 Magnetic field sensor</name>
+        <vendor>AKM</vendor>
+        <version>1</version>
+        <maxRange>900.0</maxRange>
+        <resolution>0.6</resolution>
+        <power>0.1</power>
+        <minDelay>20000</minDelay>
+        <mapper axis_x="X" axis_y="Y" axis_z="Z"/>
+        <scale axis_x="0.6" axis_y="-0.6" axis_z="-0.6"/>
+      </device>
+    </hal_config>
+  </sensor>
+</sensors>

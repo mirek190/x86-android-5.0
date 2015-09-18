@@ -1,0 +1,10 @@
+This config min folder contains:
+
+A Parameter framework folder:
+It contains the XML miminal configuration required
+to have a quick up and running Route instance of the Parameter Framework.
+It only provides support for a playback and capture route and supports
+the main parameters that an Audio HAL shall support on Android.
+
+These configuration files are provided as an example and starting point
+for any new project.

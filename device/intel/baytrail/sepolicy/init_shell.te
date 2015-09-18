@@ -1,0 +1,9 @@
+# Additional init_shell rules
+allow init_shell zygote_exec:file execute_no_trans;
+allow init_shell dex2oat_exec:file execute_no_trans;
+allow init_shell self:process { ptrace execmem };
+allow init_shell log_file:filesystem getattr;
+allow init_shell config_file:filesystem getattr;
+allow init_shell factory_file:filesystem getattr;
+allow init_shell fuse:dir rw_dir_perms;
+allow init_shell fuse:file getattr;

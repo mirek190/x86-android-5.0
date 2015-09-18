@@ -1,0 +1,7 @@
+########################################################
+#  FM CONFIGURATION - INTEL CWS SPECIFIC
+########################################################
+on early-boot
+    insmod /lib/modules/fmdrv_intel.ko
+    #enable debug logs in FM app
+    setprop IntelFmApp.DBG true

@@ -1,0 +1,2 @@
+as metatargets are used with include, we need to have one file for each hook
+we still factorize the implementation as much as possible by using symlink trick

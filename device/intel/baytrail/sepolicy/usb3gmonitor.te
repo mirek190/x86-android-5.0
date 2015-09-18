@@ -1,0 +1,14 @@
+# Rules for usb3gmonitor
+type usb3gmonitor, domain;
+type usb3gmonitor_exec, exec_type, file_type;
+init_daemon_domain(usb3gmonitor)
+
+allow usb3gmonitor system_prop:property_service set;
+allow usb3gmonitor shell_exec:file { read execute open execute_no_trans };
+allow usb3gmonitor system_file:file execute_no_trans;
+allow usb3gmonitor unlabeled:dir { search write add_name };
+
+#Allow usb3gmonitor to read and write usb_device for usb_modeswitch tool which can execute
+allow usb3gmonitor system_data_file:file { getattr open read };
+allow usb3gmonitor usb_device:dir { { open getattr read search ioctl } { open search write add_name remove_name } };
+allow usb3gmonitor usb_device:chr_file { open getattr read write ioctl };

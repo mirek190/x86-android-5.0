@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+   <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x1D</addr>
+      </i2c_addrs>
+      <id_reg_addr>0xF</id_reg_addr>
+      <ids>
+        <id>0x41</id>
+      </ids>
+      <device_name>LSM303C</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>251</report_interval>
+    </basic_info>
+    <odr_tables>
+      <odr_table>
+        <hz>10</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+          writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x10;
+          readreg_0x31_0x0_1;
+          global_3 = 10;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>50</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x20;
+          global_3 = 50;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>100</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x30;
+          global_3 = 100;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x40;
+          global_3 = 200;
+          ]]>
+        </action>
+      </odr_table>
+         <odr_table>
+        <hz>400</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x50;
+          global_3 = 400;
+          ]]>
+        </action>
+      </odr_table>
+     <odr_table>
+        <hz>800</hz>
+        <action><![CDATA[
+	  readreg_0x20_0_1;
+	  writereg_0x20_0x0_1 = (regbuf_0x20_1 & 0x0f) | 0x60;
+          global_3 = 800;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+          global_1 = 1;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+          global_1 = 2;
+          ]]>
+        </action>
+      </range_table>
+       <range_table>
+        <range>6</range>
+        <action>
+          <![CDATA[
+          global_1 = 3;
+          ]]>
+        </action>
+      </range_table>
+     <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          global_1 = 4;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>16</range>
+        <action>
+          <![CDATA[
+          global_1 = 8;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        /*Enable xyz*/
+        readreg_0x20_0_1;
+        writereg_0x20_0_1 =  0xf;
+        readreg_0x22_0_1;
+        writereg_0x22_0_1 =  0x8;
+        /*State Program1*/
+        
+        /* CTRL4_IF_ADD_INC_EN*/
+        readreg_0x23_0_1;
+        writereg_0x23_0_1 = 0x4;
+        readreg_0x24_0_1;
+        writereg_0x24_0_1 = 0x0;
+        readreg_0x26_0_1;
+        writereg_0x26_0_1 = 0xc;
+        /*Threshold*/
+        writereg_0x32_0_1 = 0x40;
+        writereg_0x33_0_1 = 0x40;
+        writereg_0x34_0_1 = 0x40;
+        writereg_0x35_0_1 = 0xa;
+        /* enable interrupt except z axis*/
+        writereg_0x30_0_1 = 0xcf;
+      ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x20_0_1 ;
+        readreg_0x21_0_1 ;
+        readreg_0x22_0_1 ;
+        readreg_0x23_0_1 ;
+        readreg_0x24_0_1 ;
+        readreg_0x25_0_1 ;
+        readreg_0x26_0_1 ;
+        readreg_0x27_0_1 ;
+        readreg_0x28_0_1 ;
+        readreg_0x29_0_1 ;
+        readreg_0x2a_0_1 ;
+        readreg_0x2b_0_1 ;
+        readreg_0x2c_0_1 ;
+        readreg_0x2d_0_1 ;
+        readreg_0x2e_0_1 ;
+        readreg_0x2f_0_1 ;
+
+        readreg_0x30_0_1 ;
+        readreg_0x31_0_1 ;
+        readreg_0x32_0_1 ;
+        readreg_0x33_0_1 ;
+        readreg_0x34_0_1 ;
+        readreg_0x35_0_1 ;
+        readreg_0x36_0_1 ;
+        readreg_0x37_0_1 ;
+        readreg_0x38_0_1 ;
+        readreg_0x39_0_1 ;
+        readreg_0x3a_0_1 ;
+        readreg_0x3b_0_1 ;
+        readreg_0x3c_0_1 ;
+        readreg_0x3d_0_1 ;
+        readreg_0x3e_0_1 ;
+        readreg_0x3f_0_1 ;
+        writereg_0x20_0_1 = 0x1f; 
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+        if(global_3 <= 10)
+        readreg_0x31_0x0_1;
+        /* int from x,y*/
+        return (regbuf_0x31_1 & 0xf); 
+        endif
+        
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x28_0x0_6;
+        /*readreg_0x18_0_1;*/
+        return (le16_to_cpu(regbuf_0x28_2)) * 1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0x2a_2)) * 1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0x2c_2)) * 1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+      <data_node></data_node>
+	  <calibration_function>AccelCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>LSM303C Accelerometer</name>
+      <vendor>STM</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.00006103515625</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.00006103515625" axis_y="0.00006103515625" axis_z="0.00006103515625" unit="GRAVITY_EARTH"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

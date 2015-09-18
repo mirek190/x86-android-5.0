@@ -1,0 +1,16 @@
+
+on boot
+    #Give permission to system to use i915_videostatus sysfs interface
+    chown system system /sys/class/drm/card0/power/i915_videostatus
+    #Do not expose unecessary access
+    chmod 0600 /dev/dri/controlD64
+
+on init
+    #Create /mnt/libreg mountpoint to be used by coreu service for
+    #a tmpfs as the basis for a shared memory interface
+    mkdir /mnt/libreg 0700 root root
+
+service coreu /system/bin/coreu
+    class main
+    user root
+    group graphics drmrpc

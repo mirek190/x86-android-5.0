@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Need to Check-->
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="REALTEK" Type="ALSA" Endianness="Little">
+
+    <ComponentLibrary>
+
+        <ComponentType Name="PLAYBACK_TYPE">
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:'%1 Playback Volume'">
+                <BooleanParameter Name="MUTED"/>
+                <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="31"/>
+            </ParameterBlock>
+            <BooleanParameter Name="SWITCH" ArrayLength="2" Mapping="Control:'%1 Playback Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="HEADPHONE_TYPE">
+            <Component Name="ANALOG" Type="PLAYBACK_TYPE" Mapping="Amend1:HP"/>
+            <BooleanParameter Name="SWITCH"  Mapping="Control:'Headphone Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_TYPE">
+            <Component Name="ANALOG" Type="PLAYBACK_TYPE" Mapping="Amend1:Speaker"/>
+            <EnumParameter Name="BOOST" Size="8" Mapping="Control:'Speaker Boost'">
+                <ValuePair Literal="g-6dB" Numerical="0"/>
+                <ValuePair Literal="g-4.5dB" Numerical="1"/>
+                <ValuePair Literal="g-3dB" Numerical="2"/>
+                <ValuePair Literal="g-1.5dB" Numerical="3"/>
+                <ValuePair Literal="gObB" Numerical="4"/>
+                <ValuePair Literal="g+O.83bB" Numerical="5"/>
+                <ValuePair Literal="g+1.58dB" Numerical="6"/>
+                <ValuePair Literal="g+2.28dB" Numerical="7"/>
+            </EnumParameter>
+            <EnumParameter Name="RATIO" Size="8" Mapping="Control:'Class D SPK Ratio Control'">
+                <ValuePair Literal="3.0V,1.94x" Numerical="0"/>
+                <ValuePair Literal="3.3V,2.0x"  Numerical="1"/>
+                <ValuePair Literal="3.5V,2.11x" Numerical="2"/>
+                <ValuePair Literal="3.6V,2.22x" Numerical="3"/>
+                <ValuePair Literal="3.8V,2.33x" Numerical="4"/>
+                <ValuePair Literal="4.0V,2.44x" Numerical="5"/>
+                <ValuePair Literal="4.2V,2.55x" Numerical="6"/>
+                <ValuePair Literal="4.4V,2.66x" Numerical="7"/>
+                <ValuePair Literal="4.6V,2.77x" Numerical="8"/>
+                <ValuePair Literal="4.8V,3.0x"  Numerical="9"/>
+                <ValuePair Literal="5.0V,3.3x"  Numerical="10"/>
+            </EnumParameter>
+            <BooleanParameter Name="SWITCH"  Mapping="Control:'Ext Spk Switch'"/>
+       </ComponentType>
+
+        <ComponentType Name="EARPIECE_TYPE">
+            <ParameterBlock Name="ANALOG">
+                <BooleanParameter Name="SWITCH" Mapping="Control:'Mono Playback Switch'"/>
+            </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="LINEOUT_TYPE">
+            <Component Name="ANALOG" Type="PLAYBACK_TYPE" Mapping="Amend1:OUT"/>
+            <BooleanParameter Name="SWITCH" ArrayLength="2" Mapping="Control:'OUT Channel Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="DIGITAL_TYPE">
+            <ParameterBlock Name="VOLUME">
+                <IntegerParameter Name="DAC1" Size="8" Min="0" Max="175" ArrayLength="2" Mapping="Control:'DAC1 Playback Volume'"/>
+                <IntegerParameter Name="MONO_DAC" Size="8" Min="0" Max="175" ArrayLength="2" Mapping="Control:'Mono DAC Playback Volume'"/>
+            </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUTS_TYPE">
+            <Component Name="HEADPHONE" Type="HEADPHONE_TYPE"/>
+            <Component Name="SPEAKER"   Type="SPEAKER_TYPE"/>
+            <Component Name="EARPIECE"  Type="EARPIECE_TYPE"/>
+            <Component Name="LINEOUT"   Type="LINEOUT_TYPE"/>
+            <Component Name="DIGITAL"   Type="DIGITAL_TYPE"/>
+        </ComponentType>
+
+         <ComponentType Name="LINEIN_ANALOG_VALUE">
+            <IntegerParameter Name="BOOST_GAIN" Size="8" Min="0" Max="8" Mapping="Control:'%1 Boost'"/>
+            <EnumParameter Name="BALANCE" Size="8" Mapping="Control:'%1 Mode Control'">
+                <ValuePair Literal="SINGLE_ENDED" Numerical="0"/>
+                <ValuePair Literal="Differential" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="LINEIN_ANALOG_TYPE">
+            <Component Name="1" Type="LINEIN_ANALOG_VALUE" Mapping="Amend1:IN1"/>
+            <Component Name="2" Type="LINEIN_ANALOG_VALUE" Mapping="Amend1:IN2"/>
+            <Component Name="3" Type="LINEIN_ANALOG_VALUE" Mapping="Amend1:IN3"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEIN_DIGITAL_STEREO_TYPE">
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:'ADC Capture Volume'">
+                <BooleanParameter Name="MUTED"/>
+                <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="127"/>
+            </ParameterBlock>
+            <IntegerParameter Name="BOOST_GAIN" Size="8" Min="0" Max="3" ArrayLength="2" Mapping="Control:'ADC Boost Gain'"/>
+            <BooleanParameter Name="ADC_CAPTURE_SWITCH" ArrayLength="2" Mapping="Control:'ADC Capture Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEIN_DIGITAL_TYPE">
+               <Component Name="STEREO" Type="LINEIN_DIGITAL_STEREO_TYPE"/>
+            <ParameterBlock Name="MONO">
+                <IntegerParameter Name="VOLUME" Size="8" Min="0" Max="127" ArrayLength="2" Mapping="Control:'Mono ADC Capture Volume'"/>
+            </ParameterBlock>
+            <EnumParameter Name="SOURCE" Size="8" Mapping="Control:'DMIC Switch'">
+                <ValuePair Literal="DISABLED" Numerical="0"/>
+                <ValuePair Literal="DMIC1" Numerical="1"/>
+                <ValuePair Literal="DMIC2" Numerical="2"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="MIC_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 Mic Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEIN_MIC_TYPE">
+            <Component Name="INT" Type="MIC_SWITCH_TYPE" Mapping="Amend1:Int"/>
+        </ComponentType>
+
+        <ComponentType Name="INPUTS_TYPE">
+            <Component Name="ANALOG"    Type="LINEIN_ANALOG_TYPE"/>
+            <Component Name="DIGITAL"   Type="LINEIN_DIGITAL_TYPE"/>
+            <Component Name="HEADSET"   Type="MIC_SWITCH_TYPE" Mapping="Amend1:Headset"/>
+            <Component Name="MIC"       Type="LINEIN_MIC_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="ANALOG_MIXER_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 %2 %3 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="ANALOG_MIXER_CHANNEL_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 %2 %3 %4 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="ANALOG_MIXER_VOL_CHANNEL_TYPE">
+            <Component Name="LEFT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L"/>
+            <Component Name="RIGHT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_RIGHT_CHANNEL_BST_TYPE">
+            <Component Name="1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST1"/>
+            <Component Name="2" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST2"/>
+            <Component Name="3" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST3"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_RIGHT_CHANNEL_DAC_TYPE">
+            <Component Name="L2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L2"/>
+            <Component Name="R1" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R1"/>
+            <Component Name="R2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_RIGHT_CHANNEL">
+            <Component Name="BST" Type="OUTPUT_MIXER_RIGHT_CHANNEL_BST_TYPE"/>
+            <Component Name="DAC" Type="OUTPUT_MIXER_RIGHT_CHANNEL_DAC_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="INR" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:INR"/>
+            <Component Name="REC" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:REC,Amend4:MIXR"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_LEFT_CHANNEL_BST_TYPE">
+            <Component Name="1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST1"/>
+            <Component Name="3" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST3"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_LEFT_CHANNEL_DAC_TYPE">
+            <Component Name="L1" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L1"/>
+            <Component Name="L2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L2"/>
+            <Component Name="R2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_LEFT_CHANNEL">
+            <Component Name="BST" Type="OUTPUT_MIXER_LEFT_CHANNEL_BST_TYPE"/>
+            <Component Name="DAC" Type="OUTPUT_MIXER_LEFT_CHANNEL_DAC_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="INL" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:INL"/>
+            <Component Name="REC" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:REC,Amend4:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="OUTPUT_MIXER_RIGHT_CHANNEL" Mapping="Amend2:MIXR"/>
+            <Component Name="LEFT"   Type="OUTPUT_MIXER_LEFT_CHANNEL" Mapping="Amend2:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 %2 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_BOOST_CONTROL_TYPE">
+            <Component Name="1" Type="REC_MIXER_SWITCH_TYPE" Mapping="Amend2:BST1"/>
+            <Component Name="2" Type="REC_MIXER_SWITCH_TYPE" Mapping="Amend2:BST2"/>
+            <Component Name="3" Type="REC_MIXER_SWITCH_TYPE" Mapping="Amend2:BST3"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_HPO_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 HPO%2 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_IN_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 IN%2 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_OUT_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 OUT MIX%2 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_RIGHT_CHANNEL">
+            <Component Name="BST" Type="REC_MIXER_BOOST_CONTROL_TYPE"/>
+            <Component Name="HPO" Type="REC_MIXER_HPO_TYPE" Mapping="Amend2:R"/>
+            <Component Name="IN"  Type="REC_MIXER_IN_TYPE" Mapping="Amend2:R"/>
+            <Component Name="OUT" Type="REC_MIXER_OUT_TYPE" Mapping="Amend2:R"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_LEFT_CHANNEL">
+            <Component Name="BST" Type="REC_MIXER_BOOST_CONTROL_TYPE"/>
+            <Component Name="HPO" Type="REC_MIXER_HPO_TYPE" Mapping="Amend2:L"/>
+            <Component Name="IN"  Type="REC_MIXER_IN_TYPE" Mapping="Amend2:L"/>
+            <Component Name="OUT" Type="REC_MIXER_OUT_TYPE" Mapping="Amend2:L"/>
+        </ComponentType>
+
+        <ComponentType Name="REC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="REC_MIXER_RIGHT_CHANNEL" Mapping="Amend1:RECMIXR"/>
+            <Component Name="LEFT"   Type="REC_MIXER_LEFT_CHANNEL" Mapping="Amend1:RECMIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_MIXER_DAC_RIGHT_CHANNEL_TYPE">
+            <Component Name="1" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R1"/>
+            <Component Name="2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_MIXER_RIGHT_CHANNEL">
+            <Component Name="IN"  Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:INR"/>
+            <Component Name="DAC" Type="SPEAKER_MIXER_DAC_RIGHT_CHANNEL_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="OUT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:OUT,Amend4:MIXR"/>
+            <Component Name="REC" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:REC,Amend4:MIXR"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_MIXER_DAC_LEFT_CHANNEL_TYPE">
+            <Component Name="1" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L1"/>
+            <Component Name="2" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L2"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_MIXER_LEFT_CHANNEL">
+            <Component Name="IN"  Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:INL"/>
+            <Component Name="DAC" Type="SPEAKER_MIXER_DAC_LEFT_CHANNEL_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="OUT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:OUT,Amend4:MIXL"/>
+            <Component Name="REC" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:REC,Amend4:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="SPEAKER_MIXER_RIGHT_CHANNEL" Mapping="Amend2:MIXR"/>
+            <Component Name="LEFT"   Type="SPEAKER_MIXER_LEFT_CHANNEL" Mapping="Amend2:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="SPOUT_MIXER_RIGHT_CHANNEL">
+            <Component Name="BST1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST1"/>
+            <Component Name="DAC" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:DAC,Amend4:R1"/>
+            <Component Name="VOL" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend3:SPKVOL,Amend4:R"/>
+        </ComponentType>
+
+        <ComponentType Name="SPOUT_MIXER_DAC_CHANNEL_TYPE">
+            <Component Name="LEFT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L1"/>
+            <Component Name="RIGHT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R1"/>
+        </ComponentType>
+
+        <ComponentType Name="SPOUT_MIXER_LEFT_CHANNEL">
+            <Component Name="BST1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST1"/>
+            <Component Name="DAC" Type="SPOUT_MIXER_DAC_CHANNEL_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="SPKVOL" Type="ANALOG_MIXER_VOL_CHANNEL_TYPE" Mapping="Amend3:SPKVOL"/>
+        </ComponentType>
+
+        <ComponentType Name="SPOUT_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="SPOUT_MIXER_RIGHT_CHANNEL" Mapping="Amend1:SPOR"/>
+            <Component Name="LEFT"   Type="SPOUT_MIXER_LEFT_CHANNEL" Mapping="Amend1:SPOL"/>
+        </ComponentType>
+
+        <ComponentType Name="HPOUT_MIXER_TYPE">
+            <Component Name="DAC1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:DAC1"/>
+            <Component Name="DAC2" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:DAC2"/>
+            <Component Name="HPVOL" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:HPVOL"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEOUT_MIXER_DAC_CHANNEL_TYPE">
+            <Component Name="LEFT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L1"/>
+            <Component Name="RIGHT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R1"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEOUT_MIXER_TYPE">
+            <Component Name="DAC" Type="LINEOUT_MIXER_DAC_CHANNEL_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="OUTVOL" Type="ANALOG_MIXER_VOL_CHANNEL_TYPE" Mapping="Amend3:OUTVOL"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_MIXER_DAC_CHANNEL_TYPE">
+            <Component Name="LEFT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:L2"/>
+            <Component Name="RIGHT" Type="ANALOG_MIXER_CHANNEL_SWITCH_TYPE" Mapping="Amend4:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_MIXER_TYPE">
+            <Component Name="BST1" Type="ANALOG_MIXER_SWITCH_TYPE" Mapping="Amend3:BST1"/>
+            <Component Name="DAC" Type="MONO_MIXER_DAC_CHANNEL_TYPE" Mapping="Amend3:DAC"/>
+            <Component Name="OUTVOL" Type="ANALOG_MIXER_VOL_CHANNEL_TYPE" Mapping="Amend3:OUTVOL"/>
+        </ComponentType>
+
+       <ComponentType Name="MIXER_ANALOG_TYPE">
+            <Component Name="OUTPUT_MIXER" Type="OUTPUT_MIXER_TYPE" Mapping="Amend1:OUT"/>
+            <Component Name="REC_MIXER" Type="REC_MIXER_TYPE"/>
+            <Component Name="SPEAKER_MIXER" Type="SPEAKER_MIXER_TYPE" Mapping="Amend1:SPK"/>
+            <Component Name="SPOUT_MIXER" Type="SPOUT_MIXER_TYPE" Mapping="Amend2:MIX"/>
+            <Component Name="HPOUT_MIXER" Type="HPOUT_MIXER_TYPE" Mapping="Amend1:HPO,Amend2:MIX"/>
+            <Component Name="LINEOUT_MIXER" Type="LINEOUT_MIXER_TYPE" Mapping="Amend1:LOUT,Amend2:MIX"/>
+            <Component Name="MONO_MIXER" Type="MONO_MIXER_TYPE" Mapping="Amend1:Mono,Amend2:MIX"/>
+        </ComponentType>
+
+        <ComponentType Name="ADC_MIXER_COMMON_VALUE">
+           <BooleanParameter Name="SWITCH" Mapping="Control:'%1 ADC MIX%2 ADC%3 Switch'"/>
+        </ComponentType>
+        <ComponentType Name="ADC_MIXER_1_VALUE" Extends="ADC_MIXER_COMMON_VALUE">
+            <EnumParameter Name="SOURCE" Size="8" Mapping="Control:'%1 ADC %2%3 Mux'">
+                <ValuePair Literal="DAC MIX" Numerical="0"/>
+                <ValuePair Literal="ADC" Numerical="1"/>
+            </EnumParameter>
+        </ComponentType>
+        <ComponentType Name="ADC_MIXER_2_VALUE" Extends="ADC_MIXER_COMMON_VALUE">
+            <EnumParameter Name="SOURCE" Size="8" Mapping="Control:'%1 ADC %2%3 Mux'">
+                <ValuePair Literal="DMIC 1" Numerical="0"/>
+                <ValuePair Literal="DMIC 2" Numerical="1"/>
+                <ValuePair Literal="DAC MIX" Numerical="2"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="ADC_MIXER_CHANNEL_TYPE">
+           <Component Name="1" Type="ADC_MIXER_1_VALUE" Mapping="Amend3:1"/>
+           <Component Name="2" Type="ADC_MIXER_2_VALUE" Mapping="Amend3:2"/>
+        </ComponentType>
+
+        <ComponentType Name="ADC_CHANNEL_TYPE">
+            <Component Name="MONO" Type="ADC_MIXER_CHANNEL_TYPE" Mapping="Amend1:Mono"/>
+            <Component Name="STEREO" Type="ADC_MIXER_CHANNEL_TYPE" Mapping="Amend1:Stereo"/>
+        </ComponentType>
+
+        <ComponentType Name="ADC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="ADC_CHANNEL_TYPE" Mapping="Amend2:R"/>
+            <Component Name="LEFT"   Type="ADC_CHANNEL_TYPE" Mapping="Amend2:L"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_DAC_MIXER_VALUE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'Mono DAC %1 DAC %2 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_DAC_MIXER_RIGHT_CHANNEL">
+           <Component Name="L2" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:L2"/>
+           <Component Name="R1" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:R1"/>
+           <Component Name="R2" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_DAC_MIXER_LEFT_CHANNEL">
+           <Component Name="L1" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:L1"/>
+           <Component Name="L2" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:L2"/>
+           <Component Name="R2" Type="MONO_DAC_MIXER_VALUE" Mapping="Amend2:R2"/>
+        </ComponentType>
+
+        <ComponentType Name="MONO_DAC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="MONO_DAC_MIXER_RIGHT_CHANNEL" Mapping="Amend1:MIXR"/>
+            <Component Name="LEFT"   Type="MONO_DAC_MIXER_LEFT_CHANNEL" Mapping="Amend1:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="STEREO_DAC_MIXER_VALUE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'Stereo DAC %1 DAC %2%3 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="STEREO_DAC_MIXER_CHANNEL">
+            <BooleanParameter Name="ANC" Mapping="Control:'Stereo DAC %1 ANC Switch'"/>
+            <Component Name="1" Type="STEREO_DAC_MIXER_VALUE" Mapping="Amend3:1"/>
+            <Component Name="2" Type="STEREO_DAC_MIXER_VALUE" Mapping="Amend3:2"/>
+        </ComponentType>
+
+        <ComponentType Name="STEREO_DAC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="STEREO_DAC_MIXER_CHANNEL" Mapping="Amend1:MIXR,Amend2:R"/>
+            <Component Name="LEFT"   Type="STEREO_DAC_MIXER_CHANNEL" Mapping="Amend1:MIXL,Amend2:L"/>
+        </ComponentType>
+
+        <ComponentType Name="DIG_DAC_MIXER_VALUE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'DIG %1 DAC %2%3 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="DIG_DAC_MIXER_CHANNEL">
+            <Component Name="1" Type="DIG_DAC_MIXER_VALUE" Mapping="Amend3:1"/>
+            <Component Name="2" Type="DIG_DAC_MIXER_VALUE" Mapping="Amend3:2"/>
+        </ComponentType>
+
+        <ComponentType Name="DIG_DAC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="DIG_DAC_MIXER_CHANNEL" Mapping="Amend1:MIXR,Amend2:R"/>
+            <Component Name="LEFT"   Type="DIG_DAC_MIXER_CHANNEL" Mapping="Amend1:MIXL,Amend2:L"/>
+        </ComponentType>
+
+        <ComponentType Name="DAC_MIXER_TYPE">
+            <Component Name="MONO" Type="MONO_DAC_MIXER_TYPE"/>
+            <Component Name="STEREO" Type="STEREO_DAC_MIXER_TYPE"/>
+            <Component Name="DIG" Type="DIG_DAC_MIXER_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="INF_VALUE">
+            <BooleanParameter Name="INF1_SWITCH" Mapping="Control:'DAC %1 INF1 Switch'"/>
+            <BooleanParameter Name="STEREO_ADC" Mapping="Control:'DAC %1 Stereo ADC Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="INF_TYPE">
+            <Component Name="RIGHT"  Type="INF_VALUE" Mapping="Amend1:MIXR"/>
+            <Component Name="LEFT"   Type="INF_VALUE" Mapping="Amend1:MIXL"/>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_DIGITAL_TYPE">
+            <Component Name="ADC_MIXER" Type="ADC_MIXER_TYPE"/>
+            <Component Name="DAC_MIXER" Type="DAC_MIXER_TYPE"/>
+            <Component Name="INF"       Type="INF_TYPE"/>
+        </ComponentType>
+
+        <!--REALTEK Internal Mux settings that may be used to bypass DSP-->
+        <!-- To find the related muxes in Realtek datasheet 'Digital Mixer Path' diagram,
+             remove _SOURCE from below names: you will then get the mux output net name -->
+        <ComponentType Name="MIXER_VOICE_DSP_TYPE">
+            <EnumParameter Name="IF2_ADC_L_SOURCE" Size="8" Mapping="Control:'IF2 ADC L Mux'">
+                <ValuePair Literal="TXDP" Numerical="0"/>
+                <ValuePair Literal="MONO_ADC_MIXER_L" Numerical="1"/>
+            </EnumParameter>
+            <EnumParameter Name="IF2_ADC_R_SOURCE" Size="8" Mapping="Control:'IF2 ADC R Mux'">
+                <ValuePair Literal="TXDP" Numerical="0"/>
+                <ValuePair Literal="MONO_ADC_MIXER_R" Numerical="1"/>
+            </EnumParameter>
+            <EnumParameter Name="DACL2_SOURCE" Size="8" Mapping="Control:'DAC L2 Mux'">
+                <ValuePair Literal="IF2_DAC_L" Numerical="0"/>
+                <ValuePair Literal="BASS_DAC" Numerical="1"/>
+                <ValuePair Literal="TXDC" Numerical="2"/>
+            </EnumParameter>
+            <EnumParameter Name="DACR2_SOURCE" Size="8" Mapping="Control:'DAC R2 Mux'">
+                <ValuePair Literal="IF2_DAC_R" Numerical="0"/>
+                <ValuePair Literal="IF2_ADC_R" Numerical="1"/>
+                <ValuePair Literal="TXDC" Numerical="2"/>
+            </EnumParameter>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_TYPE">
+            <Component Name="ANALOG"  Type="MIXER_ANALOG_TYPE"/>
+            <Component Name="DIGITAL" Type="MIXER_DIGITAL_TYPE"/>
+            <Component Name="VOICE_DSP" Type="MIXER_VOICE_DSP_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="SSP_PORT" Description="Voice Port">
+            <ParameterBlock Name="CONFIG" Mapping="PortConfig">
+                <BooleanParameter Name="PLAYBACK_ENABLED"/>
+                <BooleanParameter Name="CAPTURE_ENABLED"/>
+                <EnumParameter Name="FORMAT" Size="8">
+                    <ValuePair Literal="S16LE" Numerical="2"/>
+                </EnumParameter>
+                <IntegerParameter Name="CHANNEL_NUMBER" Size="8" Min="1" Max="2"/>
+                <IntegerParameter Name="SAMPLE_RATE" Size="16"/>
+           </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="SOUND_CARD">
+            <Component Name="OUTPUT" Type="OUTPUTS_TYPE"/>
+            <Component Name="INPUT" Type="INPUTS_TYPE"/>
+            <Component Name="MIXER" Type="MIXER_TYPE"/>
+            <Component Name="VOICE_PORT" Type="SSP_PORT" Mapping="Device:1"/>
+        </ComponentType>
+
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="SOUND_CARD" Type="SOUND_CARD" Mapping="Card:baytrailaudio"/>
+    </InstanceDefinition>
+
+</Subsystem>

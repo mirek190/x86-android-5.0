@@ -1,0 +1,5 @@
+# Rules for droidboot
+allow droidboot vfat:filesystem {unmount mount};
+allow droidboot vfat:dir {create open read write mounton add_name search};
+allow droidboot vfat:file {open read write create getattr};
+

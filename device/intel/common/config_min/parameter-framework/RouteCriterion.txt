@@ -1,0 +1,23 @@
+InclusiveCriterion OutputDevices		:	Earpiece 		Ihf			Headset		Headphones		Sco 		ScoHeadset		ScoCarkit
+InclusiveCriterion InputDevices			:	Communication	Ambient		Main		ScoHeadset		Headset		VoiceCall		Back
+InclusiveCriterion OutputFlags			:	Direct			Primary		Fast		Deep			Offload		RemoteBgm
+InclusiveCriterion InputSources			:	Default			Mic			VoiceUplink	VoiceDownlink	VoiceCall	Camcorder		VoiceRecognition	VoiceCommunication
+InclusiveCriterion TtyDirection			: 	Downlink 		Uplink
+InclusiveCriterion PreProcessorRequestedByActiveInput			: 	Aec 		Agc			Ns
+InclusiveCriterion StatesChanged		: 	AndroidMode		HasModem	ModemState	ModemAudioAvailable	HacSelected	TtyDirection	BtHeadsetNrEc	BtHeadsetBandType	CsvBandType	VoIPBandType	ImsBandType	InputDevices	OutputDevices	InputSources	OutputFlags	DirectStream	ScreenOn	ContextAwareness	FmEnabled	AlwaysListening BypassNonLinearPp BypassLinearPp MicMute PreProcessorRequestedByActiveInput
+ExclusiveCriterion AndroidMode			:	Normal			RingTone	InCsvCall	InVoipCall
+ExclusiveCriterion DirectStream			: 	False			True
+ExclusiveCriterion ModemAudioAvailable		: 	False			True
+ExclusiveCriterion FmEnabled			: 	False			True
+ExclusiveCriterion HacSelected			:	False			True
+ExclusiveCriterion BtHeadsetNrEc		:	False			True
+ExclusiveCriterion BtHeadsetBandType            :	Unknown			NB			WB			SuperWB
+ExclusiveCriterion CsvBandType			:	Unknown			NB			WB			SuperWB
+ExclusiveCriterion VoIPBandType			:	Unknown			NB			WB			SuperWB
+ExclusiveCriterion ImsBandType			:	Unknown			NB			WB			SuperWB
+ExclusiveCriterion ContextAwareness		:	False			True
+ExclusiveCriterion AlwaysListening		:	False			True
+ExclusiveCriterion HasModem			:	False			True
+ExclusiveCriterion ModemState			:	False			True
+ExclusiveCriterion ScreenOn			: 	False			True
+ExclusiveCriterion MicMute			:	False			True

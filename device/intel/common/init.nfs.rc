@@ -1,0 +1,41 @@
+on init
+# partition map
+#
+# NFS
+#	on server 50.0.0.1:
+#	/android/nfs1	/boot
+#	/android/nfs2	/data
+#	/android/nfs3	/media
+#	/android/nfs5	/recovery
+#	/android/nfs6	/system
+#	/android/nfs7	/cache
+#	/android/nfs8   not assigned yet
+#	/android/nfs9   not assigned yet
+#	/android/nfs10  not assigned yet
+#
+
+
+	# configure network
+	write /sys/class/usb_composite/rndis/enable 1
+	exec /sbin/busybox ifconfig usb0 50.0.0.2
+	
+	# mount /system
+	exec /sbin/busybox mount -t nfs -o nolock 50.0.0.1:/android/nfs6 /system
+
+	# mount /data
+	exec /sbin/busybox mount -t nfs -o nolock 50.0.0.1:/android/nfs2 /data
+
+	# mount /cache
+	exec /sbin/busybox mount -t nfs -o nolock 50.0.0.1:/android/nfs7 /cache
+
+	# We chown/chmod /data again so because mount is run as root + defaults
+	chown system system /data
+	chmod 0771 /data
+
+	# Same reason as /data above
+	chown system cache /cache
+	chmod 0770 /cache
+
+	# This may have been created by the recovery system with odd permissions
+	chown system system /cache/recovery
+	chmod 0770 /cache/recovery

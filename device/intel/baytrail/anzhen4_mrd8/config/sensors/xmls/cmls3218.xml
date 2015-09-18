@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x10</addr>
+      </i2c_addrs>
+      <id_reg_addr></id_reg_addr>
+      <ids>
+      </ids>
+      <device_name>CALS3218:00</device_name>
+      <input_name>cm32181</input_name>
+      <event_type>EV_ABS</event_type>
+      <method>interrupt</method>
+      <default_poll_interval></default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>136</gpio_num>
+      <irq_flag>0x2008</irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+    </odr_tables>
+    <range_tables>
+    </range_tables>
+    <sys_entries>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        /*all regs are 16b, so readreg if need to use regbuf*/
+	global_1 = 1; /*global_1 as config reg, shutdown*/
+	writereg_0x0_0x0_2 = global_1;
+	writereg_0x3_0x0_2 = 1;
+	writereg_0x2_0x0_2 = 251;
+	writereg_0x1_0x0_2 = 250;
+	global_1 = global_1 | 0x1823;
+	writereg_0x0_0x0_2 = global_1;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+	writereg_0x2_0x0_2 = 251;
+	writereg_0x1_0x0_2 = 250;
+	global_1 = global_1 & 0xfffe;
+	writereg_0x0_0x0_2 = global_1;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+	global_1 = global_1 | 1;
+	writereg_0x0_0x0_2 = global_1;
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+	/*disable int*/
+	global_1 = global_1 & 0xfffd;
+	writereg_0x0_0x0_2 = global_1;
+	return 1;
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+	/*get als data*/
+        readreg_0x4_0x0_2;
+
+        /*set high/low threshold*/
+	local_1 = regbuf_0x4_2 * 102 / 100;
+	writereg_0x1_0x0_2 = local_1;
+	local_1 = regbuf_0x4_2 * 98 / 100;
+	writereg_0x2_0x0_2 = local_1;
+
+	/*enable int*/
+	global_1 = global_1 | 2;
+	writereg_0x0_0x0_2 = global_1;
+
+	/*return als data in lux*/
+	return regbuf_0x4_2 * 336 / 1000;
+        ]]>
+      </get_data_x>
+      <get_data_y>
+      </get_data_y>
+      <get_data_z>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>light</type>
+    <platform_config>
+      <data_node></data_node>
+    </platform_config>
+    <device>
+      <name>CM32181 Digital Ambient Light Sensor</name>
+      <vendor>CM32181</vendor>
+      <version>1</version>
+      <maxRange>22019.0</maxRange>
+      <resolution>0.3</resolution>
+      <power>0.25</power>
+      <minDelay>0</minDelay>
+      <maxDelay>0</maxDelay>
+      <mapper axis_x="X"></mapper>
+      <scale axis_x="1.0"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

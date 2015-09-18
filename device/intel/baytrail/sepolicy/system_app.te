@@ -1,0 +1,14 @@
+# Additional system_app rules
+allow system_app self:netlink_kobject_uevent_socket { create setopt bind read };
+allow system_app log_file:dir { rw_dir_perms setattr };
+allow system_app log_file:file create_file_perms;
+allow system_app log_file:filesystem getattr;
+allow system_app ctl_default_prop:property_service set;
+allow system_app display_service:service_manager add;
+allow system_app cws_service:service_manager add;
+allow system_app ISEP_service:service_manager add;
+allow system_app mediaserver_service:service_manager add;
+allow system_app sysfs_thermal_management:dir search;
+allow system_app sysfs_thermal_management:file { read write open };
+allow system_app thermal_socket:sock_file write;
+allow system_app mei_device:chr_file { read write open ioctl };

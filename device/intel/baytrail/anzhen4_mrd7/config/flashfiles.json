@@ -1,0 +1,24 @@
+{"config":
+  [{"filename":"flash.xml", "name":"full", "flashtype":"fastboot_dnx"}],
+"commands":
+  [{"type":"osloader", "target":"INSTALLED_EFILINUX_MODULE"},
+   {"type":"prop", "target":"INSTALLED_BUILD_PROP_TARGET"},
+   {"type":"foem", "arg":"start_partitioning", "desc":"Start partitioning."},
+   {"type":"fflash", "partition":"/tmp/partition.tbl", "target":"TARGET_PARTITION_TABLE", "desc":"Push the new partition table to the device."},
+   {"type":"foem", "arg":"partition /tmp/partition.tbl", "desc":"Apply the new partition scheme."},
+   {"type":"fformat", "partition":"factory"},
+   {"type":"fformat", "partition":"system"},
+   {"type":"fformat", "partition":"cache"},
+   {"type":"fformat", "partition":"config"},
+   {"type":"fformat", "partition":"logs"},
+   {"type":"fformat", "partition":"data"},
+   {"type":"foem", "arg":"stop_partitioning", "desc":"Stop partitioning."},
+   {"type":"foem", "arg":"wipe ESP", "desc":"Wiping ESP partition", "mandatory":false},
+   {"type":"foem", "arg":"wipe reserved", "desc":"Wiping reserved partition", "mandatory":false},
+   {"type":"fflash", "partition":"ESP", "target":"INSTALLED_ESPIMAGE_TARGET"},
+   {"type":"fflash", "partition":"fastboot", "target":"INSTALLED_DROIDBOOTIMAGE_TARGET"},
+   {"type":"fflash", "partition":"boot", "target":"INSTALLED_BOOTIMAGE_TARGET"},
+   {"type":"fflash", "partition":"recovery", "target":"INSTALLED_RECOVERYIMAGE_TARGET"},
+   {"type":"fflash", "partition":"system", "target":"INSTALLED_SYSTEMIMAGE","timeout":"180000"},
+   {"type":"fcontinue"}
+   ]}

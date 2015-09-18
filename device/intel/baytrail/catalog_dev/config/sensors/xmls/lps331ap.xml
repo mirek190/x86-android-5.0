@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x5d</addr>
+      </i2c_addrs>
+      <id_reg_addr>0xf</id_reg_addr>
+      <ids>
+        <id>0xbb</id>
+      </ids>
+      <device_name>lps331ap</device_name>
+      <input_name>lps331ap_pressure</input_name>
+      <event_type>EV_REL</event_type>
+      <method>polling</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval>75</min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num></gpio_num>
+      <irq_flag></irq_flag>
+      <irq_serialize></irq_serialize>
+    </basic_info>
+    <odr_tables>
+    </odr_tables>
+    <range_tables>
+    </range_tables>
+    <sys_entries>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        writereg_0x10_0_1 = 0x34;
+        writereg_0x20_0_1 = 0;
+        writereg_0x20_0_1 = 0x74;
+        ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x20_0_1;
+        local_1 = regbuf_0x20_1 | 0x80;
+        writereg_0x20_0_1 = local_1;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        readreg_0x20_0_1;
+        local_1 = regbuf_0x20_1 & 0x7f;
+        writereg_0x20_0_1 = local_1;
+        ]]>
+      </disable>
+      <int_ack>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x28_0x80_3;
+        return le24_to_cpu(regbuf_0x28_3);
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        readreg_0x2b_0x80_2;
+        return le16_to_cpu(regbuf_0x2b_2);
+        ]]>
+      </get_data_y>
+      <get_data_z>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+   <hal_config>
+    <type>pressure</type>
+    <platform_config>
+      <name>lps331ap_pressure</name>
+      <activate_node>/sys/bus/i2c/devices/3-005d/enable</activate_node>
+      <poll_node>/sys/bus/i2c/devices/3-005d/poll</poll_node>
+    </platform_config>
+    <device>
+      <name>ST LPS331AP Pressure Sensor</name>
+      <vendor>STMicroelectronics</vendor>
+      <version>1</version>
+      <maxRange>1260.0</maxRange>
+      <resolution>0.24</resolution>
+      <power>0.001</power>
+      <minDelay>75000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="X"></mapper>
+      <scale  axis_x="0.000244140625"></scale>
+    </device>
+   </hal_config>
+ </sensor>
+</sensors>
+

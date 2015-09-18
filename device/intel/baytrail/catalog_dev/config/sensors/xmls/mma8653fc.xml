@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+   <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x1d</addr>
+      </i2c_addrs>
+      <id_reg_addr>0xd</id_reg_addr>
+      <ids>
+        <id>0x5a</id>
+      </ids>
+      <device_name>Freescale MMA8653FC</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>251</report_interval>
+    </basic_info>
+    <odr_tables>
+      <odr_table>
+        <hz>2</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x38;
+         global_3 = 2; 
+         readreg_0x10_0_1;
+         ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>6</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x30;
+         global_3 = 6; 
+         readreg_0x10_0_1;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>12</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x28;
+         global_3 = 12; 
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>50</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x20;
+         global_3 = 50; 
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>100</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x18;
+         global_3 = 100; 
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x10;
+         global_3 = 200; 
+          ]]>
+        </action>
+      </odr_table>
+       <odr_table>
+        <hz>400</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) | 0x8;
+         global_3 = 400; 
+          ]]>
+        </action>
+      </odr_table>
+       <odr_table>
+        <hz>800</hz>
+        <action><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xc7) ;
+         global_3 = 800; 
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+          readreg_0xe_0_1;
+          writereg_0xe_0_1 = (regbuf_0xe_1 & 0xfc)|0x0;
+          global_1 = 1;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+          readreg_0xe_0_1;
+          writereg_0xe_0_1 = (regbuf_0xe_1 & 0xfc)|0x1;
+          global_1 = 2;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          readreg_0xe_0_1;
+          writereg_0xe_0_1 = (regbuf_0xe_1 & 0xfc)|0x2;
+          global_1 = 4;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+       writereg_0x2a_0_1 = 0x30;
+       global_3 = 6;    
+       ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        writereg_0x2a_0_1 = 0x30;
+        global_3 = 6;
+        readreg_0x2a_0_1;
+        writereg_0x2c_0_1 = 0x22;
+        writereg_0x2d_0_1 = 0x10;
+        writereg_0x11_0_1 = 0x40;
+        writereg_0x2a_0_1 = (regbuf_0x2a_1 |0x1); 
+        readreg_0x2a_0_1;
+        readreg_0xb_0_1;
+        readreg_0xd_0_1;
+        readreg_0x12_0_1;
+        readreg_0x13_0_1;
+        readreg_0x14_0_1;
+        readreg_0x2c_0_1;
+        readreg_0x2d_0_1;
+        readreg_0x2e_0_1;
+         ]]>
+      </enable>
+      <disable><![CDATA[
+         readreg_0x2a_0_1;
+         writereg_0x2a_0_1 = (regbuf_0x2a_1 & 0xfe);
+         ]]>
+      </disable>
+      <int_ack><![CDATA[
+        if(global_3 <= 6 )
+        readreg_0x10_0_1;
+        return regbuf_0x10_1; 
+        endif
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x1_0x0_6;
+        /*readreg_0xc_0_1;*/
+        return be16_to_cpu(regbuf_0x1_2) >> 6;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return be16_to_cpu(regbuf_0x3_2) >> 6;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return be16_to_cpu(regbuf_0x5_2) >> 6;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+	<calibration_function>AccelCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>MMA8653FC Accelerometer</name>
+      <vendor>Freescale</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.003</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="X" axis_y="Y" axis_z="Z"></mapper>
+      <scale axis_x="0.003" axis_y="0.003" axis_z="0.003" unit="GRAVITY_EARTH"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

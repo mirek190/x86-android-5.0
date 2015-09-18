@@ -1,0 +1,300 @@
+##############################
+# 	Mute & Unmute Steps
+##############################
+
+supDomain: Routing.Mute
+	RoutageState Includes Flow
+
+	supDomain: Modem.Mixing
+
+		# The ModemMix route is not exclusive with any other route
+		domain: Capture
+			conf: Unmute
+				OpenedCaptureRoutes Includes ModemMix
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/VOLUME/MUTED = 0
+
+			conf: Mute
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/VOLUME/MUTED = 1
+
+
+		domain: Playback
+			conf: Unmute
+				OpenedPlaybackRoutes Includes ModemMix
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/VOLUME/MUTED = 0
+
+			conf: Mute
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/VOLUME/MUTED = 1
+
+
+
+	supDomain: Modem.Voice
+		domain: Capture
+			conf: Unmute
+				ANY
+					OpenedCaptureRoutes Includes HwCodecCSV
+					OpenedCaptureRoutes Includes BtCSV
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/MUTED = 0
+
+			conf: Mute
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/VOLUME/MUTED = 1
+
+
+
+		domain: Playback
+			conf: Unmute
+				ANY
+					OpenedPlaybackRoutes Includes HwCodecCSV
+					OpenedPlaybackRoutes Includes BtCSV
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/VOLUME/MUTED = 0
+
+			conf: Mute
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/VOLUME/MUTED = 1
+
+
+##############################
+# 	Enable & Disable Steps
+##############################
+
+supDomain: Routing.Enable
+	RoutageState Includes Path
+
+	supDomain: Modem
+		supDomain: Voice
+			domain: capture
+				conf: Enable
+					ANY
+						OpenedCaptureRoutes Includes HwCodecCSV
+						OpenedCaptureRoutes Includes BtCSV
+					#enable modem
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/SPEECH_TX = 1
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/ENABLED = 1
+
+
+				conf: Disable
+					#keep modem disable
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/ENABLED = 0
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/SPEECH_TX = 0
+
+
+			domain: playback sequenceAware
+
+				conf: Enable
+					ANY
+						OpenedPlaybackRoutes Includes HwCodecCSV
+						OpenedCaptureRoutes Includes BtCSV
+					#enable modem
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S2_TX = 1
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SIMPLE_TONES/DESTINATIONS/I2S2_TX = 1
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/PCM_GENERAL_DESTINATION = 0
+
+				conf: Disable
+					#keep modem disable
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/PCM_GENERAL_DESTINATION = 1
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S2_TX = 0
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SIMPLE_TONES/DESTINATIONS/I2S2_TX = 0
+
+
+		supDomain: Mix sequenceAware
+
+			domain:  Playback
+				# Connect AI to modem I2S2
+				conf: Enable
+					OpenedPlaybackRoutes Includes ModemMix
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S1_RX/DESTINATIONS/I2S2_TX = 1
+					/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/ENABLED = 1
+
+				conf: Disable
+					/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/ENABLED = 0
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S1_RX/DESTINATIONS/I2S2_TX = 0
+
+
+##############################
+# 	Configure Step
+##############################
+
+supDomain: Routing.Configure
+	RoutageState Includes Configure
+
+	supDomain: Modem
+		domain: Calibration
+			conf: Default
+				ANY
+					OpenedPlaybackRoutes Includes ModemMix
+					OpenedPlaybackRoutes Includes BtCSV
+					OpenedPlaybackRoutes Includes HwCodecCSV
+					OpenedCaptureRoutes  Includes ModemMix
+					OpenedCaptureRoutes  Includes BtCSV
+					OpenedCaptureRoutes  Includes HwCodecCSV
+
+				component: /Audio/IMC/SOUND_CARD/
+					component: PORTS/
+						I2S2/TX/CONFIG/CLOCK = 0
+						I2S2/RX/CONFIG/CLOCK = 0
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/CLOCK = 0
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/CLOCK = 0
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SLAVE = 0
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SLAVE = 0
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/SLAVE = 0
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/SLAVE = 0
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/QUANTIZATION = s16
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/QUANTIZATION = s16
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/QUANTIZATION = s16
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/QUANTIZATION = s16
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/SAMPLING_RATE = f48
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/SAMPLING_RATE = f48
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/CHANNELS = STEREO
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/CHANNELS = STEREO
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/MODE = UserDefined15
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/MODE = UserDefined15
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/TRANSMISSION_MODE = I2S
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/TRANSMISSION_MODE = I2S
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/RX/CONFIG/I2S_SETTINGS = NORMAL
+				/Audio/IMC/SOUND_CARD/PORTS/I2S1/TX/CONFIG/I2S_SETTINGS = NORMAL
+
+		domain: I2S
+			conf: Bluetooth
+				ALL
+					ANY
+						SelectedOutputDevice Includes SCO
+						SelectedOutputDevice Includes SCO_Headset
+						SelectedOutputDevice Includes SCO_CarKit
+						SelectedInputDevice  Includes SCO_Headset
+					ANY
+						OpenedPlaybackRoutes Includes BtCSV
+						OpenedCaptureRoutes  Includes BtCSV
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SAMPLING_RATE = f8
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SAMPLING_RATE = f8
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/CHANNELS = MONO
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/CHANNELS = MONO
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/TRANSMISSION_MODE = PCM
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/TRANSMISSION_MODE = PCM
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/I2S_SETTINGS = SPECIAL1
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/I2S_SETTINGS = SPECIAL1
+
+			conf: Default
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/SAMPLING_RATE = f48
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/SAMPLING_RATE = f48
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/CHANNELS = STEREO
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/CHANNELS = STEREO
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/TRANSMISSION_MODE = I2S
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/TRANSMISSION_MODE = I2S
+
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/I2S_SETTINGS = NORMAL
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/I2S_SETTINGS = NORMAL
+
+		supDomain: Mix.Capture
+		# Capture call
+			domain: Uplink
+
+				conf: Bind
+					OpenedCaptureRoutes Includes ModemMix
+					ANY
+						AudioSource Is VoiceCall
+						AudioSource Is VoiceUplink
+						AudioSource Is Camcorder
+						AudioSource Is VoiceRecognition
+						AudioSource Is Mic
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/I2S1_TX = 1
+
+				conf: Unbind
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/I2S2_RX/DESTINATIONS/I2S1_TX = 0
+
+			domain: Downlink
+
+				conf: Bind
+					OpenedCaptureRoutes Includes ModemMix
+					ANY
+						AudioSource Is VoiceCall
+						AudioSource Is VoiceDownlink
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S1_TX = 1
+
+				conf: Unbind
+					/Audio/IMC/SOUND_CARD/SWITCH_MATRIX/SPEECH_RX/DESTINATIONS/I2S1_TX = 0
+
+		domain: Processing
+
+			supConf: HwCodecCSV
+				OpenedPlaybackRoutes Includes HwCodecCSV
+
+				supConf: IHF
+					SelectedOutputDevice Includes IHF
+
+					conf: TTY.Uplink
+						TTYDirection Includes Uplink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = TTY
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handsfree
+
+					conf: TTY.Downlink
+						TTYDirection Includes Downlink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = TTY
+
+					conf: Normal
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handsfree
+
+				supConf: Headset
+					SelectedOutputDevice Includes Headset
+
+					conf: TTY.Full
+						TTYDirection Includes Downlink
+						TTYDirection Includes Uplink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = TTY
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = TTY
+
+					conf: TTY.Uplink
+						TTYDirection Includes Uplink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = TTY
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Handsfree
+
+
+					conf: TTY.Downlink
+						TTYDirection Includes Downlink
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = TTY
+
+					conf: Normal
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Headset
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Headset
+
+				conf: Headphone
+					SelectedOutputDevice Includes Headphones
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Handsfree
+					/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Headset
+
+			supConf: BtCSV
+				OpenedPlaybackRoutes Includes BtCSV
+
+				supConf: NoHeadsetNrEc
+					BtHeadsetNrEc Is False
+
+					conf: SCO
+						ANY
+							SelectedOutputDevice Includes SCO
+							SelectedOutputDevice Includes SCO_Headset
+							SelectedOutputDevice Includes SCO_CarKit
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = Bluetooth
+						/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = Bluetooth
+
+			conf: Default
+				# No acoustics
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/RX/CONFIG/MODE = UserDefined15
+				/Audio/IMC/SOUND_CARD/PORTS/I2S2/TX/CONFIG/MODE = UserDefined15
+
+
+
+

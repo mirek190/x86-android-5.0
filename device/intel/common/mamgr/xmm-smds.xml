@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Configuration for XMM modem 1, dual SIM
+-->
+<MAMGR version="0.0.2">
+    <XmmMamgrConfig>
+        <MmgrInstanceNumber>1</MmgrInstanceNumber>
+        <TtysNameList>
+            <e1>/dev/gsmtty13</e1>
+            <e2>/dev/gsmtty21</e2>
+        </TtysNameList>
+    </XmmMamgrConfig>
+</MAMGR>

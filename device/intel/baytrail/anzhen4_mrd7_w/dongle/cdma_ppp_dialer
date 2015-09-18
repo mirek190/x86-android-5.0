@@ -1,0 +1,10 @@
+ABORT           "NO CARRIER" 
+ABORT           "ERROR"
+TIMEOUT         120
+""		
+ATE
+SAY             "ATE0"
+OK              AT
+OK              AT
+OK		ATD#777
+CONNECT

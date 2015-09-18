@@ -1,0 +1,14 @@
+# Additional init rules
+allow init self:capability sys_module;
+allow init device:blk_file create_file_perms;
+allow init shell_data_file:file { read write open };
+allow init fuse:dir create_dir_perms;
+allow init fuse:file create_file_perms;
+domain_trans(init, rootfs, intel_prop)
+allow init shell_data_file:dir { write add_name };
+allow init shell_data_file:file create;
+#allow init system_file:file setattr;
+allow init config_file:filesystem { relabelfrom relabelto mount };
+allow init factory_file:filesystem { relabelfrom relabelto mount };
+allow init log_file:filesystem { relabelfrom relabelto mount };
+

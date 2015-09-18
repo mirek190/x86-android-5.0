@@ -1,0 +1,25 @@
+########################################################
+#  BLUETOOTH CONFIGURATION - INTEL CWS SPECIFIC
+########################################################
+# currently keep another driver, for Power On/Off GPIO handling
+########################################################
+#Intel FM solution depends on BT
+import init.fm.vendor.rc
+on init
+    insmod /lib/modules/lnp_ldisc.ko
+
+on post-fs
+    mkdir /factory/bluetooth
+    chown system bluetooth /factory/bluetooth
+    chmod 0770 /factory/bluetooth
+    setprop ro.bt.bdaddr_path "/factory/bluetooth/bd_addr.conf"
+    start bd_prov
+
+on early-boot
+    chmod 0644 /factory/bluetooth/bd_addr.conf
+
+service rfkill_bt /system/bin/sh /rfkill_bt.sh
+    class core
+    user root
+    oneshot
+

@@ -1,0 +1,9 @@
+type nvm_server, domain;
+type nvm_server_exec, exec_type, file_type;
+init_daemon_domain(nvm_server);
+
+allow nvm_server mmgr:unix_stream_socket connectto;
+allow nvm_server mmgr_socket:sock_file write;
+allow nvm_server config_file:file create_file_perms;
+allow nvm_server config_file:dir { search write add_name };
+allow nvm_server tty_device:chr_file { read write ioctl open };

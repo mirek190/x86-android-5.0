@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CSM Configuration File -->
+<!-- Intel Corporation 2014 -->
+<CsmConfig>
+
+<!--Modules-->
+
+	<Module>
+		<Client>BT</Client>
+		<Start>async</Start>
+                <Stop>no_unbind</Stop>
+	</Module>
+
+	<Module>
+		<Client>GPS</Client>
+		<Start>async</Start>
+                <Stop>no_unbind</Stop>
+	</Module>
+
+	<Module>
+		<Client>NFC</Client>
+		<Start>sync</Start>
+		<Timeout_ms>60000</Timeout_ms>
+                <Stop>no_unbind</Stop>
+	</Module>
+
+	<Module>
+		<Client>WiFi</Client>
+		<Start>async</Start>
+                <Stop>no_unbind</Stop>
+	</Module>
+
+	<Module>
+		<Client>WiFi-Offload</Client>
+		<Start>async</Start>
+                <Stop>no_unbind</Stop>
+	</Module>
+
+</CsmConfig>

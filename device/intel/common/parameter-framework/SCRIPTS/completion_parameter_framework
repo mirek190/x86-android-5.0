@@ -1,0 +1,151 @@
+# Copyright (C) 2012 Intel Corporation
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+# bash completion for PFW commands
+#
+# Execute this file in bash with the built-in command "source",
+# it will add autocompletion to all commands specified in argument.
+#
+# All those commands should send their arguments to
+# a parameter framework (PFW) instance.
+# For example : alias parameter='adb shell parameter'
+#    or : alias paramVibra='remote-process localhost 5000'
+#    or : a script named 'parameterRoutage' in one of the $PATH folders
+#    ...
+#    then execute "source thisFile parameter paramVibra parameterRoutage ..."
+#
+#
+# To permanently add this autocompletion, add the "source this_file ..." command
+# in your .bashrc followed by all the commands you want to autocomplete.
+#
+# It is also posible to copy this file in /etc/bash_completion.d/ but the
+# script (the "complete ..." line) will have to be changed each time
+# PFW commands are added or removed.
+
+
+if [ ! "$*" ];
+then
+    # If no argument has been provided
+
+    echo "At least one commande to autocomplete must be provided"
+    echo "usage: source $0 PFWCommand1 [ PFWCommand2 ...]"
+
+    # Set exit status to 1 (exit command would close the shell)
+    # and stop the script execution
+    return 1
+fi
+
+_parameter()
+{
+    local cur ops=""
+
+    COMPREPLY=()
+
+    # Get current word
+    cur="${COMP_WORDS[COMP_CWORD]}"
+
+    # Comment the following line to save "help" command result
+    # in "_parameterHelp" (a global variable) at first completion attempt.
+    # It can save time if the "help" command is a bit long to execute.
+    local _parameterHelp
+
+    # Get command
+    local parameter="${COMP_WORDS[0]}"
+
+
+    if [ ! "$_parameterHelp" ]; then
+        _parameterHelp=$( eval "$parameter help" | sed -e 's#[\r]##' -e '/^$/d' )
+    fi
+
+    if [ $COMP_CWORD -le 1 ]
+    then
+
+        # Get PFW commands
+        ops=$( echo "$_parameterHelp" | sed -e 's# .*##' )
+
+    else
+
+        local argumentTypes currentArgumentType
+
+        # Get current command argument types
+        # - keep in the help text only the line describing current command
+        # - delete => and posterior
+        # - replace space in balisa (<...>) by underscore then delete [<>]
+        argumentTypes=$( echo "$_parameterHelp" | grep "${COMP_WORDS[1]}"  |\
+             sed -e 's# *=>.*##' -e 's#^[^ ]* *##' \
+                 -e 's/> />#/g' -e 's# #_#g' -e 's/>#/> /g' -e 's#[<>]##g' )
+
+        currentArgumentType=$( echo $argumentTypes | \
+            awk '{print $'"$( expr $COMP_CWORD - 1 )"'}' )
+
+
+        # Take care of argument list type if it is the last argument
+        # Ex : setElementSequence <domain> <configuration> <elem path list>
+        if [ "$currentArgumentType" = "" ] &&
+             expr "$argumentTypes" : '.*list' > /dev/null ;
+        then
+            # Set last argument type specified as the current type
+            currentArgumentType=$( echo "$argumentTypes" | sed 's#.* ##' )
+        fi
+
+
+        case "${currentArgumentType}" in
+            elem_path*|param_path* )
+                local incompletPath=$( echo "$cur" | sed -e 's#/*[^/]*$#/#' )
+
+                local parameterCommand
+                if [ "$currentArgumentType" = elem_path_list ];
+                then
+                    # <elem path list> is the parameter path list
+                    #  of the domain specified by the second argument
+                    parameterCommand="listDomainElements ${COMP_WORDS[2]}"
+                else
+                    # Otherwise suggest all parameter paths
+                    parameterCommand="listParameters"
+                fi
+                # Get paths and delete everything after the first "/" following
+                # the current input. This is done to imitate the bash builtin
+                # path completion.
+                ops=$( eval "$parameter $parameterCommand $incompletPath" | \
+                    sed -e 's#\r##' -e "s#\(${cur}[^/]*/*\).*#\1#" )
+            ;;
+            domain)
+                # Get all domain names
+                ops=$( eval "$parameter listDomains" | sed -e 's# .*##' -e 's#\r##' )
+            ;;
+            configuration)
+                # Get all configurations of the domain specified by
+                # the second argument
+                ops=$( eval "$parameter listConfigurations ${COMP_WORDS[2]}" | \
+                    sed 's#\r##')
+            ;;
+            *\|*)
+                # Possible arguments are separated by "|". Ex : on|off
+                ops=$( echo $currentArgumentType | sed -e 's#|# #g' -e 's#\*##g' )
+            ;;
+            file_path)
+                _filedir
+                return 0
+            ;;
+        esac
+    fi
+    COMPREPLY=( $( compgen -W "$ops" -- "$cur" ) )
+
+} &&
+    # Add PFW autocompletion to all script arguments
+    complete  -F _parameter -o filenames -o nospace  $* &&
+    # Delete this line and the previous && to disable the success message
+    echo "Autocompletion has been added for command(s) : $* "
+

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2009, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Do not translate. Defines the slots for the right-hand side icons.  That is to say, the
+         icons in the status bar that are not notifications. -->
+    <string-array name="config_statusBarIcons">
+       <item><xliff:g id="id">ime</xliff:g></item>
+       <item><xliff:g id="id">sync_failing</xliff:g></item>
+       <item><xliff:g id="id">sync_active</xliff:g></item>
+       <item><xliff:g id="id">location</xliff:g></item>
+       <item><xliff:g id="id">bluetooth</xliff:g></item>
+       <item><xliff:g id="id">nfc</xliff:g></item>
+       <item><xliff:g id="id">tty</xliff:g></item>
+       <item><xliff:g id="id">ims</xliff:g></item>
+       <item><xliff:g id="id">speakerphone</xliff:g></item>
+       <item><xliff:g id="id">mute</xliff:g></item>
+       <item><xliff:g id="id">volume</xliff:g></item>
+       <item><xliff:g id="id">wifi</xliff:g></item>
+       <item><xliff:g id="id">cdma_eri</xliff:g></item>
+       <item><xliff:g id="id">data_connection</xliff:g></item>
+       <item><xliff:g id="id">phone_evdo_signal</xliff:g></item>
+       <item><xliff:g id="id">phone_signal</xliff:g></item>
+       <item><xliff:g id="id">battery</xliff:g></item>
+       <item><xliff:g id="id">alarm_clock</xliff:g></item>
+       <item><xliff:g id="id">secure</xliff:g></item>
+       <item><xliff:g id="id">clock</xliff:g></item>
+    </string-array>
+    <!-- Boolean indicating whether the wifi chipset supports background scanning mechanism.
+         This mechanism allows the host to remain in suspend state and the dongle to actively
+         scan and wake the host when a configured SSID is detected by the dongle. This chipset
+         capability can provide power savings when wifi needs to be always kept on. -->
+    <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
+
+    <!-- Boolean indicating whether the wifi chipset supports the scan always mechanism.
+         This mechanism allows to maintain the wifi stack up and running even when for the
+         system Wi-Fi is off -->
+     <add-resource type="bool" name="config_wifi_scanalways_support"></add-resource>
+     <bool translatable="false" name="config_wifi_scanalways_support">true</bool>
+
+    <!-- Boolean indicating whether the wifi chipset supports multi-role multi-channel -->
+    <add-resource type="bool" name="config_wifi_multirole_multichannel_support"></add-resource>
+    <bool translatable="false" name="config_wifi_multirole_multichannel_support">true</bool>
+
+    <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
+    <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
+
+    <!-- Integer indicating wpa_supplicant scan interval in milliseconds -->
+    <integer translatable="false" name="config_wifi_supplicant_scan_interval">40000</integer>
+
+    <!-- Integer indicating the framework scan interval in milliseconds. This is used in the scenario
+         where the chipset does not support background scanning (config_wifi_background_scan_suport
+         is false) to set up a periodic wake up scan so that the device can connect to a new access
+         point on the move. A value of 0 means no periodic scans will be used in the framework. -->
+    <integer translatable="false" name="config_wifi_framework_scan_interval">0</integer>
+
+    <!-- Integer indicating wpa_supplicant scan interval when p2p is connected in milliseconds -->
+    <integer translatable="false" name="config_wifi_scan_interval_p2p_connected">3600000</integer>
+
+    <!-- Configure Group Owner Intent used to perform WiFi Display P2P connection. -->
+    <integer name="config_groupOwnerIntentWifiDisplay">14</integer>
+
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
+         bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
+         should be empty. -->
+    <string-array translatable="false" name="config_tether_bluetooth_regexs">
+        <item>"bt-pan"</item>
+    </string-array>
+
+    <add-resource type="bool" name="config_button_automatic_brightness_available" />
+    <bool name="config_button_automatic_brightness_available">false</bool>
+
+    <add-resource type="bool" name="config_button_led_brightness_available" />
+    <bool name="config_button_led_brightness_available">false</bool>
+
+    <add-resource type="bool" name="config_proximityScreenOffAvailable" />
+    <bool name="config_proximityScreenOffAvailable">true</bool>
+
+    <add-resource type="bool" name="config_nonPollingWindowOrientation" />
+    <bool name="config_nonPollingWindowOrientation">true</bool>
+
+    <add-resource type="bool" name="config_TerminalDetectWindowOrientation" />
+    <bool name="config_TerminalDetectWindowOrientation">false</bool>
+
+    <bool name="config_useDevInputEventForAudioJack">true</bool>
+    <!-- Flag indicating whether the current device supports
+         CAT aka STK handling. If true, this means that the
+         device supports handling of CAT messages from UICC.
+         Set to false if the device do not want to support CAT
+         aka STK feature -->
+    <add-resource type="bool" name="config_cat_support" />
+    <bool name="config_cat_support">true</bool>
+
+    <!-- set to true if oem hooks are supported by framework -->
+    <!-- set to true if telephony oem hooks are supported by framework -->
+    <add-resource type="bool" name="config_usage_oem_hooks_supported" />
+    <bool name="config_usage_oem_hooks_supported">false</bool>
+
+    <!-- set the oemhook data state reporting property -->
+    <!-- OEM Hook specific overlay config items -->
+    <!-- Intel Telephony OEM Hook supports data state reporting property -->
+    <add-resource type="string" name="oemhook_datastate_property" />
+    <string name="oemhook_datastate_property"></string>
+
+    <!-- Intel Telephony oemhook supports flag indicating concurrent data property -->
+    <add-resource type="string" name="oemhook_concurrentdata_property" />
+    <string name="oemhook_concurrentdata_property"></string>
+
+    <!-- When set to false, the call status polling is disabled -->
+    <add-resource type="bool" name="gsm_call_status_polling_enable" />
+    <bool name="gsm_call_status_polling_enable">true</bool>
+
+    <!-- Flag indicating whether the operator should be part of the unique Identifier used to track
+         requests associated with a poll. If true, this means that the operator query is part of
+         the unique identifier used to track requests associated with a poll. If false, this means
+         that the operator query is not part of the unique identifier used to track requests. -->
+    <add-resource type="bool" name="config_track_get_operator_polling" />
+    <bool name="config_track_get_operator_polling">true</bool>
+
+    <!-- set the VoLte phone creator jar property -->
+    <add-resource type="string" name="volte_creator_jar_file_property" />
+    <string name="volte_creator_jar_file_property">/system/framework/com.intel.internal.telephony.ims.jar</string>
+    <!-- set the volte phone creator class property -->
+    <add-resource type="string" name="volte_creator_class_property" />
+    <string name="volte_creator_class_property">com.intel.internal.telephony.ims.PhoneCreator</string>
+    <!-- Set to true this config item, audio path opening sequence will be well triggered
+         by framework in case of incoming call. -->
+    <bool name="config_speed_up_audio_on_mt_calls">true</bool>
+    <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
+    <bool name="config_unplugTurnsOnScreen">true</bool>
+
+    <!-- Configure mobile network MTU (MTU size - 1358 is the value recommended in 3GPP 23.060 for
+         both support of IPv4 and IPv6 traffic)>. The overlay default is set
+         here but each carrier may have a specific value set in an overlay config.xml file. -->
+    <integer name="config_mobile_mtu">1358</integer>
+
+    <!-- When true, 5 level signal bar is shown in status bar -->
+    <add-resource type="bool" name="config_signalStrengthExt" />
+    <bool name="config_signalStrengthExt">false</bool>
+
+    <!-- When true, setting of preferred rat is allowed -->
+    <add-resource type="bool" name="config_set_preferred_rat_allowed" />
+    <bool name="config_set_preferred_rat_allowed">true</bool>
+
+    <!-- When true, operator name display is customzied -->
+    <add-resource type="bool" name="config_customize_operator_name_display" />
+    <bool name="config_customize_operator_name_display">false</bool>
+
+    <add-resource type="array" name="config_operatorConsideredRoaming" />
+    <!-- Use roaming icon for considered operators -->
+    <string-array translatable="false" name="config_operatorConsideredRoaming">
+    </string-array>
+</resources>

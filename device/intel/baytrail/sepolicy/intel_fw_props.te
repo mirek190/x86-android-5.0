@@ -1,0 +1,6 @@
+# Rules for intel_fw_props
+type intel_fw_props, domain;
+
+allow intel_fw_props init:unix_stream_socket connectto;
+allow intel_fw_props system_prop:property_service set;
+allow intel_fw_props property_socket:sock_file write;

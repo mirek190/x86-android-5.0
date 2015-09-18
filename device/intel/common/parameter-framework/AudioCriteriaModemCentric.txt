@@ -1,0 +1,21 @@
+ExclusiveCriterion  Mode                   :  InCsvCall         InVoipCall       Normal           RingTone
+ExclusiveCriterion  FmMode                 :  Off               On
+InclusiveCriterion  TTYDirection           :  Downlink          Uplink
+InclusiveCriterion  RoutageState           :  Configure         Flow             Path
+InclusiveCriterion  ClosingCaptureRoutes   :  AlwaysListening   BtCSV            CompressedMedia  ContextAwareness  DeepMedia  BtComm              HwCodec0IA     HwCodec1IA        Media        HwCodecCSV  ModemMix
+InclusiveCriterion  ClosingPlaybackRoutes  :  AlwaysListening   BtCSV            CompressedMedia  ContextAwareness  DeepMedia  BtComm              HwCodec0IA     HwCodec1IA        Media        HwCodecCSV  ModemMix
+InclusiveCriterion  OpenedCaptureRoutes    :  AlwaysListening   BtCSV            CompressedMedia  ContextAwareness  DeepMedia  BtComm              HwCodec0IA     HwCodec1IA        Media        HwCodecCSV  ModemMix
+InclusiveCriterion  OpenedPlaybackRoutes   :  AlwaysListening   BtCSV            CompressedMedia  ContextAwareness  DeepMedia  BtComm              HwCodec0IA     HwCodec1IA        Media        HwCodecCSV  ModemMix
+InclusiveCriterion  SelectedInputDevice    :  Ambient           AuxDigital       Back             Communication     Headset    Main                SCO_Headset    VoiceCall
+InclusiveCriterion  SelectedOutputDevice   :  A2DP              A2DP_Headphones  A2DP_Speaker     AuxDigital        Earpiece   Headphones          Headset        IHF               SCO          SCO_CarKit  SCO_Headset  _Widi
+InclusiveCriterion  AudioSource            :  Camcorder         Default          Mic              None              VoiceCall  VoiceCommunication  VoiceDownlink  VoiceRecognition  VoiceUplink
+ExclusiveCriterion  BandRinging            :  NetworkGenerated  PhoneGenerated
+ExclusiveCriterion  BandType               :  NB                SuperWB          Unknown          WB
+ExclusiveCriterion  BtHeadsetNrEc          :  False             True
+ExclusiveCriterion  BtHeadsetBandType      :  NB                SuperWB          Unknown          WB
+ExclusiveCriterion  HAC                    :  Off               On
+ExclusiveCriterion  ScreenState            :  Off               On
+ExclusiveCriterion  BypassNonLinearPp      :  Off               On
+ExclusiveCriterion  BypassLinearPp         :  Off               On
+ExclusiveCriterion  MicMute                :  Off               On
+ExclusiveCriterion  ModemAudioIsSpeech     :  False            True

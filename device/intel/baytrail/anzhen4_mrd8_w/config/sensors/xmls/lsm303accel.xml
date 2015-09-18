@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+ <sensor>
+  <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0x19</addr>
+      </i2c_addrs>
+      <id_reg_addr></id_reg_addr>
+      <ids>
+      </ids>
+      <device_name>accel_g</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>67</report_interval>
+    </basic_info>
+    <odr_tables>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xc7) | 0x8;
+          global_1 = 1;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xc7) | 0x18;
+          global_1 = 2;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xc7) | 0x28;
+          global_1 = 4;
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>16</range>
+        <action>
+          <![CDATA[
+	  writereg_0x23_0x0_1 = (regbuf_0x23_1 & 0xc7) | 0x38;
+          global_1 = 12;
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        writereg_0x20_0_1 = 0x77;
+        writereg_0x1f_0_1 = 0x0;
+        writereg_0x2e_0_1 = 0x0;
+        writereg_0x32_0_1 = 0x30;
+        writereg_0x33_0_1 = 0x5;
+        writereg_0x30_0_1 = 0x7f;
+        writereg_0x22_0_1 = 0x40;
+        writereg_0x23_0_1 = 0x8;
+        global_1 = 0x1;
+        writereg_0x20_0_1 = 0x70;
+	]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x31_0x0_1;
+        writereg_0x20_0x0_1 = regbuf_0x20_1  | 0x7;
+        writereg_0x1f_0_1 = 0x0;
+        writereg_0x2e_0_1 = 0x0;
+        writereg_0x32_0_1 = 0x30;
+        writereg_0x33_0_1 = 0x5;
+        writereg_0x30_0_1 = 0x7f;
+        writereg_0x22_0_1 = 0x40;
+        sleep_20;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+        local_1 = regbuf_0x20_1 & 0xf8;
+        writereg_0x20_0_1 = local_1;
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+        readreg_0x31_0x0_1;
+	return (regbuf_0x31_1 & 0x7f);
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x28_0x80_6;
+        local_1 = le16_to_cpu(regbuf_0x28_2);
+        return (-1) * ((local_1 >> 4) * global_1);
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        local_1 = le16_to_cpu(regbuf_0x2a_2);
+        return (local_1 >> 4) * global_1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        local_1 = le16_to_cpu(regbuf_0x2c_2);
+        return (local_1 >> 4) * global_1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+   <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+    </platform_config>
+    <device>
+      <name>MODEL_LSM303DLHC 3-axis Accelerometer</name>
+      <vendor>STMicroelectronics</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.001</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="Y" axis_y="X" axis_z="Z"></mapper>
+      <scale axis_x="0.001" axis_y="-0.001" axis_z="0.001" unit="GRAVITY_EARTH"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

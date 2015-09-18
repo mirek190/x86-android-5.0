@@ -1,0 +1,9 @@
+# Additional device rules
+type mei_device, dev_type;
+type msr_device, dev_type;
+
+type intel_sst_ctrl_device, dev_type;
+
+type i2c_device, dev_type;
+
+type thermal_device, dev_type;

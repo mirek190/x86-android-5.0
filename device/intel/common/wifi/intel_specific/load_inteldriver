@@ -1,0 +1,12 @@
+#!/system/bin/sh
+
+dir=`find /sys/devices/ -name mmc2`
+echo on > $dir/power/control
+echo on > $dir/../../power/control
+
+insmod /lib/modules/compat.ko
+insmod /lib/modules/cfg80211.ko
+insmod /lib/modules/mac80211.ko
+insmod /lib/modules/iwlwifi.ko nvm_file=iwl_nvm.bin
+insmod /lib/modules/iwlmvm.ko
+

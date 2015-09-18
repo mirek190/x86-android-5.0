@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<sensors>
+  <sensor>
+   <driver_config>
+    <basic_info>
+      <i2c_bus_num>3</i2c_bus_num>
+      <i2c_addrs>
+	<addr>0xe</addr>
+      </i2c_addrs>
+      <id_reg_addr>0xF</id_reg_addr>
+      <ids>
+        <id>0xa</id>
+      </ids>
+      <device_name>KXCJ9</device_name>
+      <input_name>accel</input_name>
+      <event_type>EV_REL</event_type>
+      <method>mix</method>
+      <default_poll_interval>200</default_poll_interval>
+      <min_poll_interval></min_poll_interval>
+      <max_poll_interval></max_poll_interval>
+      <gpio_num>153</gpio_num>
+      <irq_flag>0x2001</irq_flag>
+      <irq_serialize></irq_serialize>
+      <report_cnt>120</report_cnt>
+      <report_interval>500</report_interval>
+    </basic_info>
+    <odr_tables>
+       <odr_table>
+        <hz>1</hz>
+        <action><![CDATA[
+	 readreg_0x1b_0_1;
+         writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+	 readreg_0x21_0_1;
+         writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x9;
+         readreg_0x1e_0_1;
+         /* enable interrupt*/
+         writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf) | 0x20;
+         writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+         global_3 = 1;
+         readreg_0x1a_0x0_1;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>3</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0xa;
+          readreg_0x1e_0_1;
+          /* enable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf)|0x20;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 3;
+          readreg_0x1a_0x0_1;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>6</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0xb;
+          readreg_0x1e_0_1;
+          /* enable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf)|0x20;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 6;
+          readreg_0x1a_0x0_1;
+          ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>12</hz>
+        <action><![CDATA[
+           readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x0;
+          readreg_0x1e_0_1;
+          /* disable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf);
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 12;
+          readreg_0x1a_0x0_1;
+         ]]>
+        </action>
+      </odr_table>
+         <odr_table>
+        <hz>50</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x2;
+          readreg_0x1e_0_1;
+          /* disable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf);
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 50;
+          readreg_0x1a_0x0_1;
+        ]]>
+        </action>
+      </odr_table>
+     <odr_table>
+        <hz>200</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x4;
+          readreg_0x1e_0_1;
+          /* disable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf);
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 200;
+          readreg_0x1a_0x0_1;
+       ]]>
+        </action>
+      </odr_table>
+      <odr_table>
+        <hz>800</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x6;
+          readreg_0x1e_0_1;
+          /* disable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf);
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 800;
+          readreg_0x1a_0x0_1;
+     ]]>
+        </action>
+      </odr_table>    <odr_table>
+        <hz>1600</hz>
+        <action><![CDATA[
+          readreg_0x1b_0_1;
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+          readreg_0x21_0_1;
+	  writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0x7;
+          readreg_0x1e_0_1;
+          /* disable interrupt*/
+          writereg_0x1e_0x0_1 = (regbuf_0x1e_1 & 0xdf);
+          writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80); 
+          global_3 = 1600;
+          readreg_0x1a_0x0_1;
+          ]]>
+        </action>
+      </odr_table>
+    </odr_tables>
+    <range_tables>
+      <range_table default="y">
+        <range>2</range>
+        <action>
+          <![CDATA[
+          ]]>
+        </action>
+      </range_table>
+      <range_table>
+        <range>4</range>
+        <action>
+          <![CDATA[
+         ]]>
+        </action>
+      </range_table>
+       <range_table>
+        <range>6</range>
+        <action>
+          <![CDATA[
+        ]]>
+        </action>
+      </range_table>
+     <range_table>
+        <range>8</range>
+        <action>
+          <![CDATA[
+          ]]>
+        </action>
+      </range_table>
+    </range_tables>
+    <sys_entries>
+      <sys_entry>
+        <name>range</name>
+        <show_action>get_range</show_action>
+        <store_action>set_range</store_action>
+      </sys_entry>
+    </sys_entries>
+    <sensor_actions>
+      <init><![CDATA[
+        readreg_0x1b_0_1;
+        /* wakeup enabled*/
+        writereg_0x1b_0_1 = 0x62;
+        readreg_0x1e_0_1;
+        writereg_0x1e_0_1 = 0x30;
+        readreg_0x29_0_1;
+        
+        /* wakup timer*/
+        writereg_0x29_0_1 = 0x1;
+        readreg_0x1d_0_1;
+        writereg_0x1d_0_1 = 0x2;
+        readreg_0x21_0_1;
+	writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0xa;
+        readreg_0x1b_0_1;
+        writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80);
+        global_2 = 1; 
+        global_3 = 3;
+      ]]>
+      </init>
+      <deinit>
+      </deinit>
+      <enable><![CDATA[
+        readreg_0x1a_0_1 ;
+        readreg_0x1b_0_1 ;
+        readreg_0x1c_0_1 ;
+        readreg_0x1d_0_1 ;
+        readreg_0x1e_0_1 ;
+        readreg_0x1f_0_1 ;
+        readreg_0x1b_0_1;
+        /*writereg_0x1b_0_1 = 0;*/
+        readreg_0x21_0_1;
+        writereg_0x21_0x0_1 = (regbuf_0x21_1 & 0xf0) | 0xa;
+        readreg_0x1b_0_1;
+        writereg_0x1b_0_1 = (regbuf_0x1b_1 | 0x80);
+        global_2 = 1;
+        global_3 = 3;
+        /*clear last interrupt flag*/
+        readreg_0x1a_0x0_1;
+        ]]>
+      </enable>
+      <disable><![CDATA[
+       readreg_0x1b_0_1;
+       writereg_0x1b_0_1 = (regbuf_0x1b_1 & 0x7f);
+       global_2 = 0;
+        ]]>
+      </disable>
+      <int_ack><![CDATA[
+        readreg_0x16_0x0_1;
+        /* don't clear if too frequent*/
+        if(global_3 <= 3)
+        readreg_0x1a_0x0_1;
+        /*readreg_0x16_0x0_1*/
+	return regbuf_0x16_1;
+
+       
+        ]]>
+      </int_ack>
+      <get_data_x><![CDATA[
+        readreg_0x17_0x0_1;
+        readreg_0x6_0x0_6;
+        return (le16_to_cpu(regbuf_0x6_2) >> 4) * 1;
+        ]]>
+      </get_data_x>
+      <get_data_y><![CDATA[
+        return (le16_to_cpu(regbuf_0x8_2) >> 4) * 1;
+        ]]>
+      </get_data_y>
+      <get_data_z><![CDATA[
+        return (le16_to_cpu(regbuf_0xa_2) >> 4) * 1;
+        ]]>
+      </get_data_z>
+    </sensor_actions>
+  </driver_config>
+  <hal_config>
+    <type>accelerometer</type>
+    <platform_config>
+	<calibration_function>AccelCalibration</calibration_function>
+    </platform_config>
+    <device>
+      <name>Kionix 3-axis Accelerometer</name>
+      <vendor>Kionix</vendor>
+      <version>1</version>
+      <maxRange unit="GRAVITY_EARTH">2</maxRange>
+      <resolution unit="GRAVITY_EARTH">0.001</resolution>
+      <power>0.11</power>
+      <minDelay>10000</minDelay>
+      <maxDelay>1000000</maxDelay>
+      <mapper axis_x="Y" axis_y="X" axis_z="Z"></mapper>
+      <scale axis_x="0.001" axis_y="-0.001" axis_z="0.001" unit="GRAVITY_EARTH"></scale>
+    </device>
+   </hal_config>
+  </sensor>
+</sensors>
+

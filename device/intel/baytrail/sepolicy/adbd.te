@@ -1,0 +1,6 @@
+# Additional adbd rules
+allow adbd unlabeled:dir search;
+
+# to allow CTS/XTS screen capture through method getScreenshot.
+allow adbd graphics_device:dir search;
+allow adbd surfaceflinger_tmpfs:file { read write };

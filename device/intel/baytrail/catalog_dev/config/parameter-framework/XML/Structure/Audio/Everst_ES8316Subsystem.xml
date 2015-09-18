@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--Need to Check-->
+<Subsystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Schemas/Subsystem.xsd" Name="EVEREST" Type="ALSA" Endianness="Little">
+
+    <ComponentLibrary>
+
+        <ComponentType Name="PLAYBACK_TYPE">
+            <ParameterBlock Name="VOLUME" ArrayLength="2" Mapping="Volume:'%1 Playback Volume'">
+                <BooleanParameter Name="MUTED"/>
+                <IntegerParameter Name="LEVEL" Size="8" Min="0" Max="31"/>
+            </ParameterBlock>
+            <BooleanParameter Name="SWITCH" ArrayLength="2" Mapping="Control:'%1 Playback Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="HEADPHONE_TYPE">
+            <Component Name="ANALOG" Type="PLAYBACK_TYPE" Mapping="Amend1:HP"/>
+            <BooleanParameter Name="SWITCH"  Mapping="Control:'Headphone Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="SPEAKER_TYPE">
+            <Component Name="ANALOG" Type="PLAYBACK_TYPE" Mapping="Amend1:DAC1"/>
+            <EnumParameter Name="BOOST" Size="8" Mapping="Control:'Speaker Boost'">
+                <ValuePair Literal="g-6dB" Numerical="0"/>
+                <ValuePair Literal="g-4.5dB" Numerical="1"/>
+                <ValuePair Literal="g-3dB" Numerical="2"/>
+                <ValuePair Literal="g-1.5dB" Numerical="3"/>
+                <ValuePair Literal="gObB" Numerical="4"/>
+                <ValuePair Literal="g+O.83bB" Numerical="5"/>
+                <ValuePair Literal="g+1.58dB" Numerical="6"/>
+                <ValuePair Literal="g+2.28dB" Numerical="7"/>
+            </EnumParameter>
+            <BooleanParameter Name="SWITCH"  Mapping="Control:'Ext Spk Switch'"/>
+       </ComponentType>
+        
+        <ComponentType Name="OUTPUTS_TYPE">
+            <Component Name="HEADPHONE" Type="HEADPHONE_TYPE"/>
+            <Component Name="SPEAKER"   Type="SPEAKER_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="MIC_SWITCH_TYPE">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 Mic Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="LINEIN_MIC_TYPE">
+            <Component Name="INT" Type="MIC_SWITCH_TYPE" Mapping="Amend1:Internal"/>
+        </ComponentType>
+
+         <ComponentType Name="LINEIN_ANALOG_VALUE">
+            <IntegerParameter Name="BOOST" Size="8" Min="0" Max="8" Mapping="Control:'Input PGA'"/>
+        </ComponentType>
+
+        <ComponentType Name="INPUTS_TYPE">
+            <Component Name="ANALOG"    Type="LINEIN_ANALOG_VALUE"/>
+            <Component Name="HEADSET"   Type="MIC_SWITCH_TYPE" Mapping="Amend1:Headset"/>
+            <Component Name="MIC"       Type="LINEIN_MIC_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_DAC_MIXER_CHANNEL">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 output mixer %1 Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="OUTPUT_DAC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="OUTPUT_DAC_MIXER_CHANNEL" Mapping="Amend1:Right"/>
+            <Component Name="LEFT"   Type="OUTPUT_DAC_MIXER_CHANNEL" Mapping="Amend1:Left"/>
+        </ComponentType>
+
+        <ComponentType Name="SIDETONE_DAC_MIXER_CHANNEL">
+            <BooleanParameter Name="SWITCH" Mapping="Control:'%1 output mixer %2Sidetone Switch'"/>
+        </ComponentType>
+
+        <ComponentType Name="SIDETONE_DAC_MIXER_TYPE">
+            <Component Name="RIGHT"  Type="SIDETONE_DAC_MIXER_CHANNEL" Mapping="Amend1:Right,Amend2:R"/>
+            <Component Name="LEFT"   Type="SIDETONE_DAC_MIXER_CHANNEL" Mapping="Amend1:Left,Amend2:L"/>
+        </ComponentType>
+
+        <ComponentType Name="DAC_MIXER_TYPE">
+            <Component Name="DAC" Type="OUTPUT_DAC_MIXER_TYPE"/>
+            <Component Name="SIDETONE" Type="SIDETONE_DAC_MIXER_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_DIGITAL_TYPE">
+            <Component Name="DAC_MIXER" Type="DAC_MIXER_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="MIXER_TYPE">
+            <Component Name="DIGITAL" Type="MIXER_DIGITAL_TYPE"/>
+        </ComponentType>
+
+        <ComponentType Name="SSP_PORT" Description="Voice Port">
+            <ParameterBlock Name="CONFIG" Mapping="PortConfig">
+                <BooleanParameter Name="PLAYBACK_ENABLED"/>
+                <BooleanParameter Name="CAPTURE_ENABLED"/>
+                <EnumParameter Name="FORMAT" Size="8">
+                    <ValuePair Literal="S16LE" Numerical="2"/>
+                </EnumParameter>
+                <IntegerParameter Name="CHANNEL_NUMBER" Size="8" Min="1" Max="2"/>
+                <IntegerParameter Name="SAMPLE_RATE" Size="16"/>
+           </ParameterBlock>
+        </ComponentType>
+
+        <ComponentType Name="SOUND_CARD">
+            <Component Name="OUTPUT" Type="OUTPUTS_TYPE"/>
+            <Component Name="INPUT" Type="INPUTS_TYPE"/>
+            <Component Name="MIXER" Type="MIXER_TYPE"/>
+            <Component Name="VOICE_PORT" Type="SSP_PORT" Mapping="Device:1"/>
+        </ComponentType>
+
+    </ComponentLibrary>
+
+    <InstanceDefinition>
+        <Component Name="SOUND_CARD" Type="SOUND_CARD" Mapping="Card:baytrailaudio"/>
+    </InstanceDefinition>
+
+</Subsystem>

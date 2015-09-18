@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sarconfig>
+    <input name="prox" class="com.intel.internal.telephony.SARManager.ProxSensorInput"></input>
+    <input name="wifi" class="com.intel.internal.telephony.SARManager.WifiInput"></input>
+
+    <!--  3 backoffs levels: 0, 1, 2 -->
+    <output name="cell" class="com.intel.internal.telephony.SARManager.CellOutput" notifications="false"></output>
+
+    <policy name="default">
+        <state name="router">
+            <input-state name="router" state="ON"/>
+            <output name="cell" state="0"/>
+        </state>
+        <state name="prox">
+            <input-state name="prox" state="ON"/>
+            <output name="cell" state="2"/>
+        </state>
+
+        <state name="wifi2g">
+            <input-state name="wifi" state="2G"/>
+            <output name="cell" state="1"/>
+        </state>
+
+        <state name="wifi5g">
+            <input-state name="wifi" state="5G"/>
+            <output name="cell" state="0"/>
+        </state>
+
+        <state name="default">
+            <output name="cell" state="0"/>
+        </state>
+    </policy>
+</sarconfig>
