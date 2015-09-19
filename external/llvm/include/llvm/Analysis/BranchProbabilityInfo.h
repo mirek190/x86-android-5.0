@@ -7,7 +7,7 @@
 //
 //===----------------------------------------------------------------------===//
 //
-// This pass is used to evaluate branch probabilties.
+// This pass is used to evaluate branch probabilities.
 //
 //===----------------------------------------------------------------------===//
 

@@ -86,7 +86,7 @@ public class VideoCallPresenter extends Presenter<VideoCallPresenter.VideoCallUi
         private static final int CAMERA_SET = 1;
 
         /**
-         * The camera capabilties have been received from telephony, but the surface has not yet
+         * The camera capabilities have been received from telephony, but the surface has not yet
          * been set on the {@link VideoCall}.
          */
         private static final int CAPABILITIES_RECEIVED = 2;

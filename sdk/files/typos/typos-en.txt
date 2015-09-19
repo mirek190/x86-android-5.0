@@ -343,7 +343,7 @@ andriod->android
 
 abandoned->abandoned
 aberation->aberration
-abilties->abilities
+abilities->abilities
 abilty->ability
 abondon->abandon
 abbout->about
