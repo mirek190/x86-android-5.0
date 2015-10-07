@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mmgr_config>
+	<mcdr>
+		<general
+			timeout="480"
+			protocol="lcdp"
+		/>
+	</mcdr>
+</mmgr_config>

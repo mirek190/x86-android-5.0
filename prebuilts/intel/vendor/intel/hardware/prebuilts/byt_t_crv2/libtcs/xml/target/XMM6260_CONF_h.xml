@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<telephony_config>
+	<modems_info>
+		<modem_info>
+			<core
+				name="6260"
+				flashless="false"
+				secured="false"
+				ipc="shm"
+				ipcLogging="shm"
+				ipcDump="shm"
+				swRevision="NA"
+				hwRevision="NA"
+			/>
+			<modules
+				mmgr_xml="mmgr_6260_conf_h.xml"
+				rril_txt="NA"
+			/>
+			<tlvs_info>
+				<tlv_info
+					filename="NA"
+				/>
+			</tlvs_info>
+			<channels_info>
+			    <channels>
+				<mmgr>
+				    <mdm_custo device="NA"/>
+				    <shutdown device="NA"/>
+				    <secured device="NA"/>
+				    <sanity_check device="NA"/>
+				</mmgr>
+				<nvm>
+				    <nvm_sync device="NA"/>
+				</nvm>
+				<rril>
+				    <monitoring device="NA"/>
+				    <registration device="NA"/>
+				    <settings device="NA"/>
+				    <sim_toolkit device="NA"/>
+				    <field_test device="NA"/>
+				    <control device="NA"/>
+				    <cops_commands device="NA"/>
+				    <rfcoexistence device="NA"/>
+				    <packet_data_1 device="NA"/>
+				    <packet_data_2 device="NA"/>
+				    <packet_data_3 device="NA"/>
+				    <packet_data_4 device="NA"/>
+				    <packet_data_5 device="NA"/>
+				</rril>
+			    </channels>
+			</channels_info>
+		</modem_info>
+	</modems_info>
+</telephony_config>

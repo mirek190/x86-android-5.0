@@ -1,0 +1,274 @@
+====================
+  Release Notes
+====================
+
+06/16/2014
+
+1. This customer specific release is based on the following baseline
+
+    BCM4343A0_001.001.034.0043.0000\Generic\UART\26MHz\wlbga_eLG_lite
+
+
+##############################################
+#  Major changes in baseline .0043:
+##############################################
+BLTH03155577 - PCM loopback does not work
+BLTH03155582 - PCM loopback read command does not work
+
+##############################################
+#  Major changes in baseline .0042:
+##############################################
+BLTH03144368 - fix interrupt locking issue in BT clock sleep
+
+##############################################
+#  Major changes in baseline .0041:
+##############################################
+BLTH03078868 - Add firmware WA for handling I2C NACK to detect WPT on/off with BT ON
+BLTH03144323 - [4343A0]RFFW:4343A0 GFSK 12dBm power TCA update
+BLTH03144334 - [4343A0]RFFW:4343A0 GFSK 12dBm PA LUT update
+BLTH03144338 - [4343A0]RFFW:4343A0 GFSK 12dBm switch 3 pwrRamAdLEV between BDR and EDR
+BLTH03144169 - FMRX : option for FM volume control at FM active monitor
+BLTH03142416 - [N/A] SLEEP_NOT_ALLOWED after A2DP streaming on certain project-2
+BLTH03144410 - [N/A] Expose LE power setting register
+BLTH03144443 - Fix a problem in the Tx Test function
+
+##############################################
+#  Major changes in baseline .0040:
+##############################################
+BLTH03136746 - Fix an issue wheare device could not enter into sleep again after A2DP streaming on  
+certain platform 
+BLTH03125280 - [4343A0] Fix TP/PROT/ED/BV-01-C
+BLTH03129308 - [N/A] Change the cgs-utility path
+
+##############################################
+#  Major changes in baseline .0039:
+##############################################
+BLTH03103592 - [19.2MHz ONLY] [4343A0] RFFW : 19.2MHz TCA table
+BLTH03103653 - [19.2MHz ONLY] [4343A0] RFFW : 19.2M xtal setting for 43430
+BLTH03107192 - pmu sleep period is wrong for FM active monitor
+BLTH03107288 - [4343A0] fix BB HCLK for FM standalone tests => LE test mode fix
+
+##############################################
+#  Major changes in baseline .0038:
+##############################################
+BLTH03099941/BLTH03100094 - FMRX noise with sleep enabled when 4343 is configured as I2S slave mode
+                           Need to enable fm_pmu_sleepNotAllowed = 1 via cgs.
+                       for customer note: will use below statement.
+                       * Fix for FMRX noise when 4343 is configured as I2S slave mode (I2S slave mode project only)
+                       * Fix for FMRX sensitivity on 96MHz 
+
+BLTH03100101 - [N/A] fix flash build error
+
+##############################################
+#  Major changes in baseline .0037:
+##############################################
+BLTH03087197 - [EXCLUDE] [4343A0] Revert "BLTH03084896 [4343A0] kick off TCA Task in HCI Rest only"
+
+##############################################
+#  Major changes in baseline .0036:
+##############################################
+BLTH03084929 - [343A0] Leave HCLK untouched at 48MHz during boot
+BLTH03087176 - [4343A0] disable ELIMINATE_FM_POP_SET_WLAN_PRIO_WORKAROUND feature
+                           For FM customers : Fix for high sleep current after turn on/off FM while BT and WLAN are ON.
+BLTH03084896 - [EXCLUDE][4343A0] kick off TCA Task in HCI Rest only
+
+##############################################
+#  Major changes in baseline .0035:
+##############################################
+BLTH03082793 - [N/A] Add flash-equivalent code: BLTH03014588 FM: re-route the way to get snr
+BLTH03082827 - [N/A] Add flash-equivalent code: BLTH03042804 [4343A1] FM Blend/Mute/Reg Updates (Hardware CQ BLTH03042797
+BLTH03082835 - [N/A] Add flash-equivalent code: BLTH02995026 Change the polarity of the BT clock, so that it will improve FM-BT coexist SNR performance
+BLTH03082836 - [N/A] Add flash-equivalent code: BLTH03042804 [4343A1] FM Blend/Mute/Reg Updates (Hardware CQ BLTH03042797)
+BLTH03082837 - [N/A] exclusive[4343A0]: clean up patch CQ flags
+BLTH03084842 - COEX: Indicate LE alarm high priority over GCI
+
+##############################################
+#  Major changes in baseline .0034:
+##############################################
+BLTH03082708 - [N/A] AGC Table change [ Flash change only ]
+BLTH03082746 - [N/A] [4343A1] port in missing flash equivalant from patch
+BLTH03082758 - [N/A] [4343A1] 26 MHZ pll setting switch
+
+##############################################
+#  Major changes in baseline .0033:
+##############################################
+BLTH03078851 - HWCQ BLTH03078850: 4343 FM Scan Update for BB CLK spurs
+BLTH03078853 - HWCQ BLTH03078850: 4343 FM Scan Update for BB CLK spurs--part2
+BLTH03080645 - BB HCLK for FM standalone tests
+BLTH03080661 - BB HCLK for FM standalone tests--part2
+BLTH03080689 - BB HCLK for FM standalone tests--part3
+BLTH03080659 - RFFW: SMIC BPF capcode offset to RC-cal
+
+##############################################
+#  Major changes in baseline .0032:
+##############################################
+BLTH03078789 - AFH active RSSI scan (more change added to BT_scheduler WA)
+BLTH03078769 - fix wrong interval notification on mode change event
+BLTH03069976 - [N/A] Add locking mechanism to generation of sleep config data
+
+##############################################
+#  Major changes in baseline .0031:
+##############################################
+BLTH03069971 - PMU sleep does not work correctly even though UART sleep is allowed
+BLTH03067957 - Support BR/EDR RSSI Monitoring feature - [ATTENTION] Not enabled by default so [N/A] if it's not enabled via CPSI.
+
+##############################################
+#  Major changes in baseline .0030:
+##############################################
+BLTH03068002 - Augmenting Host_Wake handling to support hosts that wake up delay
+BLTH03069830 - [4343A0] Fix MidBin IQCal register update on 0x410498
+
+##############################################
+#  Major changes in baseline .0029:
+##############################################
+BLTH03068070 - FM PMU spur avoidance: change sweep range
+BLTH03068019 - AFH active RSSI scan (fixed the issue introduced from BT_scheduler WA)
+BLTH03068033 - [4343A0]RFFW:power control setting dynamic between BDR and EDR
+BLTH03064122 - [4343A0]RFFW:SMIC Temp Sensor needs update Description: 
+             HWCQ: BLTH03062212 Temp Sensor for 43430A needed updated equation for SMIC use equation y = 2.850
+BLTH03060640 - Access the OTP data only when enabled
+BLTH03065942 - [4343A0] rfm sleep retore code
+BLTH03065950 - [N/A] Allow CONFIG_VAR variables to be used in 4343A0 ROM
+
+##############################################
+#  Major changes in baseline .0028:
+##############################################
+BLTH03062170 - [4343A] Connection Updates gets stuck on waiting for peer's host command when it doesn't need to.
+
+##############################################
+#  Major changes in baseline .0027:
+##############################################
+BLTH03055170 - AFH: fix the rf setting issue that the values are  restored before the initial values are saved
+
+##############################################
+#  Major changes in baseline .0026:
+##############################################
+BLTH03051386 - Fixing ARQ failures
+BLTH03053420 - AFH active RSSI scan
+BLTH03053443 - LLT - Fail to do second connection update
+                           Fixed a patch on reporting Connection Parameter Update
+BLTH03053337 - RFFW:4343A0 SMIC/UMC BT/LE TCA update 0508
+BLTH03053306 - Disable the A4WP HAL simulation and add 37_4 target
+
+##############################################
+#  Major changes in baseline .0025:
+##############################################
+BLTH03049369 - PCA: avoid doing PCA transaction check within interrupt context
+BLTH03045681 - Simulation mode to test 4343A0  - OTP and WPT enable from firmware
+
+##############################################
+#  Major changes in baseline .0024:
+##############################################
+BLTH03044296- Connection Update cannot complete with encryption on
+                          Adjust received packet length before LE audio packet checking when encryption is on.
+BLTH03044795 - Fix the issue of directed adv timeout immediately after peforming directed adv only if 
+it is first adv activity after reset
+BLTH03045598 - BT4.1 LLT -- offset of "FF" in "CONN_PARAM_REQ"
+BLTH03047473 - Enable patch for BLTH03043931 BT4.1 LLT -- offset of "FF" in "CONN_PARAM_REQ"
+BLTH03045350 - Update HCI command Set_MWS_Transport_Layer_Command as per GCI rev 4 changes
+BLTH03047451 - Add missing LTE CoEx related HCI commands
+                           HCI_Set_MWS_Signaling (0x0070) / HCI_Set_MWS_Scan_Frequency_Table (0x0072) / 
+                           HCI_Set_MWS_PATTERN_Configuration (0x0073)
+BLTH03049285 - Fix MidBin IQ Cal doesn't update regs correctly
+
+##############################################
+#  Major changes in baseline .0023:
+##############################################
+BLTH03044749 - FW crash while creating LE connection after doing hci reset when LE + WBS conn up 
+               Fix crash when disconnecting WBS connection
+BLTH03044543 - Low MOS scores on BLE dual mode SCO/WBS tabs
+BLTH03044553 - RFFW :Equalizer coefficients update
+BLTH03044964 - [*EXCLUDE*] Set Lite PDS flag
+BLTH03043931 - [N/A] 4343A0 BT4.1 LLT -- offset of "FF" in "CONN_PARAM_REQ" - flash equivlanet
+BLTH03045187 - change IQ cal iteration from 20 to 10 to match RF system's script
+               : Fix activation failure on certain customer targets
+BLTH03044599 - LTE CoEx: Configure WCI-2 UART using GCI rev 4 
+               WLAN_GPIO_3 -> GCI_GPIO[0] -> SECI IN 
+               WLAN_GPIO_4 -> GCI_GPIO[1] -> SECI OUT
+
+##############################################
+#  Major changes in baseline .0022:
+##############################################
+BLTH03044630 - [4343A0]RFFW:4343A0 EDR lower TSSI targets
+
+##############################################
+#  Major changes in baseline .0021:
+##############################################
+BLTH03042769 - [4343A0] Fix RC Cal error
+BLTH03044617 - [4343A0]RFFW:4343A0 EDR lower TSSI targets
+
+##############################################
+#  Major changes in baseline .0020:
+##############################################
+BLTH03044144 - [N/A] disable short sleep for better LEA performance with HID connection
+BLTH03044195 - [N/A] Fix compile flag to enable patch hooks for bcs_mcm, bcs_mcs and bcs_mblm
+BLTH03044376 - [4343A0]RFFW:4343A0 PA LUT change to fix EPC failure
+BLTH03044428 - [4343A0] Fix Hw Pwr LUT loading issue
+BLTH03044361 - [N/A] Do not overwrite PCM pin setting done by FW patch config
+
+##############################################
+#  Major changes in baseline .0019:
+##############################################
+BLTH03042994 - [CSB] Add SIG CSB tester functionality in patch
+BLTH03043752 - [N/A] Fix IQCAL 
+BLTH03043756 - [N/A] [4343A0] fix TCA Temp Zone 5 problem
+               Improve RF performance
+BLTH03043705 - [N/A] Expose fm_spurCancelOnThresh setting
+
+##############################################
+#  Major changes in baseline .0018:
+##############################################
+BLTH03043216 - Fix BT stops working issue after command LE_Test_End
+BLTH03043338 - Fix BQB Crash issue when tester calls HCI Reset before SCO connection SVTO
+BLTH03042325 - Connection drop timeout when exiting sniff if using high sniff value such as 1024
+BLTH03043605 - [N/A] Enable PDS in all build targets
+BLTH03043247 - [N/A] Clock request line control in  cr_pds_cfg5
+
+##############################################
+#  Major changes in baseline .0017:
+##############################################
+BLTH03043155 - [N/A] RFFW:4343A0 SMIC TCA table update 0410
+BLTH03043186 - [N/A] RFFW:4343A0 SMIC TCA table update 0410
+
+##############################################
+#  Major changes in baseline .0016:
+##############################################
+BLTH03042549 - [RF] Add tx power facotry cal code base
+BLTH03042804 - [FMRX] Blend/Mute/Reg Updates
+BLTH03042970 - Fix BQB Test mode AUX packet Sent crash issue
+BLTH03043024 - [N/A] fix FW CQ BLTH03042804
+BLTH03043081 - [FMRX] FM BB 4MHz clk spurs
+BLTH03042547 - Fix PowerSaveSettings for CBUCK
+BLTH03042740 - [N/A] [RF] fix TSSI CAL sweeping wrong PAD in EDR mode.
+BLTH03042820 - [N/A] Fix restoration problem in TSSI Cal
+BLTH03042998 - [FMRX] Set pause clock to 12MHz for FM spur
+BLTH03043082 - [N/A] TSSICAL FIX part2
+BLTH03043083 - [N/A] RFFW:4343A0 RFP PA correction factor
+
+##############################################
+#  Major changes in baseline .0015:
+##############################################
+BLTH03041355 - fix an issue where IUT failed to issue cmd LE_Set_Host_Channel_Classification
+BLTH03041946 - BLE register update
+BLTH03042341 - [N/A] disable PDS by default until PDS issue resolved
+BLTH03042338 - Enable [BLTH03041027-Fix Issue TCA stopped in HCI_REST] again with simple fix for SVT issue
+
+##############################################
+#  Major changes in baseline .0014:
+##############################################
+BLTH03041896 - [N/A] Temporarily disable [BLTH03041027] to cover SVT issue
+
+##############################################
+#  Major changes in baseline .0013:
+##############################################
+BLTH03041397 - [N/A] Make lite PDS the default
+BLTH03041399 - [N/A] 4343A0- Add Debug UART in 4343A0
+BLTH03041027 - [N/A] Fix Issue TCA stopped in HCI_REST
+BLTH03041169 - fix issue slna using wrong tabler
+BLTH03041368 - [N/A] pds_initHW is called after all RF settings to prevent rfm_*  from overwriting PDS settings 
+BLTH03041483 - [N/A] TSSI Cal patch enviroment for debug
+BLTH03041193 - Remove disabling of RPU sleep
+BLTH03039253 - [N/A] Enable FM HCLK first to apply FM register changes accordingly via BB Register  
+setting 
+BLTH03041175 - lower drive current on I2S_WS and I2S_CLK
+

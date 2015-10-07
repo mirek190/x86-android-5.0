@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<channels_info>
+	<channels>
+		<mmgr>
+			<mdm_custo device="NA"/>
+			<shutdown device="NA"/>
+			<secured device="NA"/>
+			<sanity_check device="NA"/>
+		</mmgr>
+		<nvm>
+			<nvm_sync device="NA"/>
+		</nvm>
+		<rril>
+			<monitoring device="NA"/>
+			<registration device="NA"/>
+			<settings device="NA"/>
+			<sim_toolkit device="NA"/>
+			<field_test device="NA"/>
+			<control device="NA"/>
+			<cops_commands device="NA"/>
+			<rfcoexistence device="NA"/>
+			<packet_data_1 device="NA"/>
+			<packet_data_2 device="NA"/>
+			<packet_data_3 device="NA"/>
+			<packet_data_4 device="NA"/>
+			<packet_data_5 device="NA"/>
+		</rril>
+	</channels>
+</channels_info>

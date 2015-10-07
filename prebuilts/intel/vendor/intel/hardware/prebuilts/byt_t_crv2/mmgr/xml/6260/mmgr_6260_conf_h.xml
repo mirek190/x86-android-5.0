@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mmgr_config>
+	<modem_link>
+		<flash>
+			<link_shm device="![CDATA[/dev/ttyACM0]]" pid="0x0716" vid="0x8087"/>
+		</flash>
+		<baseband>
+			<link_hsi device="![CDATA[/dev/ttyACM0]]"/>
+		</baseband>
+		<power
+			device="![CDATA[/sys/devices/pci0000:00/0000:00:10.0/L2_autosuspend_enable]]"
+			on="1"
+			off="0"
+		/>
+		<link_ctrl
+			device="![CDATA[/sys/devices/pci0000:00/0000:00:10.0/hsic_enable]]"
+			on="1"
+			off="0"
+			reset="1"
+		/>
+	</modem_link>
+	<mdm_ctrl
+        path="/dev/mdm_ctrl0"
+        type="ioctl"
+        board="aob"
+	/>
+	<modem_comm>
+		<mux
+			frame_size="1509"
+			retry="24"
+		/>
+	</modem_comm>
+	<modem_timings
+		ipc_ready="5"
+		cd_ipc_ready="10"
+		mdm_flash="15"
+		fmmo="30"
+	/>
+	<modem_recovery
+		enable="true"
+		cold_reset="5000"
+		platform_reboot="0"
+		reset="600"
+		delay_before_reboot="1"
+		cold_reset_timeout="1"
+		shutdown_timeout="1"
+	/>
+	<clients_config max="12"/>
+	<mcdr>
+		<general
+			enable="false"
+			protocol="ymodem"
+			folder="/logs/modemcrash"
+			timeout="600"
+            enable_cd_log="false"
+		/>
+		<link>
+			<link_uart device="![CDATA[/dev/ttyMFD1]]" baudrate="3000000"/>
+		</link>
+		<power
+			device="![CDATA[/sys/devices/pci0000:00/0000:00:05.1/power/control]]"
+			on="auto"
+			off="on"
+		/>
+		<link_ctrl
+			device="![CDATA[/sys/devices/pci0000:00/0000:00:10.0/hsic_enable]]"
+			on="1"
+			off="0"
+			reset="1"
+		/>		
+	</mcdr>
+</mmgr_config>
