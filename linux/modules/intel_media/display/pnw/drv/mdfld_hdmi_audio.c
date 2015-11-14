@@ -215,7 +215,7 @@ static int mid_hdmi_audio_get_caps(enum had_caps_list get_element, void *capabil
  * used to set the HDMI audio capabilities.
  * e.g. Audio INT.
  */
-static int mid_hdmi_audio_set_caps(enum had_caps_list set_element, void *capabilties)
+static int mid_hdmi_audio_set_caps(enum had_caps_list set_element, void *capabilities)
 {
 	struct drm_device *dev = hdmi_priv->dev;
 	struct drm_psb_private *dev_priv = (struct drm_psb_private *) dev->dev_private;
@@ -250,20 +250,20 @@ static int mid_hdmi_audio_set_caps(enum had_caps_list set_element, void *capabil
 		}
 		break;
 	case HAD_SET_ENABLE_AUDIO_INT:
-		if (*((u32 *)capabilties) & HDMI_AUDIO_UNDERRUN)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_UNDERRUN)
 			int_masks |= PIPE_HDMI_AUDIO_UNDERRUN;
 
-		if (*((u32 *)capabilties) & HDMI_AUDIO_BUFFER_DONE)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_BUFFER_DONE)
 			int_masks |= PIPE_HDMI_AUDIO_BUFFER_DONE;
 
 		dev_priv->hdmi_audio_interrupt_mask |= int_masks;
 		mid_irq_enable_hdmi_audio(dev);
 		break;
 	case HAD_SET_DISABLE_AUDIO_INT:
-		if (*((u32 *)capabilties) & HDMI_AUDIO_UNDERRUN)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_UNDERRUN)
 			int_masks |= PIPE_HDMI_AUDIO_UNDERRUN;
 
-		if (*((u32 *)capabilties) & HDMI_AUDIO_BUFFER_DONE)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_BUFFER_DONE)
 			int_masks |= PIPE_HDMI_AUDIO_BUFFER_DONE;
 
 		dev_priv->hdmi_audio_interrupt_mask &= ~int_masks;

@@ -303,7 +303,7 @@ int main(int argc, char* const argv[])
     XAresult    result;
     XAObjectItf sl;
 
-    fprintf(stdout, "OpenMAX AL test %s: exercises SLAudioDecoderCapabiltiesItf ", argv[0]);
+    fprintf(stdout, "OpenMAX AL test %s: exercises SLAudioDecoderCapabilitiesItf ", argv[0]);
     fprintf(stdout, "and displays the list of supported video decoders, and for each, lists the ");
     fprintf(stdout, "profile / levels combinations, that map to the constants defined in ");
     fprintf(stdout, "\"XA_VIDEOPROFILE and XA_VIDEOLEVEL\" section of the specification\n\n");

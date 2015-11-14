@@ -63,8 +63,8 @@ struct  hdmi_audio_registers_ops {
 };
 
 struct hdmi_audio_query_set_ops {
-	int (*hdmi_audio_get_caps)(enum had_caps_list query_element , void *capabilties);
-	int (*hdmi_audio_set_caps)(enum had_caps_list set_element , void *capabilties);
+	int (*hdmi_audio_get_caps)(enum had_caps_list query_element , void *capabilities);
+	int (*hdmi_audio_set_caps)(enum had_caps_list set_element , void *capabilities);
 };
 
 typedef struct hdmi_audio_event {

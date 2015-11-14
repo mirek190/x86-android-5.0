@@ -611,8 +611,8 @@ void had_build_channel_allocation_map(struct snd_intelhad *intelhaddata);
 
 /* Register access functions */
 inline int had_get_hwstate(struct snd_intelhad *intelhaddata);
-inline int had_get_caps(enum had_caps_list query_element , void *capabilties);
-inline int had_set_caps(enum had_caps_list set_element , void *capabilties);
+inline int had_get_caps(enum had_caps_list query_element , void *capabilities);
+inline int had_set_caps(enum had_caps_list set_element , void *capabilities);
 inline int had_read_register(uint32_t reg_addr, uint32_t *data);
 inline int had_write_register(uint32_t reg_addr, uint32_t data);
 inline int had_read_modify(uint32_t reg_addr, uint32_t data, uint32_t mask);
