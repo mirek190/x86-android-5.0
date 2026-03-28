@@ -570,7 +570,7 @@ enum dgrp_nd_state_t {
 
 #define NR_ECHO		0x0001		/* Server echo packet */
 #define NR_IDENT	0x0002		/* Server Product ID */
-#define NR_CAPABILITY	0x0004		/* Server Capabilties */
+#define NR_CAPABILITY	0x0004		/* Server Capabilities */
 #define NR_VPD		0x0008		/* Server VPD, if any */
 #define NR_PASSWORD	0x0010		/* Server Password */
 

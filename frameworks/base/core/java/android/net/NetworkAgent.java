@@ -68,7 +68,7 @@ public abstract class NetworkAgent extends Handler {
 
     /**
      * Sent by the NetworkAgent to ConnectivityService to pass the current
-     * NetworkCapabilties.
+     * NetworkCapabilities.
      * obj = NetworkCapabilities
      */
     public static final int EVENT_NETWORK_CAPABILITIES_CHANGED = BASE + 2;

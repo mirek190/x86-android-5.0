@@ -311,7 +311,7 @@ static int rttCmdId;
 static bool startScan( void (*pfnOnResultsAvailable)(wifi_request_id, unsigned),
                        int max_ap_per_scan, int base_period, int report_threshold) {
 
-    /* Get capabilties */
+    /* Get capabilities */
     wifi_gscan_capabilities capabilities;
     int result = wifi_get_gscan_capabilities(wlan0Handle, &capabilities);
     if (result < 0) {

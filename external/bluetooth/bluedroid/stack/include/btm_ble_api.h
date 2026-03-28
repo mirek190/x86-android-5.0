@@ -913,7 +913,7 @@ BTM_API extern void BTM_BleReadAdvParams (UINT16 *adv_int_min, UINT16 *adv_int_m
 **
 ** Function         BTM_BleObtainVendorCapabilities
 **
-** Description      This function is called to obatin vendor capabilties
+** Description      This function is called to obatin vendor capabilities
 **
 ** Parameters       p_cmn_vsc_cb - Returns the vednor capabilities
 **

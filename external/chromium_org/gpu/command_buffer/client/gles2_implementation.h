@@ -588,7 +588,7 @@ class GLES2_IMPL_EXPORT GLES2Implementation
 
   bool IsExtensionAvailable(const char* ext);
 
-  // Caches certain capabilties state. Return true if cached.
+  // Caches certain capabilities state. Return true if cached.
   bool SetCapabilityState(GLenum cap, bool enabled);
 
   IdHandlerInterface* GetIdHandler(int id_namespace) const;

@@ -256,7 +256,7 @@ static int hdmi_audio_get_caps(enum had_caps_list get_element,
  * e.g. Audio INT.
  */
 static int hdmi_audio_set_caps(enum had_caps_list set_element,
-			void *capabilties)
+			void *capabilities)
 {
 	struct drm_device *dev = hdmi_priv->dev;
 	struct drm_i915_private *dev_priv =
@@ -284,13 +284,13 @@ static int hdmi_audio_set_caps(enum had_caps_list set_element,
 		break;
 
 	case HAD_SET_ENABLE_AUDIO_INT:
-		if (*((u32 *)capabilties) & HDMI_AUDIO_UNDERRUN)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_UNDERRUN)
 			int_masks |= I915_HDMI_AUDIO_UNDERRUN_ENABLE;
 		dev_priv->hdmi_audio_interrupt_mask |= int_masks;
 		i915_enable_hdmi_audio_int(dev);
 		break;
 	case HAD_SET_DISABLE_AUDIO_INT:
-		if (*((u32 *)capabilties) & HDMI_AUDIO_UNDERRUN)
+		if (*((u32 *)capabilities) & HDMI_AUDIO_UNDERRUN)
 			int_masks |= I915_HDMI_AUDIO_UNDERRUN_ENABLE;
 		dev_priv->hdmi_audio_interrupt_mask &= ~int_masks;
 
